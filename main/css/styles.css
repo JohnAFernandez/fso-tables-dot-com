@@ -1,0 +1,310 @@
+/* theme "Knet" */
+:root {
+    --clr-main: #8423c5;
+    --clr-grad2: rgba(104,20,104,.3);
+    --clr-icon: var(--clr-main);
+    --clr-menu-text: var(--clr-main); 
+    --clr-400: #ce93ff;
+    --clr-500: #9e6ec0;
+    --clr-600: #8d1beb;
+    --clr-700: #7c22bd;
+    --logo-filter: none;
+}
+
+body[data-theme="Classic"] {
+    --clr-main: #7d0101;
+    --clr-grad2: rgba(39,3,4,.5);
+    --clr-icon: #bd2c22;
+    --clr-menu-text: #bd2c22;
+    --clr-400: #ff9393;
+    --clr-500: #C06E7A;
+    --clr-600: #eb9999;
+    --clr-700: #bd2c22;
+    --logo-filter: hue-rotate(90deg);
+}
+
+body[data-theme="Vishnan"] {
+    --clr-main: #EB901B;
+    --clr-grad2: rgba(104,96,20,.3);
+    --clr-icon: var(--clr-main);
+    --clr-menu-text: var(--clr-main);
+    --clr-400: #FFE193;
+    --clr-500: #C0A16E;
+    --clr-600: #EB901B;
+    --clr-700: #BD7422;
+    --logo-filter: sepia(50%) hue-rotate(120deg) brightness(200%);
+}
+
+body[data-theme="Ancients"] {
+    --clr-main: #1B46EB;
+    --clr-grad2: rgba(20,20,104,.3);
+    --clr-icon: var(--clr-main);
+    --clr-menu-text: #6E7AC0;
+    --clr-400: #93A6FF;
+    --clr-500: #6E7AC0;
+    --clr-600: #1B46EB;
+    --clr-700: #2224BD;
+    --logo-filter: hue-rotate(310deg) brightness(150%);
+}
+
+body[data-theme="Nightmare"] {
+    --clr-main: #1BEB24;
+    --clr-grad2: rgba(20,104,20,.3);
+    --clr-icon: var(--clr-main);
+    --clr-menu-text: var(--clr-main);
+    --clr-400: #99FF93;
+    --clr-500: #73C06E;
+    --clr-600: #1BEB24;
+    --clr-700: #2BBD22;
+    --logo-filter: hue-rotate(220deg) brightness(150%);
+}
+
+body[data-theme="Ae"] {
+    --clr-main: #B3B3B3;
+    --clr-grad2: rgba(104,20,104,.3);
+    --clr-icon: #8423c5;
+    --clr-menu-text: var(--clr-main);
+    --clr-400: #E8E8E8;
+    --clr-500: #CECECE;
+    --clr-600: #B3B3B3;
+    --clr-700: #8C8C8C;
+    --logo-filter: none;
+}
+
+#webpageIcon {
+    filter: var(--logo-filter);
+}
+
+header {
+    padding-bottom: 20px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-image: linear-gradient(180deg, var(--clr-main) 0, var(--clr-grad2)),repeating-linear-gradient(180deg,#242424,#323232 1px,#000 0,#000 2px);
+    background-size: 5000px 80px;
+    background-repeat: no-repeat;
+}
+
+.container {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 40px;
+    padding-right: 10px;
+}
+
+.header-container {
+    margin-top: 22px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+}
+
+
+.body-container {
+    margin: 0px;
+    padding-left:0px;
+    padding-bottom: 0px;
+    padding-right: 20px;
+}  
+
+body {
+    overflow-x: hidden;
+}
+
+.body_ {
+    margin-right: 0px;
+    padding-right: 0px;
+    background: linear-gradient(180deg, rgba(32,32,32,1) 0%, rgba(21,21,21,1) 20%, rgba(37,37,37,1) 60%, rgba(45,45,45,1) 100%);    
+}
+
+a {
+    color: var(--clr-400);
+    font-weight: normal;
+    text-shadow: 0 0 3px #000;
+}
+
+.local-link .minor-text{
+    color: var(--clr-600);
+}
+
+a:hover {
+    color: var(--clr-700);
+    cursor: pointer;
+}
+
+h2 {
+    text-shadow: 0 0 7px #000;
+    font-weight: normal;
+}
+
+h3, h4, h5 {
+    text-shadow: 0 0 2px #000;
+
+}
+
+h1, h2, h3, h4, h5, .minor-text {
+    color: var(--clr-400);
+}
+
+h4 {
+    font-size:large;
+}
+
+h5 {
+    font-size: medium;
+}
+
+.minor-text {
+    font-size: smaller;
+}
+
+.semi-hidden-text {
+    font-size:xx-small
+}
+
+.lower-navbar {
+    padding: 0px;
+    padding-left: 40px;
+    margin: 0px;
+    position: sticky; 
+    top: 4000; 
+    left: 0; 
+    z-index: 11;
+}
+
+.footer-area{
+    margin: 0px;
+    padding-bottom: 0px;
+    background-image: linear-gradient(180deg, var(--clr-main) 0, var(--clr-grad2)),repeating-linear-gradient(180deg,#242424,#323232 1px,#000 0,#000 2px);
+    background-size: 5000px 80px;
+    background-repeat: no-repeat;
+    position: sticky; 
+    top: 5000; 
+    z-index: 10;
+}
+
+/*.row-content {
+    border-bottom: 1px ridge;
+    min-height: 400px;
+}*/
+
+li {
+    list-style-image: "main/res/iconmonstr-download.png";
+}
+
+.li-body {
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
+/* Adjusts the bottom border of the whole nav-tabs section */
+.nav-tabs {
+    border-bottom-width: 0px;
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-color: #000;
+}
+
+/* Actually fixes the tab background color*/
+.nav-tabs .nav-item .nav-link {
+    background-color: #404040;
+    border-width: 0px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-color: #000;
+}
+
+/* Tab colors on nav bar mouse down */
+.nav-tabs:active .nav-item:active .nav-link:active {
+    color: var(--clr-500);
+    background-color:#242424;
+}
+
+.DLlinks {
+    background-color: #242424;
+    display: none;
+    margin: 0px;
+    padding: 0px;
+} 
+
+.blurb-body {
+    background-color: #080808;
+    border-color: #000;
+    border-width: 3px;
+    border-radius: 30;
+    margin-left: 15px;
+    padding-right: 30px;
+}
+
+.link-body {
+    background-color: #080808;
+    margin: 0px;
+    padding: 15px;
+    padding-bottom: 50px;
+    margin-left: 15px;
+    border-color: #000;
+    border-width: 3px;
+    border-radius: 30;
+}
+
+a:not([href]):not([class]):hover{
+    color: var(--clr-500);
+}
+
+.btn {
+    color: var(--clr-500);
+}
+
+.btn:hover {
+    color: var(--clr-500);
+}
+
+.link-container {
+    padding: 0px;
+    margin: 0px;
+}
+
+.dropdown-menu {
+
+    background-color: #252525;
+}
+
+.dropdown-item {
+    color: var(--clr-menu-text);
+}
+
+.dropdown-item:hover {
+    color: var(--clr-menu-text);
+    background-color: #000;
+}
+
+/* Not yet working...*/
+.dropdown-divider {
+    background-color: #000000;
+    border-top: #000000
+}
+
+.icon-20 {
+   --_size: 20px;
+
+}
+.icon-16 {
+    --_size: 16px;
+}
+
+.icon-10 {
+    --_size: 10px;
+}
+
+svg.icon {
+    width: var(--_size, 24px);
+    height: var(--_size, 24px);
+    fill: var(--clr-icon);
+}
+
+/* Hides the wepage until it's loaded.*/
+#cover {
+    position: fixed; height: 100%; width: 100%; top:0; left: 0; background: #000; z-index:9999;
+}

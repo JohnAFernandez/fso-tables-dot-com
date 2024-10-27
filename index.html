@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+
+    <link href="main/res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Fonts and css-->
+    <!-- <link rel="stylesheet" href="main/res/fonts/pixel_operator/PixelOperator.ttf" /> -->
+    <link rel="stylesheet" href="main/css/styles.css" />
+    <title>Knossos.NET Downloads</title>
+  </head>
+
+  <body class="body_" data-theme="Knet">
+    <div id="cover"></div>
+    <header>
+      <div class="container header-container">
+        <div class="row">
+          <div class="col-2">
+            <img
+              id="webpageIcon"
+              alt="Knossos.NET"
+              width="96"
+              height="96"
+              src="main/res/knossos-icon.png"
+            />
+          </div>
+          <div class="col-7">
+            <br/>
+
+            <h2 class="page-heading">Knossos.NET Downloads</h2>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-11 body-container rounded">
+          <ul class="nav nav-tabs">
+            <li id="downloadTab" class="nav-item">
+              <!-- Scripting used when this link is clicked -->
+              <a id="downTab" class="nav-link local-link" aria-current="page" onclick="activateDownload()">
+                Auto-Detected
+                <svg class="icon icon-16" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-radar"></use></svg>
+              </a>
+            </li>
+            <li id="windowTab" class="nav-item">
+              <!-- Scripting used when this link is clicked -->
+              <a id="winTab" class="nav-link local-link" aria-current="page" onclick="activateWindows()">
+
+                Windows
+                <svg class="icon icon-16" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-win"></use></svg>
+              </a>
+            </li>
+            <li class="nav-item">
+              <!-- Scripting used when this link is clicked -->
+              <a id="macTab" class="nav-link local-link" aria-current="page" onclick="activateMac()">
+                macOS
+                <svg class="icon icon-16" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-apple"></use></svg>
+              </a>
+            </li>
+            <li class="nav-item">
+              <!-- Scripting used when this link is clicked -->
+              <a id="linTab" class="nav-link local-link" aria-current="page" onclick="activateLinux()">
+                Linux
+                <svg class="icon icon-16" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-linux"></use></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container link-container">
+      <div id="downLinks" class="DLlinks">
+        <div class="row">
+          <div class="col-10 col-sm-9">
+            <div class="link-body rounded">
+              <ul style="list-style-type:none;">
+                <li>
+                  <a id="theButton" class="local-link" href="">
+                    <h4><b><br><svg class="icon icon-16" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                    <span id="theButtonText"></span>
+                    </b></h4>
+                  </a>
+                  <h5 id="button-extra-text">
+                  </h5>
+                  <!-- Spacing gives the footer space to be low enough and makes the auto detect tab to be as large as the others-->
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="winLinks" class="DLlinks">
+        <div class="row">
+          <div class="col-10 col-sm-9">
+            <div class="link-body rounded">
+              <h4>
+                Installers
+              </h4>
+
+              <ul style="list-style-type:none;">
+                <li>
+                  <h5>
+                    <a id="winx64-installer-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Knossos.NET-1.0.0-x64.exe">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="winx64-installer-version"></span> x64
+                    </a>
+                    <span class="minor-text">
+                    <!-- Keeping this one empty for now, hoping that the other descriptions make it clear. /!-->
+                    </span>
+                  </h5>
+                </li>
+                <li>
+                  <h5>
+                    <a id="winarm-installer-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Knossos.NET-1.0.0-arm64.exe">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="winarm-installer-version"></span> ARM
+                    </a>
+                    <span class="minor-text">
+                      &ensp;&ensp;(Rare)
+                    </span>
+                  </h5>
+                </li>
+                <li>
+                  <h5>
+                    <a id="winx86-installer-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Knossos.NET-1.0.0-x86.exe">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="winx86-installer-version"></span> x86
+                    </a>
+                    <span class="minor-text">
+                      &ensp;&ensp;&ensp;(Legacy)
+                    </span>
+                  </h5>
+                </li>
+              </ul>
+              <br>
+              <h4>
+                Portable Packages
+              </h4>
+              <ul style="list-style-type:none;">
+                <li>
+                  <h5>
+                    <a id="winx64-pack-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Windows_x64.zip">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="winx64-pack-version"></span> x64
+                    </a>
+                    <span class="minor-text">
+                    <!-- Keeping this one empty for now, hoping that the other descriptions make it clear. /!-->
+                    </span>
+                  </h5>
+                </li>
+                <li>
+                  <h5>
+                    <a id="winarm-pack-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Windows_arm64.zip">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="winarm-pack-version"></span> ARM
+                    </a>
+                    <span class="minor-text">
+                      &ensp;&ensp;(Rare)
+                    </span>
+                  </h5>
+                </li>
+                <li>
+                  <h5>
+                    <a id="winx86-pack-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Windows_x86.zip">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="winx86-pack-version"></span> x86
+                    </a>
+                    <span class="minor-text">
+                      &ensp;&ensp;&ensp;(Legacy)
+                    </span>
+                  </h5>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="macLinks" class="DLlinks">
+        <div class="row">
+          <div class="col-10 col-sm-9">
+            <div class="link-body rounded">
+              <h4>
+                Universal Binary
+              </h4>
+
+              <ul style="list-style-type:none;">
+                <li>
+                  <h5>
+                    <a id="macuni-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Knossos.NET-1.0.0.dmg">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="macuni-version"></span> DMG
+                    </a>
+                    <span class="minor-text">
+                    <!-- Keeping this one empty for now, hoping that the other descriptions make it clear. /!-->
+                    </span>
+                  </h5>
+                </li>
+              </ul>
+              <br>
+              <h4>
+                Portable Packages
+              </h4>
+              <ul style="list-style-type:none;">
+                <li>
+                  <h5>
+                    <a id="macapplesilicon-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/MacOS_arm64.tar.gz">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="macapplesilicon-version"></span> Apple Silicon
+                    </a>
+                    <span class="minor-text">
+                      &ensp;&ensp;(M1, M2, or M3)
+                    </span>
+                  </h5>
+                </li>
+                <li>
+                  <h5>
+                    <a id="macintel-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/MacOS_x64.tar.gz">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="macintel-version"></span> Intel
+                    </a>
+                    <span class="minor-text">
+                      &ensp;&ensp;
+                      <!-- Spacing gives the footer space to be low enough and makes the mac tab to be as large as the others-->
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                    </span>
+                  </h5>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="linLinks" class="DLlinks">
+        <div class="row">
+          <div class="col-10 col-sm-9">
+            <div class="link-body rounded">
+              <h4>
+                Appimages
+              </h4>
+
+              <ul style="list-style-type:none;">
+                <li>
+                  <h5>
+                    <a id="linuxx64-appimage-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Knossos.NET-x86_64.AppImage">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="linuxx64-appimage-version"></span> x64
+                    </a>
+                  </h5>
+                </li>
+                <li>
+                  <h5>
+                    <a id="linuxarm-appimage-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Knossos.NET-aarch64.AppImage">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="linuxarm-appimage-version"></span> ARM
+                    </a>
+                    <span class="minor-text">
+                      <br>
+                      <br>
+                      &ensp;&ensp;<b>NOTE:</b> When using these images in combination with appimaged or other management system, we recommend disabling auto-update in the Knossos settings tab.
+                    </span>
+                    </h5>
+                </li>
+              </ul>
+              <br>
+              <h4>
+                Precombiled Binaries
+              </h4>
+              <ul style="list-style-type:none;">
+                <li>
+                  <h5>
+                    <a  id="linuxx64-binaries-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Linux_x64.tar.gz">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="linuxx64-binaries-version"></span> x64
+                    </a>
+                  </h5>
+                </li>
+                <li>
+                  <h5>
+                    <a id="linuxarm-binaries-link" class="local-link" href="https://github.com/KnossosNET/Knossos.NET/releases/download/v1.0.0/Linux_arm64.tar.gz">
+                      <svg class="icon icon-10" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-save"></use></svg>
+                      <span id="linuxarm-binaries-version"></span> ARM
+                    </a>
+                  </h5>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <!--
+    <div class="container body-container">
+      <div class="row">
+        <div class="col-10 col-sm-9">
+
+          <div class="accordion" id="blurbAccordion">
+            <div class="card blurb-body">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-block text-left shadow-none" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div class="nav-link local-link">
+                      <b>What's Knossos.NET?</b>  
+                    </div>
+                  </button>
+                </h2>
+              </div>
+          
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#blurbAccordion">
+                <div class="card-body blurb-body">
+                  <div class="minor-text">
+                    <b>Knossos.NET</b> is an easy way to install FreeSpace Open, an open-source game engine for one of the world's finest space shooters. You can also use it to install the latest upgrades, enhancements, and mods from Hard Light Productions and to keep your installation up-to-date.
+                    <p>&nbsp;<br>
+                    Simply run Knossos.NET and select the mods you would like to download. Most mods require a copy of FreeSpace 2, but a few mods (called Total Conversions) can run without it.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+    <!-- Spacing between the tabs and lower links and footer-->
+    <br>
+
+    <div class="container lower-navbar">
+      <div class="row">
+        <div class="col-7" style="padding-top: 8px; padding-left: 0px; margin-left: 0px;">
+          <h5>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/KnossosNET/Knossos.NET/releases">
+              All Releases
+            </a>
+
+            &ensp;<b>|</b>&ensp;
+
+            <a target="_blank" rel="noopener noreferrer" href="https://www.hard-light.net">
+              Hard Light Productions
+            </a>
+
+            &ensp;<b>|</b>&ensp;
+
+            <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/cyhMBhMHzK">
+              Hard Light Discord
+            </a>
+
+            &ensp;<b>|</b>&ensp;
+
+            <a target="_blank" rel="noopener noreferrer" href="https://scp.indiegames.us">
+              FreeSpace Open
+            </a>
+
+            &ensp;<b>|</b>&ensp;
+
+            <a target="_blank" rel="noopener noreferrer" href="https://pxo.nottheeye.com">
+              PXO
+            </a>
+          </h5>
+        </div>
+
+        <div style="padding-bottom: 5px;" class="col-1">
+          <div div class="dropdown">
+            <button class="btn btn-sm" type="button"  data-toggle="dropdown">
+              <svg class="icon icon-20" aria-hidden="true"><use xlink:href="main/res/icons.svg#icon-gear"></use></svg>
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="https://github.com/scp-fs2open/fs2open.github.com/issues">Report Freespace Open Bug</a></li>
+              <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="https://github.com/KnossosNET/Knossos.NET/issues">Report Knossos.NET Bug</a></li>
+              <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="https://github.com/KnossosNET/Knossos-Release-Page/issues">Report Download Page Bug</a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" onclick="setPageTheme('Knet')">Knossos.NET Theme</a></li>
+              <li><a class="dropdown-item" onclick="setPageTheme('Classic')">Shivan Theme</a></li>
+              <li><a class="dropdown-item" onclick="setPageTheme('Vishnan')">Vishnan Theme</a></li>
+              <li><a class="dropdown-item" onclick="setPageTheme('Ancients')">Ancients Theme</a></li>
+              <li><a class="dropdown-item" onclick="setPageTheme('Nightmare')">Nightmare Theme</a></li>
+              <li><a class="dropdown-item" onclick="setPageTheme('Ae')">Aesdherian Theme</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-area">
+      <!--Yes, I know this is a little hacky, but sticking the bottom background to the
+        bottom page works better if this is here. It will not appear without text contents.-->
+      <br>
+      <br>
+      <br>
+    </footer>
+
+    <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="main/res/bootstrap/js/jquery-3.7.1.slim.min.js"></script>
+    <script src="main/res/bootstrap/js/popper.min.js"></script>
+    <script src="main/res/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="main/js/download-scritps.js"></script>
+    <script src="main/js/ua-parser.pack.js"></script>
+    <script>
+      var uap = new UAParser();
+      var result = uap.getResult();
+      initPage(result.cpu.architecture);
+    </script>
+
+  </body>
+</html>
