@@ -79,9 +79,6 @@ header {
     padding-bottom: 20px;
     margin-right: 0px;
     margin-bottom: 0px;
-/*    background-image: linear-gradient(180deg, var(--clr-main) 0, var(--clr-grad2)),repeating-linear-gradient(180deg,#242424,#323232 1px,#000 0,#000 2px);
-    background-size: 5000px 80px;
-    background-repeat: no-repeat;*/
 }
 
 .container {
@@ -92,11 +89,11 @@ header {
 }
 
 .header-container {
-    margin-top: 22px;
+    margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    padding-top: 10px;
-    padding-left: 40px;
+    padding-top: 0px;
+    padding-left: 0px;
     padding-bottom: 0px;
     padding-right: 0px;
 }
@@ -111,12 +108,10 @@ header {
 
 body {
     overflow-x: hidden;
-}
-
-.body_ {
+    background-image: url("../res/GanymedeBanner.png"), linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 23%, rgba(30,30,30,1) 100%);
+    background-repeat: no-repeat;
     margin-right: 0px;
     padding-right: 0px;
-    background: linear-gradient(180deg, rgba(32,32,32,1) 0%, rgba(21,21,21,1) 20%, rgba(37,37,37,1) 60%, rgba(45,45,45,1) 100%);    
 }
 
 a {
@@ -177,7 +172,7 @@ h5 {
 .footer-area{
     margin: 0px;
     padding-bottom: 0px;
-    background-image: linear-gradient(180deg, var(--clr-main) 0, var(--clr-grad2)),repeating-linear-gradient(180deg,#242424,#323232 1px,#000 0,#000 2px);
+    background-image: linear-gradient(180deg, );
     background-size: 5000px 80px;
     background-repeat: no-repeat;
     position: sticky; 
