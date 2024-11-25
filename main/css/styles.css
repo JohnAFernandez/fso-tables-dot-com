@@ -79,9 +79,9 @@ header {
     padding-bottom: 20px;
     margin-right: 0px;
     margin-bottom: 0px;
-    background-image: linear-gradient(180deg, var(--clr-main) 0, var(--clr-grad2)),repeating-linear-gradient(180deg,#242424,#323232 1px,#000 0,#000 2px);
+/*    background-image: linear-gradient(180deg, var(--clr-main) 0, var(--clr-grad2)),repeating-linear-gradient(180deg,#242424,#323232 1px,#000 0,#000 2px);
     background-size: 5000px 80px;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 
 .container {
