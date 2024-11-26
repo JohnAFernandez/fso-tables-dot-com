@@ -1,13 +1,13 @@
 /* theme "Knet" */
 :root {
-    --clr-main: #8423c5;
+    --clr-main: #fafcaf;
     --clr-grad2: rgba(104,20,104,.3);
     --clr-icon: var(--clr-main);
     --clr-menu-text: var(--clr-main); 
-    --clr-400: #feffc4;
-    --clr-500: #9e6ec0;
-    --clr-600: #8d1beb;
-    --clr-700: #7c22bd;
+    --clr-400: #feffb5;
+    --clr-500: #fdff80;
+    --clr-600: #fbfd75;
+    --clr-700: #fdff6f;
     --logo-filter: none;
 }
 
