@@ -160,6 +160,21 @@ h5 {
     font-size: medium;
 }
 
+.modal-header {
+    background-color: #404040;
+    border-bottom: #252525;
+}
+
+.modal-body {
+    background-color: #242424;
+    outline-color: #242424;
+}
+
+.modal-footer {
+    background-color: #242424;
+    border-top: #242424;
+}
+
 .minor-text {
     font-size: smaller;
 }
