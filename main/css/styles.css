@@ -175,6 +175,10 @@ h5 {
     border-top: #242424;
 }
 
+.modal {
+    color:#CECECE;
+}
+
 .minor-text {
     font-size: smaller;
 }
