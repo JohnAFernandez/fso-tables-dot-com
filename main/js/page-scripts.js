@@ -3,6 +3,23 @@ function initPage(){
   toggleContents(false, "cover");
 }
 
+// Switch the download link contents on or off.
+function toggleContents(enable, id)
+{
+  const element = document.getElementById(id);
+
+  if (enable === true){
+    element.style.display = 'inline';
+  } else if (enable === false){
+    element.style.display = 'none';
+  }
+}
+
+function show_about()
+{
+  
+}
+
 /*
 // Change tab appearance and download link contents
 function changeActivation(enable, id, id2){
@@ -25,17 +42,6 @@ function toggleSelectedTab(enable, id2){
   }
 }
 */
-// Switch the download link contents on or off.
-function toggleContents(enable, id)
-{
-  const element = document.getElementById(id);
-
-  if (enable === true){
-    element.style.display = 'inline';
-  } else if (enable === false){
-    element.style.display = 'none';
-  }
-}
 /*
 // Disable the auto detected downoad because we are not confident enough to have the correct choice.
 function disableTheButton(){
