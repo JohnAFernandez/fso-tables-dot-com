@@ -13,58 +13,6 @@
     <title>Ganymede - The Freespace Open Table Option Database </title>
   </head>
 
-  <!-- MODALS! -->
-  <!-- Add an item Modal-->
-  <div class="modal fade custom-modal" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addItemModalLabel">Add Table Item</h5>
-        </div>
-        <div class="modal-body">
-          <!-- CONTENTS WILL GO HERE!-->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Add Item</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--Login Modal-->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form>
-            <!--       <div class="modal-header">
-            <h5 class="modal-title" id="loginModalLabel"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          -->
-          <div class="modal-body">
-          
-            <div class="form-group">
-              <label style="padding-left: 6px;" for="loginRegisterEmail">Email</label>
-              <input type="email" class="form-control" id="loginRegisterEmail" aria-escribedby="emailHelp" placeholder="">
-            </div>
-            <div class="form-group">
-              <label style="padding-left: 6px;" for="loginRegisterPassword">Password</label>
-              <input type="password" class="form-control" id="loginRegisterPassword" placeholder="">
-            </div>
-          
-          </div>
-          <div class="modal-footer">
-            <button type="submit" style="align-self: left"class="btn btn-dark">Register</button>
-            <button type="submit" class="btn btn-secondary">Login</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <body>
     <div id="cover"></div>
     <header>
@@ -110,7 +58,7 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li>-->
           <li class="nav-item active">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#" onclick="showAbout()">About</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login/Register</a>
@@ -145,7 +93,7 @@
     </div>
 -->
     <br> <br>
-    <div class="container general-text-area"> 
+    <div class="container text-area" id="welcome-text-area"> 
       <div class="row ">
         <div class="col-10">
           <h3>Welcome to the Freespace Open Table Option Database</h3>
@@ -162,9 +110,8 @@
       </div>
     </div>
 
-    <!--
-    <br> <br>
-    <div class="container general-text-area"> 
+    <!--About Text-->
+    <div class="container text-area" id="about-text-area"> 
       <div class="row ">
         <div class="col-10">
           <h3>Ganymede</h3>
@@ -192,7 +139,6 @@
         </div>
       </div>
     </div>
-    -->
     <br>
     <br>
     <br>
@@ -267,12 +213,65 @@
       </div>
     </div>
 
+  <!-- MODALS! -->
+  <!-- Add an item Modal-->
+  <div class="modal fade custom-modal" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addItemModalLabel">Add Table Item</h5>
+        </div>
+        <div class="modal-body">
+          <!-- CONTENTS WILL GO HERE!-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Add Item</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Login Modal-->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form>
+            <!--       <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          -->
+          <div class="modal-body">
+          
+            <div class="form-group">
+              <label style="padding-left: 6px;" for="loginRegisterEmail">Email</label>
+              <input type="email" class="form-control" id="loginRegisterEmail" aria-escribedby="emailHelp" placeholder="">
+            </div>
+            <div class="form-group">
+              <label style="padding-left: 6px;" for="loginRegisterPassword">Password</label>
+              <input type="password" class="form-control" id="loginRegisterPassword" placeholder="">
+            </div>
+          
+          </div>
+          <div class="modal-footer">
+            <button type="submit" style="align-self: left"class="btn btn-dark">Register</button>
+            <button type="submit" class="btn btn-secondary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
 
     <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
     <script src="main/res/bootstrap/js/jquery-3.7.1.slim.min.js"></script>
     <script src="main/res/bootstrap/js/popper.min.js"></script>
     <script src="main/res/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="main/js/page-scritps.js"></script>
+    <script src="main/js/page-scripts.js"></script>
     <script>
       initPage();
     </script>
