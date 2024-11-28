@@ -200,9 +200,6 @@ h5 {
 .footer-area{
     margin: 0px;
     padding-bottom: 0px;
-    background-image: linear-gradient(180deg, );
-    background-size: 5000px 80px;
-    background-repeat: no-repeat;
     position: sticky; 
     top: 5000; 
     z-index: 10;
@@ -232,11 +229,15 @@ li {
 
 /* Actually fixes the tab background color*/
 .nav-tabs .nav-item .nav-link {
-    background-color: #404040;
+
     border-width: 0px;
     border-right-width: 3px;
     border-bottom-width: 3px;
     border-color: #000;
+}
+
+.nav-link .navbar-toggler{
+    color: var(--clr-400);
 }
 
 /* Tab colors on nav bar mouse down */
@@ -245,7 +246,7 @@ li {
     background-color:#242424;
 }
 
-.general-text-area {
+.text-area {
     background-color: #242424;
     margin: 0px;
     margin-left: 15px;

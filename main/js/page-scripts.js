@@ -1,12 +1,23 @@
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
-  toggleContents(false, "cover");
-  
-  if (getCookie("mode") != "about") {
-    showWelcome();
-    document.cookie = `mode=welcome`;  
+  console.log("Initializing Page...");
+
+  console.log("Getting the mode cookie...")
+  const ourCookie = getCookie("mode");
+  console.log(`Found "${ourCookie}", continuing...`);
+
+  if (ourCookie != "about") {
+    console.log("Setting welcome page...");
+    setPageMode("welcome");
+  } else {
+    console.log("Setting about page");
+    setPageMode("about");
   }
-  
+
+  console.log("Finally, removing the pre-load cover...")
+  toggleContents(false, "cover");
+
+  console.log("Pre-load cover removed.  Initialization successfully completed!")
 }
 
 // Switch the download link contents on or off.
@@ -54,15 +65,6 @@ function toggleSelectedTab(enable, id2){
     element.style.backgroundColor = "#080808";
   }
 }
-*/
-/*
-// Disable the auto detected downoad because we are not confident enough to have the correct choice.
-function disableTheButton(){
-  toggleContents(false, "downLinks");
-  toggleContents(false, "downloadTab");
-}
-
-
 
 
 function setPageTheme(theme){
@@ -77,9 +79,12 @@ function setPageTheme(theme){
 
 function setPageMode(mode){
   const validModes = ['welcome', 'about', 'tables'];
-  const mode_index = validModes.findIndex(mode);
+  const mode_index = validModes.indexOf(mode);
 
-  if ( mode_index < 0 ) return;
+  if ( mode_index < 0 ) { 
+    console.log()
+    return;
+  }
   else if ( mode_index == 0 ) {
     showWelcome();
   } else if (mode_index == 1) {
@@ -88,22 +93,30 @@ function setPageMode(mode){
     showTables();
   }
 
-  document.cookie = `mode=${validModes[mode]}`;
+  document.cookie = `mode=${validModes[mode_index]}; SameSite=strict`;
 }
 
-// Borrowed from w3schools
+// Borrowed from w3schools, but I made it slightly more efficient in edge cases.
 function getCookie(cookieName) {
   let name = cookieName + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
+  for(let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
+
+    // This is the edited block.  Instead of substringing every time an empty character is found,
+    // do the correct substring from the first *non* space character.
+    for (let j = 0; j < c.length; j++){
+      if (c.charAt(j) != ' ') {
+        c = c.substring(j);
+        break;
+      }
     }
+
     if (c.indexOf(name) == 0) {
       return c.substring(name.length, c.length);
     }
   }
+
   return "";
 }
