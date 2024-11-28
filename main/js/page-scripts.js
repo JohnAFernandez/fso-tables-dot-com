@@ -1,6 +1,12 @@
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
   toggleContents(false, "cover");
+  
+  if (getCookie("mode") != "about") {
+    showWelcome();
+    document.cookie = `mode=welcome`;  
+  }
+  
 }
 
 // Switch the download link contents on or off.
@@ -9,25 +15,32 @@ function toggleContents(enable, id)
   const element = document.getElementById(id);
 
   if (enable === true){
-    element.style.display = 'inline';
+    element.style.display = '';
   } else if (enable === false){
     element.style.display = 'none';
   }
 }
 
-function show_about()
+function showWelcome()
 {
-  
+    toggleContents(true, "welcome-text-area");
+    toggleContents(false, "about-text-area")
+}
+
+function showAbout()
+{
+  toggleContents(false, "welcome-text-area");
+  toggleContents(true, "about-text-area")
+}
+
+// This one will probably take some time.
+function showTables()
+{
+  toggleContents(false, "welcome-text-area");
+  toggleContents(true, "about-text-area")
 }
 
 /*
-// Change tab appearance and download link contents
-function changeActivation(enable, id, id2){
-  
-  toggleSelectedTab(enable, id2);
-  toggleContents(enable, id);
-}
-
 
 // Change the appearance of the tab based on whether it's selected.
 function toggleSelectedTab(enable, id2){
@@ -50,113 +63,6 @@ function disableTheButton(){
 }
 
 
-function activateDownload(){
-  // turn on autodetect
-  changeActivation(true, "downLinks", "downTab")
-
-  // turn off everything else
-  changeActivation(false, "macLinks", "macTab");
-  changeActivation(false, "linLinks", "linTab");
-  changeActivation(false, "winLinks", "winTab");
-
-}
-
-
-function activateTheButton(){
-
-  const os = detectedOS;
-  const arch = detectedArch;
-
-  // sanity!
-  if (os < 0 || os > 2){
-    disableTheButton();
-    return;
-  }
-
-  const anchorElement = document.getElementById("theButton");
-  // Download Link contents
-  let newContents = '';
-  // Contents for notes *after* the download link
-  let noteContents = "";
-
-  // arch 0 means ARM, 32 means 32 bit, 64 means 64 bit
-
-  // Windows
-  if (os === 0) {
-    if (arch === 0){
-      newContents += `${buildMatrix.windows.arm64Installer.version} Windows ARM64 Installer`;
-      anchorElement.href = buildMatrix.windows.arm64Installer.url;
-
-    } else if (arch === 32) {
-      newContents += `${buildMatrix.windows.x86Installer.version} Windows 32 Bit Installer`;
-      anchorElement.href = buildMatrix.windows.x86Installer.url;
-    
-    } else if (arch === 64) {
-      newContents += `${buildMatrix.windows.x64Installer.version} Windows 64 Bit Intel Installer`;
-      anchorElement.href = buildMatrix.windows.x64Installer.url;
-
-    // Bogus Windows arch
-    }  else {
-      disableTheButton();
-      return;
-    }
-
-  // Mac
-  } else if (os === 1) {
-
-    // Because of universal build, handle both situations at once.
-    if (arch === 0 || arch === 64) {  
-      newContents += `${buildMatrix.macos.installer.version} macOS Universal DMG`;
-      anchorElement.href = buildMatrix.macos.installer.url;
-
-    } else if (arch === 32) {
-      // Unsuppoted
-      disableTheButton();
-
-    // Bogus Mac Arch (Or so old that we're wondering how they're still using it)
-    } else {
-      disableTheButton();
-      return;
-    }
-
-  // Linux
-  } else if (os === 2) {
-    if (arch === 0) {
-      newContents +=  `${buildMatrix.linux.arm64Installer.version} Linux aarch64 AppImage`;
-      anchorElement.href = buildMatrix.linux.arm64Installer.url;
-
-    } else if (arch === 32) {
-        // Unsupported
-        disableTheButton();
-
-    } else if (arch === 64) {
-      newContents += `${buildMatrix.linux.x64Installer.version} Linux x86_64 AppImage`;
-      anchorElement.href = buildMatrix.linux.x64Installer.url;
-
-    // Bogus Linux Arch
-    } else {
-      disableTheButton();
-      return;
-    }
-
-    noteContents += "NOTE: When using these images in combination with appimaged or other management system, we recommend disabling auto-update in the Knossos settings tab."
-
-    // Bad OS, somehow
-  } else {
-//    console.log("really really not detected!");
-    disableTheButton();
-    return;
-  }
-
-  // Set download link text
-  document.getElementById("theButtonText").textContent = newContents;
-
-  // Add some final text, explaining the use of other tabs
-  document.getElementById("button-extra-text").textContent = noteContents;
-
-  // Go ahead and let the user see it
-  activateDownload();
-}
 
 
 function setPageTheme(theme){
@@ -167,10 +73,27 @@ function setPageTheme(theme){
   document.body.setAttribute('data-theme', theme);
   document.cookie = `theme=${theme}`;
 }
+*/
+
+function setPageMode(mode){
+  const validModes = ['welcome', 'about', 'tables'];
+  const mode_index = validModes.findIndex(mode);
+
+  if ( mode_index < 0 ) return;
+  else if ( mode_index == 0 ) {
+    showWelcome();
+  } else if (mode_index == 1) {
+    showAbout();
+  } else {
+    showTables();
+  }
+
+  document.cookie = `mode=${validModes[mode]}`;
+}
 
 // Borrowed from w3schools
-function getCookie(cname) {
-  let name = cname + "=";
+function getCookie(cookieName) {
+  let name = cookieName + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
   for(let i = 0; i <ca.length; i++) {
@@ -183,4 +106,4 @@ function getCookie(cname) {
     }
   }
   return "";
-}*/
+}
