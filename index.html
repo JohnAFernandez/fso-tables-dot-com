@@ -45,7 +45,10 @@
     
       <div class="collapse navbar-collapse" id="theNavbarInner">
         <ul class="navbar-nav mr-auto" id="navbarUl">
-          <li class="nav-item dropdown" id="navbarTablesDropdown">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" onclick="setPageMode(`welcome`)">Home</a>
+          </li>
+          <li class="nav-item dropdown active" id="navbarTablesDropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarTablesDropdownAnchor" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Tables
             </a>
@@ -61,7 +64,10 @@
             <a class="nav-link" href="#" onclick="setPageMode(`about`)">About</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login/Register</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#RegisterModal">Register</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -120,7 +126,7 @@
       <div class="row indented-row">
         <div class="col-9">
           <br>
-          <h4>Ganymede is a database for options used in the Freespace Open Engine, the open source continuation of Freespace 2, released in 1999.
+          <h4>Ganymede is a database for options used in the Freespace Open Engine, the open source continuation of Freespace 2, released in 1999.  It is named after the GTI Ganymede, which is the only retail ship specifically for construction.
           <br><br>Freespace Open has been continuously developed since the source code's release and the number of table options has exploded. To facillitate search, maintenance and use of these table options, this database and website were created.  
           <br><br>An API is available for use as well.</h4>
           <br><br>
@@ -233,7 +239,7 @@
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form>
+        <form id="login-form">
             <!--       <div class="modal-header">
             <h5 class="modal-title" id="loginModalLabel"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -244,17 +250,18 @@
           <div class="modal-body">
           
             <div class="form-group">
-              <label style="padding-left: 6px;" for="loginRegisterEmail">Email</label>
-              <input type="email" class="form-control" id="loginRegisterEmail" aria-escribedby="emailHelp" placeholder="">
+              <label style="padding-left: 6px;" for="loginEmail">Email</label>
+              <input type="email" class="form-control" id="loginEmail" aria-escribedby="emailHelp" placeholder="" required>
             </div>
             <div class="form-group">
-              <label style="padding-left: 6px;" for="loginRegisterPassword">Password</label>
-              <input type="password" class="form-control" id="loginRegisterPassword" placeholder="">
+              <label style="padding-left: 6px;" for="loginPassword">Password</label>
+              <!-- TODO! I cannot seem to get this to work for some reason. It accepts emjois?...  I dunno-->
+              <input type="password" class="form-control" pattern="^(?=[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\[\}\]\|:;\<,\>\.?\/]{8,128}$)(?=.*?[\~\!@#$%\^&*\(\)_\\\-\+=\{\[\}\]\|:;\<,\>\.?\/])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" title="at least one lowercase letter, uppercase letter, numeric digit and any of these special characters ~!@#$%^&*()_-+={[}]|:;<,>.?/\ " id="loginPassword" placeholder="" minlength="8" maxlength="128" required>
+              <input type="checkbox" id="loginPasswordToggleShowPassword" checked="false" onclick="togglePasswordLogin()">Show Password 
             </div>
           
           </div>
           <div class="modal-footer">
-            <button type="submit" style="align-self: left"class="btn btn-dark">Register</button>
             <button type="submit" class="btn btn-secondary">Login</button>
           </div>
         </form>
@@ -263,6 +270,38 @@
   </div>
 
 
+    <!--Register Modal-->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form id="register-form">
+            <div class="modal-header">
+              <h5 class="modal-title" id="registerModalLabel"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          
+            <div class="modal-body">
+            
+              <div class="form-group">
+                <label style="padding-left: 6px;" for="registerEmail">Email</label>
+                <input type="email" class="form-control" id="registerEmail" aria-escribedby="emailHelp" placeholder="">
+              </div>
+              <div class="form-group">
+                <label style="padding-left: 6px;" for="registerPassword">Password</label>
+                <input type="password" class="form-control" id="registerPassword" placeholder="">
+              </div>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-secondary">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
 
     <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
     <script src="main/res/bootstrap/js/jquery-3.7.1.slim.min.js"></script>
@@ -272,6 +311,7 @@
     <script>
       initPage();
     </script>
+    <script src="main/js/login-scritps.js"></script>
 
   </body>
 </html>

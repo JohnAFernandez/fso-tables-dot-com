@@ -6,12 +6,12 @@ function initPage(){
   const ourCookie = getCookie("mode");
   console.log(`Found "${ourCookie}", continuing...`);
 
-  if (ourCookie != "about") {
+  if (ourCookie != "tables") {
     console.log("Setting welcome page...");
     setPageMode("welcome");
   } else {
-    console.log("Setting about page");
-    setPageMode("about");
+    console.log("Setting tables page");
+    setPageMode("tables");
   }
 
   console.log("Finally, removing the pre-load cover...")
