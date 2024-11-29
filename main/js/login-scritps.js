@@ -2,6 +2,7 @@ function onLoginModalOpen() {
     const passwordField = document.getElementById("loginPassword");
     const checkbox = document.getElementById("loginPasswordToggleShowPassword");
 
+    passwordField.type = "reset";
     passwordField.type = "password";
     checkbox.checked = false;
 
