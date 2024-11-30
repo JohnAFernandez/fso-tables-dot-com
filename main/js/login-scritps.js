@@ -1,5 +1,6 @@
+const API_ROOT = "https://fso-tables-worker.johnandrewfernandez12.workers.dev/"
+
 function onLoginModalOpen() {
-  const loginForm = document.getElementById("login-form");
   const passwordField = document.getElementById("loginPassword")
   const checkbox = document.getElementById("loginPasswordToggleShowPassword");
 
@@ -29,6 +30,30 @@ function togglePasswordLogin() {
 }
 
 function attemptLogin(email, password) {
+  console.log("starting login attempt!");
+  const emailField = document.getElementById("loginEmail");
+  const passwordField = document.getElementById("loginPassword");
+
+  console.log("login attempt2!");
+
+  const loginRequest = {
+    email: emailField.value,
+    password: passwordField.value,
+  }
+
+  console.log("login attempt3!");
+  console.log(API_ROOT + "users/login");
+  console.log(loginRequest);
+
+  fetch(API_ROOT + "users/login", {
+    method: "GET",
+    headers: loginRequest
+  })
+  .then((response) => response.json())
+  .then(responseJSON => { console.log(responseJSON); })
+  .catch (error => console.log(`Loggin in failed. The error encountered was: ${error}`));
+
+  console.log("login attempt4!");
 
 }
 
