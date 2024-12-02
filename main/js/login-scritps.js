@@ -1,4 +1,4 @@
-const API_ROOT = "https://fso-tables-worker.johnandrewfernandez12.workers.dev/"
+const API_ROOT = "https://www.fsotables.com/api/"
 
 function onLoginModalOpen() {
   const passwordField = document.getElementById("loginPassword")
