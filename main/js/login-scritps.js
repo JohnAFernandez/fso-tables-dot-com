@@ -30,7 +30,7 @@ function togglePasswordLogin() {
 }
 
 function attemptLogin(email, password) {
-  console.log("starting login attempt!");
+  console.log("starting login attempt! V3");
   const emailField = document.getElementById("loginEmail");
   const passwordField = document.getElementById("loginPassword");
 
@@ -47,7 +47,7 @@ function attemptLogin(email, password) {
 
   fetch(API_ROOT + "users/login", {
     method: "POST",
-    headers: loginRequest
+    body: loginRequest
   })
   .then((response) => response.json())
   .then(responseJSON => { console.log(responseJSON); })
