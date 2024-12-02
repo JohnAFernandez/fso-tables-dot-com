@@ -1,6 +1,6 @@
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
-  console.log("Initializing Page...");
+  console.log("Initializing Page... v0.1");
 
   console.log("Getting the mode cookie...")
   const ourCookie = getCookie("mode");

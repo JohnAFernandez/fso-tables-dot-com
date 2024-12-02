@@ -47,7 +47,7 @@ function attemptLogin(email, password) {
 
   fetch(API_ROOT + "users/login", {
     method: "POST",
-    body: loginRequest
+    body: JSON.stringify(loginRequest)
   })
   .then((response) => response.json())
   .then(responseJSON => { console.log(responseJSON); })
