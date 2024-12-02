@@ -1,4 +1,4 @@
-const API_ROOT = "https://www.fsotables.com/api/"
+const API_ROOT = "https://api.fsotables.com/"
 
 function onLoginModalOpen() {
   const passwordField = document.getElementById("loginPassword")
