@@ -255,8 +255,9 @@
             </div>
             <div class="form-group">
               <label style="padding-left: 6px;" for="loginPassword">Password</label>
-              <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\[\}\]\|:;\<,\>\.?\/]{10,120}$" title="Passwords need to be at least 10 characters and can use these special characters ~!@#$%^&*()_-+={[}]|:;<,>.?/\ " id="loginPassword" placeholder="" minlength="10" maxlength="128" required>
-              <input type="checkbox" id="loginPasswordToggleShowPassword" checked="false" onclick="togglePasswordLogin()">Show Password 
+              <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\ /]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" id="loginPassword" placeholder="" minlength="10" maxlength="128" required>
+              <br>
+              <input type="checkbox" id="loginPasswordToggleShowPassword" checked="false" onclick="togglePasswordLogin()">  &#9;&#9;Show Password 
             </div>
           
           </div>
