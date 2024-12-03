@@ -14,6 +14,8 @@ function initPage(){
     setPageMode("tables");
   }
 
+  check_login_status_and_update();
+
   console.log("Finally, removing the pre-load cover...")
   toggleContents(false, "cover");
 
@@ -51,34 +53,8 @@ function showTables()
   toggleContents(true, "about-text-area")
 }
 
-/*
-
-// Change the appearance of the tab based on whether it's selected.
-function toggleSelectedTab(enable, id2){
-  const element = document.getElementById(id2);
-
-  if (enable === true){
-    element.style.fontWeight = 'bold';
-    element.style.backgroundColor = "#121212";
-  } else if (enable === false){
-    element.style.fontWeight = 'normal';
-    element.style.backgroundColor = "#080808";
-  }
-}
-
-
-function setPageTheme(theme){
-  const validThemes = [ "Knet", "Classic", "Vishnan", "Ancients", "Nightmare", "Ae" ];
-
-  if ( !validThemes.includes(theme) ) return;
-
-  document.body.setAttribute('data-theme', theme);
-  document.cookie = `theme=${theme}`;
-}
-*/
-
 function setPageMode(mode){
-  const validModes = ['welcome', 'about', 'tables'];
+  const validModes = ['welcome', 'about', 'tables', 'account'];
   const mode_index = validModes.indexOf(mode);
 
   if ( mode_index < 0 ) { 
@@ -93,7 +69,9 @@ function setPageMode(mode){
     showTables();
   }
 
-  document.cookie = `mode=${validModes[mode_index]}; SameSite=strict`;
+  setCookie("mode", validModes[mode_index], 24*365*10);
+  const bob = getCookieDetails("mode");
+  console.log(bob);
 }
 
 // Borrowed from w3schools, but I made it slightly more efficient in edge cases.
@@ -108,7 +86,9 @@ function getCookie(cookieName) {
     // do the correct substring from the first *non* space character.
     for (let j = 0; j < c.length; j++){
       if (c.charAt(j) != ' ') {
-        c = c.substring(j);
+        if (j > 0){
+          c = c.substring(j);
+        }
         break;
       }
     }
@@ -119,4 +99,66 @@ function getCookie(cookieName) {
   }
 
   return "";
+}
+
+// NOT FULLY TESTED ON LONG COOKIES.  The assumption is that cookies will have 6 usable fields.
+function getCookieDetails(cookieName) {
+  let name = cookieName + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+
+  console.log(ca);
+
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+
+    // This is the edited block.  Instead of substringing every time an empty character is found,
+    // do the correct substring from the first *non* space character.
+    for (let j = 0; j < c.length; j++){
+      if (c.charAt(j) != ' ') {
+        // and only if we're not at the first character
+        if (j > 0){
+          c = c.substring(j);
+        }
+        break;
+      }
+    }
+
+    if (c.indexOf(name) == 0) {
+      if (ca.length > i + 5){
+        return ca.slice(i, i+5);
+      } else {
+        return ca.slice(i);
+      }
+    }
+  }
+
+  return "";
+}
+
+// all cookies in this context are going to use SameSite=strict. duration is in hours.
+function setCookie(name, value, duration){
+  const d = new Date();
+  d.setTime(d.getTime() + (duration*60*60*1000));
+
+  // Domain seems not to be settable unless in a live environment, and cannot be cross-ite for security reasons.  This is problematic, and I
+  // think the teacher app will have to be more integrated.  Less about static sites and closer to a react setup, where subdomains are not needed.
+
+  console.log(`${name}=${value};SameSite=strict;expires=${d.toUTCString()};Secure`);
+  document.cookie = `${name}=${value};SameSite=strict;expires=${d.toUTCString()};Secure`;
+}
+
+// status should be a bool with true value meaning not logged in
+function setLoginStatus(status) {
+/*  toggleContents(status, "LOGIN-LINK");
+  toggleContents(status, "RESGISTER-LINK");
+  toggleContents(!status, "MY-ACCOUNT");
+  toggleContents(!status, "LOG-OUT");*/
+  console.log("Set login status not yet ready.");
+}
+
+function check_login_status_and_update() {
+  const token = getCookie("ganymede-token");
+
+  setLoginStatus(token == "");
 }

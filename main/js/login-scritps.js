@@ -1,4 +1,7 @@
-const API_ROOT = "https://api.fsotables.com/"
+const API_ROOT = "https://api.fsotables.com/";
+const LOGIN_COOKIE_NAME = "ganymede-token";
+
+const tables = [];
 
 function onLoginModalOpen() {
   const passwordField = document.getElementById("loginPassword")
@@ -50,11 +53,20 @@ function attemptLogin(email, password) {
     body: JSON.stringify(loginRequest)
   })
   .then((response) => response.json())
-  .then(responseJSON => { console.log(responseJSON); })
-  .catch (error => console.log(`Loggin in failed. The error encountered was: ${error}`));
+  .then(responseJSON => { 
+    if (responseJSON.token != undefined){
+      // Default login time of a week.
+      setCookie("ganymede-token", responseJSON.token, 7*24);
+    } else {
+      throw responseJSON.error;
+    }
 
-  console.log("login attempt4!");
+   })
+  .catch ( 
+    error => {console.log(`Loggin in failed. The error encountered was: ${error}`);
+    }
+  );
 
+  check_login_status_and_update();
 }
-
 
