@@ -14,6 +14,16 @@ function onLoginModalOpen() {
   checkbox.checked = false;
 }
 
+function onLogout() {
+  setCookie("ganymede-token", "", 7*24);
+  check_login_status_and_update();
+}
+
+// TODO! FINISH ME!
+function onRegisterModalOpen(){
+  return;
+}
+
 $(window).on('shown.bs.modal', onLoginModalOpen);
 
 function togglePasswordLogin() {

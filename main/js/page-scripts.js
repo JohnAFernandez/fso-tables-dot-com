@@ -6,12 +6,18 @@ function initPage(){
   const ourCookie = getCookie("mode");
   console.log(`Found "${ourCookie}", continuing...`);
 
-  if (ourCookie != "tables") {
+  if (ourCookie === "welcome") {
     console.log("Setting welcome page...");
     setPageMode("welcome");
-  } else {
-    console.log("Setting tables page");
+  } else if (ourCookie === "tables") {
+    console.log("Setting tables page...");
     setPageMode("tables");
+  } else if (ourCookie === "account") {
+    console.log("Setting account page...");
+    setPageMode("account");
+  } else {
+    console.log("Setting about page...");
+    setPageMode("about");
   }
 
   check_login_status_and_update();
@@ -36,21 +42,35 @@ function toggleContents(enable, id)
 
 function showWelcome()
 {
-    toggleContents(true, "welcome-text-area");
-    toggleContents(false, "about-text-area")
+  toggleContents(true, "welcome-text-area");
+  toggleContents(false, "about-text-area")
+  toggleContents(false, "account-text-area")
+  toggleContents(false, "tables-text-area")
 }
 
 function showAbout()
 {
   toggleContents(false, "welcome-text-area");
   toggleContents(true, "about-text-area")
+  toggleContents(false, "account-text-area")
+  toggleContents(false, "tables-text-area")
+}
+
+function showAccount()
+{
+  toggleContents(false, "welcome-text-area");
+  toggleContents(false, "about-text-area")
+  toggleContents(true, "account-text-area")
+  toggleContents(false, "tables-text-area")
 }
 
 // This one will probably take some time.
 function showTables()
 {
   toggleContents(false, "welcome-text-area");
-  toggleContents(true, "about-text-area")
+  toggleContents(false, "about-text-area")
+  toggleContents(false, "account-text-area")
+  toggleContents(true, "tables-text-area")
 }
 
 function setPageMode(mode){
@@ -65,8 +85,10 @@ function setPageMode(mode){
     showWelcome();
   } else if (mode_index == 1) {
     showAbout();
-  } else {
+  } else if (mode_index == 2) {
     showTables();
+  } else {
+    showAccount();
   }
 
   setCookie("mode", validModes[mode_index], 24*365*10);
@@ -150,11 +172,10 @@ function setCookie(name, value, duration){
 
 // status should be a bool with true value meaning not logged in
 function setLoginStatus(status) {
-/*  toggleContents(status, "LOGIN-LINK");
-  toggleContents(status, "RESGISTER-LINK");
-  toggleContents(!status, "MY-ACCOUNT");
-  toggleContents(!status, "LOG-OUT");*/
-  console.log("Set login status not yet ready.");
+  toggleContents(status, "nav-login");
+  toggleContents(status, "nav-register");
+  toggleContents(!status, "nav-account");
+  toggleContents(!status, "nav-logout");
 }
 
 function check_login_status_and_update() {
