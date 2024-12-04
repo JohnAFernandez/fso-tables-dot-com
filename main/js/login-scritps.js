@@ -73,6 +73,7 @@ function attemptLogin(email, password) {
     if (responseJSON.token != undefined){
       // Default login time of a week.
       setCookie("ganymede-token", responseJSON.token, 7*24);
+      setCookie("username", loginRequest.email, 7*24)
     } else {
       throw responseJSON.error;
     }
