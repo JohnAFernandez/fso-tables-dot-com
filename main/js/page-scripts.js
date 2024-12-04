@@ -78,7 +78,8 @@ function setPageMode(mode){
   const mode_index = validModes.indexOf(mode);
 
   if ( mode_index < 0 ) { 
-    console.log()
+    console.log("Invalid mode set, setting to welcome.");
+    showWelcome();
     return;
   }
   else if ( mode_index == 0 ) {
@@ -92,8 +93,6 @@ function setPageMode(mode){
   }
 
   setCookie("mode", validModes[mode_index], 24*365*10);
-  const bob = getCookieDetails("mode");
-  console.log(bob);
 }
 
 // Borrowed from w3schools, but I made it slightly more efficient in edge cases.
@@ -123,41 +122,6 @@ function getCookie(cookieName) {
   return "";
 }
 
-// NOT FULLY TESTED ON LONG COOKIES.  The assumption is that cookies will have 6 usable fields.
-function getCookieDetails(cookieName) {
-  let name = cookieName + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-
-  console.log(ca);
-
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-
-    // This is the edited block.  Instead of substringing every time an empty character is found,
-    // do the correct substring from the first *non* space character.
-    for (let j = 0; j < c.length; j++){
-      if (c.charAt(j) != ' ') {
-        // and only if we're not at the first character
-        if (j > 0){
-          c = c.substring(j);
-        }
-        break;
-      }
-    }
-
-    if (c.indexOf(name) == 0) {
-      if (ca.length > i + 5){
-        return ca.slice(i, i+5);
-      } else {
-        return ca.slice(i);
-      }
-    }
-  }
-
-  return "";
-}
-
 // all cookies in this context are going to use SameSite=strict. duration is in hours.
 function setCookie(name, value, duration){
   const d = new Date();
@@ -166,7 +130,6 @@ function setCookie(name, value, duration){
   // Domain seems not to be settable unless in a live environment, and cannot be cross-ite for security reasons.  This is problematic, and I
   // think the teacher app will have to be more integrated.  Less about static sites and closer to a react setup, where subdomains are not needed.
 
-  console.log(`${name}=${value};SameSite=strict;expires=${d.toUTCString()};Secure`);
   document.cookie = `${name}=${value};SameSite=strict;expires=${d.toUTCString()};Secure`;
 }
 

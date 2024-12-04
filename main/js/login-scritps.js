@@ -15,8 +15,14 @@ function onLoginModalOpen() {
 }
 
 function onLogout() {
+  const ourCookie = getCookie("mode");
+  if (ourCookie === "account"){
+    showWelcome();
+  }
+
   setCookie("ganymede-token", "", 7*24);
   check_login_status_and_update();
+
 }
 
 // TODO! FINISH ME!
