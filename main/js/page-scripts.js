@@ -1,11 +1,10 @@
-let Contribution_Count = -1;
+let Contribution_Count = "-1";
 let Active = false;
-let Role = -1;
-let 
+let Role = "Uninitialized";
 
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
-  console.log("Initializing Page... v0.1");
+  console.log("Initializing Page... v0.3");
 
   console.log("Getting the mode cookie...")
   const ourCookie = getCookie("mode");
@@ -25,6 +24,7 @@ function initPage(){
     setPageMode("about");
   }
 
+  console.log("Checking login status...");
   check_login_status_and_update();
 
   console.log("Finally, removing the pre-load cover...")
@@ -45,28 +45,34 @@ function toggleContents(enable, id)
   }
 }
 
+function changeContents(id, content)
+{
+  const element = document.getElementById(id);
+  element.textContent = content;
+}
+
 function showWelcome()
 {
-  toggleContents(true, "welcome-text-area");
   toggleContents(false, "about-text-area")
   toggleContents(false, "account-text-area")
   toggleContents(false, "tables-text-area")
+  toggleContents(true, "welcome-text-area");
 }
 
 function showAbout()
 {
   toggleContents(false, "welcome-text-area");
-  toggleContents(true, "about-text-area")
   toggleContents(false, "account-text-area")
   toggleContents(false, "tables-text-area")
+  toggleContents(true, "about-text-area")
 }
 
 function showAccount()
 {
   toggleContents(false, "welcome-text-area");
   toggleContents(false, "about-text-area")
-  toggleContents(true, "account-text-area")
   toggleContents(false, "tables-text-area")
+  toggleContents(true, "account-text-area")
   get_user_details();
 }
 
@@ -171,8 +177,23 @@ function get_user_details() {
     // Check that we have expected output.... 
     if (responseJSON.username != undefined){
 
-      Contribution_Count = responseJSON.contribution_count;
-      Role = responseJSON.role;
+      Contribution_Count = `${responseJSON.contribution_count}`;
+      
+      switch (responseJSON.role){
+        case 0: {
+          Role = "Owner";
+        }
+        case 1: {
+          Role = "Administrator";
+        }
+        case 2: {
+          Role = "Maintainer";
+        }
+        case 3: 
+          Role = "Viewer";
+        default:
+          Role = "Bad Data";
+      }
       
       if (responseJSON.active === 1) {
         Active = true;
@@ -189,4 +210,32 @@ function get_user_details() {
     error => {console.log(`Fetching user details failed. The error encountered was: ${error}`);
     }
   );
+}
+
+function update_myaccount_items() {
+  const ourCookie = getCookie("username");
+
+  changeContents("account-name-text", ourCookie);
+  changeContents("account-role-text", Role);
+  changeContents("contribution-count-text", Contribution_Count);
+
+  return;
+}
+
+function create_item (id, text, documentation, major_version, parent, table, deprecation, restriction, info_type, table_index, default_value) {
+  const new_item = {
+    id: id,
+    name: text,
+    description: documentation,
+    major_version: major_version,
+    parent_id: parent,
+    table_id: table,
+    deprecation: deprecation,
+    restriction: restriction,
+    info_type: info_type,
+    table_index: table_index,
+    default_value: default_value
+  }
+
+  return {}
 }
