@@ -61,23 +61,23 @@ function attemptLogin(email, password) {
     method: "POST",
     body: JSON.stringify(loginRequest)
   })
-  .then((response) => response.json())
-  .then(responseJSON => { 
-    console.log(responseJSON);
-    console.log(typeof(responseJSON));
-    if (responseJSON === undefined || responseJSON.error === undefined){
-      // Default login time of a week.
+  .then((response) => { 
+    if (response.status === 200) {
+      // Default login expiration of a week.
       setCookie("username", loginRequest.email, 7*24)
+      check_login_status_and_update();
+      return;
     } else {
-      throw responseJSON.Error;
+      response.JSON();
     }
-
-   })
+  })
+  .then(responseJSON => { 
+    // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+    throw responseJSON.Error;
+  })
   .catch ( 
     error => {console.log(`Login in failed. The error encountered was: ${error}`);
     }
   );
-
-  check_login_status_and_update();
 }
 
