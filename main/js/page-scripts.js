@@ -1,6 +1,7 @@
 let Contribution_Count = "-1";
 let Active = false;
 let Role = "Uninitialized";
+const API_ROOT = "https://api.fsotables.com/";
 
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){

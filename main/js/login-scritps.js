@@ -1,4 +1,3 @@
-const API_ROOT = "https://api.fsotables.com/";
 const LOGIN_COOKIE_NAME = "username";
 
 const tables = [];
@@ -68,16 +67,15 @@ function attemptLogin(email, password) {
       check_login_status_and_update();
       return;
     } else {
-      response.json();
+      response.json().then(responseJSON => { 
+        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+        throw responseJSON.Error;}
+      ).catch(
+        error => console.log(`Login in failed. The error encountered was: ${error}`)
+      )
     }
-  })
-  .then(responseJSON => { 
-    // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
-    throw responseJSON.Error;
-  })
-  .catch ( 
-    error => {console.log(`Login in failed. The error encountered was: ${error}`);
-    }
+  }).catch ( 
+    error => console.log(`Login in failed. The error encountered was: ${error}`)
   );
-}
 
+}
