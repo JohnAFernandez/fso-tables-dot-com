@@ -1,5 +1,5 @@
 const API_ROOT = "https://api.fsotables.com/";
-const LOGIN_COOKIE_NAME = "ganymede-token";
+const LOGIN_COOKIE_NAME = "username";
 
 const tables = [];
 
@@ -20,7 +20,7 @@ function onLogout() {
     showWelcome();
   }
 
-  setCookie("ganymede-token", "", 7*24);
+  setCookie("username", "", 7*24);
   check_login_status_and_update();
 
 }
@@ -49,20 +49,13 @@ function togglePasswordLogin() {
 }
 
 function attemptLogin(email, password) {
-  console.log("starting login attempt! V3");
   const emailField = document.getElementById("loginEmail");
   const passwordField = document.getElementById("loginPassword");
-
-  console.log("login attempt2!");
 
   const loginRequest = {
     email: emailField.value,
     password: passwordField.value,
   }
-
-  console.log("login attempt3!");
-  console.log(API_ROOT + "users/login");
-  console.log(loginRequest);
 
   fetch(API_ROOT + "users/login", {
     method: "POST",
@@ -72,15 +65,14 @@ function attemptLogin(email, password) {
   .then(responseJSON => { 
     if (responseJSON.token != undefined){
       // Default login time of a week.
-      setCookie("ganymede-token", responseJSON.token, 7*24);
       setCookie("username", loginRequest.email, 7*24)
     } else {
-      throw responseJSON.error;
+      throw responseJSON.Error;
     }
 
    })
   .catch ( 
-    error => {console.log(`Loggin in failed. The error encountered was: ${error}`);
+    error => {console.log(`Login in failed. The error encountered was: ${error}`);
     }
   );
 

@@ -1,3 +1,8 @@
+let Contribution_Count = -1;
+let Active = false;
+let Role = -1;
+let 
+
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
   console.log("Initializing Page... v0.1");
@@ -62,6 +67,7 @@ function showAccount()
   toggleContents(false, "about-text-area")
   toggleContents(true, "account-text-area")
   toggleContents(false, "tables-text-area")
+  get_user_details();
 }
 
 // This one will probably take some time.
@@ -142,7 +148,45 @@ function setLoginStatus(status) {
 }
 
 function check_login_status_and_update() {
-  const token = getCookie("ganymede-token");
+  const token = getCookie("username");
 
   setLoginStatus(token == "");
+}
+
+function get_user_details() {
+  const username = getCookie("username");
+  
+  if (username == "") {
+    alert("Something seems to be wrong with the login process, and you are being sent back to the welcome page.  Please report to Cyborg.");
+    setPageMode("welcome");
+    return;
+  }
+  
+  // fetch retrieves username, role, contribution_count, and active, for some reason.  Any login process should reactivate an account. (or at least it should when everything is as it should be) 
+  console.log(API_ROOT + "users/myaccount");
+
+  fetch(API_ROOT + "users/myaccount", { method: "GET" })
+  .then((response) => response.json())
+  .then(responseJSON => {
+    // Check that we have expected output.... 
+    if (responseJSON.username != undefined){
+
+      Contribution_Count = responseJSON.contribution_count;
+      Role = responseJSON.role;
+      
+      if (responseJSON.active === 1) {
+        Active = true;
+      } else {
+        Active = false;
+      } 
+
+    } else {
+      throw responseJSON.Error;
+    }
+
+    })
+  .catch ( 
+    error => {console.log(`Fetching user details failed. The error encountered was: ${error}`);
+    }
+  );
 }
