@@ -68,7 +68,7 @@ function attemptLogin(email, password) {
       check_login_status_and_update();
       return;
     } else {
-      response.JSON();
+      response.json();
     }
   })
   .then(responseJSON => { 
