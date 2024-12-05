@@ -1,4 +1,5 @@
 const LOGIN_COOKIE_NAME = "username";
+const API_ROOT = "https://api.fsotables.com/";
 
 const tables = [];
 

@@ -5,7 +5,7 @@ const API_ROOT = "https://api.fsotables.com/";
 
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
-  console.log("Initializing Page... v0.3");
+  console.log("Initializing Page... v0.4");
 
   console.log("Getting the mode cookie...")
   const ourCookie = getCookie("mode");
@@ -211,6 +211,8 @@ function get_user_details() {
     error => {console.log(`Fetching user details failed. The error encountered was: ${error}`);
     }
   );
+
+  update_myaccount_items();
 }
 
 function update_myaccount_items() {
