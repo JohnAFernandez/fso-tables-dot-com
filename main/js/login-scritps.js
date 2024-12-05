@@ -63,7 +63,7 @@ function attemptLogin(email, password) {
   })
   .then((response) => response.json())
   .then(responseJSON => { 
-    if (responseJSON.token != undefined){
+    if (responseJSON.error === undefined){
       // Default login time of a week.
       setCookie("username", loginRequest.email, 7*24)
     } else {
