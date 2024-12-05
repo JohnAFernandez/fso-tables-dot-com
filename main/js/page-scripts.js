@@ -19,7 +19,16 @@ function initPage(){
     setPageMode("tables");
   } else if (ourCookie === "account") {
     console.log("Setting account page...");
-    setPageMode("account");
+
+    const username = getCookie("username");
+
+    // the internal check to send back to the welcome page can't differentiate between intended failure
+    // and unintended failure, so divert here.
+    if (username == ""){
+      setPageMode("welcome");
+    } else {
+      setPageMode("account");
+    }
   } else {
     console.log("Setting about page...");
     setPageMode("about");
