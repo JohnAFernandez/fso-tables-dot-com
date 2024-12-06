@@ -1,5 +1,5 @@
 const LOGIN_COOKIE_NAME = "username";
-const API_ROOT = "https://api.fsotables.com/";
+const API_ROOTB = "https://api.fsotables.com/";
 
 const tables = [];
 
@@ -57,7 +57,7 @@ function attemptLogin(email, password) {
     password: passwordField.value,
   }
 
-  fetch(API_ROOT + "users/login", {
+  fetch(API_ROOTB + "users/login", {
     method: "POST",
     body: JSON.stringify(loginRequest)
   })
