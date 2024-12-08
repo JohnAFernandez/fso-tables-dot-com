@@ -181,7 +181,11 @@ function get_user_details() {
   // fetch retrieves username, role, contribution_count, and active, for some reason.  Any login process should reactivate an account. (or at least it should when everything is as it should be) 
   console.log(API_ROOT + "users/myaccount");
 
-  fetch(API_ROOT + "users/myaccount", { method: "GET", headers: { "username" : username } })
+  fetch(API_ROOT + "users/myaccount", { 
+    method: "GET", 
+    headers: { "username" : username },
+    credentials: 'include'
+  })
   .then((response) => response.json())
   .then(responseJSON => {
     // Check that we have expected output.... 
