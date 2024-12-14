@@ -173,7 +173,7 @@ function get_user_details() {
   const username = getCookie("username");
   
   if (username == "") {
-    alert("Something seems to be wrong with the login process, and you are being sent back to the welcome page.  Please report to Cyborg.");
+    alert("You are not logged in, returning to the home page.");
     setPageMode("welcome");
     return;
   }
