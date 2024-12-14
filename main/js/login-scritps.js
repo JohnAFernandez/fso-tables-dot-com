@@ -65,6 +65,9 @@ function attemptLogin(email, password) {
     if (response.status === 200) {
       // Default login expiration of a week.
       setCookie("username", loginRequest.email, 7*24)
+      if (getCookie("GanymedeToken") == ""){
+        console.log("Credential Token Header Not Saved");
+      }
       check_login_status_and_update();
       return;
     } else {
