@@ -1,8 +1,6 @@
 let LOGIN_COOKIE_NAME = "username";
 let API_ROOTB = "https://api.fsotables.com/";
 
-let tables = [];
-
 function onLoginModalOpen() {
   const passwordField = document.getElementById("loginPassword")
   const checkbox = document.getElementById("loginPasswordToggleShowPassword");
