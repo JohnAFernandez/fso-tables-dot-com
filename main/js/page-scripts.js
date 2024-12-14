@@ -238,6 +238,24 @@ function update_myaccount_items() {
   return;
 }
 
+
+
+// Table Item Handling Code 
+const tables = [];
+
+function add_table(id, name, ) {
+
+}
+
+function apply_table(table) {
+
+}
+
+function populate_table_item(item, location){
+
+}
+
+
 function create_item (id, text, documentation, major_version, parent, table, deprecation, restriction, info_type, table_index, default_value) {
   const new_item = {
     id: id,
@@ -253,5 +271,10 @@ function create_item (id, text, documentation, major_version, parent, table, dep
     default_value: default_value
   }
 
-  return {}
+
+
+  return new_item;
 }
+
+
+
