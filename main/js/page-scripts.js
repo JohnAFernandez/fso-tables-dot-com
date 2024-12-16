@@ -227,17 +227,26 @@ function get_user_details() {
       throw responseJSON.Error;
     }
 
+      update_myaccount_items(false);
     })
   .catch ( 
-    error => {console.log(`Fetching user details failed. The error encountered was: ${error}`);
+    error => {
+      console.log(`Fetching user details failed. The error encountered was: ${error}`);
+      update_myaccount_items(true);
     }
   );
-
-  update_myaccount_items();
 }
 
-function update_myaccount_items() {
-  const ourCookie = getCookie("username");
+function update_myaccount_items(error_present) {
+  if (error_present) {
+    changeContents("account-name-text", "Unknown Error");
+    changeContents("account-role-text", "");
+    changeContents("contribution-count-text", "");      
+
+    return;
+  }
+
+  let ourCookie = getCookie("username");
 
   changeContents("account-name-text", ourCookie);
   changeContents("account-role-text", Role);
