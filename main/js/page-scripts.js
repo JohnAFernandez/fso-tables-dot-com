@@ -171,7 +171,8 @@ function check_login_status_and_update() {
 
 function get_user_details() {
   const username = getCookie("username");
-  
+  const token = getCookie("GanymedeToken");
+
   if (username == "") {
     alert("You are not logged in, returning to the home page.");
     setPageMode("welcome");
@@ -183,7 +184,9 @@ function get_user_details() {
 
   fetch(API_ROOT + "users/myaccount", { 
     method: "GET", 
-    headers: { "username" : username },
+    headers: { "username" : username,
+                "GanymedeToken" : token
+    },
     credentials: 'include'
   })
   .then((response) => response.json())
