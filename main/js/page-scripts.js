@@ -170,8 +170,14 @@ function check_login_status_and_update() {
 }
 
 function get_user_details() {
+  // set it to loading...
+  toggleContents(true, "account-loader");
+  toggleContents(false, "user-info-row");
+  toggleContents(false, "username-row");
+
   const username = getCookie("username");
   const token = getCookie("GanymedeToken");
+
 
   if (username == "") {
     alert("You are not logged in, returning to the home page.");
@@ -239,7 +245,9 @@ function get_user_details() {
 
 function update_myaccount_items(error_present) {
   if (error_present) {
-    changeContents("account-name-text", "Unknown Error");
+    changeContents("account-name-text", "Unknown Error, Cannot Update");
+    toggleContents(true, "username-row");
+    toggleContents(false, "account-loader");
     changeContents("account-role-text", "");
     changeContents("contribution-count-text", "");      
 
@@ -251,6 +259,9 @@ function update_myaccount_items(error_present) {
   changeContents("account-name-text", ourCookie);
   changeContents("account-role-text", Role);
   changeContents("contribution-count-text", Contribution_Count);
+  toggleContents(false, "account-loader");
+  toggleContents(true, "user-info-row");
+  toggleContents(true, "username-row");
 
   return;
 }
