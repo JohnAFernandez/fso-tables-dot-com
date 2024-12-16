@@ -1,5 +1,5 @@
 let LOGIN_COOKIE_NAME = "username";
-let API_ROOTB = "https://api.fsotables.com/";
+let API_ROOTB = "https://www.fsotables.com/api/";
 
 function onLoginModalOpen() {
   const passwordField = document.getElementById("loginPassword")
