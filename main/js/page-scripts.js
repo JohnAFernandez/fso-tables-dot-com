@@ -197,16 +197,16 @@ function get_user_details() {
       Contribution_Count = `${responseJSON.contribution_count}`;
       
       switch (responseJSON.role){
-        case "0": {
+        case 0: {
           Role = "Owner";
         }
-        case "1": {
+        case 1: {
           Role = "Administrator";
         }
-        case "2": {
+        case 2: {
           Role = "Maintainer";
         }
-        case "3": 
+        case 3: 
           Role = "Viewer";
         default:
           Role = "[Bad Data]";
