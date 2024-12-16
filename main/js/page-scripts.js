@@ -199,17 +199,22 @@ function get_user_details() {
       switch (responseJSON.role){
         case 0: {
           Role = "Owner";
+          break;
         }
         case 1: {
           Role = "Administrator";
+          break;
         }
         case 2: {
           Role = "Maintainer";
+          break;
         }
         case 3: 
           Role = "Viewer";
+          break;
         default:
           Role = "[Bad Data]";
+          break;
       }
       
       if (responseJSON.active === 1) {
