@@ -282,6 +282,7 @@ function get_table_data() {
   })
   .then((response) => response.json())
   .then(responseJSON => {
+    console.log(responseJSON);
     database_tables = responseJSON.parse();
   }).catch ( 
     error => {
