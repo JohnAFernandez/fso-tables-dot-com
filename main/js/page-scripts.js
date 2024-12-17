@@ -263,7 +263,7 @@ function update_myaccount_items(error_present) {
 
 
 // Table Item Handling Code 
-const database_tables = [];
+let database_tables = [];
 
 
 function update_local_data() {
