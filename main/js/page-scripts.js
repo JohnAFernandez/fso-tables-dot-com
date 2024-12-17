@@ -290,7 +290,8 @@ function update_local_data() {
 }
 
 function get_table_data() {
-  console.log("Yes, the function is running!");
+  // TODO, make sure this gets into long term storage and can be pulled to avoid unneccessary API calls.
+
   fetch(API_ROOT + "tables", { 
     method: "GET" 
   })
@@ -298,7 +299,9 @@ function get_table_data() {
   .then(responseJSON => {
     database_tables = responseJSON;
     enableItemClass(true, "tables-link");
-    
+    // Setting the table object items within the drowpdown that the tables page is going to have its own rendering function.
+
+
   }).catch ( 
     error => {
       console.log(`Fetching table data failed. The error encountered was: ${error}`);
