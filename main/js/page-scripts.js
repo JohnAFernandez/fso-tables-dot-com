@@ -176,8 +176,6 @@ function get_user_details() {
   toggleContents(false, "username-row");
 
   const username = getCookie("username");
-  const token = getCookie("GanymedeToken");
-
 
   if (username == "") {
     alert("You are not logged in, returning to the home page.");
@@ -191,7 +189,6 @@ function get_user_details() {
   fetch(API_ROOT + "users/myaccount", { 
     method: "GET", 
     headers: { "username" : username,
-                "GanymedeToken" : token
     },
     credentials: 'include'
   })
