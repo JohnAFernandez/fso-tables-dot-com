@@ -297,7 +297,7 @@ function get_table_data() {
   .then((response) => response.json())
   .then(responseJSON => {
     database_tables = responseJSON;
-    enableClass(true, "tables-link");
+    enableItemClass(true, "tables-link");
     
   }).catch ( 
     error => {
