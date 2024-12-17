@@ -246,8 +246,8 @@ function get_user_details() {
 function update_myaccount_items(error_present) {
   if (error_present) {
     changeContents("account-name-text", "Unknown Error, Cannot Update");
-    toggleContents(true, "username-row");
     toggleContents(false, "account-loader");
+    toggleContents(true, "username-row");
     changeContents("account-role-text", "");
     changeContents("contribution-count-text", "");      
 
