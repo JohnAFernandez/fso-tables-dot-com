@@ -37,6 +37,9 @@ function initPage(){
   console.log("Checking login status...");
   check_login_status_and_update();
 
+  console.log("Getting Table Data");
+  get_table_data();
+
   console.log("Finally, removing the pre-load cover...")
   toggleContents(false, "cover");
 
@@ -52,6 +55,17 @@ function toggleContents(enable, id)
     element.style.display = '';
   } else if (enable === false){
     element.style.display = 'none';
+  }
+}
+
+function enableItemClass(enable, id)
+{
+  const element = document.getElementById(id);
+
+  if (enable === true){
+    element.classList.remove(`disabled`);
+  } else {
+    element.classList.add(`disabled`);
   }
 }
 
@@ -282,18 +296,16 @@ function get_table_data() {
   })
   .then((response) => response.json())
   .then(responseJSON => {
-    console.log(responseJSON);
     database_tables = responseJSON;
+    enableClass(true, "tables-link");
+    
   }).catch ( 
     error => {
       console.log(`Fetching table data failed. The error encountered was: ${error}`);
-      update_myaccount_items(true);
+      alert("Fetch of table file info failed.");
     }
   );
-
-  console.log(database_tables);
 }
-
 
 
 /*
