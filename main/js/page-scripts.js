@@ -184,8 +184,6 @@ function get_user_details() {
   }
   
   // fetch retrieves username, role, contribution_count, and active, for some reason.  Any login process should reactivate an account. (or at least it should when everything is as it should be) 
-  console.log(API_ROOT + "users/myaccount");
-
   fetch(API_ROOT + "users/myaccount", { 
     method: "GET", 
     headers: { "username" : username,
@@ -264,14 +262,57 @@ function update_myaccount_items(error_present) {
 }
 
 
-
 // Table Item Handling Code 
-const tables = [];
+const database_tables = [];
 
-function add_table(id, name, ) {
 
+function update_local_data() {
+  // Request all info, except table data, which is not likely to change.
+  // request table_aliases
+  // request items
+  // request parse_behaviors
+  // request restrictions
+  // request deprecations
 }
 
+function get_table_data() {
+  console.log("Yes, the function is running!");
+  fetch(API_ROOT + "tables", { 
+    method: "GET" 
+  })
+  .then((response) => response.json())
+  .then(responseJSON => {
+    database_tables = responseJSON;
+  }).catch ( 
+    error => {
+      console.log(`Fetching table data failed. The error encountered was: ${error}`);
+      update_myaccount_items(true);
+    }
+  );
+
+  console.log(database_tables);
+}
+
+
+
+/*
+function get_table_data() {
+  fetch(API_ROOT + "tables", { 
+    method: "GET" 
+  }).then((response) => response.json())
+  .then(responseJSON => {
+    database_tables = responseJSON;
+  
+  }).catch ( 
+    error => {
+      console.log(`Fetching table data failed. The error encountered was: ${error}`);
+      update_myaccount_items(true);
+    }
+  );
+}*/
+
+
+// Put the current table into the UI
 function apply_table(table) {
 
 }
@@ -279,6 +320,7 @@ function apply_table(table) {
 function populate_table_item(item, location){
 
 }
+
 
 
 function create_item (id, text, documentation, major_version, parent, table, deprecation, restriction, info_type, table_index, default_value) {
