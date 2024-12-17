@@ -283,7 +283,7 @@ function get_table_data() {
   .then((response) => response.json())
   .then(responseJSON => {
     console.log(responseJSON);
-    database_tables = responseJSON.parse();
+    database_tables = responseJSON;
   }).catch ( 
     error => {
       console.log(`Fetching table data failed. The error encountered was: ${error}`);
