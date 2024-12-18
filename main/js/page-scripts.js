@@ -330,11 +330,11 @@ function get_item_data() {
         continue;
       }
 
-      if (database_tables[item.table_id].items == undefined) {
+      if (database_tables[responseJSON[item].table_id].items == undefined) {
         database_tables.items = [];
       }
 
-      database_tables.items.push(item);
+      database_tables.items.push(responseJSON[item]);
     }
 
     console.log(`Items place in their tables.`);
