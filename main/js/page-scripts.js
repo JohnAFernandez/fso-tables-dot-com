@@ -325,7 +325,7 @@ function get_item_data() {
     // TODO! You know what, we definitely have to sort the SQL output for tables at least.
     for (item in responseJSON){
       // make sure there's a matching table.
-      if (database_tables[item.table_id] == undefined) {
+      if (database_tables[responseJSON[item].table_id] == undefined) {
         console.log(`Could not find matching table for item ${item}`);
         continue;
       }
