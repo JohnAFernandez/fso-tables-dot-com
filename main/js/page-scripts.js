@@ -334,15 +334,18 @@ function get_item_data() {
         database_tables[responseJSON[item].table_id - 1].items = [];
       }
 
+      let found = false;
       for (stored_item in database_tables[responseJSON[item].table_id  - 1].items){
         if (database_tables[responseJSON[item].table_id  - 1].items[stored_item].item_id == responseJSON[item].item_id){
           database_tables[responseJSON[item].table_id - 1].items[stored_item] = responseJSON[item];
-          continue;
+          found = true;
+          break;
         } 
       }
 
-      // set as new item if the loop did not find anything.
-      database_tables[responseJSON[item].table_id  - 1].items.push(responseJSON[item]);
+      if (!found){
+        database_tables[responseJSON[item].table_id  - 1].items.push(responseJSON[item]);
+      }
     }
 
     console.log(`Items place in their tables.`);
