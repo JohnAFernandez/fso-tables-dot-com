@@ -331,10 +331,10 @@ function get_item_data() {
       }
 
       if (database_tables[responseJSON[item].table_id].items == undefined) {
-        database_tables.items = [];
+        database_tables[responseJSON[item].table_id].items = [];
       }
 
-      database_tables.items.push(responseJSON[item]);
+      database_tables[responseJSON[item].table_id].items.push(responseJSON[item]);
     }
 
     console.log(`Items place in their tables.`);
