@@ -325,16 +325,24 @@ function get_item_data() {
     // TODO! You know what, we definitely have to sort the SQL output for tables at least.
     for (item in responseJSON){
       // make sure there's a matching table.
-      if (database_tables[responseJSON[item].table_id] == undefined) {
+      if (database_tables[responseJSON[item].table_id - 1] == undefined) {
         console.log(`Could not find matching table for item ${item}`);
         continue;
       }
 
-      if (database_tables[responseJSON[item].table_id].items == undefined) {
-        database_tables[responseJSON[item].table_id].items = [];
+      if (database_tables[responseJSON[item].table_id - 1].items == undefined) {
+        database_tables[responseJSON[item].table_id - 1].items = [];
       }
 
-      database_tables[responseJSON[item].table_id].items.push(responseJSON[item]);
+      for (stored_item in database_tables[responseJSON[item].table_id  - 1].items){
+        if (database_tables[responseJSON[item].table_id  - 1].items[stored_item].item_id == responseJSON[item].item_id){
+          database_tables[responseJSON[item].table_id - 1].items[stored_item] = responseJSON[item];
+          continue;
+        } 
+      }
+
+      // set as new item if the loop did not find anything.
+      database_tables[responseJSON[item].table_id  - 1].items.push(responseJSON[item]);
     }
 
     console.log(`Items place in their tables.`);
