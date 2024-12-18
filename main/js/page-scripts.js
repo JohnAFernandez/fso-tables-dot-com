@@ -107,6 +107,8 @@ function showTables()
   toggleContents(false, "about-text-area")
   toggleContents(false, "account-text-area")
   toggleContents(true, "tables-text-area")
+
+  get_item_data();
 }
 
 function setPageMode(mode){
@@ -310,22 +312,39 @@ function get_table_data() {
   );
 }
 
-
-/*
-function get_table_data() {
-  fetch(API_ROOT + "tables", { 
+function get_item_data() {
+  fetch(API_ROOT + "tables/items", { 
     method: "GET" 
   }).then((response) => response.json())
   .then(responseJSON => {
-    database_tables = responseJSON;
-  
+    console.log(responseJSON);
+    
+    // TODO!  Sort the SQL output to save on computation?
+    // Or again, implement outputting a specific table's items. 
+
+    // TODO! You know what, we definitely have to sort the SQL output for tables at least.
+    for (item in responseJSON){
+      // make sure there's a matching table.
+      if (database_tables[item.table_id] == undefined) {
+        console.log(`Could not find matching table for item ${item}`);
+        continue;
+      }
+
+      if (database_tables[item.table_id].items == undefined) {
+        database_tables.items = [];
+      }
+
+      database_tables.items.push(item);
+    }
+
+    console.log(`Items place in their tables.`);
+
   }).catch ( 
     error => {
-      console.log(`Fetching table data failed. The error encountered was: ${error}`);
-      update_myaccount_items(true);
+      console.log(`Fetching table item data failed. The error encountered was: ${error}`);
     }
   );
-}*/
+}
 
 
 // Put the current table into the UI
