@@ -2,6 +2,26 @@ let Contribution_Count = "-1";
 let Active = false;
 let Role = "Uninitialized";
 let API_ROOT = "https://www.fsotables.com/api/";
+const cache = await caches.open('fso-local-database-copy');
+let Ui_Update_Needed = false;
+
+let Updating_tables = false;
+let Updating_table_items = false;
+let Updating_parse_behaviors = false;
+let Updating_restrictions = false;
+let Updating_deprecations = false;
+let Updating_table_aliases = false;
+
+
+window.setInterval(check_for_update, 10000);
+
+function check_for_update() {
+  if (Ui_Update_Needed && !Updating_tables && !Updating_table_items && !Updating_parse_behaviors && !Updating_restrictions && !Updating_deprecations && !Updating_table_aliases ){
+    console.log("Running Check for UI Update, update needed")
+  } else {
+    console.log("Running Check for UI Update, No update needed");
+  }
+}
 
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
@@ -37,13 +57,13 @@ function initPage(){
   console.log("Checking login status...");
   check_login_status_and_update();
 
+  console.log("Removing the pre-load cover as the UI initialization is finished.")
+  toggleContents(false, "cover");
+
   console.log("Getting Table Data");
   get_table_data();
 
-  console.log("Finally, removing the pre-load cover...")
-  toggleContents(false, "cover");
-
-  console.log("Pre-load cover removed.  Initialization successfully completed!")
+  console.log("End of initialization function");
 }
 
 // Switch the download link contents on or off.
@@ -58,7 +78,7 @@ function toggleContents(enable, id)
   }
 }
 
-function enableItemClass(enable, id)
+function enableItemViaClass(enable, id)
 {
   const element = document.getElementById(id);
 
@@ -107,8 +127,6 @@ function showTables()
   toggleContents(false, "about-text-area")
   toggleContents(false, "account-text-area")
   toggleContents(true, "tables-text-area")
-
-  get_item_data();
 }
 
 function setPageMode(mode){
@@ -280,29 +298,37 @@ function update_myaccount_items(error_present) {
 
 // Table Item Handling Code 
 let database_tables = [];
+let database_aliases = [];
+let database_parse_behaviors = [];
+let database_restrictions = [];
+let database_deprecations = [];
 
-
+// make the function this way so that we can update everything at once, but also update with individual functions later 
 function update_local_data() {
-  // Request all info, except table data, which is not likely to change.
-  // request table_aliases
-  // request items
-  // request parse_behaviors
-  // request restrictions
-  // request deprecations
+  Ui_Update_Needed = true;
+  
+  get_table_data().then(() => {
+      get_item_data();
+      get_table_aliases();
+      get_parse_behaviors();
+      get_restrictions();
+      get_deprecations();
+    });
 }
 
-function get_table_data() {
+async function get_table_data() {
   // TODO, make sure this gets into long term storage and can be pulled to avoid unneccessary API calls.
 
-  fetch(API_ROOT + "tables", { 
+  Updating_tables = true;
+
+  await fetch(API_ROOT + "tables", { 
     method: "GET" 
   })
   .then((response) => response.json())
   .then(responseJSON => {
     database_tables = responseJSON;
-    enableItemClass(true, "tables-link");
+    enableItemViaClass(true, "tables-link");
     // Setting the table object items within the drowpdown that the tables page is going to have its own rendering function.
-
 
   }).catch ( 
     error => {
@@ -313,6 +339,8 @@ function get_table_data() {
 }
 
 function get_item_data() {
+  Updating_table_items = true;  
+
   fetch(API_ROOT + "tables/items", { 
     method: "GET" 
   }).then((response) => response.json())
@@ -347,8 +375,7 @@ function get_item_data() {
         database_tables[responseJSON[item].table_id  - 1].items.push(responseJSON[item]);
       }
     }
-
-    console.log(`Items place in their tables.`);
+    console.log(`Table Items Fetched`);
 
   }).catch ( 
     error => {
@@ -357,6 +384,81 @@ function get_item_data() {
   );
 }
 
+function get_table_aliases() {
+  let Updating_table_aliases = true;
+
+  fetch(API_ROOT + "tables/aliases", { 
+    method: "GET" 
+  })
+  .then((response) => response.json())
+  .then(responseJSON => {
+    database_aliases = responseJSON;
+
+    Updating_table_aliases = false;
+  }).catch ( 
+    error => {
+      console.log(`Fetching table aliases failed. The error encountered was: ${error}`);
+      Updating_table_aliases = false;
+    }
+  );
+}
+
+function get_parse_behaviors() {  
+  Updating_parse_behaviors = true;
+
+  fetch(API_ROOT + "tables/parse-types", { 
+    method: "GET" 
+  })
+  .then((response) => response.json())
+  .then(responseJSON => {
+    database_parse_behaviors = responseJSON;
+
+    Updating_parse_behaviors = false;
+  }).catch ( 
+    error => {
+      console.log(`Fetching restrictions failed. The error encountered was: ${error}`);
+      Updating_parse_behaviors = false;
+    }
+  );
+}
+
+function get_restrictions() {
+  Updating_restrictions = true;
+
+  fetch(API_ROOT + "tables/restrictions", { 
+    method: "GET" 
+  })
+  .then((response) => response.json())
+  .then(responseJSON => {
+    database_restrictions = responseJSON;
+
+    Updating_restrictions = false;
+  }).catch ( 
+    error => {
+      console.log(`Fetching restrictions failed. The error encountered was: ${error}`);
+      Updating_restrictions = false;
+    }
+  );
+}
+
+function get_deprecations() {
+  Updating_deprecations = true;
+
+  fetch(API_ROOT + "tables/deprecations", { 
+    method: "GET" 
+  })
+  .then((response) => response.json())
+  .then(responseJSON => {
+    database_deprecations = responseJSON;
+
+    Updating_deprecations = false;
+  }).catch ( 
+    error => {
+      console.log(`Fetching restrictions failed. The error encountered was: ${error}`);
+      Updating_deprecations = false;
+    }
+  );
+}
 
 // Put the current table into the UI
 function apply_table(table) {
@@ -369,25 +471,26 @@ function populate_table_item(item, location){
 
 
 
-function create_item (id, text, documentation, major_version, parent, table, deprecation, restriction, info_type, table_index, default_value) {
-  const new_item = {
-    id: id,
-    name: text,
-    description: documentation,
-    major_version: major_version,
-    parent_id: parent,
-    table_id: table,
-    deprecation: deprecation,
-    restriction: restriction,
-    info_type: info_type,
-    table_index: table_index,
-    default_value: default_value
-  }
+/* For Later.  We can use this to cache our result.  Also there are alternatives.
 
 
+const request = indexedDB.open("fso_local_copy");
+let db;
 
-  return new_item;
-}
+request.onupgradeneeded = function() {
+  // The database did not previously exist, so create object stores and indexes.
+  const db = request.result;
+  const store = db.createObjectStore("tables", {keyPath: "tables"});
 
+  // Populate with initial data.
+  store.put({title: "Quarry Memories", author: "Fred", isbn: 123456});
+  store.put({title: "Water Buffaloes", author: "Fred", isbn: 234567});
+  store.put({title: "Bedrock Nights", author: "Barney", isbn: 345678});
 
+  full_update = true;
+};
 
+request.onsuccess = function() {
+  db = request.result;
+};
+*/
