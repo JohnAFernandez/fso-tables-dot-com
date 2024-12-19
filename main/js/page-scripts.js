@@ -18,6 +18,11 @@ function check_for_update() {
   if (Ui_Update_Needed && !Updating_tables && !Updating_table_items && !Updating_parse_behaviors && !Updating_restrictions && !Updating_deprecations && !Updating_table_aliases ){
     console.log("Updating UI");
     // UPDATE THE UI HERE!
+    console.log(database_tables);
+    console.log(database_aliases);
+    console.log(database_deprecations);
+    console.log(database_parse_behaviors);
+    console.log(database_restrictions);
     Ui_Update_Needed = false;
   } 
 }
