@@ -98,6 +98,14 @@ header {
     padding-right: 0px;
 }
 
+.item-body{
+    background-color: #333333;
+    margin: 0px;
+    margin-top: 20px;
+    margin-right: 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
 
 body {
     overflow-x: hidden;

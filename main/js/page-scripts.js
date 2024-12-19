@@ -355,7 +355,7 @@ function get_item_data() {
     for (item in responseJSON){
       // make sure there's a matching table.
       if (database_tables[responseJSON[item].table_id - 1] == undefined) {
-        console.log(`Could not find matching table for item ${item}`);
+        console.log(`Orphaned table item: ${item}`);
         continue;
       }
 
@@ -376,7 +376,6 @@ function get_item_data() {
         database_tables[responseJSON[item].table_id  - 1].items.push(responseJSON[item]);
       }
     }
-    console.log(`Table Items Fetched`);
 
   }).catch ( 
     error => {
@@ -423,6 +422,7 @@ function get_parse_behaviors() {
   );
 }
 
+// TODO! Don't forget to rework restrictions on the database side so that it is text based!!
 function get_restrictions() {
   Updating_restrictions = true;
 
