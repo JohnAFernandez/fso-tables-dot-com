@@ -12,15 +12,14 @@ let Updating_restrictions = false;
 let Updating_deprecations = false;
 let Updating_table_aliases = false;
 
-
+// Regularly check for updates.
 window.setInterval(check_for_update, 10000);
-
 function check_for_update() {
   if (Ui_Update_Needed && !Updating_tables && !Updating_table_items && !Updating_parse_behaviors && !Updating_restrictions && !Updating_deprecations && !Updating_table_aliases ){
-    console.log("Running Check for UI Update, update needed")
-  } else {
-    console.log("Running Check for UI Update, No update needed");
-  }
+    console.log("Updating UI");
+    // UPDATE THE UI HERE!
+    Ui_Update_Needed = false;
+  } 
 }
 
 // Run at the start of the page (called from the html) with our best guess at Architecture
@@ -316,12 +315,14 @@ function update_local_data() {
     });
 }
 
-function get_table_data() {
+// this function and its fetch need to be awaited so that the other functions do not run until we get this information.
+// Otherwise the response from this function will overwrite other table info.
+async function get_table_data() {
   // TODO, make sure this gets into long term storage and can be pulled to avoid unneccessary API calls.
 
   Updating_tables = true;
 
-  fetch(API_ROOT + "tables", { 
+  await fetch(API_ROOT + "tables", { 
     method: "GET" 
   })
   .then((response) => response.json())
