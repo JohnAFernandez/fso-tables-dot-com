@@ -60,7 +60,7 @@ function initPage(){
   toggleContents(false, "cover");
 
   console.log("Getting Table Data");
-  get_table_data();
+  update_local_data();
 
   console.log("End of initialization function");
 }
