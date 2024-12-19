@@ -2,7 +2,7 @@ let Contribution_Count = "-1";
 let Active = false;
 let Role = "Uninitialized";
 let API_ROOT = "https://www.fsotables.com/api/";
-const cache = await caches.open('fso-local-database-copy');
+// const cache = await caches.open('fso-local-database-copy');
 let Ui_Update_Needed = false;
 
 let Updating_tables = false;
@@ -316,12 +316,12 @@ function update_local_data() {
     });
 }
 
-async function get_table_data() {
+function get_table_data() {
   // TODO, make sure this gets into long term storage and can be pulled to avoid unneccessary API calls.
 
   Updating_tables = true;
 
-  await fetch(API_ROOT + "tables", { 
+  fetch(API_ROOT + "tables", { 
     method: "GET" 
   })
   .then((response) => response.json())
