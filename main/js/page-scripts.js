@@ -360,9 +360,7 @@ function get_item_data() {
   fetch(API_ROOT + "tables/items", { 
     method: "GET" 
   }).then((response) => response.json())
-  .then(responseJSON => {
-    console.log(responseJSON);
-    
+  .then(responseJSON => {    
     // TODO!  Sort the SQL output to save on computation?
     // Or again, implement outputting a specific table's items. 
 
@@ -512,7 +510,7 @@ function apply_table(table) {
     toggleContents(false, "table-info-area");
 
     try{  
-      for (let i = 0 ; i < 501; i++){
+      for (let i = 0 ; i < 301; i++){
         toggleContents(false, `item${i}`);
       }
     } catch {}
@@ -536,6 +534,7 @@ function apply_table(table) {
   replace_text_contents("table-aliases-content1", "");
   replace_text_contents("table-aliases-label", "");
   
+
   for (let i = 0; i < database_tables[Current_Table].length; i++){
     if (i >= database_tables[Current_Table].items.length){
       break;
@@ -544,17 +543,25 @@ function apply_table(table) {
     let temporary_item = document.getElementById(`item${i}`);
     
     if (temporary_item === undefined){
-      
+      for (; i < database_tables[Current_Table].length; i++){
+        let new_div = document.createElement("div"); 
+        
+        
+
+        new_div.setAttribute("class","");
+        element.appendChild();
+      }
+
     }
 
     replace_text_contents(`item${i}`, `<div id="${i}a" class="row">
           <div id="${i}a-1" class="col-8">
-            <h3><b>${database_tables[Current_Table].items[i].name}</b></h3><br>
+            <h3><b><%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].name))%></b></h3><br>
           </div>
         </div>
         <div id="${i}a" class="row">
           <div id="${i}a-2" class="col-3">
-            <h5>Minimum Version: &#9;<b>${database_tables[Current_Table].items[i].name}</b></h5>
+            <h5>Minimum Version: &#9;<b><%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].major_version))%></b></h5>
           </div>
             <br>
           <div id="${i}a-3" class="col-3">
@@ -564,7 +571,7 @@ function apply_table(table) {
         <br>
         <div id="${i}b" class="row">
           <div id="${i}b-1" class="col-3">
-            <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].type}</b></h5>
+            <h5>Type: &#9;<b><%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].type))%></b></h5>
           </div>
           <br>
           <div id="${i}b-2" class="col-6">
@@ -586,7 +593,7 @@ function apply_table(table) {
           <div class="col-9">
             <h4>
               <br>
-              ${database_tables[Current_Table].items[i].description}
+              <%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].description))%>
               <br>
               <br>
             </h4>
