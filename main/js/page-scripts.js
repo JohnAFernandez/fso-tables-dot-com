@@ -545,10 +545,6 @@ function apply_table(table) {
   
 
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
-    if (i >= database_tables[Current_Table].items.length){
-      break;
-    }
-
     let temporary_item = document.getElementById(`item${i}`);
     
     if (temporary_item === undefined){
@@ -563,14 +559,14 @@ function apply_table(table) {
 
     }
 
-    replace_inner_html(`item${i}`, `<div id="${i}a" class="row">
+    replace_inner_html(`item${i}`, `<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(<div id="${i}a" class="row">
           <div id="${i}a-1" class="col-8">
-            <h3><b><%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].name))%></b></h3><br>
+            <h3><b>${database_tables[Current_Table].items[i].name}</b></h3><br>
           </div>
         </div>
         <div id="${i}a" class="row">
           <div id="${i}a-2" class="col-3">
-            <h5>Minimum Version: &#9;<b><%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].major_version))%></b></h5>
+            <h5>Minimum Version: &#9;<b>${database_tables[Current_Table].items[i].major_version}</b></h5>
           </div>
             <br>
           <div id="${i}a-3" class="col-3">
@@ -580,7 +576,7 @@ function apply_table(table) {
         <br>
         <div id="${i}b" class="row">
           <div id="${i}b-1" class="col-3">
-            <h5>Type: &#9;<b><%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].type))%></b></h5>
+            <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].type}</b></h5>
           </div>
           <br>
           <div id="${i}b-2" class="col-6">
@@ -602,12 +598,12 @@ function apply_table(table) {
           <div class="col-9">
             <h4>
               <br>
-              <%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].description))%>
+              ${database_tables[Current_Table].items[i].description}
               <br>
               <br>
             </h4>
           </div>
-        </div>`)
+        </div>))%>`)
 
     toggleContents(true, `item${i}`);
 
