@@ -3,7 +3,7 @@ let Active = false;
 let Role = "Uninitialized";
 let API_ROOT = "https://www.fsotables.com/api/";
 // const cache = await caches.open('fso-local-database-copy');
-let Current_Table = -1;
+let Current_Table = 0;
 let Ui_Update_Needed = false;
 
 let Updating_tables = false;
@@ -19,11 +19,7 @@ function check_for_update() {
   if (Ui_Update_Needed && !Updating_tables && !Updating_table_items && !Updating_parse_behaviors && !Updating_restrictions && !Updating_deprecations && !Updating_table_aliases ){
     console.log("Updating UI");
     // UPDATE THE UI HERE!
-    console.log(database_tables);
-    console.log(database_aliases);
-    console.log(database_deprecations);
-    console.log(database_parse_behaviors);
-    console.log(database_restrictions);
+    apply_table(Current_Table);
     Ui_Update_Needed = false;
   } 
 }
@@ -33,16 +29,16 @@ function initPage(){
   console.log("Initializing Page... v0.4");
 
   console.log("Getting the mode cookie...")
-  const ourCookie = getCookie("mode");
-  console.log(`Found "${ourCookie}", continuing...`);
+  const modeCookie = getCookie("mode");
+  console.log(`Found "${modeCookie}", continuing...`);
 
-  if (ourCookie === "welcome") {
+  if (modeCookie === "welcome") {
     console.log("Setting welcome page...");
     setPageMode("welcome");
-  } else if (ourCookie === "tables") {
+  } else if (modeCookie === "tables") {
     console.log("Setting tables page...");
     setPageMode("tables");
-  } else if (ourCookie === "account") {
+  } else if (modeCookie === "account") {
     console.log("Setting account page...");
 
     const username = getCookie("username");
@@ -65,11 +61,17 @@ function initPage(){
   console.log("Removing the pre-load cover as the UI initialization is finished.")
   toggleContents(false, "cover");
 
+  console.log("Getting current Table");
+  const tableIndexCookie = getCookie("table");
+  console.log(`Found "${tableIndexCookie}"`);
+  
+  if (tableIndexCookie == undefined || tableIndexCookie === ""){
+    setCookie("table", "0");
+  }
+
   console.log("Getting Table Data");
   update_local_data();
-
-  apply_table(0);
-
+  
   console.log("End of initialization function");
 }
 
@@ -338,11 +340,12 @@ async function get_table_data() {
     database_tables = responseJSON;
     enableItemViaClass(true, "tables-link");
     // Setting the table object items within the drowpdown that the tables page is going to have its own rendering function.
-
+    Updating_tables = false;
   }).catch ( 
     error => {
       console.log(`Fetching table data failed. The error encountered was: ${error}`);
       alert("Fetch of table file info failed.");
+      Updating_tables = false;
     }
   );
 }
@@ -385,15 +388,17 @@ function get_item_data() {
       }
     }
 
+    Updating_table_items = false;
   }).catch ( 
     error => {
       console.log(`Fetching table item data failed. The error encountered was: ${error}`);
+      Updating_table_items = false;
     }
   );
 }
 
 function get_table_aliases() {
-  let Updating_table_aliases = true;
+  Updating_table_aliases = true;
 
   fetch(API_ROOT + "tables/aliases", { 
     method: "GET" 
@@ -488,7 +493,7 @@ function apply_table(table) {
   replace_text_contents("table-title", database_tables[Current_Table].name);
   replace_text_contents("table-filename-content", database_tables[Current_Table].filename);
   replace_text_contents("table-modular-extension-content", database_tables[Current_Table].modular_extension);
-  replace_text_contents("table-version-introduced-content", "Not available in database yet");
+  replace_text_contents("table-version-introduced-content", "");
   
   replace_text_contents("table-description-content", database_tables[Current_Table].description);
 
