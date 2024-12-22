@@ -561,7 +561,7 @@ function apply_table(table) {
 
     replace_inner_html(`item${i}`, `<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(<div id="${i}a" class="row">
           <div id="${i}a-1" class="col-8">
-            <h3><b>${database_tables[Current_Table].items[i].name}</b></h3><br>
+            <h3><b>${database_tables[Current_Table].items[i].item_text}</b></h3><br>
           </div>
         </div>
         <div id="${i}a" class="row">
@@ -576,7 +576,7 @@ function apply_table(table) {
         <br>
         <div id="${i}b" class="row">
           <div id="${i}b-1" class="col-3">
-            <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].type}</b></h5>
+            <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].info_type}</b></h5>
           </div>
           <br>
           <div id="${i}b-2" class="col-6">
@@ -598,7 +598,7 @@ function apply_table(table) {
           <div class="col-9">
             <h4>
               <br>
-              ${database_tables[Current_Table].items[i].description}
+              ${database_tables[Current_Table].items[i].documentation}
               <br>
               <br>
             </h4>
