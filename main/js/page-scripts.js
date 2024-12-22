@@ -3,7 +3,7 @@ let Active = false;
 let Role = "Uninitialized";
 let API_ROOT = "https://www.fsotables.com/api/";
 // const cache = await caches.open('fso-local-database-copy');
-let Current_Table = -1;
+let Current_Table = 0;
 let Ui_Update_Needed = false;
 
 let Updating_tables = false;
@@ -20,7 +20,7 @@ function check_for_update() {
   if (Ui_Update_Needed && !Updating_tables && !Updating_table_items && !Updating_parse_behaviors && !Updating_restrictions && !Updating_deprecations && !Updating_table_aliases ){
     console.log("Updating UI");
     // UPDATE THE UI HERE!
-  //  apply_table(Current_Table);
+    apply_table(Current_Table);
     Ui_Update_Needed = false;
   } 
 }
