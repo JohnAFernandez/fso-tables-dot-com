@@ -489,6 +489,15 @@ function replace_text_contents(element_id, contents){
   catch{ console.log(`Trying to enter ${contents} into ${element_id} failed...` );}
 }
 
+function replace_inner_html(element_id, contents){
+  try {
+    let element = document.getElementById(element_id);
+    element.innerHTML = contents;
+  }
+  catch{ console.log(`Trying to enter ${contents} into ${element_id} failed...` );}
+
+}
+
 // Put the current table into the UI
 function apply_table(table) {
   console.log("Running Apply Table");
@@ -554,7 +563,7 @@ function apply_table(table) {
 
     }
 
-    replace_text_contents(`item${i}`, `<div id="${i}a" class="row">
+    replace_inner_html(`item${i}`, `<div id="${i}a" class="row">
           <div id="${i}a-1" class="col-8">
             <h3><b><%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(database_tables[Current_Table].items[i].name))%></b></h3><br>
           </div>
