@@ -3,7 +3,7 @@ let Active = false;
 let Role = "Uninitialized";
 let API_ROOT = "https://www.fsotables.com/api/";
 // const cache = await caches.open('fso-local-database-copy');
-let Current_Table = 0;
+let Current_Table = -1;
 let Ui_Update_Needed = false;
 
 let Updating_tables = false;
@@ -12,14 +12,15 @@ let Updating_parse_behaviors = false;
 let Updating_restrictions = false;
 let Updating_deprecations = false;
 let Updating_table_aliases = false;
+let Fetching_info_error = "";
 
 // Regularly check for updates.
-window.setInterval(check_for_update, 10000);
+window.setInterval(check_for_update, 100);
 function check_for_update() {
   if (Ui_Update_Needed && !Updating_tables && !Updating_table_items && !Updating_parse_behaviors && !Updating_restrictions && !Updating_deprecations && !Updating_table_aliases ){
     console.log("Updating UI");
     // UPDATE THE UI HERE!
-    apply_table(Current_Table);
+  //  apply_table(Current_Table);
     Ui_Update_Needed = false;
   } 
 }
@@ -58,13 +59,16 @@ function initPage(){
   console.log("Checking login status...");
   check_login_status_and_update();
 
+  console.log("")
+  apply_table(-1);
+
   console.log("Removing the pre-load cover as the UI initialization is finished.")
   toggleContents(false, "cover");
 
   console.log("Getting current Table");
   const tableIndexCookie = getCookie("table");
   console.log(`Found "${tableIndexCookie}"`);
-  
+
   if (tableIndexCookie == undefined || tableIndexCookie === ""){
     setCookie("table", "0");
   }
@@ -343,8 +347,8 @@ async function get_table_data() {
     Updating_tables = false;
   }).catch ( 
     error => {
-      console.log(`Fetching table data failed. The error encountered was: ${error}`);
-      alert("Fetch of table file info failed.");
+      Fetching_info_error += error;
+      Fetching_info_error += " ";
       Updating_tables = false;
     }
   );
@@ -391,8 +395,9 @@ function get_item_data() {
     Updating_table_items = false;
   }).catch ( 
     error => {
-      console.log(`Fetching table item data failed. The error encountered was: ${error}`);
       Updating_table_items = false;
+      Fetching_info_error += error;
+      Fetching_info_error += " ";
     }
   );
 }
@@ -410,7 +415,8 @@ function get_table_aliases() {
     Updating_table_aliases = false;
   }).catch ( 
     error => {
-      console.log(`Fetching table aliases failed. The error encountered was: ${error}`);
+      Fetching_info_error += error;
+      Fetching_info_error += " ";
       Updating_table_aliases = false;
     }
   );
@@ -429,7 +435,8 @@ function get_parse_behaviors() {
     Updating_parse_behaviors = false;
   }).catch ( 
     error => {
-      console.log(`Fetching restrictions failed. The error encountered was: ${error}`);
+      Fetching_info_error += error;
+      Fetching_info_error += " ";
       Updating_parse_behaviors = false;
     }
   );
@@ -449,7 +456,8 @@ function get_restrictions() {
     Updating_restrictions = false;
   }).catch ( 
     error => {
-      console.log(`Fetching restrictions failed. The error encountered was: ${error}`);
+      Fetching_info_error.concat(error);
+      Fetching_info_error.concat(" ");
       Updating_restrictions = false;
     }
   );
@@ -468,7 +476,8 @@ function get_deprecations() {
     Updating_deprecations = false;
   }).catch ( 
     error => {
-      console.log(`Fetching restrictions failed. The error encountered was: ${error}`);
+      Fetching_info_error.concat(error);
+      Fetching_info_error.concat(" ");
       Updating_deprecations = false;
     }
   );
@@ -484,10 +493,37 @@ function replace_text_contents(element_id, contents){
 
 // Put the current table into the UI
 function apply_table(table) {
-  // We'll start doing this during the polishing phase where we need to make sure the UI makes sense while things are fetched.
-  /*if (Current_Table < 0 || Current_Table > database_tables.length){
+  console.log("Running Apply Table");
 
-  }*/
+  // if there was an error, tell the user
+  if (Fetching_info_error != ""){
+    console.log("Branch1");
+    toggleContents(false, "tables-loader-main-anim");
+    replace_text_contents("tables-loader-message", Fetching_info_error);
+    Fetching_info_error = "";
+    return;
+  }
+
+  // We'll start doing this during the polishing phase where we need to make sure the UI makes sense while things are fetched.
+  if (table < 0 || table >= database_tables.length){
+
+    console.log("Branch2");
+    toggleContents(true, "tables-loader-main");
+    toggleContents(false, "table-info-area");
+
+    try{  
+      for (let i = 0 ; i < 501; i++){
+        toggleContents(false, `item${i}`);
+      }
+    } catch {}
+
+    return;
+  }
+  
+  // at this point everything should be fine, so tell the user we're switching to rendering.
+  toggleContents(false, "tables-loader-main");
+  toggleContents(true, "table-info-area");
+
   Current_Table = table;
 
   replace_text_contents("table-title", database_tables[Current_Table].name);
@@ -499,10 +535,68 @@ function apply_table(table) {
 
   replace_text_contents("table-aliases-content1", "");
   replace_text_contents("table-aliases-label", "");
-
-
-
   
+  for (let i = 0; i < database_tables[Current_Table].length; i++){
+    if (i >= database_tables[Current_Table].items.length){
+      break;
+    }
+
+    let temporary_item = document.getElementById(`item${i}`);
+    
+    if (temporary_item === undefined){
+      
+    }
+
+    replace_text_contents(`item${i}`, `<div id="${i}a" class="row">
+          <div id="${i}a-1" class="col-8">
+            <h3><b>${database_tables[Current_Table].items[i].name}</b></h3><br>
+          </div>
+        </div>
+        <div id="${i}a" class="row">
+          <div id="${i}a-2" class="col-3">
+            <h5>Minimum Version: &#9;<b>${database_tables[Current_Table].items[i].name}</b></h5>
+          </div>
+            <br>
+          <div id="${i}a-3" class="col-3">
+            <!--<h5>Deprecation Version: &#9;<b>24.130.0</b></h5>-->
+          </div>
+        </div>
+        <br>
+        <div id="${i}b" class="row">
+          <div id="${i}b-1" class="col-3">
+            <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].type}</b></h5>
+          </div>
+          <br>
+          <div id="${i}b-2" class="col-6">
+            <!--<h5>Illegal Values: &#9;<b>&lt; 500</b></h5>-->
+          </div>
+
+        </div>
+        <div id="${i}b" class="row">
+          <div id="${i}b-1" class="col-3">
+            <!--<h5>Aliases: &#9;<b>$Best-Option-Name:</b></h5>-->
+          </div>
+          <br>
+          <div id="${i}b-2" class="col-6">
+            <!--<h5>Alias Version: &#9;<b> 24.129.7</b></h5>-->
+          </div>
+
+        </div>        
+        <div id="${i}c" class="row indented-row">
+          <div class="col-9">
+            <h4>
+              <br>
+              ${database_tables[Current_Table].items[i].description}
+              <br>
+              <br>
+            </h4>
+          </div>
+        </div>`)
+
+    toggleContents(true, `item${i}`);
+
+  }
+
 }
 
 function populate_table_item(item, location){
