@@ -3,6 +3,7 @@ let Active = false;
 let Role = "Uninitialized";
 let API_ROOT = "https://www.fsotables.com/api/";
 // const cache = await caches.open('fso-local-database-copy');
+let Current_Table = -1;
 let Ui_Update_Needed = false;
 
 let Updating_tables = false;
@@ -66,6 +67,8 @@ function initPage(){
 
   console.log("Getting Table Data");
   update_local_data();
+
+  apply_table(0);
 
   console.log("End of initialization function");
 }
@@ -466,9 +469,35 @@ function get_deprecations() {
   );
 }
 
+function replace_text_contents(element_id, contents){
+  try {
+    let element = document.getElementById(element_id);
+    element.textContent = contents;
+  }
+  catch{ console.log(`Trying to enter ${contents} into ${element_id} failed...` );}
+}
+
 // Put the current table into the UI
 function apply_table(table) {
+  // We'll start doing this during the polishing phase where we need to make sure the UI makes sense while things are fetched.
+  /*if (Current_Table < 0 || Current_Table > database_tables.length){
 
+  }*/
+  Current_Table = table;
+
+  replace_text_contents("table-title", database_tables[Current_Table].name);
+  replace_text_contents("table-filename-content", database_tables[Current_Table].filename);
+  replace_text_contents("table-modular-extension-content", database_tables[Current_Table].modular_extension);
+  replace_text_contents("table-version-introduced-content", "Not available in database yet");
+  
+  replace_text_contents("table-description-content", database_tables[Current_Table].description);
+
+  replace_text_contents("table-aliases-content1", "");
+  replace_text_contents("table-aliases-label", "");
+
+
+
+  
 }
 
 function populate_table_item(item, location){
