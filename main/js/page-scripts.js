@@ -535,7 +535,7 @@ function apply_table(table) {
   replace_text_contents("table-aliases-label", "");
   
 
-  for (let i = 0; i < database_tables[Current_Table].length; i++){
+  for (let i = 0; i < database_tables[Current_Table].items.length; i++){
     if (i >= database_tables[Current_Table].items.length){
       break;
     }
@@ -543,7 +543,7 @@ function apply_table(table) {
     let temporary_item = document.getElementById(`item${i}`);
     
     if (temporary_item === undefined){
-      for (; i < database_tables[Current_Table].length; i++){
+      for (; i < database_tables[Current_Table].items.length; i++){
         let new_div = document.createElement("div"); 
         
         
