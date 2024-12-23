@@ -121,7 +121,7 @@ function showAbout()
   toggleContents(false, "welcome-text-area");
   toggleContents(false, "account-text-area")
   toggleContents(false, "tables-text-area")
-  toggleContents(true, "about-text-area")
+  toggleContents(true, "user-info-rowb")
 }
 
 function showAccount()

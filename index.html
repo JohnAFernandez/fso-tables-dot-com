@@ -147,6 +147,41 @@
       </div>
     </div>
 
+    <div class="container text-area" id="account-text-areab"> 
+      <div id="username-rowb" class="row ">
+        <div class="col-10">
+          <h3 id="account-name-text">Fresh Taco</h3>
+        </div>
+      </div>
+      <div id="user-info-rowb" class="row item-body indented-row">
+        <div class="col-11">
+          <br>
+          <h4>Role:&#9;<div id="account-role-textb" style="padding-left: 5px;"></div></h4>
+          <br><br>
+          <h4>Contribution Count:&#9;<div id="contribution-count-textb">5</div></h4>
+          <br><br><br>
+        </div>
+      </div>
+      <div id="user-controls-row" class="row item-body indented-row">
+        <div class="col-11">
+          <form>
+            <div class="form-group">
+              <h5><label for="passwordChangeA">Change Password</label></h5>
+              <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="New Password" minlength="10" maxlength="128" required>              
+            </div>
+            <div class="form-group">
+              <h5><label for="passwordChangeB">Confirm Password</label></h5>
+              <input type="password" class="form-control" id="passwordChangeB" placeholder="">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <br><br>
+          <button class="btn btn-danger">Deactivate Account</button>
+        </div>
+      </div>
+    </div>
+
+
     <div class="container text-area" id="account-text-area"> 
       <div id="account-loader" class="row">
         <div class="col-6">
@@ -158,17 +193,16 @@
           <h3 id="account-name-text">Loading...</h3>
         </div>
       </div>
-      <div id="user-info-row" class="row indented-row">
+      <div id="user-info-row" class="row item-body indented-row">
         <div class="col-11">
           <br>
-          <h3>Role:
+          <h4>Role:&#9;<div id="account-role-text" style="padding-left: 5px;"></div></h4>
           <br><br>
-          <div id="account-role-text" style="padding-left: 5px;"></div></h3>
+          <h4>Contribution Count:&#9;<div id="contribution-count-text" style="padding-left: 5px;"></div></h4>
+          <br><br><br>
+          Change Password: 
           <br><br>
-          <h3>Contribution Count: </h3>
-          <br><br>
-          <div id="contribution-count-text" style="padding-left: 5px;"></div></h4>
-          <br><br>
+          <button class="button button-secondary">Deactivate Account</button>
         </div>
       </div>
     </div>
@@ -176,7 +210,7 @@
     <div class="container text-area" id="tables-text-area"> 
       <div id="tables-loader-main" class="row">
         <div class="col-6">
-          <h4 id="tables-loader-message">Fetching info...</h4>
+          <h4 id="tables-loader-message">Fetching table info...</h4>
           <br>
           <embed style="margin-left: 40px;" id="tables-loader-main-anim" src="main/res/loading-anim-large.svg">
         </div>
