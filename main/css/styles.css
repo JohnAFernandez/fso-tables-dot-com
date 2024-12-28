@@ -4,12 +4,20 @@
     --clr-grad2: rgba(104,20,104,.3);
     --clr-icon: var(--clr-main);
     --clr-menu-text: var(--clr-main); 
+    --clr-400: #cecece;
+    --clr-500: #bbb;
+    --clr-600: #aaa;
+    --clr-700: #999;
+    --logo-filter: none;
+}
+
+/*
+    these are just in case we need to revert
     --clr-400: #feffb5;
     --clr-500: #fdff80;
     --clr-600: #fbfd75;
     --clr-700: #fdff6f;
-    --logo-filter: none;
-}
+*/
 
 body[data-theme="Classic"] {
     --clr-main: #7d0101;
@@ -104,6 +112,7 @@ header {
     margin-top: 20px;
     margin-right: 15px;
     padding: 15px;
+    padding-top: 20px;
     border-radius: 5px;
 }
 
@@ -190,10 +199,6 @@ h5 {
 
 .modal {
     color:#CECECE;
-}
-
-.errorArea{
-    display: none;
 }
 
 .errorResponse{
@@ -330,11 +335,11 @@ a:not([href]):not([class]):hover{
 }
 
 .dropdown-item {
-    color: var(--clr-menu-text);
+    color: var(--clr-500);
 }
 
 .dropdown-item:hover {
-    color: var(--clr-menu-text);
+    color: var(--clr-500);
     background-color: #000;
 }
 
@@ -359,7 +364,7 @@ a:not([href]):not([class]):hover{
 svg.icon {
     width: var(--_size, 24px);
     height: var(--_size, 24px);
-    fill: var(--clr-icon);
+    fill: var(--clr-main);
 }
 
 /* Hides the wepage until it's loaded.*/

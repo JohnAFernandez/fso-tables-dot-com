@@ -50,6 +50,7 @@ function awaitingLoginResponse(awaiting) {
 
 function setLoginErrorText(errorText){
   changeContents("loginErrorText", errorText);
+  toggleContents(true, "loginErrorMessage");
 }
 
 function clearLoginErrorText(){
@@ -80,6 +81,7 @@ function attemptLogin(email, password) {
       if (getCookie("GanymedeToken") == ""){
         console.log("Credential Token Header Not Saved");
       }
+      clearLoginErrorText();
       check_login_status_and_update();
       dismissLoginModal();
       return;
