@@ -183,6 +183,11 @@ h5 {
     border-top: #242424;
 }
 
+.form-group {
+    padding-left: 25px;
+    padding-right: 30px;
+}
+
 .modal {
     color:#CECECE;
 }

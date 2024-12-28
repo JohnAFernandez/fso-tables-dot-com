@@ -183,7 +183,7 @@
               <input type="password" class="form-control" id="passwordChangeB" placeholder="">
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Change Password</button>
+            <button type="submit" class="btn btn-secondary">Change Password</button>
           </form>
         </div>
       </div>
@@ -661,16 +661,26 @@
               <label style="padding-left: 6px;" for="loginEmail">Email</label>
               <input type="email" class="form-control" id="loginEmail" aria-escribedby="emailHelp" placeholder="" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 5px;">
               <label style="padding-left: 6px;" for="loginPassword">Password</label>
               <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" id="loginPassword" placeholder="" minlength="10" maxlength="128" required>
               <br>
-              <input type="checkbox" id="loginPasswordToggleShowPassword" checked="false" onclick="togglePasswordLogin()">  &#9;&#9;Show Password 
             </div>
-          
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-secondary">Login</button>
+            <div class="form-group" style="justify-content: space-between; display:flex; padding-left: 35px; padding-right: 45px;">
+              <div style="padding-top: 5px;">
+                <input type="checkbox" id="loginPasswordToggleShowPassword" checked="false" onclick="togglePasswordLogin()">
+                Show Password
+              </div>
+              <button type="submit" class="btn btn-secondary">Login</button>
+
+            </div>
+            <div class="form-group">
+              <h5>
+                <a id="resetPasswordLink "href="javascript::void(0)" style="font-size: small;">Reset my Password</a>
+              </h5>
+            </div>
+            
+
           </div>
         </form>
       </div>
@@ -685,21 +695,24 @@
           <form id="register-form">          
             <div class="modal-body">
             
-              <div class="form-group">
+              <div class="form-group" id="emailGroup">
                 <label style="padding-left: 6px;" for="registerEmail">Email</label>
                 <input type="email" class="form-control" id="registerEmail" aria-escribedby="emailHelp" placeholder="">
               </div>
-              <div class="form-group">
+              <div class="form-group" id="confirmationCodeGroupe">
                 <label style="padding-left: 6px;" for="registerConfirmationCode">Confirmation Code</label>
                 <input type="" class="form-control" id="registerConfirmationCode" aria-escribedby="emailHelp" placeholder="">
               </div>
-              <div class="form-group">
+              <div class="form-group" id="passwordGroup">
                 <label style="padding-left: 6px;" for="registerPassword">Password</label>
                 <input type="password" class="form-control" id="registerPassword" placeholder="">
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-secondary">Login</button>
+            <div class="modal-footer" style="justify-content: space-between; padding-left: 25px; padding-right: 25px;"> 
+            <h5>
+              <a href="javascript::void(0)" style="font-size: small;">I already have a confirmation code</a>
+            </h5>
+              <button class="btn btn-secondary">Submit</button>
             </div>
           </form>
         </div>
