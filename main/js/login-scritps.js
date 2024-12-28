@@ -12,6 +12,7 @@ function onLoginModalOpen() {
   checkbox.checked = false;
 }
 
+//TODO! We need to send a signal to the server to close out the session there.
 function onLogout() {
   const ourCookie = getCookie("mode");
   if (ourCookie === "account"){
@@ -23,10 +24,6 @@ function onLogout() {
 
 }
 
-// TODO! FINISH ME!
-function onRegisterModalOpen(){
-  return;
-}
 
 $(window).on('shown.bs.modal', onLoginModalOpen);
 
@@ -57,7 +54,7 @@ function clearLoginErrorText(){
   toggleContents(false, "loginErrorMessage"); 
 }
 
-function attemptLogin(email, password) {
+function attemptLogin() {
   // first make sure that the ui acknowledges a new login attempt
   clearLoginErrorText();
   awaitingLoginResponse(true);
@@ -107,9 +104,5 @@ function attemptLogin(email, password) {
 }
 
 function dismissLoginModal() {
-  let modal = getElementById("loginModal");
-
-  if (modal != undefined) {
-    modal.modal("hide");
-  }
+  $('#loginModal').modal("hide");
 }

@@ -647,7 +647,7 @@
   <div class="modal fade" id="loginModal" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form id="login-form" onsubmit="attemptLogin(); return false;">
+        <form id="login-form" onsubmit="attemptLogin(); return false">
             <!--       <div class="modal-header">
             <h5 class="modal-title" id="loginModalLabel"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -694,14 +694,14 @@
     <div class="modal fade" id="registerModal" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form id="register-form">          
+          <form id="register-form" onsubmit="setRegistrationState(`nextRequest`); return false;">          
             <div class="modal-body">
             
               <div class="form-group" id="emailGroup">
                 <label style="padding-left: 6px;" for="registerEmail">Email</label>
                 <input type="email" class="form-control" id="registerEmail" aria-escribedby="emailHelp" placeholder="">
               </div>
-              <div class="form-group" id="confirmationCodeGroupe">
+              <div class="form-group" id="confirmationCodeGroup">
                 <label style="padding-left: 6px;" for="registerConfirmationCode">Confirmation Code</label>
                 <input type="" class="form-control" id="registerConfirmationCode" aria-escribedby="emailHelp" placeholder="">
               </div>
@@ -709,12 +709,23 @@
                 <label style="padding-left: 6px;" for="registerPassword">Password</label>
                 <input type="password" class="form-control" id="registerPassword" placeholder="">
               </div>
-            </div>
-            <div class="modal-footer" style="justify-content: space-between; padding-left: 25px; padding-right: 25px;"> 
-            <h5>
-              <a href="javascript:void(0)" style="font-size: small; color: #CECECE;">I already have a confirmation code</a>
-            </h5 style="color: #CECECE;">
-              <button class="btn btn-dark">Submit</button>
+              <div class="form-group" id="passwordConfirmGroup">
+                <label style="padding-left: 6px;" for="registerPasswordConfirm">Confirm Password</label>
+                <input type="password" class="form-control" id="registerPasswordConfirm" placeholder="">
+              </div>
+
+              <div class="form-group" id="registrationCheckBoxAndSubmitArea" style="justify-content: right; display: flex; padding-left: 35px; padding-right: 45px; padding-top: 10px; padding-bottom: 0px;">
+                <div id="registerPasswordToggleArea" style="padding-top: 5px;">
+                  <input type="checkbox" id="registerPasswordToggleShowPassword" checked="false" onclick="togglePasswordRegister()">
+                  Show Password
+                </div>
+                <button class="btn btn-dark">Submit</button>
+              </div>
+              <div class="modal-footer" id="registrationModalFooter" style="justify-content: center; padding-top: 0px;"> 
+                <h5>
+                  <a href="javascript:void(0)" style="font-size: small;" onclick="setRegistrationState(`returningConfirmation`)">I already have a confirmation code</a>
+                </h5>
+              </div>
             </div>
           </form>
         </div>

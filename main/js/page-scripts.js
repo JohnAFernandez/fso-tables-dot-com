@@ -504,7 +504,6 @@ function apply_table(table) {
 
   // if there was an error, tell the user
   if (Fetching_info_error != ""){
-    console.log("Branch1");
     toggleContents(false, "tables-loader-main-anim");
     replace_text_contents("tables-loader-message", Fetching_info_error);
     Fetching_info_error = "";
@@ -514,7 +513,6 @@ function apply_table(table) {
   // We'll start doing this during the polishing phase where we need to make sure the UI makes sense while things are fetched.
   if (table < 0 || table >= database_tables.length){
 
-    console.log("Branch2");
     toggleContents(true, "tables-loader-main");
     toggleContents(false, "table-info-area");
 
@@ -640,3 +638,212 @@ request.onsuccess = function() {
   db = request.result;
 };
 */
+
+const REGISTRATION_STATES = ["returningConfirmation", "chooseEmail", "enterConfirmation", "choosePassword", "closing"];
+let CurrentState = 1;
+
+$(window).on('shown.bs.modal', onRegisterModalOpen);
+
+function onRegisterModalOpen() {
+  if (CurrentState !== 2)
+  CurrentState = 1;
+
+  const passwordField = document.getElementById("registerPassword");
+  const confirmationCodeField = document.getElementById("registerConfirmationCode");
+  const checkbox = document.getElementById("registerPasswordToggleShowPassword");
+
+  // When the modal is reloaded, make sure to erase the password so that it's not 
+  // some rando gaining access to the accidentally abandoned password
+  passwordField.value = "";
+  passwordField.type = "password";
+  confirmationCodeField.value = "";
+  checkbox.checked = false;
+
+  toggleContents(true, "emailGroup");
+  toggleContents(true, "registrationModalFooter");
+
+  toggleContents(false, "confirmationCodeGroup");
+  toggleContents(false, "passwordGroup");
+  toggleContents(false, "passwordConfirmGroup");
+  toggleContents(false, "registerPasswordToggleArea");
+
+}
+
+function setRegistrationState(state){
+  console.log(`setting registration state: ${state}!`);
+  let next_state = -1;
+  let request = false;
+
+  if (state === `nextRequest`){
+    console.log("Path A");
+    if (CurrentState === 0) {
+      next_state = 3;
+    } else if (CurrentState === 4) {
+      next_state = 4;
+    } else {
+      next_state = CurrentState + 1;
+    }
+    
+    request = true;
+  } else {
+    console.log("Path B");
+    // no request sent here
+    next_state = REGISTRATION_STATES.findIndex( (contents) => state === contents);
+  }
+
+  // something went wrong here, start over.
+  if (next_state === -1){
+    console.log("Registration error state, returning");
+    CurrentState = 4;
+    dismissRegistrationModal();
+  }
+
+  console.log(`next state is ${next_state}`);
+  // Now let's perform our request and state change
+  if (next_state === 0){
+    setModalUiConfirmationSpecial();
+  } else if (next_state === 1) {
+    setModalUiEmail();
+  } else if (next_state === 2){
+
+    if (request){
+
+      const emailRegistrationResult = sendNewEmailRegistration(); 
+      if (emailRegistrationResult !== true){
+        setRegistrationModalError(emailRegistrationResult);
+        return;
+      }  
+    }
+
+    setModalUiConfirmationNormal();
+
+  } else if (next_state === 3){
+
+    if (request){
+
+      const confirmationCodeResult = sendConfirmationCode(); 
+      if (confirmationCodeResult !== true){
+        setRegistrationModalError(confirmationCodeResult);
+        return
+      }  
+    }
+
+    setModalUiChoosePassword();
+
+  } else if (next_state === 4){
+
+    if (request){
+
+      const confirmationCodeResult = sendNewPassword(); 
+      if (confirmationCodeResult !== true){
+        setRegistrationModalError(confirmationCodeResult);
+        return
+      }  
+    }
+    CurrentState = next_state;
+
+    dismissRegistrationModal();
+  }
+
+  CurrentState = next_state;
+}
+
+function setModalUiEmail(){
+  toggleContents(true, "emailGroup");
+  toggleContents(true, "registrationModalFooter");
+  toggleContents(true, "registrationModalFooter");
+
+  toggleContents(false, "confirmationCodeGroup");
+  toggleContents(false, "passwordGroup");
+  toggleContents(false, "passwordConfirmGroup");
+  toggleContents(false, "registerPasswordToggleArea");
+
+  const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
+  bottomCotents.style.justifyContent = `right`;
+}
+
+function setModalUiConfirmationNormal(){
+  toggleContents(true, "confirmationCodeGroup");
+  toggleContents(true, "registrationModalFooter");
+
+  toggleContents(false, "registrationModalFooter");
+  toggleContents(false, "emailGroup");
+  toggleContents(false, "passwordGroup");
+  toggleContents(false, "passwordConfirmGroup");
+  toggleContents(false, "registerPasswordToggleArea");
+  const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
+  bottomCotents.style.justifyContent = `right`;
+}
+
+function setModalUiConfirmationSpecial(){
+  toggleContents(true, "emailGroup");
+  toggleContents(true, "confirmationCodeGroup");
+
+  toggleContents(false, "registrationModalFooter");
+  toggleContents(false, "passwordGroup");
+  toggleContents(false, "passwordConfirmGroup");
+  toggleContents(false, "registerPasswordToggleArea");
+
+  const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
+  bottomCotents.style.justifyContent = `right`;
+}
+
+function setModalUiChoosePassword(){
+  toggleContents(true, "passwordGroup");
+  toggleContents(true, "passwordConfirmGroup");
+  toggleContents(true, "registerPasswordToggleArea");
+
+  toggleContents(false, "registrationModalFooter");
+  toggleContents(false, "emailGroup");
+  toggleContents(false, "confirmationCodeGroup");
+  toggleContents(false, "registrationModalFooter");
+
+  const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
+  bottomCotents.style.justifyContent = `space-between`;
+} 
+
+// response to the checkbox being clicked
+function togglePasswordRegister() {
+  const passwordField = document.getElementById("registerPassword");
+  const passwordField2 = document.getElementById("registerPasswordConfirm");
+  const checkbox = document.getElementById("registerPasswordToggleShowPassword");
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    checkbox.checked = true;
+  } else {
+    passwordField.type = "password";
+    checkbox.checked = false;
+  }
+
+  if (passwordField2.type === "password") {
+    passwordField2.type = "text";
+    checkbox.checked = true;
+  } else {
+    passwordField2.type = "password";
+    checkbox.checked = false;
+  }
+}
+
+function sendNewEmailRegistration(){
+  //TODO, finish me.
+  return true;
+}
+
+function sendConfirmationCode(){
+  //TODO, finish me.
+  return true;
+}
+
+function sendNewPassword(){
+  //TODO, finish me.
+  return true;
+}
+
+function dismissRegistrationModal(){
+  $('#registerModal').modal("hide");
+}
+
+function setRegistrationModalError(){
+  
+}
