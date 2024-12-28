@@ -666,20 +666,22 @@
               <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" id="loginPassword" placeholder="" minlength="10" maxlength="128" required>
               <br>
             </div>
+            <div id="loginErrorMessage" class="errorArea"><div id="loginErrorText" class="errorResponse"></div></div>
             <div class="form-group" style="justify-content: space-between; display:flex; padding-left: 35px; padding-right: 45px;">
               <div style="padding-top: 5px;">
                 <input type="checkbox" id="loginPasswordToggleShowPassword" checked="false" onclick="togglePasswordLogin()">
                 Show Password
               </div>
-              <button type="submit" class="btn btn-secondary">Login</button>
-
+              <div>
+                <button type="submit" id="loginButton" class="btn btn-dark" style="color: #CECECE;">Login</button>
+                <embed id="login-loader-anim" style="display: none;" src="main/res/loading-anim-medium.svg">
+              </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:flex; justify-content: center;">
               <h5>
-                <a id="resetPasswordLink "href="javascript::void(0)" style="font-size: small;">Reset my Password</a>
+                <a id="resetPasswordLink "href="javascript:void(0)" style="font-size: small; color: #CECECE;">Forgot my Password</a>
               </h5>
             </div>
-            
 
           </div>
         </form>
@@ -710,9 +712,9 @@
             </div>
             <div class="modal-footer" style="justify-content: space-between; padding-left: 25px; padding-right: 25px;"> 
             <h5>
-              <a href="javascript::void(0)" style="font-size: small;">I already have a confirmation code</a>
-            </h5>
-              <button class="btn btn-secondary">Submit</button>
+              <a href="javascript:void(0)" style="font-size: small; color: #CECECE;">I already have a confirmation code</a>
+            </h5 style="color: #CECECE;">
+              <button class="btn btn-dark">Submit</button>
             </div>
           </form>
         </div>

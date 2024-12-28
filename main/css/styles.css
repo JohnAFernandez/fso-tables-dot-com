@@ -192,6 +192,18 @@ h5 {
     color:#CECECE;
 }
 
+.errorArea{
+    display: none;
+}
+
+.errorResponse{
+    display: flex; 
+    justify-content: center; 
+    color:crimson;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
 .minor-text {
     font-size: smaller;
 }
