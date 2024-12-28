@@ -121,7 +121,7 @@ function showAbout()
   toggleContents(false, "welcome-text-area");
   toggleContents(false, "account-text-area")
   toggleContents(false, "tables-text-area")
-  toggleContents(true, "user-info-rowb")
+  toggleContents(true, "about-text-area")
 }
 
 function showAccount()
@@ -143,7 +143,7 @@ function showTables()
 }
 
 function setPageMode(mode){
-  const validModes = ['welcome', 'about', 'tables', 'account'];
+  const validModes = ['welcome', 'about', 'tables', 'account', 'apihelp'];
   const mode_index = validModes.indexOf(mode);
 
   if ( mode_index < 0 ) { 

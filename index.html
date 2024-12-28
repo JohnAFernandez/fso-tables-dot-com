@@ -45,10 +45,13 @@
             <a class="nav-link" href="javascript:void(0)" onclick="setPageMode(`welcome`)">Home</a>
           </li>
           <li class="nav-item active">
-            <a id="tables-link" class="nav-link disabled" href="javascript:void(0)" onclick="setPageMode(`tables`)">Tables</a>
+            <a id="tables-link" class="nav-link" href="javascript:void(0)" onclick="setPageMode(`tables`)">Tables</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="javascript:void(0)" onclick="setPageMode(`about`)">About</a>
+          </li>
+          <li class="nav-item active" id="nav-apihelp">
+            <a class="nav-link disabled" href="javascript:void(0)" onclick="setPageMode(`apihelp`)">API Documentation</a>
           </li>
           <li class="nav-item active" id="nav-login">
             <a class="nav-link" href="javascript:void(0)" onclick="onLoginModalOpen()" data-toggle="modal" data-target="#loginModal">Log In</a>
@@ -103,7 +106,7 @@
       <div class="row indented-row">
         <div class="col-11">
           <br>
-          <h4>Click table above or use the search bar to get started looking up our documentation
+          <h4>Click tables above or use the search bar to get started looking up our documentation
           <br><br>
           <h4>Login or Register to make edits or report bugs
             <br><br>
@@ -147,32 +150,37 @@
       </div>
     </div>
 
-    <div class="container text-area" id="account-text-areab"> 
-      <div id="username-rowb" class="row ">
+    <div class="container text-area" id="account-text-area"> 
+      <div id="account-loader" class="row">
+        <div class="col-6">
+          <embed id="account-loader-anim" src="main/res/loading-anim-large.svg">
+        </div>
+      </div>
+      <div id="username-rowb" class="row">
         <div class="col-10">
           <h3>Account Dashboard: <b id="account-name-text">Fresh Taco</b></h3>
         </div>
       </div>
-      <div id="user-info-rowb" class="row item-body indented-row">
+      <div id="user-info-rowb" class="row account-item-body">
         <br>
-        <div class="col-3">
+        <div class="col-5">
           <h4>Role</h4>
         </div>
         <div class="col-3">
-          <h4><b id="account-role-textb">OWNA</b></h4>
+          <h4><b style="margin-left: 10px" id="account-role-textb">OWNA</b></h4>
         </div>
       </div>
-      <div id="user-info-rowb2" class="row item-body indented-row">
-        <div class="col-3">
+      <div id="user-info-rowb2" class="row account-item-body">
+        <div class="col-5">
           <h4>Contribution Count</h4>
         </div>
         <div class="col-3">
-          <h4><b styl: id="contribution-count-textb">5</b></h4>
+          <h4><b style="margin-left: 10px" id="contribution-count-textb">5</b></h4>
         </div>
       </div>
       <br><br>
-      <div id="user-controls-row" class="row item-body indented-row">
-        <div class="col-5">
+      <div id="user-controls-row" class="row account-item-body">
+        <div class="col-8">
           <form>
             <div class="form-group">
               <h5><label for="passwordChangeA">New Password</label></h5>
@@ -183,43 +191,15 @@
               <input type="password" class="form-control" id="passwordChangeB" placeholder="">
             </div>
             <br>
-            <button type="submit" class="btn btn-secondary">Change Password</button>
+            <button type="submit" class="btn btn-dark">Change Password</button>
           </form>
         </div>
       </div>
       <br>
       <br>
-      <div class="row item-body indented-row">
+      <div class="row account-item-body">
         <div class="col-4">
-          <h5>Deactivate my account</h5>
-          <br>
-          <button class="btn btn-danger">Deactivate</button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="container text-area" id="account-text-area"> 
-      <div id="account-loader" class="row">
-        <div class="col-6">
-          <embed id="account-loader-anim" src="main/res/loading-anim-large.svg">
-        </div>
-      </div>
-      <div id="username-row" class="row ">
-        <div class="col-10">
-          <h3 id="account-name-text">Loading...</h3>
-        </div>
-      </div>
-      <div id="user-info-row" class="row item-body indented-row">
-        <div class="col-11">
-          <br>
-          <h4>Role:&#9;<div id="account-role-text" style="padding-left: 5px;"></div></h4>
-          <br><br>
-          <h4>Contribution Count:&#9;<div id="contribution-count-text" style="padding-left: 5px;"></div></h4>
-          <br><br><br>
-          Change Password: 
-          <br><br>
-          <button class="button button-secondary">Deactivate Account</button>
+          <button class="btn btn-danger">Deactivate my account</button>
         </div>
       </div>
     </div>
@@ -679,7 +659,7 @@
             </div>
             <div class="form-group" style="display:flex; justify-content: center;">
               <h5>
-                <a id="resetPasswordLink "href="javascript:void(0)" style="font-size: small; color: #CECECE;">Forgot my Password</a>
+                <a id="resetPasswordLink "href="javascript:void(0)" style="font-size: small; color: #CECECE;" onclick="showPasswordReset()">Forgot my Password</a>
               </h5>
             </div>
 

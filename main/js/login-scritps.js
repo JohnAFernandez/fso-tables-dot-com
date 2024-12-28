@@ -106,3 +106,7 @@ function attemptLogin() {
 function dismissLoginModal() {
   $('#loginModal').modal("hide");
 }
+
+function showPasswordReset() {
+  
+}
