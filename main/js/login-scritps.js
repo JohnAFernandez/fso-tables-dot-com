@@ -35,18 +35,32 @@ function togglePasswordLogin() {
   const checkbox = document.getElementById("loginPasswordToggleShowPassword");
 
   if (passwordField.type === "password") {
-    console.log("Setting visible.");
-
     passwordField.type = "text";
     checkbox.checked = true;
   } else {
-    console.log("Setting hidden.");
     passwordField.type = "password";
     checkbox.checked = false;
   }
 }
 
+function awaitingLoginResponse(awaiting) {
+  toggleContents(!awaiting, "loginButton");
+  toggleContents(awaiting, "login-loader-anim")
+}
+
+function setLoginErrorText(errorText){
+  changeContents("loginErrorText", errorText);
+}
+
+function clearLoginErrorText(){
+  toggleContents(false, "loginErrorMessage"); 
+}
+
 function attemptLogin(email, password) {
+  // first make sure that the ui acknowledges a new login attempt
+  clearLoginErrorText();
+  awaitingLoginResponse(true);
+
   const emailField = document.getElementById("loginEmail");
   const passwordField = document.getElementById("loginPassword");
 
@@ -67,17 +81,33 @@ function attemptLogin(email, password) {
         console.log("Credential Token Header Not Saved");
       }
       check_login_status_and_update();
+      dismissLoginModal();
       return;
     } else {
       response.json().then(responseJSON => { 
         // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
         throw responseJSON.Error;}
       ).catch(
-        error => console.log(`Login in failed. The error encountered was: ${error}`)
-      )
+        error => { 
+          console.log(`Login in failed after 200 response. The error encountered was: ${error}`);
+          awaitingLoginResponse(false);
+          setLoginErrorText(`${error}`);
+      })
     }
   }).catch ( 
-    error => console.log(`Login in failed. The error encountered was: ${error}`)
+    error => { 
+      console.log(`Login in failed due to some server or network error. The error encountered was: ${error}`);
+      awaitingLoginResponse(false);
+      setLoginErrorText("Login Failed, Server or Network Error");
+    }
   );
 
+}
+
+function dismissLoginModal() {
+  let modal = getElementById("loginModal");
+
+  if (modal != undefined) {
+    modal.modal("hide");
+  }
 }
