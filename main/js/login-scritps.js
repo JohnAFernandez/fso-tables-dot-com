@@ -55,6 +55,12 @@ function clearLoginErrorText(){
 }
 
 function attemptLogin() {
+  // Yes, I'm lazy, redirect to new function if sending a password reset
+  if (Password_Reset){
+    sendResetPasswordRequest();
+    return;
+  }
+
   // first make sure that the ui acknowledges a new login attempt
   clearLoginErrorText();
   awaitingLoginResponse(true);
@@ -78,7 +84,7 @@ function attemptLogin() {
       if (getCookie("GanymedeToken") == ""){
         console.log("Credential Token Header Not Saved");
       }
-      clearLoginErrorText();
+
       check_login_status_and_update();
       dismissLoginModal();
       return;
@@ -88,7 +94,7 @@ function attemptLogin() {
         throw responseJSON.Error;}
       ).catch(
         error => { 
-          console.log(`Login in failed after 200 response. The error encountered was: ${error}`);
+          console.log(`Login failed. The error encountered was: ${error}`);
           awaitingLoginResponse(false);
           setLoginErrorText(`${error}`);
       })
@@ -103,10 +109,77 @@ function attemptLogin() {
 
 }
 
+function sendResetPasswordRequest(){
+  console.log("Now at Green River Password Reset.");
+ 
+  // first make sure that the ui acknowledges a new login attempt
+  clearLoginErrorText();
+  awaitingLoginResponse(true);
+
+  const emailField = document.getElementById("loginEmail");
+  const emailResetRequest = {
+    email: emailField.value,
+  }
+
+  fetch(API_ROOTB + "users/reset-password", {
+    method: "POST",
+    body: JSON.stringify(emailResetRequest)
+  })
+  .then((response) => { 
+    if (response.status === 200) {
+      changeToCodeConfirmChoosePasswordLol();
+      awaitingLoginResponse(false);
+      return;
+    } else {
+      response.json().then(responseJSON => { 
+        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+        throw responseJSON.Error;}
+      ).catch(
+        error => { 
+          console.log(`Password reset request failed. The error encountered was: ${error}`);
+          awaitingLoginResponse(false);
+          setLoginErrorText(`${error}`);
+        }
+      )
+    }
+  }).catch ( 
+    error => { 
+      console.log(`Password reset request failed. The error encountered was: ${error}`);
+      awaitingLoginResponse(false);
+      setLoginErrorText("Password Reset Request Failed, Server or Network Error");
+    }
+  );  
+}
+
 function dismissLoginModal() {
   $('#loginModal').modal("hide");
 }
 
-function showPasswordReset() {
+let Password_Reset = false;
+
+function passwordResetToggle() {
+  Password_Reset = !Password_Reset;
+
+  clearLoginErrorText();
+  toggleContents(true, "loginButton");
+  toggleContents(false, "login-loader-anim");
   
+  toggleContents(!Password_Reset, "loginPasswordGroup");
+  toggleContents(!Password_Reset, "showPasswordLoginArea");
+
+  const bottomContents = document.getElementById("loginFooterGroup");
+  const passwordField = document.getElementById("loginPassword");
+
+  if (Password_Reset){
+    replace_text_contents(`loginButton`, `Send Reset Link`);
+    replace_text_contents(`resetPasswordLink`, `Back to Login`);
+    bottomContents.style.justifyContent = `center`; 
+    passwordField.required = false;
+
+  } else {
+    replace_text_contents(`loginButton`, `Login`);
+    replace_text_contents(`resetPasswordLink`, `Forgot my Password`);
+    bottomContents.style.justifyContent = `space-between`;
+    passwordField.required = true;
+  }
 }

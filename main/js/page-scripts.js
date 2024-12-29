@@ -486,7 +486,7 @@ function replace_text_contents(element_id, contents){
     let element = document.getElementById(element_id);
     element.textContent = contents;
   }
-  catch{ console.log(`Trying to enter ${contents} into ${element_id} failed...` );}
+  catch{ console.log(`Trying to enter "${contents}" into "${element_id}" failed...` );}
 }
 
 function replace_inner_html(element_id, contents){
@@ -494,7 +494,7 @@ function replace_inner_html(element_id, contents){
     let element = document.getElementById(element_id);
     element.innerHTML = contents;
   }
-  catch{ console.log(`Trying to enter ${contents} into ${element_id} failed...` );}
+  catch{ console.log(`Trying to enter "${contents}" into "${element_id}" failed...` );}
 
 }
 

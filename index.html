@@ -167,7 +167,7 @@
           <h4>Role</h4>
         </div>
         <div class="col-3">
-          <h4><b style="margin-left: 10px" id="account-role-textb">OWNA</b></h4>
+          <h4><b style="margin-left: 10px" id="account-role-textb">OWNER</b></h4>
         </div>
       </div>
       <div id="user-info-rowb2" class="row account-item-body">
@@ -641,14 +641,14 @@
               <label style="padding-left: 6px;" for="loginEmail">Email</label>
               <input type="email" class="form-control" id="loginEmail" aria-escribedby="emailHelp" placeholder="" required>
             </div>
-            <div class="form-group" style="margin-bottom: 5px;">
+            <div class="form-group" id="loginPasswordGroup" style="margin-bottom: 5px;">
               <label style="padding-left: 6px;" for="loginPassword">Password</label>
               <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" id="loginPassword" placeholder="" minlength="10" maxlength="128" required>
               <br>
             </div>
             <div id="loginErrorMessage" class="errorArea" style="display:none"><div id="loginErrorText" class="errorResponse"></div></div>
-            <div class="form-group" style="justify-content: space-between; display:flex; padding-left: 35px; padding-right: 45px;">
-              <div style="padding-top: 5px;">
+            <div class="form-group" id="loginFooterGroup" style="justify-content: space-between; display:flex; padding-left: 35px; padding-right: 45px;">
+              <div id="showPasswordLoginArea" style="padding-top: 5px;">
                 <input type="checkbox" id="loginPasswordToggleShowPassword" checked="false" onclick="togglePasswordLogin()">
                 Show Password
               </div>
@@ -659,7 +659,7 @@
             </div>
             <div class="form-group" style="display:flex; justify-content: center;">
               <h5>
-                <a id="resetPasswordLink "href="javascript:void(0)" style="font-size: small; color: #CECECE;" onclick="showPasswordReset()">Forgot my Password</a>
+                <a href="javascript:void(0)" style="font-size: small; color: #CECECE;" onclick="passwordResetToggle()"><div id="resetPasswordLink">Forgot my Password</div></a>
               </h5>
             </div>
 
