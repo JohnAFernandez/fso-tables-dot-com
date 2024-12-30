@@ -2,14 +2,29 @@ let LOGIN_COOKIE_NAME = "username";
 let API_ROOTB = "https://www.fsotables.com/api/";
 
 function onLoginModalOpen() {
-  const passwordField = document.getElementById("loginPassword")
+  const passwordField = document.getElementById("loginPassword");
+  const passwordField2 = document.getElementById("loginPasswordConfirm");
   const checkbox = document.getElementById("loginPasswordToggleShowPassword");
 
   // When the modal is reloaded, make sure to erase the password so that it's not 
   // some rando gaining access to the accidentally abandoned password
   passwordField.value = "";
   passwordField.type = "password";
+  passwordField.required = true;
+  passwordField2.value = "";
+  passwordField2.type = "password";
+  passwordField2.required = false;
+
   checkbox.checked = false;
+
+  toggleContents(false, "confirmationCodeArea");
+  toggleContents(true, "loginEmailArea");
+  toggleContents(true, "loginPasswordGroup");
+  toggleContents(false, "loginPasswordConfirmGroup");
+  toggleContents(true, "loginEmailArea");
+
+  clearLoginErrorText();
+
 }
 
 //TODO! We need to send a signal to the server to close out the session there.
@@ -42,7 +57,7 @@ function togglePasswordLogin() {
 
 function awaitingLoginResponse(awaiting) {
   toggleContents(!awaiting, "loginButton");
-  toggleContents(awaiting, "login-loader-anim")
+  toggleContents(awaiting, "loginLoaderAnim")
 }
 
 function setLoginErrorText(errorText){
@@ -162,24 +177,31 @@ function passwordResetToggle() {
 
   clearLoginErrorText();
   toggleContents(true, "loginButton");
-  toggleContents(false, "login-loader-anim");
+  toggleContents(false, "loginLoaderAnim");
   
   toggleContents(!Password_Reset, "loginPasswordGroup");
   toggleContents(!Password_Reset, "showPasswordLoginArea");
 
   const bottomContents = document.getElementById("loginFooterGroup");
   const passwordField = document.getElementById("loginPassword");
+  const passwordField2 = document.getElementById("loginPasswordConfirm");
 
   if (Password_Reset){
     replace_text_contents(`loginButton`, `Send Reset Link`);
     replace_text_contents(`resetPasswordLink`, `Back to Login`);
     bottomContents.style.justifyContent = `center`; 
     passwordField.required = false;
+    passwordField2.required = false;
 
   } else {
     replace_text_contents(`loginButton`, `Login`);
     replace_text_contents(`resetPasswordLink`, `Forgot my Password`);
     bottomContents.style.justifyContent = `space-between`;
     passwordField.required = true;
+    passwordField2.required = false;
   }
+}
+
+function setLoginConfirmationCodeUi(){
+  
 }

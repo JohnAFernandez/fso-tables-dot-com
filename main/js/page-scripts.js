@@ -82,6 +82,9 @@ function initPage(){
 // Switch the download link contents on or off.
 function toggleContents(enable, id)
 {
+  if (id === "" || !id){
+    throw "EMPTY ID!!";
+  }
   const element = document.getElementById(id);
 
   if (enable === true){
@@ -93,6 +96,10 @@ function toggleContents(enable, id)
 
 function enableItemViaClass(enable, id)
 {
+  if (id === "" || !id){
+    throw "EMPTY ID!!";
+  }
+
   const element = document.getElementById(id);
 
   if (enable === true){
@@ -104,6 +111,10 @@ function enableItemViaClass(enable, id)
 
 function changeContents(id, content)
 {
+  if (id === "" || !id){
+    throw "EMPTY ID!!";
+  }
+
   const element = document.getElementById(id);
   element.textContent = content;
 }
