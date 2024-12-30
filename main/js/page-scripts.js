@@ -59,7 +59,7 @@ function initPage(){
   console.log("Checking login status...");
   check_login_status_and_update();
 
-  console.log("")
+  console.log("Resetting table display");
   apply_table(-1);
 
   console.log("Removing the pre-load cover as the UI initialization is finished.")
