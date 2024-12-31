@@ -121,16 +121,18 @@ function changeContents(id, content)
 
 function showWelcome()
 {
-  toggleContents(false, "account-text-area")
-  toggleContents(false, "tables-text-area")
+  toggleContents(false, "account-text-area");
+  toggleContents(false, "tables-text-area");
   toggleContents(true, "welcome-text-area");
+  toggleContents(true, "welcome-text-area2");
 }
 
 function showAccount()
 {
   toggleContents(false, "welcome-text-area");
-  toggleContents(false, "tables-text-area")
-  toggleContents(true, "account-text-area")
+  toggleContents(false, "welcome-text-area2");
+  toggleContents(false, "tables-text-area");
+  toggleContents(true, "account-text-area");
   get_user_details();
 }
 
@@ -138,8 +140,9 @@ function showAccount()
 function showTables()
 {
   toggleContents(false, "welcome-text-area");
-  toggleContents(false, "account-text-area")
-  toggleContents(true, "tables-text-area")
+  toggleContents(false, "welcome-text-area2");
+  toggleContents(false, "account-text-area");
+  toggleContents(true, "tables-text-area");
 }
 
 function setPageMode(mode){
