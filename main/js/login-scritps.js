@@ -202,6 +202,22 @@ function passwordResetToggle() {
   }
 }
 
+function changeToCodeConfirmChoosePasswordLol(){
+  const bottomContents = document.getElementById("loginFooterGroup");
+  const passwordField = document.getElementById("loginPassword");
+  const passwordField2 = document.getElementById("loginPasswordConfirm");
+
+  replace_text_contents(`loginButton`, `Confirm New Password`);
+  replace_text_contents(`resetPasswordLink`, `Back to Login`);
+  bottomContents.style.justifyContent = `center`; 
+  passwordField.required = true;
+  passwordField2.required = true;
+
+  
+  // turn on password, code and password 2.  Keep button on.
+  // turn off everything else basically.
+}
+
 function setLoginConfirmationCodeUi(){
   
 }
