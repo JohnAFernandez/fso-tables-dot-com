@@ -5,6 +5,7 @@ function onLoginModalOpen() {
   const passwordField = document.getElementById("loginPassword");
   const passwordField2 = document.getElementById("loginPasswordConfirm");
   const checkbox = document.getElementById("loginPasswordToggleShowPassword");
+  const confirmationCodeField = document.getElementById("confirmationCode");
 
   // When the modal is reloaded, make sure to erase the password so that it's not 
   // some rando gaining access to the accidentally abandoned password
@@ -14,6 +15,8 @@ function onLoginModalOpen() {
   passwordField2.value = "";
   passwordField2.type = "password";
   passwordField2.required = false;
+  confirmationCodeField.value = "";
+  confirmationCodeField.required = false;
 
   checkbox.checked = false;
 
@@ -22,9 +25,11 @@ function onLoginModalOpen() {
   toggleContents(true, "loginPasswordGroup");
   toggleContents(false, "loginPasswordConfirmGroup");
   toggleContents(true, "loginEmailArea");
+  replace_text_contents(`loginButton`, `Login`);
+
+  Email_To_Reset = "";
 
   clearLoginErrorText();
-
 }
 
 //TODO! We need to send a signal to the server to close out the session there.
@@ -71,9 +76,11 @@ function clearLoginErrorText(){
 
 function attemptLogin() {
   // Yes, I'm lazy, redirect to new function if sending a password reset
-  if (Password_Reset){
+  if (Password_Reset && !Password_Reset_Confirm){
     sendResetPasswordRequest();
     return;
+  } else if (Password_Reset_Confirm) {
+    sendResetPasswordConfirmRequest();
   }
 
   // first make sure that the ui acknowledges a new login attempt
@@ -124,6 +131,8 @@ function attemptLogin() {
 
 }
 
+let Email_To_Reset = "";
+
 function sendResetPasswordRequest(){
   console.log("Now at Green River Password Reset.");
  
@@ -142,8 +151,9 @@ function sendResetPasswordRequest(){
   })
   .then((response) => { 
     if (response.status === 200) {
-      changeToCodeConfirmChoosePasswordLol();
+      changeToCodeConfirmChoosePassword();
       awaitingLoginResponse(false);
+      Email_To_Reset = emailResetRequest.email;
       return;
     } else {
       response.json().then(responseJSON => { 
@@ -154,6 +164,7 @@ function sendResetPasswordRequest(){
           console.log(`Password reset request failed. The error encountered was: ${error}`);
           awaitingLoginResponse(false);
           setLoginErrorText(`${error}`);
+          changeToCodeConfirmChoosePassword();
         }
       )
     }
@@ -162,8 +173,13 @@ function sendResetPasswordRequest(){
       console.log(`Password reset request failed. The error encountered was: ${error}`);
       awaitingLoginResponse(false);
       setLoginErrorText("Password Reset Request Failed, Server or Network Error");
+      changeToCodeConfirmChoosePassword();
     }
   );  
+}
+
+function sendResetPasswordConfirmRequest() {
+
 }
 
 function dismissLoginModal() {
@@ -171,8 +187,10 @@ function dismissLoginModal() {
 }
 
 let Password_Reset = false;
+let Password_Reset_Confirm = false;
 
 function passwordResetToggle() {
+  Password_Reset_Confirm = false;
   Password_Reset = !Password_Reset;
 
   clearLoginErrorText();
@@ -202,22 +220,33 @@ function passwordResetToggle() {
   }
 }
 
-function changeToCodeConfirmChoosePasswordLol(){
+function changeToCodeConfirmChoosePassword(){
+  Password_Reset_Confirm = true; 
+  clearLoginErrorText();
+
   const bottomContents = document.getElementById("loginFooterGroup");
   const passwordField = document.getElementById("loginPassword");
   const passwordField2 = document.getElementById("loginPasswordConfirm");
+  const confirmationCodeField = document.getElementById("confirmationCode");
+  const checkbox = document.getElementById("loginPasswordToggleShowPassword");
 
   replace_text_contents(`loginButton`, `Confirm New Password`);
   replace_text_contents(`resetPasswordLink`, `Back to Login`);
   bottomContents.style.justifyContent = `center`; 
-  passwordField.required = true;
-  passwordField2.required = true;
+  toggleContents(true, "confirmationCodeArea");
+  toggleContents(true, "loginPasswordGroup");
+  toggleContents(true, "loginPasswordConfirmGroup");
+  toggleContents(true, "showPasswordLoginArea");
+  toggleContents(false, "loginEmailArea");
 
-  
+  passwordField.required = true;
+  passwordField.type = "password";
+  passwordField2.required = true;
+  passwordField2.type = "password";
+
+  confirmationCodeField.required = true;
+  checkbox.checked = false;
+  bottomContents.style.justifyContent = `space-between`;
   // turn on password, code and password 2.  Keep button on.
   // turn off everything else basically.
-}
-
-function setLoginConfirmationCodeUi(){
-  
 }
