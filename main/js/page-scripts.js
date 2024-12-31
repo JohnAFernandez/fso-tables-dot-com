@@ -33,7 +33,7 @@ function initPage(){
   const modeCookie = getCookie("mode");
   console.log(`Found "${modeCookie}", continuing...`);
 
-  if (modeCookie === "welcome") {
+  if (modeCookie === "welcome" || modeCookie ==="about") {
     console.log("Setting welcome page...");
     setPageMode("welcome");
   } else if (modeCookie === "tables") {
@@ -52,8 +52,8 @@ function initPage(){
       setPageMode("account");
     }
   } else {
-    console.log("Setting about page...");
-    setPageMode("about");
+    console.log("Setting welcome page...");
+    setPageMode("welcome");
   }
 
   console.log("Checking login status...");
@@ -121,24 +121,14 @@ function changeContents(id, content)
 
 function showWelcome()
 {
-  toggleContents(false, "about-text-area")
   toggleContents(false, "account-text-area")
   toggleContents(false, "tables-text-area")
   toggleContents(true, "welcome-text-area");
 }
 
-function showAbout()
-{
-  toggleContents(false, "welcome-text-area");
-  toggleContents(false, "account-text-area")
-  toggleContents(false, "tables-text-area")
-  toggleContents(true, "about-text-area")
-}
-
 function showAccount()
 {
   toggleContents(false, "welcome-text-area");
-  toggleContents(false, "about-text-area")
   toggleContents(false, "tables-text-area")
   toggleContents(true, "account-text-area")
   get_user_details();
@@ -148,13 +138,12 @@ function showAccount()
 function showTables()
 {
   toggleContents(false, "welcome-text-area");
-  toggleContents(false, "about-text-area")
   toggleContents(false, "account-text-area")
   toggleContents(true, "tables-text-area")
 }
 
 function setPageMode(mode){
-  const validModes = ['welcome', 'about', 'tables', 'account', 'apihelp'];
+  const validModes = ['welcome', 'tables', 'account', 'apihelp'];
   const mode_index = validModes.indexOf(mode);
 
   if ( mode_index < 0 ) { 
@@ -165,11 +154,12 @@ function setPageMode(mode){
   else if ( mode_index == 0 ) {
     showWelcome();
   } else if (mode_index == 1) {
-    showAbout();
-  } else if (mode_index == 2) {
     showTables();
-  } else {
+  } else if (mode_index == 2) {
     showAccount();
+  } else {
+    //todo! show API options should be here, but that's not written yet
+    showWelcome();
   }
 
   setCookie("mode", validModes[mode_index], 24*365*10);
@@ -854,6 +844,8 @@ function sendNewPassword(){
 function dismissRegistrationModal(){
   $('#registerModal').modal("hide");
 }
+
+
 
 function setRegistrationModalError(){
   
