@@ -294,8 +294,9 @@ function update_myaccount_items(error_present) {
     changeContents("account-name-text", "Unknown Error, Cannot Update");
     toggleContents(false, "account-loader");
     toggleContents(true, "username-row");
-    changeContents("account-role-text", "");
-    changeContents("contribution-count-text", "");      
+    toggleContents(false, "user-info-row");
+    changeContents("account-role-text", " ");
+    changeContents("contribution-count-text", " ");      
 
     return;
   }
