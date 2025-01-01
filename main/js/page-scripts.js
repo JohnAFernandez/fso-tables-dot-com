@@ -676,7 +676,7 @@ function onRegisterModalOpen() {
 
 }
 
-function setRegistrationState(state){
+async function setRegistrationState(state){
   console.log(`setting registration state: ${state}!`);
   awaitingRegistrationResponse(true);
   let next_state = -1;
@@ -719,8 +719,8 @@ function setRegistrationState(state){
 
     if (request){
 
-      const emailRegistrationResult = sendNewEmailRegistration(); 
-      if (emailRegistrationResult !== true){
+      const emailRegistrationResult = await sendNewEmailRegistration(); 
+      if (emailRegistrationResult == true){
         awaitingRegistrationResponse(false);
         return;
       }  
@@ -732,11 +732,11 @@ function setRegistrationState(state){
 
     if (request){
 
-      const passwordResult = sendNewPassword(); 
+      const passwordResult = await sendNewPassword(); 
       if (passwordResult !== true){
-        awaitingRegistrationResponse(false);
         return;
       }  
+      
     }
 
     dismissRegistrationModal();
