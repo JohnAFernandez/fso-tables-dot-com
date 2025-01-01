@@ -653,16 +653,21 @@ function onRegisterModalOpen() {
   if (CurrentState !== 2)
     CurrentState = 1;
 
+  clearRegistrationErrorText();
   awaitingRegistrationResponse(false);
   
   const passwordField = document.getElementById("registerPassword");
+  const passwordField2 = document.getElementById("registerPasswordConfirm");
   const confirmationCodeField = document.getElementById("registerConfirmationCode");
   const checkbox = document.getElementById("registerPasswordToggleShowPassword");
+  
 
   // When the modal is reloaded, make sure to erase the password so that it's not 
   // some rando gaining access to the accidentally abandoned password
   passwordField.value = "";
   passwordField.type = "password";
+  passwordField2.value = "";
+  passwordField2.type = "password";
   confirmationCodeField.value = "";
   checkbox.checked = false;
 
