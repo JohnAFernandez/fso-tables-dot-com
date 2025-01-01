@@ -712,6 +712,7 @@ function setRegistrationState(state){
   // Now let's perform our request and state change
   if (next_state === 0){
     setModalUiChoosePassword();
+    next_state = 2;
   } else if (next_state === 1) {
     setModalUiEmail();
   } else if (next_state === 2){
@@ -754,50 +755,33 @@ function setModalUiEmail(){
   toggleContents(false, "passwordGroup");
   toggleContents(false, "passwordConfirmGroup");
   toggleContents(false, "registerPasswordToggleArea");
+  toggleContents(false, "registerPasswordToggleShowPassword");
 
   const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
   bottomCotents.style.justifyContent = `right`;
-}
+  passwordField.required = false;
+  passwordField2.required = false;
 
-function setModalUiConfirmationNormal(){
-  toggleContents(true, "confirmationCodeGroup");
-  toggleContents(true, "registrationModalFooter");
-
-  toggleContents(false, "registrationModalFooter");
-  toggleContents(false, "emailGroup");
-  toggleContents(false, "passwordGroup");
-  toggleContents(false, "passwordConfirmGroup");
-  toggleContents(false, "registerPasswordToggleArea");
-  const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
-  bottomCotents.style.justifyContent = `right`;
-}
-
-function setModalUiConfirmationSpecial(){
-  toggleContents(true, "emailGroup");
-  toggleContents(true, "confirmationCodeGroup");
-  toggleContents(true, "passwordGroup");
-  toggleContents(true, "passwordConfirmGroup");
-  toggleContents(true, "registerPasswordToggleArea");
-
-
-  toggleContents(false, "registrationModalFooter");
-
-  const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
-  bottomCotents.style.justifyContent = `space-between`;
 }
 
 function setModalUiChoosePassword(){
   toggleContents(true, "passwordGroup");
   toggleContents(true, "passwordConfirmGroup");
   toggleContents(true, "registerPasswordToggleArea");
+  toggleContents(true, "emailGroup");
+  toggleContents(true, "confirmationCodeGroup");
+  toggleContents(true, "registerPasswordToggleShowPassword")
 
-  toggleContents(false, "registrationModalFooter");
-  toggleContents(false, "emailGroup");
-  toggleContents(false, "confirmationCodeGroup");
   toggleContents(false, "registrationModalFooter");
 
   const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
+  const passwordField = document.getElementById("registerPassword");
+  const passwordField2 = document.getElementById("registerPasswordConfirm");
+
   bottomCotents.style.justifyContent = `space-between`;
+  passwordField.required = true;
+  passwordField2.required = true;
+
 } 
 
 // response to the checkbox being clicked
@@ -828,15 +812,13 @@ function awaitingRegistrationResponse(bool){
   toggleContents(!bool, "registrationSumbitButton");
 }
 
-let RegistrationEmail = "";
 
 async function sendNewEmailRegistration(){
 
   const emailField = document.getElementById("registerEmail");
-  RegistrationEmail = emailField.value;
 
   const newEmailRegistrationRequest = {
-    email: RegistrationEmail,
+    email: emailField.value,
   }
 
   await fetch(API_ROOTB + "users/register", {
