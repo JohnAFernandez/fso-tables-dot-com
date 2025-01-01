@@ -81,6 +81,7 @@ function attemptLogin() {
     return;
   } else if (Password_Reset_Confirm) {
     sendResetPasswordConfirmRequest();
+    return;
   }
 
   // first make sure that the ui acknowledges a new login attempt
@@ -134,8 +135,6 @@ function attemptLogin() {
 let Email_To_Reset = "";
 
 function sendResetPasswordRequest(){
-  console.log("Now at Green River Password Reset.");
- 
   // first make sure that the ui acknowledges a new login attempt
   clearLoginErrorText();
   awaitingLoginResponse(true);
@@ -179,7 +178,57 @@ function sendResetPasswordRequest(){
 }
 
 function sendResetPasswordConfirmRequest() {
+  // first make sure that the ui acknowledges a new login attempt
+  clearLoginErrorText();
 
+  // Need to validate that the passwords are the same here
+  const passwordField = document.getElementById("loginPassword");
+  const passwordField2 = document.getElementById("loginPasswordConfirm");
+
+  if (passwordField.value != passwordField2.value){
+    setLoginErrorText("Passwords do not match");
+    return;
+  }
+
+  awaitingLoginResponse(true);
+
+  const email = Email_To_Reset;
+  const codeField = document.getElementById("confirmationCode");
+
+  const emailResetConfrimationRequest = {
+    email: email,
+    code: codeField.value,
+    password: passwordField.value,
+  }
+
+  fetch(API_ROOTB + "users/reset-password/confirm", {
+    method: "POST",
+    body: JSON.stringify(emailResetConfrimationRequest)
+  })
+  .then((response) => { 
+    if (response.status === 200) {
+      awaitingLoginResponse(false);
+      dismissLoginModal();
+      return;
+    } else {
+      response.json().then(responseJSON => { 
+        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+        throw responseJSON.Error;}
+      ).catch(
+        error => { 
+          console.log(`Password reset request failed. The error encountered was: ${error}`);
+          awaitingLoginResponse(false);
+          setLoginErrorText(`${error}`);
+        }
+      )
+    }
+  }).catch ( 
+    error => { 
+      console.log(`Password reset request failed. The error encountered was: ${error}`);
+      awaitingLoginResponse(false);
+      setLoginErrorText("Password Reset Request Failed, Network or Website Error");
+    }
+  );  
 }
 
 function dismissLoginModal() {
