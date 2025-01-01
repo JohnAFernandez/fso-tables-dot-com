@@ -547,7 +547,7 @@
 
     <div class="container lower-navbar">
       <div class="row">
-        <div class="col-12" style="padding-top: 8px; padding-left: 0px; margin-left: 0px;">
+        <div class="col-12" style="padding-top: 8px; padding-left: 0px; margin-left: 0px; margin-bottom: 20px;">
           <h5>
             <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/cyhMBhMHzK">
               Our Discord
@@ -632,7 +632,7 @@
               <br>
             </div>
             <div class="form-group" id="loginPasswordConfirmGroup" style="margin-bottom: 5px;">
-              <label style="padding-left: 6px;" for="loginPasswordConfirm>Confirm New Password</label>
+              <label style="padding-left: 6px;" for="loginPasswordConfirm">Confirm New Password</label>
               <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" id="loginPasswordConfirm" placeholder="" minlength="10" maxlength="128">
               <br>
             </div>  
@@ -673,23 +673,26 @@
               </div>
               <div class="form-group" id="confirmationCodeGroup">
                 <label style="padding-left: 6px;" for="registerConfirmationCode">Confirmation Code</label>
-                <input type="" class="form-control" id="registerConfirmationCode" aria-escribedby="emailHelp" placeholder="">
+                <input type="" class="form-control" id="c" aria-escribedby="emailHelp" placeholder="">
               </div>
               <div class="form-group" id="passwordGroup">
                 <label style="padding-left: 6px;" for="registerPassword">Password</label>
-                <input type="password" class="form-control" id="registerPassword" placeholder="">
+                <input type="password" class="form-control" id="registerPassword" placeholder="" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;">
               </div>
               <div class="form-group" id="passwordConfirmGroup">
                 <label style="padding-left: 6px;" for="registerPasswordConfirm">Confirm Password</label>
-                <input type="password" class="form-control" id="registerPasswordConfirm" placeholder="">
+                <input type="password" class="form-control" id="registerPasswordConfirm" placeholder="" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;">
               </div>
-
+              <div id="registrationErrorMessageArea" class="errorArea" style="display:none"><div id="registrationErrorText" class="errorResponse"></div></div>
               <div class="form-group" id="registrationCheckBoxAndSubmitArea" style="justify-content: right; display: flex; padding-left: 35px; padding-right: 45px; padding-top: 10px; padding-bottom: 0px;">
                 <div id="registerPasswordToggleArea" style="padding-top: 5px;">
                   <input type="checkbox" id="registerPasswordToggleShowPassword" checked="false" onclick="togglePasswordRegister()">
                   Show Password
                 </div>
-                <button class="btn btn-dark">Submit</button>
+                <div>
+                  <button id="registrationSumbitButton" class="btn btn-dark">Submit</button>
+                  <embed id="registrationLoaderAnim" style="display: none;" src="main/res/loading-anim-medium.svg">
+                </div>  
               </div>
               <div class="modal-footer" id="registrationModalFooter" style="justify-content: center; padding-top: 0px;"> 
                 <h5>

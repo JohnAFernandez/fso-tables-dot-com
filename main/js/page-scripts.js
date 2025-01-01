@@ -651,8 +651,10 @@ $(window).on('shown.bs.modal', onRegisterModalOpen);
 
 function onRegisterModalOpen() {
   if (CurrentState !== 2)
-  CurrentState = 1;
+    CurrentState = 1;
 
+  awaitingRegistrationResponse(false);
+  
   const passwordField = document.getElementById("registerPassword");
   const confirmationCodeField = document.getElementById("registerConfirmationCode");
   const checkbox = document.getElementById("registerPasswordToggleShowPassword");
@@ -830,27 +832,158 @@ function togglePasswordRegister() {
   }
 }
 
-function sendNewEmailRegistration(){
-  //TODO, finish me.
-  return true;
+function awaitingRegistrationResponse(bool){
+  toggleContents(bool, "registrationLoaderAnim");
+  toggleContents(!bool, "registrationSumbitButton");
 }
 
-function sendConfirmationCode(){
-  //TODO, finish me.
-  return true;
+let RegistrationEmail = "";
+
+async function sendNewEmailRegistration(){
+
+  const emailField = document.getElementById("registerEmail");
+  RegistrationEmail = emailField.value;
+
+  const newEmailRegistrationRequest = {
+    email: RegistrationEmail,
+  }
+
+  await fetch(API_ROOTB + "users/register", {
+    method: "POST",
+    body: JSON.stringify(newEmailRegistrationRequest)
+  })
+  .then((response) => { 
+    if (response.status === 200) {
+      awaitingRegistrationResponse(false);
+      
+      return true;
+    } else {
+      response.json().then(responseJSON => { 
+        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+        throw responseJSON.Error;}
+      ).catch(
+        error => { 
+          console.log(`Registration request failed. The error encountered was: ${error}`);
+          awaitingRegistrationResponse(false);
+          setRegistrationModalError(`${error}`);
+          return false;
+        }
+      )
+    }
+  }).catch ( 
+    error => { 
+      console.log(`Registration request failed. The error encountered was: ${error}`);
+      awaitingLoginResponse(false);
+      setRegistrationModalError("Registration request failed, Network or Website Error");
+      return false;
+    }
+  );    
 }
 
-function sendNewPassword(){
-  //TODO, finish me.
-  return true;
+async function sendConfirmationCode(){
+
+  const confirmationCode = document.getElementById("registerConfirmationCode");
+  const emailField= document.getElementById("registerEmail");
+
+  RegistrationEmail = emailField.value;
+
+  const emailResetConfrimationRequest = {
+    code: confirmationCode.value,
+  }
+
+  await fetch(API_ROOTB + `/validation/${RegistrationEmail}`, {
+    method: "POST",
+    body: JSON.stringify(emailConfirmRequest),
+    headers: { "password" : username,
+    },
+
+  })
+  .then((response) => { 
+    if (response.status === 200) {
+      awaitingRegistrationResponse(false);
+      
+      return true;
+    } else {
+      response.json().then(responseJSON => { 
+        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+        throw responseJSON.Error;}
+      ).catch(
+        error => { 
+          console.log(`Registration request failed. The error encountered was: ${error}`);
+          awaitingRegistrationResponse(false);
+          setRegistrationModalError(`${error}`);
+          return false;
+        }
+      )
+    }
+  }).catch ( 
+    error => { 
+      console.log(`Registration request failed. The error encountered was: ${error}`);
+      awaitingLoginResponse(false);
+      setRegistrationModalError("Registration request failed, Network or Website Error");
+      return false;
+    }
+  );
+}
+
+async function sendNewPassword(){
+
+  const passwordField = document.getElementById("registerPassword");
+  const passwordField2 = document.getElementById("registerPasswordConfirm");
+
+  if (passwordField.value !== passwordField2){
+    setRegistrationModalError("Passwords don't match");
+    return false;
+  }
+
+  awaitingRegistrationResponse(true);
+
+  const emailResetConfrimationRequest = {
+    password: passwordField.value,
+  }
+
+  await fetch(API_ROOTB + "users/register", {
+    method: "POST",
+    body: JSON.stringify(emailResetConfrimationRequest)
+  })
+  .then((response) => { 
+    if (response.status === 200) {
+      awaitingRegistrationResponse(false);
+      
+      return true;
+    } else {
+      response.json().then(responseJSON => { 
+        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+        throw responseJSON.Error;}
+      ).catch(
+        error => { 
+          console.log(`Registration request failed. The error encountered was: ${error}`);
+          awaitingRegistrationResponse(false);
+          setRegistrationModalError(`${error}`);
+          return false;
+        }
+      )
+    }
+  }).catch ( 
+    error => { 
+      console.log(`Registration request failed. The error encountered was: ${error}`);
+      awaitingLoginResponse(false);
+      setRegistrationModalError("Registration request failed, Network or Website Error");
+      return false;
+    }
+  );
 }
 
 function dismissRegistrationModal(){
   $('#registerModal').modal("hide");
 }
 
+function setRegistrationModalError(errorText){
+  changeContents("registrationErrorText", errorText);
+  toggleContents(true, "registrationErrorMessageArea");
+}
 
-
-function setRegistrationModalError(){
-  
+function clearRegistrationErrorText(){
+  toggleContents(false, "registrationErrorMessageArea"); 
+  changeContents("registrationErrorText", " ");
 }

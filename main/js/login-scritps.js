@@ -72,6 +72,7 @@ function setLoginErrorText(errorText){
 
 function clearLoginErrorText(){
   toggleContents(false, "loginErrorMessage"); 
+  changeContents("loginErrorMessage", " ");
 }
 
 function attemptLogin() {
@@ -110,7 +111,6 @@ function attemptLogin() {
 
       check_login_status_and_update();
       dismissLoginModal();
-      return;
     } else {
       response.json().then(responseJSON => { 
         // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
