@@ -644,7 +644,7 @@ request.onsuccess = function() {
 };
 */
 
-const REGISTRATION_STATES = ["returningConfirmation", "chooseEmail", "enterConfirmation", "choosePassword", "closing"];
+const REGISTRATION_STATES = ["returningConfirmation", "chooseEmail", "choosePassword", "closing"];
 let CurrentState = 1;
 
 $(window).on('shown.bs.modal', onRegisterModalOpen);
@@ -678,15 +678,16 @@ function onRegisterModalOpen() {
 
 function setRegistrationState(state){
   console.log(`setting registration state: ${state}!`);
+  awaitingRegistrationResponse(true);
   let next_state = -1;
   let request = false;
 
   if (state === `nextRequest`){
     console.log("Path A");
     if (CurrentState === 0) {
+      next_state = 2;
+    } else if (CurrentState === 3) {
       next_state = 3;
-    } else if (CurrentState === 4) {
-      next_state = 4;
     } else {
       next_state = CurrentState + 1;
     }
@@ -703,12 +704,14 @@ function setRegistrationState(state){
     console.log("Registration error state, returning");
     CurrentState = 4;
     dismissRegistrationModal();
+    awaitingRegistrationResponse(false);
+    return;
   }
 
   console.log(`next state is ${next_state}`);
   // Now let's perform our request and state change
   if (next_state === 0){
-    setModalUiConfirmationSpecial();
+    setModalUiChoosePassword();
   } else if (next_state === 1) {
     setModalUiEmail();
   } else if (next_state === 2){
@@ -717,41 +720,28 @@ function setRegistrationState(state){
 
       const emailRegistrationResult = sendNewEmailRegistration(); 
       if (emailRegistrationResult !== true){
-        setRegistrationModalError(emailRegistrationResult);
+        awaitingRegistrationResponse(false);
         return;
-      }  
-    }
-
-    setModalUiConfirmationNormal();
-
-  } else if (next_state === 3){
-
-    if (request){
-
-      const confirmationCodeResult = sendConfirmationCode(); 
-      if (confirmationCodeResult !== true){
-        setRegistrationModalError(confirmationCodeResult);
-        return
       }  
     }
 
     setModalUiChoosePassword();
 
-  } else if (next_state === 4){
+  } else if (next_state === 3){
 
     if (request){
 
-      const confirmationCodeResult = sendNewPassword(); 
-      if (confirmationCodeResult !== true){
-        setRegistrationModalError(confirmationCodeResult);
-        return
+      const passwordResult = sendNewPassword(); 
+      if (passwordResult !== true){
+        awaitingRegistrationResponse(false);
+        return;
       }  
     }
-    CurrentState = next_state;
 
     dismissRegistrationModal();
-  }
+  } 
 
+  awaitingRegistrationResponse(false);
   CurrentState = next_state;
 }
 
@@ -785,14 +775,15 @@ function setModalUiConfirmationNormal(){
 function setModalUiConfirmationSpecial(){
   toggleContents(true, "emailGroup");
   toggleContents(true, "confirmationCodeGroup");
+  toggleContents(true, "passwordGroup");
+  toggleContents(true, "passwordConfirmGroup");
+  toggleContents(true, "registerPasswordToggleArea");
+
 
   toggleContents(false, "registrationModalFooter");
-  toggleContents(false, "passwordGroup");
-  toggleContents(false, "passwordConfirmGroup");
-  toggleContents(false, "registerPasswordToggleArea");
 
   const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
-  bottomCotents.style.justifyContent = `right`;
+  bottomCotents.style.justifyContent = `space-between`;
 }
 
 function setModalUiChoosePassword(){
@@ -853,9 +844,7 @@ async function sendNewEmailRegistration(){
     body: JSON.stringify(newEmailRegistrationRequest)
   })
   .then((response) => { 
-    if (response.status === 200) {
-      awaitingRegistrationResponse(false);
-      
+    if (response.status === 200) {      
       return true;
     } else {
       response.json().then(responseJSON => { 
@@ -864,7 +853,6 @@ async function sendNewEmailRegistration(){
       ).catch(
         error => { 
           console.log(`Registration request failed. The error encountered was: ${error}`);
-          awaitingRegistrationResponse(false);
           setRegistrationModalError(`${error}`);
           return false;
         }
@@ -873,61 +861,16 @@ async function sendNewEmailRegistration(){
   }).catch ( 
     error => { 
       console.log(`Registration request failed. The error encountered was: ${error}`);
-      awaitingLoginResponse(false);
       setRegistrationModalError("Registration request failed, Network or Website Error");
       return false;
     }
   );    
 }
 
-async function sendConfirmationCode(){
+async function sendNewPassword(){
 
   const confirmationCode = document.getElementById("registerConfirmationCode");
   const emailField= document.getElementById("registerEmail");
-
-  RegistrationEmail = emailField.value;
-
-  const emailResetConfrimationRequest = {
-    code: confirmationCode.value,
-  }
-
-  await fetch(API_ROOTB + `/validation/${RegistrationEmail}`, {
-    method: "POST",
-    body: JSON.stringify(emailConfirmRequest),
-    headers: { "password" : username,
-    },
-
-  })
-  .then((response) => { 
-    if (response.status === 200) {
-      awaitingRegistrationResponse(false);
-      
-      return true;
-    } else {
-      response.json().then(responseJSON => { 
-        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
-        throw responseJSON.Error;}
-      ).catch(
-        error => { 
-          console.log(`Registration request failed. The error encountered was: ${error}`);
-          awaitingRegistrationResponse(false);
-          setRegistrationModalError(`${error}`);
-          return false;
-        }
-      )
-    }
-  }).catch ( 
-    error => { 
-      console.log(`Registration request failed. The error encountered was: ${error}`);
-      awaitingLoginResponse(false);
-      setRegistrationModalError("Registration request failed, Network or Website Error");
-      return false;
-    }
-  );
-}
-
-async function sendNewPassword(){
-
   const passwordField = document.getElementById("registerPassword");
   const passwordField2 = document.getElementById("registerPasswordConfirm");
 
@@ -938,18 +881,20 @@ async function sendNewPassword(){
 
   awaitingRegistrationResponse(true);
 
-  const emailResetConfrimationRequest = {
-    password: passwordField.value,
+  const emailConfirmRequest = {
+    code: confirmationCode.value,
   }
 
-  await fetch(API_ROOTB + "users/register", {
+  await fetch(API_ROOTB + `/validation/${emailField.value}`, {
     method: "POST",
-    body: JSON.stringify(emailResetConfrimationRequest)
+    body: JSON.stringify(emailConfirmRequest),
+    headers: { "password" : passwordField.value,
+    },
+
   })
   .then((response) => { 
     if (response.status === 200) {
-      awaitingRegistrationResponse(false);
-      
+
       return true;
     } else {
       response.json().then(responseJSON => { 
@@ -958,7 +903,6 @@ async function sendNewPassword(){
       ).catch(
         error => { 
           console.log(`Registration request failed. The error encountered was: ${error}`);
-          awaitingRegistrationResponse(false);
           setRegistrationModalError(`${error}`);
           return false;
         }
@@ -967,7 +911,6 @@ async function sendNewPassword(){
   }).catch ( 
     error => { 
       console.log(`Registration request failed. The error encountered was: ${error}`);
-      awaitingLoginResponse(false);
       setRegistrationModalError("Registration request failed, Network or Website Error");
       return false;
     }
