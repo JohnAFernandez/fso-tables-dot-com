@@ -859,7 +859,7 @@ async function sendNewPassword(){
   const passwordField = document.getElementById("registerPassword");
   const passwordField2 = document.getElementById("registerPasswordConfirm");
 
-  if (passwordField.value !== passwordField2){
+  if (passwordField.value !== passwordField2.value){
     setRegistrationModalError("Passwords don't match");
     return false;
   }
