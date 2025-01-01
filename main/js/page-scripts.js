@@ -27,7 +27,7 @@ function check_for_update() {
 
 // Run at the start of the page (called from the html) with our best guess at Architecture
 function initPage(){
-  console.log("Initializing Page... v0.4");
+  console.log("Initializing Page... v0.8");
 
   console.log("Getting the mode cookie...")
   const modeCookie = getCookie("mode");
@@ -712,7 +712,7 @@ function setRegistrationState(state){
   // Now let's perform our request and state change
   if (next_state === 0){
     setModalUiChoosePassword();
-    next_state = 2;
+    next_state = 2; // which really means that Current State will be 2
   } else if (next_state === 1) {
     setModalUiEmail();
   } else if (next_state === 2){
@@ -821,7 +821,7 @@ async function sendNewEmailRegistration(){
     email: emailField.value,
   }
 
-  await fetch(API_ROOTB + "users/register", {
+  const result = await fetch(API_ROOTB + "users/register", {
     method: "POST",
     body: JSON.stringify(newEmailRegistrationRequest)
   })
@@ -847,6 +847,8 @@ async function sendNewEmailRegistration(){
       return false;
     }
   );    
+
+  return result;
 }
 
 async function sendNewPassword(){
@@ -867,7 +869,7 @@ async function sendNewPassword(){
     code: confirmationCode.value,
   }
 
-  await fetch(API_ROOTB + `/validation/${emailField.value}`, {
+  const result = await fetch(API_ROOTB + `/validation/${emailField.value}`, {
     method: "POST",
     body: JSON.stringify(emailConfirmRequest),
     headers: { "password" : passwordField.value,
@@ -897,6 +899,8 @@ async function sendNewPassword(){
       return false;
     }
   );
+
+  return result;
 }
 
 function dismissRegistrationModal(){
