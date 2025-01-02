@@ -875,7 +875,7 @@ async function sendNewPassword(){
     code: confirmationCode.value,
   }
 
-  const result = await fetch(API_ROOTB + `/validation/${emailField.value}`, {
+  const result = await fetch(API_ROOTB + `validation/${emailField.value}`, {
     method: "POST",
     body: JSON.stringify(emailConfirmRequest),
     headers: { "password" : passwordField.value,
