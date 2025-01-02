@@ -562,7 +562,8 @@ function apply_table(table) {
 
     }
 
-    replace_inner_html(`item${i}`, `<%=ESAPI.encoder().encodeForJavascript(ESAPI.encoder().encodeForHTMLAttribute(<div id="${i}a" class="row">
+    /*
+    replace_inner_html(`item${i}`, `<div id="${i}a" class="row">
           <div id="${i}a-1" class="col-8">
             <h3><b>${database_tables[Current_Table].items[i].item_text}</b></h3><br>
           </div>
@@ -606,10 +607,10 @@ function apply_table(table) {
               <br>
             </h4>
           </div>
-        </div>))%>`)
+        </div>`)
 
     toggleContents(true, `item${i}`);
-
+*/
   }
 
 }
@@ -860,7 +861,7 @@ async function sendNewEmailRegistration(){
 async function sendNewPassword(){
 
   const confirmationCode = document.getElementById("registerConfirmationCode");
-  const emailField= document.getElementById("registerEmail");
+  const email = document.getElementById("registerEmail").value;
   const passwordField = document.getElementById("registerPassword");
   const passwordField2 = document.getElementById("registerPasswordConfirm");
 
@@ -875,7 +876,7 @@ async function sendNewPassword(){
     code: confirmationCode.value,
   }
 
-  const result = await fetch(API_ROOTB + `validation/${emailField.value}`, {
+  const result = await fetch(API_ROOTB + `validation/${email}`, {
     method: "POST",
     body: JSON.stringify(emailConfirmRequest),
     headers: { "password" : passwordField.value,
@@ -884,7 +885,7 @@ async function sendNewPassword(){
   })
   .then((response) => { 
     if (response.status === 200) {
-
+      setCookie("email", email);
       return true;
     } else {
       response.json().then(responseJSON => { 
