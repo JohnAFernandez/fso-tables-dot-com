@@ -174,7 +174,6 @@ function sendResetPasswordRequest(){
           console.log(`Password reset request failed. The error encountered was: ${error}`);
           awaitingLoginResponse(false);
           setLoginErrorText(`${error}`);
-          changeToCodeConfirmChoosePassword();
         }
       )
     }
@@ -183,7 +182,6 @@ function sendResetPasswordRequest(){
       console.log(`Password reset request failed. The error encountered was: ${error}`);
       awaitingLoginResponse(false);
       setLoginErrorText("Password Reset Request Failed, Server or Network Error");
-      changeToCodeConfirmChoosePassword();
     }
   );  
 }
