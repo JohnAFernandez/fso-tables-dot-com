@@ -66,13 +66,14 @@ function awaitingLoginResponse(awaiting) {
 }
 
 function setLoginErrorText(errorText){
-  changeContents("loginErrorText", errorText);
   toggleContents(true, "loginErrorMessage");
+  changeContents("loginErrorText", errorText);
 }
 
 function clearLoginErrorText(){
-  toggleContents(false, "loginErrorMessage"); 
+  toggleContents("true", "loginErrorMessage");
   changeContents("loginErrorMessage", " ");
+  toggleContents(false, "loginErrorMessage"); 
 }
 
 function attemptLogin() {
