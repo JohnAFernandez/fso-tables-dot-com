@@ -1,0 +1,6 @@
+
+function sendChangePasswordRequest(){
+
+
+    changeContents("changePasswordErrorText", "")
+}
