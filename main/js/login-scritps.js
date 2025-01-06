@@ -49,13 +49,17 @@ $(window).on('shown.bs.modal', onLoginModalOpen);
 
 function togglePasswordLogin() {
   const passwordField = document.getElementById("loginPassword");
+  const passwordField2 = document.getElementById("loginPasswordConfirm");
+
   const checkbox = document.getElementById("loginPasswordToggleShowPassword");
 
   if (passwordField.type === "password") {
     passwordField.type = "text";
+    passwordField2.type = "text";
     checkbox.checked = true;
   } else {
     passwordField.type = "password";
+    passwordField2.type = "password";
     checkbox.checked = false;
   }
 }
