@@ -71,8 +71,8 @@ function setLoginErrorText(errorText){
 }
 
 function clearLoginErrorText(){
-  toggleContents("true", "loginErrorMessage");
-  changeContents("loginErrorMessage", " ");
+  toggleContents(true, "loginErrorMessage");
+  changeContents("loginErrorText", " ");
   toggleContents(false, "loginErrorMessage"); 
 }
 
