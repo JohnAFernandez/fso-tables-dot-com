@@ -258,7 +258,6 @@ function passwordResetToggle() {
   toggleContents(true, "loginButton");
   toggleContents(false, "loginLoaderAnim");
 
-  toggleContents(Password_Reset, "iHavePasswordResetConfirmationLink");
   toggleContents(!Password_Reset, "loginPasswordGroup");
   toggleContents(!Password_Reset, "showPasswordLoginArea");
 
@@ -277,6 +276,8 @@ function passwordResetToggle() {
     passwordField.required = false;
     passwordField2.required = false;
 
+    const forceConfirmationLink = document.getElementById("iHavePasswordResetConfirmationLink");
+    forceConfirmationLink = 'flex';
   } else {
     replace_text_contents(`loginButton`, `Login`);
     replace_text_contents(`resetPasswordLink`, `Forgot my Password`);
@@ -288,10 +289,11 @@ function passwordResetToggle() {
     // ensure that the correct show up when going back to login
     // this could be desired or undesired when Password_Reset is true, which is handled elsewhere
     toggleContents(true, "showPasswordLoginArea");
+    toggleContents(true, "loginEmailArea");
+
     toggleContents(false, "loginPasswordConfirmGroup");
     toggleContents(false, "confirmationCodeArea");
-    toggleContents(true, "loginEmailArea");
-  
+    toggleContents(false, "iHavePasswordResetConfirmationLink");  
   }
 }
 
