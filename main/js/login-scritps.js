@@ -263,6 +263,10 @@ function passwordResetToggle() {
   const bottomContents = document.getElementById("loginFooterGroup");
   const passwordField = document.getElementById("loginPassword");
   const passwordField2 = document.getElementById("loginPasswordConfirm");
+  const confirmationCodeField = document.getElementById("confirmationCode");
+
+  // This will only be true when specifically on the code entering screen
+  confirmationCodeField.required = false;
 
   if (Password_Reset){
     replace_text_contents(`loginButton`, `Send Reset Link`);
