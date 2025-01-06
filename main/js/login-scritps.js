@@ -277,7 +277,7 @@ function passwordResetToggle() {
     passwordField2.required = false;
 
     const forceConfirmationLink = document.getElementById("iHavePasswordResetConfirmationLink");
-    forceConfirmationLink = 'flex';
+    forceConfirmationLink.style.display = 'flex';
   } else {
     replace_text_contents(`loginButton`, `Login`);
     replace_text_contents(`resetPasswordLink`, `Forgot my Password`);
