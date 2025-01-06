@@ -20,11 +20,14 @@ function onLoginModalOpen() {
 
   checkbox.checked = false;
 
-  toggleContents(false, "confirmationCodeArea");
   toggleContents(true, "loginEmailArea");
   toggleContents(true, "loginPasswordGroup");
-  toggleContents(false, "loginPasswordConfirmGroup");
   toggleContents(true, "loginEmailArea");
+
+  toggleContents(false, "confirmationCodeArea");
+  toggleContents(false, "loginPasswordConfirmGroup");
+  toggleContents(false, "iHavePasswordResetConfirmationLink");
+
   replace_text_contents(`loginButton`, `Login`);
 
   Email_To_Reset = "";
@@ -254,7 +257,8 @@ function passwordResetToggle() {
   clearLoginErrorText();
   toggleContents(true, "loginButton");
   toggleContents(false, "loginLoaderAnim");
-  
+
+  toggleContents(Password_Reset, "iHavePasswordResetConfirmationLink");
   toggleContents(!Password_Reset, "loginPasswordGroup");
   toggleContents(!Password_Reset, "showPasswordLoginArea");
 
@@ -309,6 +313,7 @@ function changeToCodeConfirmChoosePassword(){
   toggleContents(true, "loginPasswordConfirmGroup");
   toggleContents(true, "showPasswordLoginArea");
   toggleContents(false, "loginEmailArea");
+  toggleContents(false, "iHavePasswordResetConfirmationLink");
 
   passwordField.required = true;
   passwordField.type = "password";
