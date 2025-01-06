@@ -28,6 +28,10 @@ function onLoginModalOpen() {
   replace_text_contents(`loginButton`, `Login`);
 
   Email_To_Reset = "";
+  
+  if (Password_Reset === true) {
+    passwordResetToggle();
+  }
 
   clearLoginErrorText();
 }
