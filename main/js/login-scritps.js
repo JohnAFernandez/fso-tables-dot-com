@@ -28,10 +28,13 @@ function onLoginModalOpen() {
   replace_text_contents(`loginButton`, `Login`);
 
   Email_To_Reset = "";
+
+  // HACKITY HACKITY HACK HACK HACK ... yes dear ..... yawwwwwwwwwwwn
+  // Ok, actually not that bad a hack. Simply force the UI into the correct state.
+  // PasswordResetToggle() will switch Password_Reset to false... because it's a toggle
+  Password_Reset = true;
+  passwordResetToggle();
   
-  if (Password_Reset === true) {
-    passwordResetToggle();
-  }
 
   clearLoginErrorText();
 }
