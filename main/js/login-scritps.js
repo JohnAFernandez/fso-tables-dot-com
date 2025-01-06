@@ -274,9 +274,18 @@ function passwordResetToggle() {
   } else {
     replace_text_contents(`loginButton`, `Login`);
     replace_text_contents(`resetPasswordLink`, `Forgot my Password`);
+    
     bottomContents.style.justifyContent = `space-between`;
     passwordField.required = true;
     passwordField2.required = false;
+
+    // ensure that the correct show up when going back to login
+    // this could be desired or undesired when Password_Reset is true, which is handled elsewhere
+    toggleContents(true, "showPasswordLoginArea");
+    toggleContents(false, "loginPasswordConfirmGroup");
+    toggleContents(false, "confirmationCodeArea");
+    toggleContents(true, "loginEmailArea");
+  
   }
 }
 
