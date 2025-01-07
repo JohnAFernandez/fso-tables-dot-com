@@ -39,22 +39,26 @@ function onLoginModalOpen() {
 
 //TODO! We need to send a signal to the server to close out the session there.
 async function onLogout() {
-  await fetch(API_ROOT + "users/logout", { 
-    method: "POST", 
-    headers: { "username" : username,
-    },
-    credentials: 'include'
-  })
-  .then((response) => {
-    if (response.status !== 200) {
-      return;
-    }
-  }) 
-  .catch ( 
-    error => {
-      console.log(`Logout failed. The error encountered was: ${error}`);
-    }
-  );
+  const username = getCookie("username");
+
+  if (username != "") {
+    await fetch(API_ROOT + "users/logout", { 
+      method: "POST", 
+      headers: { "username" : username,
+      },
+      credentials: 'include'
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        return;
+      }
+    }) 
+    .catch ( 
+      error => {
+        console.log(`Logout failed. The error encountered was: ${error}`);
+      }
+    );
+  }
 
   const ourCookie = getCookie("mode");
   if (ourCookie === "account"){
