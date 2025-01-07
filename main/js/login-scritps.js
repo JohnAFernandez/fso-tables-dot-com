@@ -20,9 +20,7 @@ function onLoginModalOpen() {
 
   checkbox.checked = false;
 
-  toggleContents(true, "loginEmailArea");
   toggleContents(true, "loginPasswordGroup");
-  toggleContents(true, "loginEmailArea");
 
   toggleContents(false, "confirmationCodeArea");
   toggleContents(false, "loginPasswordConfirmGroup");
@@ -30,14 +28,11 @@ function onLoginModalOpen() {
 
   replace_text_contents(`loginButton`, `Login`);
 
-  Email_To_Reset = "";
-
   // HACKITY HACKITY HACK HACK HACK ... yes dear ..... yawwwwwwwwwwwn
   // Ok, actually not that bad a hack. Simply force the UI into the correct state.
   // PasswordResetToggle() will switch Password_Reset to false... because it's a toggle
   Password_Reset = true;
   passwordResetToggle();
-  
 
   clearLoginErrorText();
 }
@@ -146,8 +141,6 @@ function attemptLogin() {
 
 }
 
-let Email_To_Reset = "";
-
 function sendResetPasswordRequest(){
   // first make sure that the ui acknowledges a new login attempt
   clearLoginErrorText();
@@ -166,7 +159,6 @@ function sendResetPasswordRequest(){
     if (response.status === 200) {
       changeToCodeConfirmChoosePassword();
       awaitingLoginResponse(false);
-      Email_To_Reset = emailResetRequest.email;
       return;
     } else {
       response.json().then(responseJSON => { 
@@ -204,11 +196,11 @@ function sendResetPasswordConfirmRequest() {
 
   awaitingLoginResponse(true);
 
-  const email = Email_To_Reset;
+  const emailField = document.getElementById("loginEmail");
   const codeField = document.getElementById("confirmationCode");
 
   const emailResetConfrimationRequest = {
-    email: email,
+    email: emailField.value,
     code: codeField.value,
     password: passwordField.value,
   }
@@ -277,7 +269,7 @@ function passwordResetToggle() {
     passwordField2.required = false;
 
     const forceConfirmationLink = document.getElementById("iHavePasswordResetConfirmationLink");
-    forceConfirmationLink.style.display = 'flex';
+    forceConfirmationLink.style.display = `flex`;
   } else {
     replace_text_contents(`loginButton`, `Login`);
     replace_text_contents(`resetPasswordLink`, `Forgot my Password`);
@@ -289,7 +281,6 @@ function passwordResetToggle() {
     // ensure that the correct show up when going back to login
     // this could be desired or undesired when Password_Reset is true, which is handled elsewhere
     toggleContents(true, "showPasswordLoginArea");
-    toggleContents(true, "loginEmailArea");
 
     toggleContents(false, "loginPasswordConfirmGroup");
     toggleContents(false, "confirmationCodeArea");
@@ -314,7 +305,6 @@ function changeToCodeConfirmChoosePassword(){
   toggleContents(true, "loginPasswordGroup");
   toggleContents(true, "loginPasswordConfirmGroup");
   toggleContents(true, "showPasswordLoginArea");
-  toggleContents(false, "loginEmailArea");
   toggleContents(false, "iHavePasswordResetConfirmationLink");
 
   passwordField.required = true;

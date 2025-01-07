@@ -628,15 +628,15 @@
             </div>
             -->
             <div class="modal-body">
+              <div class="form-group" id="loginEmailArea">
+                <label style="padding-left: 6px;" for="loginEmail">Email</label>
+                <input type="email" class="form-control" id="loginEmail" aria-escribedby="emailHelp" placeholder="" required>
+              </div>
               <div class="form-group" id="confirmationCodeArea" style="margin-bottom: 5px;">
                 <label style="padding-left: 6px;" for="confirmationCode">Code</label>
                 <input type="text" class="form-control" title="This was sent to your email." id="confirmationCode" placeholder="" minlength="5" maxlength="10">
                 <br>
               </div>  
-              <div class="form-group" id="loginEmailArea">
-                <label style="padding-left: 6px;" for="loginEmail">Email</label>
-                <input type="email" class="form-control" id="loginEmail" aria-escribedby="emailHelp" placeholder="" required>
-              </div>
               <div class="form-group" id="loginPasswordGroup" style="margin-bottom: 5px;">
                 <label style="padding-left: 6px;" for="loginPassword">Password</label>
                 <input type="password" class="form-control" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" id="loginPassword" placeholder="" minlength="10" maxlength="128" required>
