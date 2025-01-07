@@ -200,8 +200,8 @@ function sendResetPasswordConfirmRequest() {
   const codeField = document.getElementById("confirmationCode");
 
   const emailResetConfrimationRequest = {
-    email: emailField.value,
     code: codeField.value,
+    username: emailField.value,
     password: passwordField.value,
   }
 
