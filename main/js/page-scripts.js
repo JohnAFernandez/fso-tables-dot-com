@@ -661,6 +661,7 @@ function onRegisterModalOpen() {
   const passwordField2 = document.getElementById("registerPasswordConfirm");
   const confirmationCodeField = document.getElementById("registerConfirmationCode");
   const checkbox = document.getElementById("registerPasswordToggleShowPassword");
+  const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
 
   // When the modal is reloaded, make sure to erase the password so that it's not 
   // some rando gaining access to the accidentally abandoned password
@@ -673,6 +674,8 @@ function onRegisterModalOpen() {
   confirmationCodeField.value = "";
   confirmationCodeField.required = false;
   checkbox.checked = false;
+  bottomCotents.style.justifyContent = `center`;
+
 
   toggleContents(true, "emailGroup");
   toggleContents(true, "registrationModalFooter");
