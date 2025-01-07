@@ -661,15 +661,17 @@ function onRegisterModalOpen() {
   const passwordField2 = document.getElementById("registerPasswordConfirm");
   const confirmationCodeField = document.getElementById("registerConfirmationCode");
   const checkbox = document.getElementById("registerPasswordToggleShowPassword");
-  
 
   // When the modal is reloaded, make sure to erase the password so that it's not 
   // some rando gaining access to the accidentally abandoned password
   passwordField.value = "";
   passwordField.type = "password";
+  passwordField.required = false;
   passwordField2.value = "";
   passwordField2.type = "password";
+  passwordField2.required = false;
   confirmationCodeField.value = "";
+  confirmationCodeField.required = false;
   checkbox.checked = false;
 
   toggleContents(true, "emailGroup");
@@ -765,9 +767,14 @@ function setModalUiEmail(){
   toggleContents(false, "registerPasswordToggleShowPassword");
 
   const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
-  bottomCotents.style.justifyContent = `right`;
+  const confirmationCodeField = document.getElementById("registerConfirmationCode");
+  const passwordField = document.getElementById("registerPassword");
+  const passwordField2 = document.getElementById("registerPasswordConfirm");
+
+  bottomCotents.style.justifyContent = `center`;
   passwordField.required = false;
   passwordField2.required = false;
+  confirmationCodeField.required = false;
 
 }
 
@@ -784,11 +791,12 @@ function setModalUiChoosePassword(){
   const bottomCotents = document.getElementById("registrationCheckBoxAndSubmitArea");
   const passwordField = document.getElementById("registerPassword");
   const passwordField2 = document.getElementById("registerPasswordConfirm");
+  const confirmationCodeField = document.getElementById("registerConfirmationCode");
 
   bottomCotents.style.justifyContent = `space-between`;
   passwordField.required = true;
   passwordField2.required = true;
-
+  confirmationCodeField.required = true;
 } 
 
 // response to the checkbox being clicked
