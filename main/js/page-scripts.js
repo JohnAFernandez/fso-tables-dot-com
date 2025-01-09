@@ -651,8 +651,7 @@ let CurrentState = 1;
 $(window).on('shown.bs.modal', onRegisterModalOpen);
 
 function onRegisterModalOpen() {
-  if (CurrentState !== 2)
-    CurrentState = 1;
+  CurrentState = 1;
 
   clearRegistrationErrorText();
   awaitingRegistrationResponse(false);
