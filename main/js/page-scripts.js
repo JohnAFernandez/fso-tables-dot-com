@@ -933,3 +933,11 @@ function clearRegistrationErrorText(){
   toggleContents(false, "registrationErrorMessageArea"); 
   changeContents("registrationErrorText", " ");
 }
+
+let UpArrow = false;
+
+function switchArrow(){
+  UpArrow = !UpArrow;
+  toggleContents(!UpArrow, "passwordChangeArrow1");
+  toggleContents(UpArrow, "passwordChangeArrow2");  
+}
