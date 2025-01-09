@@ -156,6 +156,7 @@
           <h3>Account Dashboard: <b id="account-name-text">You</b></h3>
         </div>
       </div>
+      <br>
       <div id="user-info-row" class="row account-item-body">
         <br>
         <div class="col-5">
@@ -176,25 +177,28 @@
       <br><br>
       <div id="user-controls-row" class="row account-item-body">
         <div class="col-8">
-          <form>
-            <div class="form-group">
-              <h5><label for="reenterPassword">Current Password</label></h5>
-              <input type="password" class="form-control" id="reenterPassword" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>              
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#blurbAccordion">
+            <div class="card-body blurb-body">
+              <form>
+                <div class="form-group">
+                  <h5><label for="reenterPassword">Current Password</label></h5>
+                  <input type="password" class="form-control" id="reenterPassword" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>              
+                </div>
+                <div class="form-group">
+                  <h5><label for="passwordChangeA">New Password</label></h5>
+                  <input type="password" class="form-control" id="passwordChangeA" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>              
+                </div>
+                <div class="form-group">
+                  <h5><label for="passwordChangeB">Confirm New Password</label></h5>
+                  <input type="password" class="form-control" id="passwordChangeB" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>
+                </div>
+                <div id="changePasswordErrorText" style="display: none;">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark" onclick="sendChangePasswordRequest()">Change Password</button>
+              </form>
             </div>
-            <div class="form-group">
-              <h5><label for="passwordChangeA">New Password</label></h5>
-              <input type="password" class="form-control" id="passwordChangeA" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>              
-            </div>
-            <div class="form-group">
-              <h5><label for="passwordChangeB">Confirm New Password</label></h5>
-              <input type="password" class="form-control" id="passwordChangeB" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-dark" onclick="sendChangePasswordRequest()">Change Password</button>
-            <div id="changePasswordErrorText" style="display: none;">
-              
-            </div>
-          </form>
+          </div>
         </div>
       </div>
       <br>
