@@ -304,6 +304,11 @@ li {
     margin-right: 0px;
 }
 
+.blurb-body {
+    background-color: #333333;
+    border-color: #333333;
+}
+
 .link-body {
     background-color: #080808;
     margin: 0px;
