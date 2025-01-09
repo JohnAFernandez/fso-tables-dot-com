@@ -133,6 +133,16 @@ function showAccount()
   toggleContents(false, "welcome-text-area2");
   toggleContents(false, "tables-text-area");
   toggleContents(true, "account-text-area");
+
+  if (UpArrow) {
+    switchArrow();
+
+    let accordion = document.getElementById("passwordChangeAccordion");
+
+    accordion.classList.remove("active");
+    accordion.nextElementSibling.style.maxHeight = null;
+  }
+
   get_user_details();
 }
 
