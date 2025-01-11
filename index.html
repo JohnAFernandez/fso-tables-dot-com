@@ -208,7 +208,10 @@
                       <h5><label for="passwordChangeB">Confirm New Password</label></h5>
                       <input type="password" class="form-control" id="passwordChangeB" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>
                     </div>
-                    <div id="changePasswordErrorText" style="display: none;">
+                    <div id="changePasswordErrorMessage" class="errorArea" style="display:none">
+                      <div id="changePasswordErrorText" class="errorResponse" style="display: none;">
+                        &nbsp;
+                      </div>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-dark" onclick="sendChangePasswordRequest()">Change Password</button>
