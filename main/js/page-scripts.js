@@ -948,6 +948,6 @@ let UpArrow = false;
 
 function switchArrow(){
   UpArrow = !UpArrow;
-  toggleContents(!UpArrow, "passwordChangeArrow1");
-  toggleContents(UpArrow, "passwordChangeArrow2");  
+  toggleContents(UpArrow, "passwordChangeArrow1");
+  toggleContents(!UpArrow, "passwordChangeArrow2");  
 }
