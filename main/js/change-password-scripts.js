@@ -49,8 +49,8 @@ async function sendChangePasswordRequest(){
 }
 
 function awaitingPaswordChangeResponse(bool){
-  toggleContents(bool, "registrationLoaderAnim");
-  toggleContents(!bool, "registrationSumbitButton");
+  toggleContents(bool, "changePasswordLoaderAnim");
+  toggleContents(!bool, "changePasswordSumbitButton");
 }
 
 

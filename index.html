@@ -209,12 +209,13 @@
                       <input type="password" class="form-control" id="passwordChangeB" pattern="^[a-zA-Z0-9\~\!@#$%\^&*\(\)_\\\-\+=\{\}\[\]\|:;,\<\>\.?\/]{10,120}$" title="Passwords on this site are at least 10 characters and can use these special characters &#10;~!@#$%^&*()_-+={}[]|:;,<>.?/ \ &#34;" placeholder="" minlength="10" maxlength="128" required>
                     </div>
                     <div id="changePasswordErrorMessage" class="errorArea" style="display:none">
-                      <div id="changePasswordErrorText" class="errorResponse" style="display: none;">
+                      <div id="changePasswordErrorText" class="errorResponse">
                         &nbsp;
                       </div>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-dark">Change Password</button>
+                    <button id="changePasswordSumbitButton" type="submit" class="btn btn-dark">Change Password</button>
+                    <embed id="changePasswordLoaderAnim" style="display: none;" src="main/res/loading-anim-medium.svg">
                   </form>
                 </div>
               </div>
