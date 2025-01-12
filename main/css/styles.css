@@ -383,5 +383,7 @@ svg.icon {
 .dark-line {
     margin-left: 1.5em;
     margin-right: 12em;
+    margin-top: 0px;
+    margin-bottom: 0px;
     border-top: 3px solid rgb(0, 0, 0);
 }
