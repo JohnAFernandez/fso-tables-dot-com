@@ -121,7 +121,7 @@ header {
     margin: 0px;
     margin-top: 20px;
     margin-left: 30px;
-    margin-right: 200px;
+    margin-right: 50px;
     padding: 15px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -383,7 +383,7 @@ svg.icon {
 
 .dark-line {
     margin-left: 1.5em;
-    margin-right: 12em;
+    margin-right: 1.5em;
     margin-top: 0px;
     margin-bottom: 0px;
     border-top: 3px solid rgb(0, 0, 0);
