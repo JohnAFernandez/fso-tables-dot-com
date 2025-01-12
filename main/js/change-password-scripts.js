@@ -22,14 +22,16 @@ async function sendChangePasswordRequest(){
 
   awaitingPaswordChangeResponse(true);
 
+  const passwordBody = {
+    old_password: oldPasswordField.value,
+    password: passwordField.value,
+  }
   await fetch(API_ROOT + "users/myaccount/password", { 
     method: "POST", 
     headers: { "username" : username,
     },
-    body: { 
-      "old_password" : oldPasswordField.value,
-      "password" : passwordField.value,
-    },
+    body: JSON.stringify(passwordBody)
+    ,
     credentials: 'include'
   })
   .then((response) => {
