@@ -35,17 +35,19 @@ async function sendChangePasswordRequest(){
     credentials: 'include'
   })
   .then((response) => {
-    if (response.status !== 200) {
+    if (response.status !== 200) {      
+      setChangePasswordErrorText(response.json().Error);    
       return;
-    }
+    }      
   }) 
   .catch ( 
     error => {
-      console.log(`Logout failed. The error encountered was: ${error}`);
+      console.log(`Change password failed. The error encountered was: ${error}`);
+      setChangePasswordErrorText("Change password failed, network or website error.");
     }
   );
 
-
+  awaitingPaswordChangeResponse(false);
 }
 
 function awaitingPaswordChangeResponse(bool){
