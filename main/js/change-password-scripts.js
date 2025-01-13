@@ -16,7 +16,7 @@ async function sendChangePasswordRequest(){
 
   if (passwordField.value != passwordField2.value) {
     console.log("Early return no password match.");
-    setChangePasswordErrorText("Password confirm does not match.");
+    setChangePasswordErrorText("New password needs to match");
     return;
   }
 
@@ -36,7 +36,15 @@ async function sendChangePasswordRequest(){
   })
   .then((response) => {
     if (response.status !== 200) {      
-      setChangePasswordErrorText(response.json().Error);    
+      response.json().then(responseJSON => { 
+        responseJSON.Error;}
+        error => { 
+          console.log(`Password reset request failed. The error encountered was: ${error}`);
+          setChangePasswordErrorText(`${jsonIn.Error}`);    
+          awaitingLoginResponse(false);
+        }
+      )
+      
       return;
     }      
   }) 
@@ -57,8 +65,8 @@ function awaitingPaswordChangeResponse(bool){
 
 
 function setChangePasswordErrorText(errorText){
-    changeContents("changePasswordErrorText", errorText);
     toggleContents(true, "changePasswordErrorMessage");
+    changeContents("changePasswordErrorText", errorText);
   }
   
   function clearChangePasswordErrorText(){
