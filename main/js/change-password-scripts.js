@@ -37,10 +37,9 @@ async function sendChangePasswordRequest(){
   .then((response) => {
     if (response.status !== 200) {      
       response.json().then(responseJSON => { 
-        responseJSON.Error;}
-        error => { 
-          console.log(`Password reset request failed. The error encountered was: ${error}`);
-          setChangePasswordErrorText(`${jsonIn.Error}`);    
+        let text = responseJSON.Error;
+          console.log(`Password reset request failed. The error encountered was: ${text}`);
+          setChangePasswordErrorText(`${text}`);    
           awaitingLoginResponse(false);
         }
       )
