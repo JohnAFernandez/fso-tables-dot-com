@@ -45,7 +45,9 @@ async function sendChangePasswordRequest(){
       )
       
       return;
-    }      
+    }
+
+    setChangePasswordSuccessText();
   }) 
   .catch ( 
     error => {
