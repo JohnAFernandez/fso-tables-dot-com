@@ -64,12 +64,22 @@ function awaitingPaswordChangeResponse(bool){
 
 
 function setChangePasswordErrorText(errorText){
-    toggleContents(true, "changePasswordErrorMessage");
-    changeContents("changePasswordErrorText", errorText);
-  }
-  
-  function clearChangePasswordErrorText(){
-    toggleContents(false, "changePasswordErrorMessage"); 
-    changeContents("changePasswordErrorText", " ");
-  }
-  
+  toggleContents(true, "changePasswordErrorMessage");
+  changeContents("changePasswordErrorText", errorText);
+}
+
+function clearChangePasswordErrorText(){
+  toggleContents(false, "changePasswordErrorMessage"); 
+  changeContents("changePasswordErrorText", " ");
+}
+
+function setChangePasswordSuccessText(){
+  clearChangePasswordErrorText();
+  toggleContents(true, "changePasswordSuccessMessage");
+  changeContents("changePasswordSuccessText", "Password Change Successful!")
+}
+
+function clearChangePasswordSuccessText(){
+  toggleContents(false, "changePasswordSuccessMessage");
+  changeContents("changePasswordSuccessText", "");
+}
