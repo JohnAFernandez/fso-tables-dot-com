@@ -50,6 +50,7 @@ async function onLogout() {
     })
     .then((response) => {
       if (response.status !== 200) {
+        // TODO, need logout popup here
         return;
       }
     }) 
@@ -128,15 +129,13 @@ function attemptLogin() {
 
   fetch(API_ROOTB + "users/login", {
     method: "POST",
-    body: JSON.stringify(loginRequest)
+    body: JSON.stringify(loginRequest),
+    credentials: "include"
   })
   .then((response) => { 
     if (response.status === 200) {
       // Default login expiration of a week.
       setCookie("username", loginRequest.email, 7*24)
-      if (getCookie("GanymedeToken") == ""){
-        console.log("Credential Token Header Not Saved");
-      }
 
       check_login_status_and_update();
       dismissLoginModal();

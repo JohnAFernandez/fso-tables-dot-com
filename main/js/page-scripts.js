@@ -905,7 +905,7 @@ async function sendNewPassword(){
   })
   .then((response) => { 
     if (response.status === 200) {
-      setCookie("email", email);
+      setCookie("username", email);
       return true;
     } else {
       response.json().then(responseJSON => { 
