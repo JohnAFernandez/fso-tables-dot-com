@@ -559,6 +559,8 @@ function apply_table(table) {
   replace_text_contents("table-aliases-content1", "");
   replace_text_contents("table-aliases-label", "");
   
+  let parent_item = document.getElementById(``);
+  let template_item = document.getElementById(``);
 
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
     let temporary_item = document.getElementById(`item${i}`);
