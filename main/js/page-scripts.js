@@ -559,23 +559,54 @@ function apply_table(table) {
   replace_text_contents("table-aliases-content1", "");
   replace_text_contents("table-aliases-label", "");
   
-  let parent_item = document.getElementById(``);
+  let parent_item = document.getElementById(`table-info-supercontainer`);
   let template_item = document.getElementById(``);
 
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
     let temporary_item = document.getElementById(`item${i}`);
-    
-    if (temporary_item === undefined){
-      for (; i < database_tables[Current_Table].items.length; i++){
-        let new_div = document.createElement("div"); 
-        
-        
+    let data_item = database_tables[Current_Table].items[i];
 
-        new_div.setAttribute("class","");
-        element.appendChild();
-      }
-
+    if (!temporary_item){
+      temporary_item = template_item.content.cloneNode(true);
+      parent_item.appendChild(temporary_item);
     }
+        // We need to cover these        
+        // template-item-name       
+        // template-major-version         
+        // template-deprecation-version    deprecation-area
+        // template-variable-type
+        // template-illegal-values        template-illegal-values-area
+        // template-alias-name            template-alias-area
+        // template-alias-version
+        // template-description
+
+         // Clone the new row and insert it into the table
+
+    let child = temporary_item.getElementsByClassName("data-item")[0];
+    if (child) { child.setAttribute("id", `item${i}`)};
+
+    child = temporary_item.getElementsByClassName("template-item-name")[0];
+    if (child) { child.textContent =  data_item.item_text};
+
+    child = temporary_item.getElementsByClassName("template-major-version")[0];
+    if (child) { child.textContent =  data_item.major_version};        
+
+    // TODO! Make sure that the info has deprecations in the future
+    child = temporary_item.getElementsByClassName("template-deprecation-area")[0];
+    if (child) { child.style.display = "none"};        
+
+    // TODO! Clean this up, probably during processing so that we have a user facing format
+    child = temporary_item.getElementsByClassName("template-variable-type")[0];
+    if (child) { child.textContent = data_item.info_type};        
+
+    child = temporary_item.getElementsByClassName("template-illegal-values-area")[0];
+    if (child) { child.style.display = "none"};        
+
+    child = temporary_item.getElementsByClassName("template-alias-area")[0];
+    if (child) { child.style.display = "none"};        
+
+    child = temporary_item.getElementsByClassName("template-description")[0];
+    if (child) { child.textContent = data_item.documentation};        
 
     /*
     replace_inner_html(`item${i}`, `<div id="${i}a" class="row">
