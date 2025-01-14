@@ -739,7 +739,7 @@ async function setRegistrationState(state){
 
     if (request){
 
-      const emailRegistrationResult = await sendNewEmailRegistration(); 
+      const emailRegistrationResult = await sendNewEmailRegistration().catch({}); 
       if (emailRegistrationResult !== true){
         awaitingRegistrationResponse(false);
         return;
@@ -752,7 +752,7 @@ async function setRegistrationState(state){
 
     if (request){
 
-      const passwordResult = await sendNewPassword(); 
+      const passwordResult = await sendNewPassword().catch({}); 
       if (passwordResult !== true){
         awaitingRegistrationResponse(false);
         return;
