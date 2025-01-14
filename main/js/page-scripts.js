@@ -565,10 +565,11 @@ function apply_table(table) {
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
     let temporary_item = document.getElementById(`item${i}`);
     let data_item = database_tables[Current_Table].items[i];
+    let new_copy = false;
 
     if (!temporary_item){
       temporary_item = template_item.content.cloneNode(true);
-      parent_item.appendChild(temporary_item);
+      new_copy = true;
     }
         // We need to cover these        
         // template-item-name       
@@ -656,7 +657,9 @@ function apply_table(table) {
         </div>`)
 
     toggleContents(true, `item${i}`);
-*/
+*/  if (new_copy){
+      parent_item.appendChild(temporary_item);
+    }
   }
 
 }
