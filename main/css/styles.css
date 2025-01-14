@@ -299,6 +299,10 @@ li {
     max-width: 750px;
 } 
 
+.text-data-area-{
+    max-width: 900px;
+}
+
 .indented-row {
     margin-left: 30px;
     padding-right: 5px;
