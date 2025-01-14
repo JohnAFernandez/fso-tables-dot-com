@@ -125,12 +125,14 @@ function showWelcome()
   toggleContents(false, "tables-text-area");
   toggleContents(true, "welcome-text-area");
   toggleContents(true, "welcome-text-area2");
+  toggleContents(true, "welcome-text-area3")
 }
 
 function showAccount()
 {
   toggleContents(false, "welcome-text-area");
   toggleContents(false, "welcome-text-area2");
+  toggleContents(false, "welcome-text-area3");  
   toggleContents(false, "tables-text-area");
   toggleContents(true, "account-text-area");
 
@@ -151,6 +153,7 @@ function showTables()
 {
   toggleContents(false, "welcome-text-area");
   toggleContents(false, "welcome-text-area2");
+  toggleContents(false, "welcome-text-area3");  
   toggleContents(false, "account-text-area");
   toggleContents(true, "tables-text-area");
 }
