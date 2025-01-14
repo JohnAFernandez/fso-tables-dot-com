@@ -583,30 +583,30 @@ function apply_table(table) {
 
          // Clone the new row and insert it into the table
 
-    let child = temporary_item.querySelector("data-item");
+    let child = temporary_item.querySelector(".data-item");
     if (child) { child.setAttribute("id", `item${i}`)};
 
-    child = temporary_item.querySelector("template-item-name");
+    child = temporary_item.querySelector(".template-item-name");
     if (child) { child.textContent =  data_item.item_text};
 
-    child = temporary_item.querySelector("template-major-version");
+    child = temporary_item.querySelector(".template-major-version");
     if (child) { child.textContent =  data_item.major_version};        
 
     // TODO! Make sure that the info has deprecations in the future
-    child = temporary_item.querySelector("template-deprecation-area");
+    child = temporary_item.querySelector(".template-deprecation-area");
     if (child) { child.style.display = "none"};        
 
     // TODO! Clean this up, probably during processing so that we have a user facing format
-    child = temporary_item.querySelector("template-variable-type");
+    child = temporary_item.querySelector(".template-variable-type");
     if (child) { child.textContent = data_item.info_type};        
 
-    child = temporary_item.querySelector("template-illegal-values-area");
+    child = temporary_item.querySelector(".template-illegal-values-area");
     if (child) { child.style.display = "none"};        
 
-    child = temporary_item.querySelector("template-alias-area");
+    child = temporary_item.querySelector(".template-alias-area");
     if (child) { child.style.display = "none"};        
 
-    child = temporary_item.querySelector("template-description");
+    child = temporary_item.querySelector(".template-description");
     if (child) { child.textContent = data_item.documentation};        
 
     /*
