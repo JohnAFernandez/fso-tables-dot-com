@@ -47,7 +47,7 @@
           <li class="nav-item active">
             <a id="tables-link" class="nav-link" href="javascript:void(0)" onclick="setPageMode(`tables`)">Tables</a>
           </li>
-          <li class="nav-item active" id="nav-apihelp">
+          <li class="nav-item active" id="nav-apihelp" style="display:none">
             <a class="nav-link disabled" href="javascript:void(0)" onclick="setPageMode(`apihelp`)">API Documentation</a>
           </li>
           <li class="nav-item active" id="nav-login">
@@ -59,13 +59,15 @@
           <li class="nav-item active" id="nav-account">
             <a class="nav-link" href="javascript:void(0)" onclick="setPageMode(`account`)">Profile</a>
           </li>
-          <li class="nav-item active" id="nav-logout">
-            <a class="nav-link" href="javascript:void(0)" onclick="onLogout()">Log Out</a>
-          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         </form>
+        <ul>
+          <li class="nav-item active" id="nav-logout">
+            <a class="nav-link" href="javascript:void(0)" onclick="onLogout()">Log Out</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
