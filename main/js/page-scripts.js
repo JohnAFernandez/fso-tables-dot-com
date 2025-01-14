@@ -560,7 +560,7 @@ function apply_table(table) {
   replace_text_contents("table-aliases-label", "");
   
   let parent_item = document.getElementById(`table-info-supercontainer`);
-  let template_item = document.getElementById(``);
+  let template_item = document.getElementById(`dataRowTemplate`);
 
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
     let temporary_item = document.getElementById(`item${i}`);
