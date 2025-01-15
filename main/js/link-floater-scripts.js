@@ -67,5 +67,5 @@ function setTableViaFloater(id) {
         return;
     }
 
-    apply_table(id);
+    apply_table(UI_TABLE_INDEX[id]);
 }
