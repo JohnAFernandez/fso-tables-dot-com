@@ -1,4 +1,5 @@
-const UI_Table_Array = [ "Ai",
+const UI_Table_Array = [ 
+"Ai",
 "Ai Profiles",
 "Animation",
 "Armor",
@@ -63,9 +64,9 @@ async function populate_floater_links(){
 }
 
 function setTableViaFloater(id) {
-    if (id < 1 || id > 51){
+    if (id < 0 || id > 51){
         return;
     }
 
-    apply_table(UI_TABLE_INDEX[id - 1]);
+    apply_table(UI_TABLE_INDEX[id] - 1);
 }
