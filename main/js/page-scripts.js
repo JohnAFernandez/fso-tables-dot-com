@@ -6,80 +6,23 @@ let API_ROOT = "https://www.fsotables.com/api/";
 let Current_Table = 0;
 let Ui_Update_Needed = false;
 
-let Updating_tables = false;
-let Updating_table_items = false;
-let Updating_parse_behaviors = false;
-let Updating_restrictions = false;
-let Updating_deprecations = false;
-let Updating_table_aliases = false;
+let Updating_table_array = false;
+let Updating_table_item_array = false;
+let Updating_parse_behavior_array = false;
+let Updating_restrictions_array = false;
+let Updating_deprecations_array = false;
+let Updating_table_aliases_array = false;
 let Fetching_info_error = "";
 
 // Regularly check for updates.
 window.setInterval(check_for_update, 100);
 function check_for_update() {
-  if (Ui_Update_Needed && !Updating_tables && !Updating_table_items && !Updating_parse_behaviors && !Updating_restrictions && !Updating_deprecations && !Updating_table_aliases ){
+  if (Ui_Update_Needed && !Updating_table_array && !Updating_table_item_array && !Updating_parse_behavior_array && !Updating_restrictions_array && !Updating_deprecations_array && !Updating_table_aliases_array ){
     console.log("Updating UI");
     // UPDATE THE UI HERE!
     apply_table(Current_Table);
     Ui_Update_Needed = false;
   } 
-}
-
-// Run at the start of the page (called from the html) with our best guess at Architecture
-function initPage(){
-  console.log("Initializing Page... v0.8");
-
-  console.log("Getting the mode cookie...")
-  const modeCookie = getCookie("mode");
-  console.log(`Found "${modeCookie}", continuing...`);
-
-  if (modeCookie === "welcome" || modeCookie ==="about") {
-    console.log("Setting welcome page...");
-    setPageMode("welcome");
-  } else if (modeCookie === "tables") {
-    console.log("Setting tables page...");
-    setPageMode("tables");
-  } else if (modeCookie === "account") {
-    console.log("Setting account page...");
-
-    const username = getCookie("username");
-
-    // the internal check to send back to the welcome page can't differentiate between intended failure
-    // and unintended failure, so divert here.
-    if (username == ""){
-      setPageMode("welcome");
-    } else {
-      setPageMode("account");
-    }
-  } else {
-    console.log("Setting welcome page...");
-    setPageMode("welcome");
-  }
-
-  console.log("Checking login status...");
-  check_login_status_and_update();
-
-  console.log("Resetting table display");
-  apply_table(-1);
-
-  console.log("Adjusting Floating Link Holder")
-  adjustFloater();
-
-  console.log("Removing the pre-load cover as the UI initialization is finished.")
-  toggleContents(false, "cover");
-
-  console.log("Getting current Table");
-  const tableIndexCookie = getCookie("table");
-  console.log(`Found "${tableIndexCookie}"`);
-
-  if (tableIndexCookie == undefined || tableIndexCookie === ""){
-    setCookie("table", "0");
-  }
-
-  console.log("Getting Table Data");
-  update_local_data();
-  
-  console.log("End of initialization function");
 }
 
 // Switch the download link contents on or off.
@@ -355,7 +298,7 @@ function update_local_data() {
 async function get_table_data() {
   // TODO, make sure this gets into long term storage and can be pulled to avoid unneccessary API calls.
 
-  Updating_tables = true;
+  Updating_table_array = true;
 
   await fetch(API_ROOT + "tables", { 
     method: "GET" 
@@ -365,18 +308,18 @@ async function get_table_data() {
     database_tables = responseJSON;
     enableItemViaClass(true, "tables-link");
     // Setting the table object items within the drowpdown that the tables page is going to have its own rendering function.
-    Updating_tables = false;
+    Updating_table_array = false;
   }).catch ( 
     error => {
       Fetching_info_error += error;
       Fetching_info_error += " ";
-      Updating_tables = false;
+      Updating_table_array = false;
     }
   );
 }
 
 function get_item_data() {
-  Updating_table_items = true;  
+  Updating_table_item_array = true;  
 
   fetch(API_ROOT + "tables/items", { 
     method: "GET" 
@@ -411,10 +354,10 @@ function get_item_data() {
       }
     }
 
-    Updating_table_items = false;
+    Updating_table_item_array = false;
   }).catch ( 
     error => {
-      Updating_table_items = false;
+      Updating_table_item_array = false;
       Fetching_info_error += error;
       Fetching_info_error += " ";
     }
@@ -422,7 +365,7 @@ function get_item_data() {
 }
 
 function get_table_aliases() {
-  Updating_table_aliases = true;
+  Updating_table_aliases_array = true;
 
   fetch(API_ROOT + "tables/aliases", { 
     method: "GET" 
@@ -431,18 +374,18 @@ function get_table_aliases() {
   .then(responseJSON => {
     database_aliases = responseJSON;
 
-    Updating_table_aliases = false;
+    Updating_table_aliases_array = false;
   }).catch ( 
     error => {
       Fetching_info_error += error;
       Fetching_info_error += " ";
-      Updating_table_aliases = false;
+      Updating_table_aliases_array = false;
     }
   );
 }
 
 function get_parse_behaviors() {  
-  Updating_parse_behaviors = true;
+  Updating_parse_behavior_array = true;
 
   fetch(API_ROOT + "tables/parse-types", { 
     method: "GET" 
@@ -451,19 +394,19 @@ function get_parse_behaviors() {
   .then(responseJSON => {
     database_parse_behaviors = responseJSON;
 
-    Updating_parse_behaviors = false;
+    Updating_parse_behavior_array = false;
   }).catch ( 
     error => {
       Fetching_info_error += error;
       Fetching_info_error += " ";
-      Updating_parse_behaviors = false;
+      Updating_parse_behavior_array = false;
     }
   );
 }
 
 // TODO! Don't forget to rework restrictions on the database side so that it is text based!!
 function get_restrictions() {
-  Updating_restrictions = true;
+  Updating_restrictions_array = true;
 
   fetch(API_ROOT + "tables/restrictions", { 
     method: "GET" 
@@ -472,18 +415,18 @@ function get_restrictions() {
   .then(responseJSON => {
     database_restrictions = responseJSON;
 
-    Updating_restrictions = false;
+    Updating_restrictions_array = false;
   }).catch ( 
     error => {
       Fetching_info_error.concat(error);
       Fetching_info_error.concat(" ");
-      Updating_restrictions = false;
+      Updating_restrictions_array = false;
     }
   );
 }
 
 function get_deprecations() {
-  Updating_deprecations = true;
+  Updating_deprecations_array = true;
 
   fetch(API_ROOT + "tables/deprecations", { 
     method: "GET" 
@@ -492,12 +435,12 @@ function get_deprecations() {
   .then(responseJSON => {
     database_deprecations = responseJSON;
 
-    Updating_deprecations = false;
+    Updating_deprecations_array = false;
   }).catch ( 
     error => {
       Fetching_info_error.concat(error);
       Fetching_info_error.concat(" ");
-      Updating_deprecations = false;
+      Updating_deprecations_array = false;
     }
   );
 }
