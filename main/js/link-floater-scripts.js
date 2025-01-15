@@ -63,9 +63,9 @@ async function populate_floater_links(){
 }
 
 function setTableViaFloater(id) {
-    if (id < 0 || id > 51){
+    if (id < 1 || id > 51){
         return;
     }
 
-    apply_table(UI_TABLE_INDEX[id]);
+    apply_table(UI_TABLE_INDEX[id - 1]);
 }
