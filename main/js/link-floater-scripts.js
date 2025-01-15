@@ -58,13 +58,13 @@ const UI_TABLE_INDEX =[ 1, 2, 50, 3, 4, 5, 6, 7, 8, 9, 10, 45, 11, 12, 13, 14, 1
 document.addEventListener( "scroll", (event) => { adjustFloater(); } );
 
 async function populate_floater_links(){
-    for (let i = 0; i < 51; i++) {
+    for (let i = 0; i < 52; i++) {
         changeContents(`floater-link-${i}`, UI_Table_Array[i]);
     }
 }
 
 function setTableViaFloater(id) {
-    if (id < 0 || id > 51){
+    if (id < 0 || id > 52){
         return;
     }
 
