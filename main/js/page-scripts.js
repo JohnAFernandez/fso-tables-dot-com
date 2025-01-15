@@ -956,7 +956,6 @@ function adjustFloater(){
       element.style.maxHeight = "90%";
   } else {
       const percent = ((500 - window.scrollY) / 500);
-      console.log(`new amount is ${percent}%`);
       element.style.top = `${percent * 30 + 5}%`;
       element.style.minHeight = `${(1 - percent) * 30 + 60}%`;
       element.style.maxHeight = `${(1 - percent) * 30 + 60}%`;

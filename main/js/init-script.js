@@ -37,7 +37,10 @@ function initPage(){
   
     console.log("Adjusting Floating Link Holder")
     adjustFloater();
-  
+
+    console.log("Adding Floater Links")
+    populate_floater_links();
+
     console.log("Removing the pre-load cover as the UI initialization is finished.")
     toggleContents(false, "cover");
   
