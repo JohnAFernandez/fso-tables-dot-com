@@ -344,6 +344,7 @@ li {
     padding-top: 30px;
     border-color: rgb(48, 48, 48);
     border-radius: 5px;
+    overflow-y: auto;
 }
 
 
