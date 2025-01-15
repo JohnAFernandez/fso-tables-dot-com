@@ -60,9 +60,6 @@
             <a class="nav-link" href="javascript:void(0)" onclick="setPageMode(`account`)">Profile</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        </form>
         <div class="nav-item active" id="nav-logout">
           <a class="nav-link" href="javascript:void(0)" onclick="onLogout()">Log Out</a>
         </div>
@@ -70,7 +67,9 @@
     </nav>
 
     <br><br>
-<!--
+
+
+  <!--
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -455,6 +454,19 @@
       </div>
     </div>
     
+    <div class="container floating-link-container" id="floating-link-container">
+      <div class="row">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-4">
+
+        </div>
+      </div>
+    </div>
+
     <template id="dataRowTemplate">
       <div class="data-item item-body">
         <div class="row">
@@ -516,6 +528,7 @@
     </script>
     <script src="main/js/login-scritps.js"></script>
     <script src="main/js/change-password-scripts.js"></script>
+    <script src="main/js/link-floater-scripts.js"></script>
 
   </body>
 </html>

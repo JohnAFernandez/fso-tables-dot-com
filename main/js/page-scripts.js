@@ -62,6 +62,9 @@ function initPage(){
   console.log("Resetting table display");
   apply_table(-1);
 
+  console.log("Adjusting Floating Link Holder")
+  adjustFloater();
+
   console.log("Removing the pre-load cover as the UI initialization is finished.")
   toggleContents(false, "cover");
 
@@ -989,4 +992,20 @@ function switchArrow(){
   UpArrow = !UpArrow;
   toggleContents(UpArrow, "passwordChangeArrow1");
   toggleContents(!UpArrow, "passwordChangeArrow2");  
+}
+
+function adjustFloater(){
+  let element = document.getElementById("floating-link-container");
+
+  if (window.scrollY > 500){
+      element.style.top = "5%";
+      element.style.minHeight = "90%";
+      element.style.maxHeight = "90%";
+  } else {
+      const percent = ((500 - window.scrollY) / 500);
+      console.log(`new amount is ${percent}%`);
+      element.style.top = `${percent * 30 + 5}%`;
+      element.style.minHeight = `${(1 - percent) * 30 + 60}%`;
+      element.style.maxHeight = `${(1 - percent) * 30 + 60}%`;
+  }
 }
