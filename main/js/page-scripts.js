@@ -481,7 +481,7 @@ function apply_table(table) {
     toggleContents(false, "table-info-area");
 
     try{  
-      for (let i = 0 ; i < 301; i++){
+      for (let i = 0 ; i < 200; i++){
         toggleContents(false, `item${i}`);
       }
     } catch {}
@@ -509,104 +509,107 @@ function apply_table(table) {
   let template_item = document.getElementById(`dataRowTemplate`);
   let i = 0;
 
-  for (i = 0; i < database_tables[Current_Table].items.length; i++){
-    let temporary_item = document.getElementById(`item${i}`);
-    let data_item = database_tables[Current_Table].items[i];
-    let new_copy = false;
-
-    if (!temporary_item){
-      temporary_item = template_item.content.cloneNode(true);
-      new_copy = true;
-    }
-        // We need to cover these        
-        // template-item-name       
-        // template-major-version         
-        // template-deprecation-version    deprecation-area
-        // template-variable-type
-        // template-illegal-values        template-illegal-values-area
-        // template-alias-name            template-alias-area
-        // template-alias-version
-        // template-description
-
-         // Clone the new row and insert it into the table
-
-    let child = temporary_item.querySelector(".data-item");
-    if (child) { child.setAttribute("id", `item${i}`)};
-
-    child = temporary_item.querySelector(".template-item-name");
-    if (child) { child.textContent =  data_item.item_text};
-
-    child = temporary_item.querySelector(".template-major-version");
-    if (child) { child.textContent =  data_item.major_version};        
-
-    // TODO! Make sure that the info has deprecations in the future
-    child = temporary_item.querySelector(".template-deprecation-area");
-    if (child) { child.style.display = "none"};        
-
-    // TODO! Clean this up, probably during processing so that we have a user facing format
-    child = temporary_item.querySelector(".template-variable-type");
-    if (child) { child.textContent = data_item.info_type};        
-
-    child = temporary_item.querySelector(".template-illegal-values-area");
-    if (child) { child.style.display = "none"};        
-
-    child = temporary_item.querySelector(".template-alias-area");
-    if (child) { child.style.display = "none"};        
-
-    child = temporary_item.querySelector(".template-description");
-    if (child) { child.textContent = data_item.documentation};        
-
-    /*
-    replace_inner_html(`item${i}`, `<div id="${i}a" class="row">
-          <div id="${i}a-1" class="col-8">
-            <h3><b>${database_tables[Current_Table].items[i].item_text}</b></h3><br>
+  if (database_tables[Current_Table].items){
+    for (i = 0; i < database_tables[Current_Table].items.length; i++){
+      let temporary_item = document.getElementById(`item${i}`);
+      let data_item = database_tables[Current_Table].items[i];
+      let new_copy = false;
+  
+      if (!temporary_item){
+        temporary_item = template_item.content.cloneNode(true);
+        new_copy = true;
+      }
+          // We need to cover these        
+          // template-item-name       
+          // template-major-version         
+          // template-deprecation-version    deprecation-area
+          // template-variable-type
+          // template-illegal-values        template-illegal-values-area
+          // template-alias-name            template-alias-area
+          // template-alias-version
+          // template-description
+  
+           // Clone the new row and insert it into the table
+  
+      let child = temporary_item.querySelector(".data-item");
+      if (child) { child.setAttribute("id", `item${i}`)};
+  
+      child = temporary_item.querySelector(".template-item-name");
+      if (child) { child.textContent =  data_item.item_text};
+  
+      child = temporary_item.querySelector(".template-major-version");
+      if (child) { child.textContent =  data_item.major_version};        
+  
+      // TODO! Make sure that the info has deprecations in the future
+      child = temporary_item.querySelector(".template-deprecation-area");
+      if (child) { child.style.display = "none"};        
+  
+      // TODO! Clean this up, probably during processing so that we have a user facing format
+      child = temporary_item.querySelector(".template-variable-type");
+      if (child) { child.textContent = data_item.info_type};        
+  
+      child = temporary_item.querySelector(".template-illegal-values-area");
+      if (child) { child.style.display = "none"};        
+  
+      child = temporary_item.querySelector(".template-alias-area");
+      if (child) { child.style.display = "none"};        
+  
+      child = temporary_item.querySelector(".template-description");
+      if (child) { child.textContent = data_item.documentation};        
+  
+      /*
+      replace_inner_html(`item${i}`, `<div id="${i}a" class="row">
+            <div id="${i}a-1" class="col-8">
+              <h3><b>${database_tables[Current_Table].items[i].item_text}</b></h3><br>
+            </div>
           </div>
-        </div>
-        <div id="${i}a" class="row">
-          <div id="${i}a-2" class="col-3">
-            <h5>Minimum Version: &#9;<b>${database_tables[Current_Table].items[i].major_version}</b></h5>
+          <div id="${i}a" class="row">
+            <div id="${i}a-2" class="col-3">
+              <h5>Minimum Version: &#9;<b>${database_tables[Current_Table].items[i].major_version}</b></h5>
+            </div>
+              <br>
+            <div id="${i}a-3" class="col-3">
+              <!--<h5>Deprecation Version: &#9;<b>24.130.0</b></h5>-->
+            </div>
           </div>
+          <br>
+          <div id="${i}b" class="row">
+            <div id="${i}b-1" class="col-3">
+              <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].info_type}</b></h5>
+            </div>
             <br>
-          <div id="${i}a-3" class="col-3">
-            <!--<h5>Deprecation Version: &#9;<b>24.130.0</b></h5>-->
+            <div id="${i}b-2" class="col-6">
+              <!--<h5>Illegal Values: &#9;<b>&lt; 500</b></h5>-->
+            </div>
+  
           </div>
-        </div>
-        <br>
-        <div id="${i}b" class="row">
-          <div id="${i}b-1" class="col-3">
-            <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].info_type}</b></h5>
-          </div>
-          <br>
-          <div id="${i}b-2" class="col-6">
-            <!--<h5>Illegal Values: &#9;<b>&lt; 500</b></h5>-->
-          </div>
-
-        </div>
-        <div id="${i}b" class="row">
-          <div id="${i}b-1" class="col-3">
-            <!--<h5>Aliases: &#9;<b>$Best-Option-Name:</b></h5>-->
-          </div>
-          <br>
-          <div id="${i}b-2" class="col-6">
-            <!--<h5>Alias Version: &#9;<b> 24.129.7</b></h5>-->
-          </div>
-
-        </div>        
-        <div id="${i}c" class="row indented-row">
-          <div class="col-9">
-            <h4>
-              <br>
-              ${database_tables[Current_Table].items[i].documentation}
-              <br>
-              <br>
-            </h4>
-          </div>
-        </div>`)
-
-    toggleContents(true, `item${i}`);
-*/  if (new_copy){
-      parent_item.appendChild(temporary_item);
+          <div id="${i}b" class="row">
+            <div id="${i}b-1" class="col-3">
+              <!--<h5>Aliases: &#9;<b>$Best-Option-Name:</b></h5>-->
+            </div>
+            <br>
+            <div id="${i}b-2" class="col-6">
+              <!--<h5>Alias Version: &#9;<b> 24.129.7</b></h5>-->
+            </div>
+  
+          </div>        
+          <div id="${i}c" class="row indented-row">
+            <div class="col-9">
+              <h4>
+                <br>
+                ${database_tables[Current_Table].items[i].documentation}
+                <br>
+                <br>
+              </h4>
+            </div>
+          </div>`)
+  
+      toggleContents(true, `item${i}`);
+  */  if (new_copy){
+        parent_item.appendChild(temporary_item);
+      }
     }
+  
   }
 
   for(; i < 2000 ; i++){
