@@ -564,8 +564,9 @@ function apply_table(table) {
   
   let parent_item = document.getElementById(`table-info-supercontainer`);
   let template_item = document.getElementById(`dataRowTemplate`);
+  let i = 0;
 
-  for (let i = 0; i < database_tables[Current_Table].items.length; i++){
+  for (i = 0; i < database_tables[Current_Table].items.length; i++){
     let temporary_item = document.getElementById(`item${i}`);
     let data_item = database_tables[Current_Table].items[i];
     let new_copy = false;
@@ -662,6 +663,15 @@ function apply_table(table) {
     toggleContents(true, `item${i}`);
 */  if (new_copy){
       parent_item.appendChild(temporary_item);
+    }
+  }
+
+  for(; i < 2000 ; i++){
+    let theoretical_item = document.getElementById(`item${i}`);
+    if (theoretical_item){
+      theoretical_item.style.display = "none";
+    } else {
+      break;
     }
   }
 
