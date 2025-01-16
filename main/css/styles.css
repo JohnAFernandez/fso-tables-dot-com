@@ -348,6 +348,9 @@ li {
     overflow-y: auto;
 }
 
+.last-floater-row {
+    padding-bottom: 30px;
+}
 
 a:not([href]):not([class]):hover{
     color: var(--clr-500);
