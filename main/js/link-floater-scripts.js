@@ -121,5 +121,9 @@ function setTableViaFloater(id) {
         return;
     }
 
+    // this first so that the info we enable will have an existing place to be.
+    setPageMode("tables");
+
     apply_table(UI_TABLE_INDEX[id] - 1);
+
 }
