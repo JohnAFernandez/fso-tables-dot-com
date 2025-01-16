@@ -16,12 +16,11 @@ let Fetching_info_error = "";
 
 // Regularly check for updates.
 window.setInterval(check_for_update, 100);
-function check_for_update() {
+async function check_for_update() {
   if (Ui_Update_Needed && !Updating_table_array && !Updating_table_item_array && !Updating_parse_behavior_array && !Updating_restrictions_array && !Updating_deprecations_array && !Updating_table_aliases_array ){
-    console.log("Updating UI");
-    // UPDATE THE UI HERE!
-    apply_table(Current_Table);
     Ui_Update_Needed = false;
+    console.log("Updating UI");
+    apply_table(Current_Table).catch(error => { console.log("Apply Table has failed.");});
   } 
 }
 
@@ -463,7 +462,7 @@ function replace_inner_html(element_id, contents){
 }
 
 // Put the current table into the UI
-function apply_table(table) {
+async function apply_table(table) {
   console.log("Running Apply Table");
 
   // if there was an error, tell the user
@@ -518,6 +517,8 @@ function apply_table(table) {
       if (!temporary_item){
         temporary_item = template_item.content.cloneNode(true);
         new_copy = true;
+      } else {
+        temporary_item.style.display = "";
       }
           // We need to cover these        
           // template-item-name       
@@ -556,56 +557,8 @@ function apply_table(table) {
   
       child = temporary_item.querySelector(".template-description");
       if (child) { child.textContent = data_item.documentation};        
-  
-      /*
-      replace_inner_html(`item${i}`, `<div id="${i}a" class="row">
-            <div id="${i}a-1" class="col-8">
-              <h3><b>${database_tables[Current_Table].items[i].item_text}</b></h3><br>
-            </div>
-          </div>
-          <div id="${i}a" class="row">
-            <div id="${i}a-2" class="col-3">
-              <h5>Minimum Version: &#9;<b>${database_tables[Current_Table].items[i].major_version}</b></h5>
-            </div>
-              <br>
-            <div id="${i}a-3" class="col-3">
-              <!--<h5>Deprecation Version: &#9;<b>24.130.0</b></h5>-->
-            </div>
-          </div>
-          <br>
-          <div id="${i}b" class="row">
-            <div id="${i}b-1" class="col-3">
-              <h5>Type: &#9;<b>${database_tables[Current_Table].items[i].info_type}</b></h5>
-            </div>
-            <br>
-            <div id="${i}b-2" class="col-6">
-              <!--<h5>Illegal Values: &#9;<b>&lt; 500</b></h5>-->
-            </div>
-  
-          </div>
-          <div id="${i}b" class="row">
-            <div id="${i}b-1" class="col-3">
-              <!--<h5>Aliases: &#9;<b>$Best-Option-Name:</b></h5>-->
-            </div>
-            <br>
-            <div id="${i}b-2" class="col-6">
-              <!--<h5>Alias Version: &#9;<b> 24.129.7</b></h5>-->
-            </div>
-  
-          </div>        
-          <div id="${i}c" class="row indented-row">
-            <div class="col-9">
-              <h4>
-                <br>
-                ${database_tables[Current_Table].items[i].documentation}
-                <br>
-                <br>
-              </h4>
-            </div>
-          </div>`)
-  
-      toggleContents(true, `item${i}`);
-  */  if (new_copy){
+
+      if (new_copy){
         parent_item.appendChild(temporary_item);
       }
     }
