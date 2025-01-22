@@ -799,7 +799,7 @@ async function sendNewEmailRegistration(){
     email: emailField.value,
   }
 
-  const result = await fetch(API_ROOTB + "users/register", {
+  const result = await fetch(API_ROOT + "users/register", {
     method: "POST",
     body: JSON.stringify(newEmailRegistrationRequest)
   })
@@ -847,7 +847,7 @@ async function sendNewPassword(){
     code: confirmationCode.value,
   }
 
-  const result = await fetch(API_ROOTB + `validation/${email}`, {
+  const result = await fetch(API_ROOT + `validation/${email}`, {
     method: "POST",
     body: JSON.stringify(emailConfirmRequest),
     headers: { "password" : passwordField.value,
