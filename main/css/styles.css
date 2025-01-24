@@ -352,6 +352,14 @@ li {
     padding-bottom: 30px;
 }
 
+.edit-button {
+    background-color: #31312d;
+    border-color: var(--clr-400);
+    border-radius: 30px;
+    border-width: 2px;
+    color: #fafcaf;
+}
+
 a:not([href]):not([class]):hover{
     color: var(--clr-500);
 }
