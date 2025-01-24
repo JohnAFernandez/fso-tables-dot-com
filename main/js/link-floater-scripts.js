@@ -109,6 +109,7 @@ const UI_TABLE_INDEX =[
 ]
 
 document.addEventListener( "scroll", (event) => { adjustFloater(); } );
+window.addEventListener( "resize", (event) => { adjustFloater(); } );
 
 async function populate_floater_links(){
     for (let i = 0; i < 52; i++) {
@@ -132,12 +133,12 @@ function setTableViaFloater(id) {
 function adjustFloater(){
     let element = document.getElementById("floating-link-container");
   
-    if (window.scrollY > 350){
-        element.style.top = "30px";
-        element.style.minHeight = `${window.innerHeight - 60}px`;
-        element.style.maxHeight = `${window.innerHeight - 60}px`;
+    if (window.scrollY > 300){
+        element.style.top = "70px";
+        element.style.minHeight = `${window.innerHeight - 70 - 30}px`;
+        element.style.maxHeight = `${window.innerHeight - 70 - 30}px`;
     } else {
-        const top = ((350 - window.scrollY) / 350) * 300 + 30;
+        const top = ((300 - window.scrollY) / 350) * 300 + 70;
 
         element.style.top = `${top}px`;
         element.style.minHeight = `${window.innerHeight - top - 30}px`;
