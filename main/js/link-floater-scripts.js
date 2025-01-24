@@ -127,3 +127,20 @@ function setTableViaFloater(id) {
     apply_table(UI_TABLE_INDEX[id] - 1);
 
 }
+
+
+function adjustFloater(){
+    let element = document.getElementById("floating-link-container");
+  
+    if (window.scrollY > 350){
+        element.style.top = "30px";
+        element.style.minHeight = `${window.innerHeight - 60}px`;
+        element.style.maxHeight = `${window.innerHeight - 60}px`;
+    } else {
+        const top = ((350 - window.scrollY) / 350) * 300 + 30;
+
+        element.style.top = `${top}px`;
+        element.style.minHeight = `${window.innerHeight - top - 30}px`;
+        element.style.maxHeight = `${window.innerHeight - top - 30}px`;
+    }
+  }

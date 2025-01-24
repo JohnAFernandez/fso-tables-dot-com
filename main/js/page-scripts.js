@@ -903,17 +903,3 @@ function switchArrow(){
   toggleContents(!UpArrow, "passwordChangeArrow2");  
 }
 
-function adjustFloater(){
-  let element = document.getElementById("floating-link-container");
-
-  if (window.scrollY > 500){
-      element.style.top = "5%";
-      element.style.minHeight = "90%";
-      element.style.maxHeight = "90%";
-  } else {
-      const percent = ((500 - window.scrollY) / 500);
-      element.style.top = `${percent * 30 + 5}%`;
-      element.style.minHeight = `${(1 - percent) * 30 + 60}%`;
-      element.style.maxHeight = `${(1 - percent) * 30 + 60}%`;
-  }
-}
