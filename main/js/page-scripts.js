@@ -533,30 +533,61 @@ async function apply_table(table) {
            // Clone the new row and insert it into the table
   
       let child = temporary_item.querySelector(".data-item");
-      if (child) { child.setAttribute("id", `item${i}`)};
-  
+      if (child) { 
+        child.setAttribute("id", `item${i}`);
+        child.setAttribute("data-item-id", `${data_item.item_id}`);
+      }
+
+      child = temporary_item.querySelector(".edit-button");
+      if (child) {
+        child.setAttribute("id", `item${i}-edit-button`);
+        child.setAttribute("onclick", `initiateItemEdit(${i},${data_item.item_id})`);
+      }
+
       child = temporary_item.querySelector(".template-item-name");
-      if (child) { child.textContent =  data_item.item_text};
+      if (child) { 
+        child.textContent = data_item.item_text;
+        child.setAttribute("id", `item${i}-item-text`);
+      }
   
       child = temporary_item.querySelector(".template-major-version");
-      if (child) { child.textContent =  data_item.major_version};        
+      if (child) { 
+        child.textContent = data_item.major_version;
+        child.setAttribute("id", `item${i}-major-version`);
+      }        
   
       // TODO! Make sure that the info has deprecations in the future
       child = temporary_item.querySelector(".template-deprecation-area");
-      if (child) { child.style.display = "none"};        
+      if (child) { 
+        child.style.display = "none";
+        child.setAttribute("id", `item${i}-item-text`);
+        
+      }        
   
       // TODO! Clean this up, probably during processing so that we have a user facing format
       child = temporary_item.querySelector(".template-variable-type");
-      if (child) { child.textContent = data_item.info_type};        
+      if (child) { 
+        child.textContent = data_item.info_type;
+        child.setAttribute("id", `item${i}-variable-type`);   
+      };        
   
       child = temporary_item.querySelector(".template-illegal-values-area");
-      if (child) { child.style.display = "none"};        
+      if (child) { 
+        child.style.display = "none";
+        child.setAttribute("id", `item${i}-illegal-values-area`);
+      };        
   
       child = temporary_item.querySelector(".template-alias-area");
-      if (child) { child.style.display = "none"};        
+      if (child) { 
+        child.style.display = "none";
+        child.setAttribute("id", `item${i}-alias-area`);
+      };        
   
       child = temporary_item.querySelector(".template-description");
-      if (child) { child.textContent = data_item.documentation};        
+      if (child) { 
+        child.textContent = data_item.documentation;
+        child.setAttribute("id", `item${i}-documentation`);      
+      }
 
       if (new_copy){
         parent_item.appendChild(temporary_item);
