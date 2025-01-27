@@ -360,6 +360,14 @@ li {
     color: #fafcaf;
 }
 
+.edit-button:hover {
+    background-color: #333333;
+}
+
+.edit-button:focus {
+    background-color: #333333;
+}
+
 a:not([href]):not([class]):hover{
     color: var(--clr-500);
 }
