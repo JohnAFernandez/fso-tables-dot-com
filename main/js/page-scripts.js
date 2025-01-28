@@ -549,7 +549,7 @@ async function apply_table(table) {
       child = temporary_item.querySelector(".edit-button");
       if (child) {
         child.setAttribute("id", `item${i}-edit-button`);
-        child.setAttribute("onclick", `initiateItemEdit(${i},${data_item.item_id})`);
+        child.setAttribute("onclick", `initiateItemEdit(${i})`);
       }
 
       child = temporary_item.querySelector(".template-item-name");
@@ -582,7 +582,7 @@ async function apply_table(table) {
       if (child) { 
         child.style.display = "none";
         child.setAttribute("id", `item${i}-illegal-values-area`);
-      }        
+      }
   
       child = temporary_item.querySelector(".template-alias-area");
       if (child) { 
