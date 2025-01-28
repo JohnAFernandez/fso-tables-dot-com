@@ -724,60 +724,112 @@
 
     <template id="dataRowTemplate">
       <div class="data-item item-body">
-        <div class="row">
-          <div class="col-8">
-            <h3><b class="template-item-name"></b></h3><br>
-          </div>
-          <div class="col-2"></div>
-          <div class="col-2"><!--style="display: none"-->
-            <button class="button btn-sm btn-outline-dark edit-button">                    
-              <img style="width: 24px; height: 24px;" src="main/res/iconmonstr-pencil-3.svg">
-            </button>
-          </div>
-        </div>
-        <div class="row"> <!--id="${i}a"-->
-          <div class="col-3"> <!--id="${i}a-2"-->
-            <h5>Minimum Version: &#9;<b class="template-major-version">Warning! Not Populated</b></h5>
-          </div>
-            <br>
-          <div class="col-3 template-deprecation-area"> <!--id="${i}a-3"-->
-            <h5>Deprecation Version: &#9;<b class="template-deprecation-version">Warning! Not Populated</b></h5>
-          </div>
-        </div>
-        <br>
-        <div class="row">  <!--id="${i}b"-->
-          <div class="col-3">  <!--id="${i}b-1"-->
-            <h5>Type: &#9;<b class="template-variable-type">Warning! Not Populated</b></h5>
-          </div>
-          <br>
-          <div class="col-6 template-illegal-values-area">  <!--id="${i}b-2"-->
-            <h5>Illegal Values: &#9;<b class="template-illegal-values">&lt;Warning! Not Populated</b> </h5>
-          </div>
-
-        </div>
-        <div class="row template-alias-area">  <!--id="${i}c"-->
-          <div class="col-3">  <!--id="${i}c-1"-->
-            <h5>Aliases: &#9;<b class="template-alias-name">Warning! Not Populated</b></h5>
-          </div>
-          <br>
-          <div class="col-6">  <!--id="${i}c-2"-->
-            <h5>Alias Version: &#9;<b class="template-alias-version">Warning! Not Populated</b></h5>
-          </div>
-        </div>
-        <div class="row indented-row">  <!--id="${i}d"-->
-          <div class="col-11">
-            <h4>
-              <br>
-              <div class="template-description">
-                Warning! Not Populated
+        <form class="edit-item-form">
+          <div class="row">
+            <div class="col-8">
+              <h3><b class="template-item-name"></b></h3><br>
+              <div class="form-group item-edit-name-group" style="display:none;">
+                <label style="padding-left: 6px;" for="edit-item-form">
+                  <h3>Item Name</h3>
+                </label>
+                <input type="text" class="form-control item-edit-name" placeholder="" title="The text that enables this item is in use in a Freespace Open table file.">
               </div>
-              <br>
-              <br>
-            </h4>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-2"><!--style="display: none"-->
+              <button class="button btn-sm btn-outline-dark edit-button">                    
+                <img style="width: 24px; height: 24px;" src="main/res/iconmonstr-pencil-3.svg">
+              </button>
+            </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-3">
+              <h5>Minimum Version: &#9;<b class="template-major-version">Warning! Not Populated</b></h5>
+              <div class="form-group item-edit-major-version-group" style="display:none;">
+                <label style="padding-left: 6px;" for="edit-item-form">
+                  <h3>Minimum Version</h3>
+                </label>
+                <input type="text" class="form-control item-edit-major-version" placeholder="2.0.0" title="The first version that supports this item, using standard Semver formatting." pattern="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$">
+              </div>
+            </div>
+              <br>
+            <div class="col-3 template-deprecation-area">
+              <h5>Deprecation Version: &#9;<b class="template-deprecation-version">Warning! Not Populated</b></h5>
+              <div class="form-group item-edit-deprecation-group" style="display:none;">
+                <label style="padding-left: 6px;" for="edit-item-form">
+                  <h3>Deprecation Version</h3>
+                </label>
+                <input type="text" class="form-control item-edit-deprecation" placeholder="" title="The first version that deprecated this item, using standard Semver formatting." pattern="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-3">
+              <h5>Type: &#9;<b class="template-variable-type">Warning! Not Populated</b></h5>
+              <div class="form-group item-edit-type-group" style="display:none;">
+                <label style="padding-left: 6px;" for="edit-item-type">
+                  <h3>Type</h3>
+                </label>
+                <input type="text" list="item-type-list" class="form-control item-edit-type" placeholder="Text" title="The data type that this item uses.">
+              </div>
+            </div>
+            <br>
+            <div class="col-6 template-illegal-values-area">
+              <h5>Illegal Values: &#9;<b class="template-illegal-values">&lt;Warning! Not Populated</b> </h5>
+              <div class="form-group item-edit-illegal-values-group" style="display:none;">
+                <label style="padding-left: 6px;" for="edit-item-type">
+                  <h3>Illegal Values</h3>
+                </label>
+                <input type="text" class="form-control item-edit-illegal-values" placeholder="Text" title="Values forbidden to this item.">
+              </div>
+            </div>
+
+          </div>
+          <div class="row template-alias-area">
+            <div class="col-3">
+              <h5>Aliases: &#9;<b class="template-alias-name">Warning! Not Populated</b></h5>
+            </div>
+            <br>
+            <div class="col-6">
+              <h5>Alias Version: &#9;<b class="template-alias-version">Warning! Not Populated</b></h5>
+            </div>
+          </div>
+          <div class="row indented-row">
+            <div class="col-11">
+              <h4>
+                <br>
+                <div class="template-description">
+                  Warning! Not Populated
+                </div>
+                <br>
+                <br>
+              </h4>
+            </div>
+          </div>
+          <div class="row indented-row">
+            <div class="col-3">
+              <button class="button btn-sm btn-outline-dark save-button">                    
+                <img style="width: 24px; height: 24px;" src="main/res/iconmonstr-svg-save.svg">
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </template>
+
+    <datalist id="item-type-list">
+      <option value="Text"></option>
+      <option value="Flexible Bool"></option>
+      <option value="Yes/No Bool"></option>
+      <option value="Integer"></option>
+      <option value="Float"></option>
+      <option value="Floating Point Double"></option>
+      <option value="Marker"></option>
+      <option value="Flag"></option>
+      <option value="Section Header"></option>
+      <option value="Other"></option>
+    </datalist>
 
     <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
     <script src="main/res/bootstrap/js/jquery-3.7.1.slim.min.js"></script>

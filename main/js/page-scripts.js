@@ -538,6 +538,14 @@ async function apply_table(table) {
         child.setAttribute("data-item-id", `${data_item.item_id}`);
       }
 
+      child = temporary_item.querySelector(".edit-item-form");
+      if (child) { 
+        child.setAttribute("id", `item${i}-form`);
+        child.setAttribute("onsubmit", `submitItemChanges(${i})`);
+      }
+
+      
+
       child = temporary_item.querySelector(".edit-button");
       if (child) {
         child.setAttribute("id", `item${i}-edit-button`);
@@ -560,8 +568,7 @@ async function apply_table(table) {
       child = temporary_item.querySelector(".template-deprecation-area");
       if (child) { 
         child.style.display = "none";
-        child.setAttribute("id", `item${i}-item-text`);
-        
+        child.setAttribute("id", `item${i}-deprecation-area`);        
       }        
   
       // TODO! Clean this up, probably during processing so that we have a user facing format
@@ -569,19 +576,19 @@ async function apply_table(table) {
       if (child) { 
         child.textContent = data_item.info_type;
         child.setAttribute("id", `item${i}-variable-type`);   
-      };        
+      }        
   
       child = temporary_item.querySelector(".template-illegal-values-area");
       if (child) { 
         child.style.display = "none";
         child.setAttribute("id", `item${i}-illegal-values-area`);
-      };        
+      }        
   
       child = temporary_item.querySelector(".template-alias-area");
       if (child) { 
         child.style.display = "none";
         child.setAttribute("id", `item${i}-alias-area`);
-      };        
+      }        
   
       child = temporary_item.querySelector(".template-description");
       if (child) { 
@@ -589,11 +596,16 @@ async function apply_table(table) {
         child.setAttribute("id", `item${i}-documentation`);      
       }
 
+      child = temporary_item.querySelector("save-button");
+      if (child) {
+        // child.style.display = none;
+        child.setAttribute("id", `item${i}-save-button`);
+      }
+
       if (new_copy){
         parent_item.appendChild(temporary_item);
       }
     }
-  
   }
 
   for(; i < 2000 ; i++){
