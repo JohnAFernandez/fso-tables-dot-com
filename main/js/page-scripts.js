@@ -538,68 +538,164 @@ async function apply_table(table) {
         child.setAttribute("data-item-id", `${data_item.item_id}`);
       }
 
+      // Form
       child = temporary_item.querySelector(".edit-item-form");
       if (child) { 
         child.setAttribute("id", `item${i}-form`);
-        child.setAttribute("onsubmit", `submitItemChanges(${i})`);
+        child.setAttribute("onsubmit", `submitItemChanges(${i}); false;`);
       }
 
       
-
+      // Edit Button
       child = temporary_item.querySelector(".edit-button");
       if (child) {
         child.setAttribute("id", `item${i}-edit-button`);
         child.setAttribute("onclick", `initiateItemEdit(${i})`);
       }
 
+      // Item Name
+      child = temporary_item.querySelector(".template-item-area")
+      
       child = temporary_item.querySelector(".template-item-name");
       if (child) { 
         child.textContent = data_item.item_text;
         child.setAttribute("id", `item${i}-item-text`);
       }
   
+      if (new_copy){
+
+        child = temporary_item.querySelector(".item-edit-name-group");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-name-group`);
+        }
+
+        child = temporary_item.querySelector(".item-edit-name");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-name`);
+        }
+      }
+
+      // Initial Version
       child = temporary_item.querySelector(".template-major-version");
       if (child) { 
         child.textContent = data_item.major_version;
         child.setAttribute("id", `item${i}-major-version`);
       }        
   
+      if (new_copy){
+
+        child = temporary_item.querySelector(".item-edit-major-version-group");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-major-version-group`);
+        }
+
+        child = temporary_item.querySelector(".item-edit-major-version");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-major-group`);
+        }
+      }
+
+
       // TODO! Make sure that the info has deprecations in the future
+      // Deprecations
       child = temporary_item.querySelector(".template-deprecation-area");
       if (child) { 
         child.style.display = "none";
         child.setAttribute("id", `item${i}-deprecation-area`);        
       }        
   
-      // TODO! Clean this up, probably during processing so that we have a user facing format
+      // TODO! Need to make sure that we are not editing any entries when tables are switched
+      if (new_copy){
+
+        child = temporary_item.querySelector(".item-edit-deprecation-group");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-deprecation-group`);
+        }
+
+        child = temporary_item.querySelector(".item-edit-deprecation");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-deprecation`);
+        }
+      }
+
+
+      // TODO! Clean user facing version of this, probably during processing
+      // Type
       child = temporary_item.querySelector(".template-variable-type");
       if (child) { 
         child.textContent = data_item.info_type;
         child.setAttribute("id", `item${i}-variable-type`);   
       }        
-  
+
+      if (new_copy){
+
+        child = temporary_item.querySelector(".item-edit-variable-type-group");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-variable-type-group`);
+        }
+
+        child = temporary_item.querySelector(".item-edit-variable-type");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-variable-type`);
+        }
+      }
+
+      // Illegal Values
       child = temporary_item.querySelector(".template-illegal-values-area");
       if (child) { 
         child.style.display = "none";
         child.setAttribute("id", `item${i}-illegal-values-area`);
       }
-  
+      
+      if (new_copy){
+        child = temporary_item.querySelector(".item-edit-illegal-values-group");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-illegal-values-group`);
+        }
+
+        child = temporary_item.querySelector(".item-edit-illegal-values");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-illegal-values`);
+        }
+      }
+
+      // Alias
       child = temporary_item.querySelector(".template-alias-area");
       if (child) { 
         child.style.display = "none";
         child.setAttribute("id", `item${i}-alias-area`);
       }        
-  
+      
+      // TODO! Alias does not have an edit section, and we probably need to do more for it anyway.
+
+      // Description
       child = temporary_item.querySelector(".template-description");
       if (child) { 
         child.textContent = data_item.documentation;
         child.setAttribute("id", `item${i}-documentation`);      
       }
 
-      child = temporary_item.querySelector("save-button");
-      if (child) {
-        // child.style.display = none;
-        child.setAttribute("id", `item${i}-save-button`);
+      if (new_copy){
+        child = temporary_item.querySelector(".item-edit-description-area");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-description-area`);
+        }
+
+        child = temporary_item.querySelector(".item-edit-description");
+        if (child) {
+          child.setAttribute("id", `item${i}-edit-description`);
+        }
+      }
+
+      // save button
+      if (new_copy){
+
+        child = temporary_item.querySelector("save-item-button");
+        if (child) {
+          // child.style.display = none;
+          child.setAttribute("onclick", `saveItemEditChanges(${i})`);
+          child.setAttribute("id", `item${i}-save-button`);
+        }
       }
 
       if (new_copy){
