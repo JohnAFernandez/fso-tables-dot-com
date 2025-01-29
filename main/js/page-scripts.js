@@ -580,7 +580,7 @@ async function apply_table(table) {
 
       // Initial Version
       if (new_copy){
-        child = template_item.querySelector(".major-version-area");
+        child = temporary_item.querySelector(".major-version-area");
         if (child){
           child.setAttribute("id", `item${i}-major-version-area`)
         }
