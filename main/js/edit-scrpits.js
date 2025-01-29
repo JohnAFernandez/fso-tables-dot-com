@@ -12,7 +12,7 @@ function initiateItemEdit(id) {
     */
 
     // name
-    let current_element = document.getElementById(`item${id}-text`);
+    let current_element = document.getElementById(`item${id}-item-text`);
     changeContents(`item${id}-edit-name`, current_element.innerText);
     toggleContents(false, `item${id}-item-text-area`); 
     toggleContents(true, `item${id}-edit-name-group`);
