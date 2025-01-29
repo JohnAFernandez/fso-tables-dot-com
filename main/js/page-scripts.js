@@ -550,7 +550,7 @@ async function apply_table(table) {
       child = temporary_item.querySelector(".edit-button");
       if (child) {
         child.setAttribute("id", `item${i}-edit-button`);
-        child.setAttribute("onclick", `initiateItemEdit(${i})`);
+        child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
       }
 
       // Item Name
