@@ -555,7 +555,10 @@ async function apply_table(table) {
 
       // Item Name
       child = temporary_item.querySelector(".template-item-area")
-      
+      if (child) {
+        child.setAttribute("id", `item${i}-item-text-area`);
+      }
+
       child = temporary_item.querySelector(".template-item-name");
       if (child) { 
         child.textContent = data_item.item_text;
@@ -576,10 +579,20 @@ async function apply_table(table) {
       }
 
       // Initial Version
+      if (new_copy){
+        child = template_item.querySelector(".template-major-version-area");
+        if (child){
+          child.setAttribute("id", `item${i}-major-version-area`)
+        }
+      }
+
       child = temporary_item.querySelector(".template-major-version");
       if (child) { 
         child.textContent = data_item.major_version;
-        child.setAttribute("id", `item${i}-major-version`);
+
+        if (new_copy){
+          child.setAttribute("id", `item${i}-major-version`);
+        }
       }        
   
       if (new_copy){
@@ -591,7 +604,7 @@ async function apply_table(table) {
 
         child = temporary_item.querySelector(".item-edit-major-version");
         if (child) {
-          child.setAttribute("id", `item${i}-edit-major-group`);
+          child.setAttribute("id", `item${i}-edit-major-version`);
         }
       }
 
@@ -621,13 +634,20 @@ async function apply_table(table) {
 
       // TODO! Clean user facing version of this, probably during processing
       // Type
+
       child = temporary_item.querySelector(".template-variable-type");
       if (child) { 
         child.textContent = data_item.info_type;
-        child.setAttribute("id", `item${i}-variable-type`);   
+        if (new_copy){
+          child.setAttribute("id", `item${i}-variable-type`);             
+        }
       }        
 
       if (new_copy){
+        child = temporary_item.querySelector(".template-type-area");
+        if (child) {
+          child.setAttribute("id", `item${i}-type-area`)
+        }
 
         child = temporary_item.querySelector(".item-edit-variable-type-group");
         if (child) {

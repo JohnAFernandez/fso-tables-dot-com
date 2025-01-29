@@ -13,23 +13,35 @@ function initiateItemEdit(id) {
 
     // name
     let current_element = document.getElementById(`item${id}-text`);
+    changeContents(`item${id}-edit-name`, current_element.innerText);
+    toggleContents(false, `item${id}-item-text-area`); 
+    toggleContents(true, `item${id}-edit-name-group`);
 
-    changeContents("item${id}-edit-name", current_element.innerText);
-    template-item-name
-    toggleContents(true, "item${id}-edit-name-group");
+    // version 
+    current_element = document.getElementById(`item${id}-major-version`);
+    changeContents(`item${id}-edit-major-version`, current_element.innerText);
+    toggleContents(false, `item${id}-major-version-area`); 
+    toggleContents(true, `item${id}-edit-major-version-group`);
 
-    // version
-    current_element = document.getElementById(`item${id}-version`);
-    current_element.style.display = "none";
-    changeContents("item${id}-edit-name", current_element.innerText);
-    toggleContents(true, "item${id}-edit-name-group");
+    // Deprecations
+    current_element = document.getElementById(`item${id}-major-version`);
+    changeContents(`item${id}-edit-major-version`, current_element.innerText);
+    toggleContents(false, `item${id}-major-version-area`); 
+    toggleContents(true, `item${id}-edit-major-version-group`);
 
     // type
-    current_element = document.getElementById(`item${id}-text`);
-    current_element.style.display = "none";
-    changeContents("item${id}-edit-name", current_element.innerText);
-    toggleContents(true, "item${id}-edit-name-group");
+    current_element = document.getElementById(`item${id}-variable-type`);
+    changeContents(`item${id}-edit-variable-type`, current_element.innerText);
+    toggleContents(false, `item${id}-type-area`); 
+    toggleContents(true, `item${id}-edit-variable-type-group`);
 
+    // Illegal Values
+
+
+    // Alias
+
+
+    // Description
 
 //    changeContents("item-edit-description-area", )
 
