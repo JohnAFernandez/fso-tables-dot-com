@@ -132,7 +132,7 @@ function setTableViaFloater(id) {
 
 function adjustFloater(){
     let element = document.getElementById("floating-link-container");
-  
+    
     if (window.scrollY > 300){
         element.style.top = "70px";
         element.style.minHeight = `${window.innerHeight - 70 - 30}px`;
@@ -144,4 +144,15 @@ function adjustFloater(){
         element.style.minHeight = `${window.innerHeight - top - 30}px`;
         element.style.maxHeight = `${window.innerHeight - top - 30}px`;
     }
+
+    // also adjust the search bar
+    let element2 = document.getElementById("search-dropdown");
+    if (window.scrollY > 300){
+        element2.style.top = "70px";
+    } else {
+        const top = ((300 - window.scrollY) / 350) * 300 + 70;
+        element2.style.top = `${top}px`;
+    }
+
+    element2.style.x = document.getElementById("floating-link-container").style.x - 158;
   }
