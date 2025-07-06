@@ -146,7 +146,7 @@ function adjustFloater(){
     }
 
     // also adjust the search bar
-    let element2 = document.getElementById("search-dropdown");
+/*    let element2 = document.getElementById("search-dropdown");
     if (window.scrollY > 300){
         element2.style.top = "70px";
     } else {
@@ -155,4 +155,5 @@ function adjustFloater(){
     }
 
     element2.style.x = document.getElementById("floating-link-container").style.x - 158;
+    */
   }

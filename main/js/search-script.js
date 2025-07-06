@@ -1,5 +1,14 @@
+let targets = [["", ""], ["", ""], ["", ""], ["", ""], ["", ""]];
+
+
 function end_search(){
-  const element = document.getElementById(`search-dropdown`);
+  toggleContents(`search-item-0`, false);
+  toggleContents(`search-item-1`, false);  
+  toggleContents(`search-item-2`, false);  
+  toggleContents(`search-item-3`, false);  
+  toggleContents(`search-item-4`, false);
+
+
   const element1 = document.getElementById(`search-item-0`);
   const element2 = document.getElementById(`search-item-1`);
   const element3 = document.getElementById(`search-item-2`);
@@ -12,11 +21,20 @@ function end_search(){
   element4.textContent = "...";
   element5.textContent = "...";
 
-  element.dropdown('toggle');
-
+  for (thing in targets) {
+    thing[0] = "";
+    thing[1] = "";
+  }
 }
 
 function start_search(){
+  toggleContents(`search-item-0`, true);
+  toggleContents(`search-item-1`, true);  
+  toggleContents(`search-item-2`, true);  
+  toggleContents(`search-item-3`, true);  
+  toggleContents(`search-item-4`, true);
+
+
   const element1 = document.getElementById(`search-item-0`);
   const element2 = document.getElementById(`search-item-1`);
   const element3 = document.getElementById(`search-item-2`);
@@ -29,10 +47,13 @@ function start_search(){
   element4.textContent = "RESULT4...";
   element5.textContent = "RESULT5...";
 
-//  const element = document.getElementById(`search-dropdown`);
 //  element.style.zIndex = 1021; // Any smaller will not work.
 //  element.style.x = document.getElementById("floating-link-container").style.x - 100;
   // 951 - 793  = 158
+}
+
+function goToSearchResult(index){
+  
 }
 
 // search-dropdown

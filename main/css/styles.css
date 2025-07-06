@@ -345,13 +345,8 @@ li {
     border-color: rgb(48, 48, 48);
     border-radius: 5px;
     overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-.floater-link-rows {
     overflow-y: auto;
-}    
-
+}
 
 .last-floater-row {
     padding-bottom: 30px;
