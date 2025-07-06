@@ -1,12 +1,16 @@
 let targets = [["", ""], ["", ""], ["", ""], ["", ""], ["", ""]];
 
 
+function search_for_text (text){
+  for ()
+}
+
 function end_search(){
-  toggleContents(`search-item-0`, false);
-  toggleContents(`search-item-1`, false);  
-  toggleContents(`search-item-2`, false);  
-  toggleContents(`search-item-3`, false);  
-  toggleContents(`search-item-4`, false);
+  toggleContents(false, `search-item-0`);
+  toggleContents(false, `search-item-1`);  
+  toggleContents(false, `search-item-2`);  
+  toggleContents(false, `search-item-3`);  
+  toggleContents(false, `search-item-4`);
 
 
   const element1 = document.getElementById(`search-item-0`);
@@ -27,12 +31,12 @@ function end_search(){
   }
 }
 
-function start_search(){
-  toggleContents(`search-item-0`, true);
-  toggleContents(`search-item-1`, true);  
-  toggleContents(`search-item-2`, true);  
-  toggleContents(`search-item-3`, true);  
-  toggleContents(`search-item-4`, true);
+function display_search_results(){
+  toggleContents(true, `search-item-0`);
+  toggleContents(true, `search-item-1`);  
+  toggleContents(true, `search-item-2`);  
+  toggleContents(true, `search-item-3`);  
+  toggleContents(true, `search-item-4`);
 
 
   const element1 = document.getElementById(`search-item-0`);
@@ -53,7 +57,7 @@ function start_search(){
 }
 
 function goToSearchResult(index){
-  
+
 }
 
 // search-dropdown

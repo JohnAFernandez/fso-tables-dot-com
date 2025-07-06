@@ -335,16 +335,17 @@ li {
 .floating-link-container {
     position: fixed;
     z-index:100;
-    left:70%;
+    left:72%;
     top:300px;
-    background-color: #262626fb;
+    background-color: #1d1d1d;
     min-height: 80%;
     max-height: 80%;
-    max-width: 370px;
+    min-width: 350px;
+    max-width: 450px;
     padding-top: 30px;
     border-color: rgb(48, 48, 48);
     border-radius: 5px;
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: auto;
 }
 
@@ -434,4 +435,8 @@ svg.icon {
     margin-top: 0px;
     margin-bottom: 0px;
     border-top: 3px solid rgb(0, 0, 0);
+}
+
+hr {
+ background-color: #e0e0e0
 }
