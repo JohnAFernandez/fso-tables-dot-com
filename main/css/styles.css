@@ -383,6 +383,11 @@ li {
     background-color: #333333;
 }
 
+.btn-outline-dark:hover {
+    color: #000;
+    border-color: #343a40;
+}
+
 a:not([href]):not([class]):hover{
     color: var(--clr-500);
 }
