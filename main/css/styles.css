@@ -355,10 +355,10 @@ li {
 
 .table-edit-ui-button {
     background-color: #31312d;
-    border-color: var(--clr-400);
+    border-color: #000000;
 /*    border-radius: 0px;
     border-width: 2px;*/
-    color: #474741;
+    color: #000000;
 }
 
 .table-edit-ui-button:hover {
