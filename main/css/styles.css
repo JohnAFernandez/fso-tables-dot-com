@@ -353,7 +353,7 @@ li {
     padding-bottom: 30px;
 }
 
-.edit-button {
+.table-edit-ui-button {
     background-color: #31312d;
     border-color: var(--clr-400);
 /*    border-radius: 0px;
@@ -361,25 +361,11 @@ li {
     color: #474741;
 }
 
-.edit-button:hover {
+.table-edit-ui-button:hover {
     background-color: #333333;
 }
 
-.edit-button:focus {
-    background-color: #333333;
-}
-
-.save-item-button{
-    background-color: #31312d;
-    border-color: var(--clr-400);
-    color: #474741;
-}
-
-.save-item-button:hover {
-    background-color: #333333;
-}
-
-.save-item-button:focus {
+.table-edit-ui-button:focus {
     background-color: #333333;
 }
 
