@@ -764,7 +764,7 @@
         <form class="edit-item-form">
           <div class="row">
             <div class="col-8">
-              <h3 class="template-item-area"><b class="template-item-name">Warning! Not populated</b></h3><br>
+              <h3 class="template-item-area"><b class="template-item-name">[Warning! Not populated]</b></h3><br>
               <div class="form-group item-edit-name-group" style="display:none;">
                 <label style="padding-left: 6px;" for="edit-item-form">
                   <h3>Item Name</h3>
@@ -772,16 +772,10 @@
                 <input type="text" class="form-control item-edit-name" placeholder="" title="The text that enables this item is in use in a Freespace Open table file.">
               </div>
             </div>
-            <div class="col-3"></div>
-            <div class="col-2"><!--style="display: none"-->
-              <button class="button btn-sm btn-outline-dark edit-button">                    
-                <img style="width: 24px; height: 24px;" src="main/res/iconmonstr-note-23.svg">
-              </button>
-            </div>
           </div>
           <div class="row">
             <div class="col-3">
-              <h5 class="major-version-area">Minimum Version: &#9;<b class="template-major-version">Warning! Not Populated</b></h5>
+              <h5 class="major-version-area">Minimum Version: &#9;<b class="template-major-version">[Warning! Not populated]</b></h5>
               <div class="form-group item-edit-major-version-group" style="display:none;">
                 <label style="padding-left: 6px;" for="edit-item-form">
                   <h3>Minimum Version</h3>
@@ -791,7 +785,7 @@
             </div>
               <br>
             <div class="col-3 template-deprecation-area">
-              <h5>Deprecation Version: &#9;<b class="template-deprecation-version">Warning! Not Populated</b></h5>
+              <h5>Deprecation Version: &#9;<b class="template-deprecation-version">[Warning! Not populated]</b></h5>
               <div class="form-group item-edit-deprecation-group" style="display:none;">
                 <label style="padding-left: 6px;" for="edit-item-form">
                   <h3>Deprecation Version</h3>
@@ -803,7 +797,7 @@
           <br>
           <div class="row">
             <div class="col-3">
-              <h5 class="template-type-area">Type: &#9;<b class="template-variable-type">Warning! Not Populated</b></h5>
+              <h5 class="template-type-area">Type: &#9;<b class="template-variable-type">[Warning! Not populated]</b></h5>
               <div class="form-group item-edit-type-group" style="display:none;">
                 <label style="padding-left: 6px;" for="edit-item-type">
                   <h3>Type</h3>
@@ -813,7 +807,7 @@
             </div>
             <br>
             <div class="col-6 template-illegal-values-area">
-              <h5>Illegal Values: &#9;<b class="template-illegal-group">&lt;Warning! Not Populated</b> </h5>
+              <h5>Illegal Values: &#9;<b class="template-illegal-group">&lt;[Warning! Not populated]</b> </h5>
               <div class="form-group item-edit-illegal-values-group" style="display:none;">
                 <label style="padding-left: 6px;" for="edit-item-type">
                   <h3>Illegal Values</h3>
@@ -827,11 +821,11 @@
           <!--TODO! We need deprecation types, because there's partial and then full deprecation.-->
           <div class="row template-alias-area">
             <div class="col-3">
-              <h5>Aliases: &#9;<b class="template-alias-name">Warning! Not Populated</b></h5>
+              <h5>Aliases: &#9;<b class="template-alias-name">[Warning! Not populated]</b></h5>
             </div>
             <br>
             <div class="col-6">
-              <h5>Alias Version: &#9;<b class="template-alias-version">Warning! Not Populated</b></h5>
+              <h5>Alias Version: &#9;<b class="template-alias-version">[Warning! Not populated]</b></h5>
             </div>
           </div>
           <div class="row indented-row">
@@ -839,7 +833,7 @@
               <h4>
                 <br>
                 <div class="template-description">
-                  Warning! Not Populated
+                  [Warning! Not populated]
                 </div>
                 <div class="form-group item-edit-description-group" style="display:none;">
                   <label style="padding-left: 6px;" for="edit-item-type">
@@ -853,6 +847,11 @@
             </div>
           </div>
           <div class="row indented-row">
+            <div class="col-3">
+              <button class="button btn-sm btn-outline-dark edit-button">                    
+                <img style="width: 24px; height: 24px;" src="main/res/iconmonstr-note-23.svg">
+              </button>
+            </div>
             <div class="col-3">
               <button class="button btn-sm btn-outline-dark save-item-button">                    
                 <img style="width: 24px; height: 24px;" src="main/res/iconmonstr-note-31.svg">
