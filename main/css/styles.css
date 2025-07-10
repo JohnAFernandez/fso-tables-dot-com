@@ -411,6 +411,10 @@ a:not([href]):not([class]):hover{
     border-top: #000000
 }
 
+/*. {
+    fill: #ffffff;
+}*/
+
 .icon-20 {
    --_size: 20px;
 
