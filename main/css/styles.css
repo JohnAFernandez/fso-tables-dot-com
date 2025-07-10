@@ -411,9 +411,13 @@ a:not([href]):not([class]):hover{
     border-top: #000000
 }
 
-/*. {
-    fill: #ffffff;
-}*/
+svg.profile-arrow {
+    fill: var(--clr-main);
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    margin-left:10px;
+}
 
 .icon-20 {
    --_size: 20px;
