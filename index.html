@@ -341,11 +341,28 @@
             <h5 class="modal-title" id="addItemModalLabel">Add Table Item</h5>
           </div>
           <div class="modal-body">
-            <!-- CONTENTS WILL GO HERE!-->
+            <!-- CONTENTS WILL GO HERE!  
+             item_id 
+             item_text 
+             documentation 
+             major_version 
+             parent_id 
+             table_id 
+             deprecation_id 
+             restriction_id 
+             info_type 
+             table_index 
+             default value
+             -->
           </div>
+
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Add Item</button>
+            <button class="button btn-sm btn-outline-dark cancel-button table-edit-ui-button">                    
+              <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-32.svg">
+            </button>
+            <button class="button btn-sm btn-outline-dark save-item-button table-edit-ui-button" data-dismiss="modal">                    
+              <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-31.svg">
+            </button>
           </div>
         </div>
       </div>
@@ -854,18 +871,6 @@
                 <br>
                 <br>
               </h4>
-            </div>
-          </div>
-          <div class="row indented-row">
-            <div class="col-2 cancel-button-col">
-              <button class="button btn-sm btn-outline-dark cancel-button table-edit-ui-button">                    
-                <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-32.svg">
-              </button>
-            </div>
-            <div class="col-2 save-button-col">
-              <button class="button btn-sm btn-outline-dark save-item-button table-edit-ui-button">                    
-                <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-31.svg">
-              </button>
             </div>
           </div>
         </form>
