@@ -1062,3 +1062,7 @@ function switchArrow(){
   toggleContents(!UpArrow, "passwordChangeArrow2");  
 }
 
+
+function testNewItemModal(){
+ $('#addItemModal').modal("show"); 
+}
