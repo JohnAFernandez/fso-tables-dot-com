@@ -342,7 +342,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addItemModalLabel">Add Table Item</h5>
+            <h5 class="modal-title" id="addItemModalLabel">Add table item to _____ table</h5>
           </div>
           <div class="modal-body">
             <!-- CONTENTS WILL GO HERE!  
@@ -360,8 +360,24 @@
              -->
             <form id="new-item-form" onsubmit="submit_new_item(); return false">
               <div class="form-group">
-                <h5><label for="new-item-name">Table Text</label></h5>
+                <h5><label for="new-item-name">Item Text</label></h5>
                 <input type="text" class="form-control" id="new-item-name" placeholder="$New Item:" required>              
+              </div>
+              <div class="form-group">
+                <h5><label for="new-item-type">Data Type</label></h5>
+                <select id="new-item-type" style="height: calc(1.5em + .75rem + 4px);" required>
+                  <option value="Integer">Integer</option>
+                  <option value="Text">Text</option>
+                  <option value="Float">Float</option>
+                  <option value="Bool-Simple">Yes/No</option>
+                  <option value="Bool-Flex">Flexible Bool</option>
+                  <option value="Int List">List of Integers</option>
+                  <option value="Float List">List of Floats</option>
+                  <option value="Flagset">Flagset</option>
+                  <option value="Marker">Table Syntax Marker</option>
+                  <option value="File">File</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
               <div class="form-group">
                 <h5><label for="new-item-documentation">Documentation</label></h5>
@@ -369,7 +385,7 @@
                 </textarea>              
               </div>
               <div class="form-group">
-                  <h5><label for="new-item-major">First Stable FSO Version</label><h5></h5>
+                <h5><label for="new-item-major">First Stable FSO Version</label><h5></h5>
                 <div class="container" style="padding-left: 0px;">
                   <div class="row">
                     <div class="col-2">
@@ -399,10 +415,18 @@
                     <div class="col-2" style="padding: 1px;">
                     <input type="number" class="form-control" id="new-item-minor" style="padding: 5px;  margin-left: 10px;" placeholder="0" required max="999" min="0">
                     </div>
-                  
                   </div>
-                  
                 </div>
+
+                <h5><label for="parent_item">Parent Item</label></h5>
+                <select id="parent_item" required>
+                  <option value="0">Not</option>
+                  <option value="1">Yet</option>
+                  <option value="2">Implemented</option>
+                </select>
+                <h5><label for="parent_item">Parent Item</label></h5>
+                  
+                  
               </div>
 
               <div id="addItemErrorMessage" class="errorArea" style="display:none">
