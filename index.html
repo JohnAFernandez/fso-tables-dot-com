@@ -352,8 +352,6 @@
              major_version 
              parent_id 
              table_id 
-             deprecation_id 
-             restriction_id 
              info_type 
              table_index 
              default value
@@ -366,17 +364,17 @@
               <div class="form-group">
                 <h5><label for="new-item-type">Data Type</label></h5>
                 <select id="new-item-type" style="height: calc(1.5em + .75rem + 4px);" required>
-                  <option value="Integer">Integer</option>
-                  <option value="Text">Text</option>
-                  <option value="Float">Float</option>
-                  <option value="Bool-Simple">Yes/No</option>
-                  <option value="Bool-Flex">Flexible Bool</option>
-                  <option value="Int List">List of Integers</option>
-                  <option value="Float List">List of Floats</option>
-                  <option value="Flagset">Flagset</option>
-                  <option value="Marker">Table Syntax Marker</option>
-                  <option value="File">File</option>
-                  <option value="Other">Other</option>
+                  <option value="marker">Table Syntax Only</option>
+                  <option value="integer">Integer</option>
+                  <option value="text">Text</option>
+                  <option value="float">Float</option>
+                  <option value="bool_simple">Yes/No</option>
+                  <option value="bool_flex">Flexible Bool</option>
+                  <option value="intlist">List of Integers</option>
+                  <option value="floatlist">List of Floats</option>
+                  <option value="flagset">Flagset</option>
+                  <option value="file">File</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
               <div class="form-group">
@@ -399,6 +397,7 @@
                       <option value="23">23</option>
                       <option value="24">24</option>
                       <option value="25">25</option>
+                      <option value="26">26</option>
                     </select>
                     </div>
                     <div class="col-1" style="padding: 0px; padding-top: 20px; max-width: 4px;">
@@ -419,11 +418,11 @@
                 </div>
 
                 <h5><label for="parent_item">Parent Item</label></h5>
-                <select id="parent_item" required>
-                  <option value="0">Not</option>
-                  <option value="1">Yet</option>
-                  <option value="2">Implemented</option>
-                </select>
+                  <select id="parent_item" required>
+                    <option value="-2">Not specified</option>
+                    <option value="-1">No Parent</option>
+                    <option value="">Implemented</option>
+                  </select>
                 <h5><label for="parent_item">Parent Item</label></h5>
                   
                   
