@@ -1063,6 +1063,6 @@ function switchArrow(){
 }
 
 
-function testNewItemModal(){
+function addNewItemModal(){
  $('#addItemModal').modal("show"); 
 }
