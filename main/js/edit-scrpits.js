@@ -59,12 +59,12 @@ function awaitingNewItemResult(waiting){
     awaitingItemSubmissionResult = waiting;
 }
 
-function setSumbitNewItemErrorText(text){
+function setSumbitNewItemErrorText(errorText){
   changeContents("itemSubmissionErrorText", errorText);
   toggleContents(true, "itemSubmissionError");
 }
 
-function clearSumbitNewItemErrorText(text){
+function clearSumbitNewItemErrorText(errorText){
   changeContents("itemSubmissionErrorText", errorText);
   toggleContents(true, "itemSubmissionError");
 }
