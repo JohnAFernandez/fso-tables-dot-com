@@ -87,9 +87,8 @@ function send_submit_new_item(){
   const majorVersionField = document.getElementById("new-item-major");
   const parentIdField = document.getElementById("parent-item");
   const infoTypeField = document.getElementById("new-item-type");
-  const defaultValueField = document.getElementById("loginEmail");
-  const tableIndexField = document.getElementById("loginEmail");
-
+  //const tableIndexField = document.getElementById(""); one day this will work, just not today.
+  const defaultValueField = document.getElementById("new-item-default-value");
 
   const addItemRequest = {
 
@@ -102,7 +101,7 @@ function send_submit_new_item(){
     restriction_id: -1,
     info_type: infoTypeField.value,
     default_value: defaultValueField.value,
-    table_index: tableIndexField.value
+    table_index: -1
   }
 
   fetch(API_ROOTB + "tables/items", {
