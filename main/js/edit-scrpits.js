@@ -107,7 +107,11 @@ function send_submit_new_item(){
   fetch(API_ROOTB + "tables/items", {
     method: "POST",
     body: JSON.stringify(addItemRequest),
-    credentials: "include"
+    credentials: "include",
+    headers: {
+    "username": getCookie("username"),
+    "GanymedeToken": getCookie("GanymedeToken")
+  }
   })
   .then((response) => { 
     if (response.status === 200) {
