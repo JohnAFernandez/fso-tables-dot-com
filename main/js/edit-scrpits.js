@@ -109,9 +109,8 @@ function send_submit_new_item(){
     body: JSON.stringify(addItemRequest),
     credentials: "include",
     headers: {
-    "username": getCookie("username"),
-    "GanymedeToken": getCookie("GanymedeToken")
-  }
+    "username": getCookie("username")
+      }
   })
   .then((response) => { 
     if (response.status === 200) {
