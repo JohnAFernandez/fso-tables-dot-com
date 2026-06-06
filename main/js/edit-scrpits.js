@@ -1,4 +1,4 @@
-let awaitingSubmissionResult = false;
+let awaitingItemSubmissionResult = false;
 
 function initiateItemEdit(id) {
     /*
@@ -55,44 +55,63 @@ function saveItemEditChanges(id){
     console.log(`Call to editing function done. id ${id}`)
 }
 
-function clearItemSubmitResultText(waiting){
-    awaitingSubmissionResult = waiting;
+function awaitingNewItemResult(waiting){
+    awaitingItemSubmissionResult = waiting;
 }
 
-function submit_new_item(){
-  if (awaitingSubmissionResult === true) {
+function setSumbitNewItemErrorText(text){
+  changeContents("itemSubmissionErrorText", errorText);
+  toggleContents(true, "itemSubmissionError");
+}
+
+function clearSumbitNewItemErrorText(text){
+  changeContents("itemSubmissionErrorText", errorText);
+  toggleContents(true, "itemSubmissionError");
+}
+
+function dismissLoginModal() {
+  $('#addItemModal').modal("hide");
+}
+
+function send_submit_new_item(){
+  if (awaitingItemSubmissionResult === true) {
     return;
   }
 
-  clearItemSubmitResultText();
-  awaitingSubmissionRequest(true);
+  clearSumbitNewItemErrorText();
+  awaitingNewItemResult(true);
 
+  const tableField = document.getElementById("new-item-table");
   const textField = document.getElementById("new-item-name");
   const docField = document.getElementById("new-item-documentation");
   const majorVersionField = document.getElementById("new-item-major");
   const parentIdField = document.getElementById("parent-item");
-  const tableIdField = document.getElementById("loginEmail");
   const infoTypeField = document.getElementById("new-item-type");
   const defaultValueField = document.getElementById("loginEmail");
   const tableIndexField = document.getElementById("loginEmail");
 
 
   const addItemRequest = {
-    email: emailField.value,
-    password: passwordField.value,
+
+    item_text: textField.value,
+    documentation: docField.value,
+    major_version: majorVersionField.value,
+    parent_id: parentIdField.value,
+    table_id: tableField.value,
+    deprecation_id: -1,
+    restriction_id: -1,
+    info_type: infoTypeField.value,
+    default_value: defaultValueField.value,
+    table_index: tableIndexField.value
   }
 
-  fetch(API_ROOTB + "users/login", {
+  fetch(API_ROOTB + "tables/items", {
     method: "POST",
-    body: JSON.stringify(loginRequest),
+    body: JSON.stringify(addItemRequest),
     credentials: "include"
   })
   .then((response) => { 
     if (response.status === 200) {
-      // Default login expiration of a week.
-      setCookie("username", loginRequest.email, 7*24)
-
-      check_login_status_and_update();
       dismissLoginModal();
     } else {
       response.json().then(responseJSON => { 
@@ -100,16 +119,16 @@ function submit_new_item(){
         throw responseJSON.Error;}
       ).catch(
         error => { 
-          console.log(`Login failed. The error encountered was: ${error}`);
-          awaitingSubmissionRequest(false);
-          setLoginErrorText(`${error}`);
+          console.log(`Submitting item failed. The error encountered was: ${error}`);
+          awaitingNewItemResult(false);
+          setSumbitNewItemErrorText(`${error}`);
       })
     }
   }).catch ( 
     error => { 
-      console.log(`Login in failed due to some server or network error. The error encountered was: ${error}`);
-      awaitingSubmissionRequest(false);
-      setLoginErrorText("Login Failed, Server or Network Error");
+      console.log(`Submission failed due to some server or network error. The error encountered was: ${error}`);
+      awaitingNewItemResult(false);
+      setSumbitNewItemErrorText("Submission Failed, Server or Network Error");
     }
   );
    

@@ -356,7 +356,11 @@
              table_index 
              default value
              -->
-            <form id="new-item-form" onsubmit="submit_new_item(); return false">
+            <form id="new-item-form" onsubmit="send_submit_new_item(); return false">
+              <div id="itemSubmissionError" class="errorArea" style="display:none">
+                <div id="itemSubmissionErrorText" class="errorResponse">&nbsp;</div>
+              </div>
+
               <div class="form-group">
                 <h5><label for="new-item-table">Add to Which Table</label></h5>
                 <select id="new-item-table" style="height: calc(1.5em + .75rem + 4px);" required>
