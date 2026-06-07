@@ -1,6 +1,12 @@
 let awaitingItemSubmissionResult = false;
 
 function initiateItemEdit(id) {
+    if (Edit_In_Progress) {
+        return;
+    }
+
+    Edit_In_Progress = true;
+    
     /*
     item${id}
     item${id}-text
@@ -47,8 +53,6 @@ function initiateItemEdit(id) {
     // Description
 
 //    changeContents("item-edit-description-area", )
-
-    return false;
 }
 
 function saveItemEditChanges(id){

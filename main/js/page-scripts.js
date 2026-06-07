@@ -13,6 +13,7 @@ let Updating_restrictions_array = false;
 let Updating_deprecations_array = false;
 let Updating_table_aliases_array = false;
 let Fetching_info_error = "";
+let Edit_In_Progress = false;
 
 // Regularly check for updates.
 window.setInterval(check_for_update, 100);
@@ -464,6 +465,10 @@ function replace_inner_html(element_id, contents){
 // Put the current table into the UI
 async function apply_table(table) {
   console.log("Running Apply Table");
+
+  // any time we switch tables, our editing must get canceled.
+  Edit_In_Progress = false;
+  // TODO, apply editing cancelling function here once it's written
 
   // if there was an error, tell the user
   if (Fetching_info_error != ""){
