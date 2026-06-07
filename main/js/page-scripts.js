@@ -559,24 +559,36 @@ async function apply_table(table) {
       }
 
       // Edit Button
-      child = temporary_item.querySelector(".edit-button");
-      if (child) {
-        child.setAttribute("id", `item${i}-edit-button`);
-        child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
+      child = temporary_item.querySelector(".edit-button-col");
+      if (child){
+        child.setAttribute("id", `item${i}-edit-button-col`);
+        child = temporary_item.querySelector(".edit-button");
+
+        if (child) {
+          child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
+        }
       }
 
       // Save Button
-      child = template_item.querySelector(".save-edit-button");
+      child = template_item.querySelector(".save-button-col");
       if (child) {
-        child.setAttribute("id", `item${i}-save-edit-button`);
-        child.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
+        child.setAttribute("id", `item${i}-save-button-col`);
+        
+        child = child.querySelector(".save-edit-button");
+        if (child){
+          child.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
+        }
       }
 
       // Cancel Button
       child = temporary_item.querySelector(".cancel-button-col");
       if (child) {
-        child.setAttribute("id", `item${i}-cancel-button`);
-        child.setAttribute("onclick", `cancelEdit(${i}); return false;`);
+        child.setAttribute("id", `item${i}-cancel-button-col`);
+
+        child = child.querySelector(".cancel-edit-button");
+        if (child){
+          child.setAttribute("onclick", `cancelEdit(${i}); return false;`);
+        }
       }
 
       // Item Name

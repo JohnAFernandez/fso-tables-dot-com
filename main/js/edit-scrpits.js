@@ -20,8 +20,8 @@ function initiateItemEdit(id) {
     */
 
     // Change Active Buttons
-    toggleContents(false, `item${id}-edit-button`);
-    toggleContents(true, `item${id}-save-edit-button`);
+    toggleContents(false, `item${id}-edit-button-col`);
+    toggleContents(true, `item${id}-save-button-col`);
     toggleContents(true, `item${id}-cancel-button-col`);
 
     // name
