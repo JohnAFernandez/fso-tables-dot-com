@@ -558,39 +558,6 @@ async function apply_table(table) {
         child.setAttribute("onsubmit", "return false;");
       }
 
-      // Edit Button
-      child = temporary_item.querySelector(".edit-button-col");
-      if (child){
-        child.setAttribute("id", `item${i}-edit-button-col`);
-        child = temporary_item.querySelector(".edit-button");
-
-        if (child) {
-          child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
-        }
-      }
-
-      // Save Button
-      child = template_item.querySelector(".save-button-col");
-      if (child) {
-        child.setAttribute("id", `item${i}-save-button-col`);
-        
-        child = child.querySelector(".save-edit-button");
-        if (child){
-          child.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
-        }
-      }
-
-      // Cancel Button
-      child = temporary_item.querySelector(".cancel-button-col");
-      if (child) {
-        child.setAttribute("id", `item${i}-cancel-button-col`);
-
-        child = child.querySelector(".cancel-edit-button");
-        if (child){
-          child.setAttribute("onclick", `cancelEdit(${i}); return false;`);
-        }
-      }
-
       // Item Name
       child = temporary_item.querySelector(".template-item-area")
       if (child) {
@@ -747,12 +714,37 @@ async function apply_table(table) {
 
       // save button
       if (new_copy){
+        // Edit Button
+        child = temporary_item.querySelector(".edit-button-col");
+        if (child){
+          child.setAttribute("id", `item${i}-edit-button-col`);
+          child = temporary_item.querySelector(".edit-button");
 
-        child = temporary_item.querySelector("save-item-button");
+          if (child) {
+            child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
+          }
+        }
+
+        // Save Button
+        child = template_item.querySelector(".save-button-col");
         if (child) {
-          // child.style.display = none;
-          child.setAttribute("onclick", `saveItemEditChanges(${i})`);
-          child.setAttribute("id", `item${i}-save-button`);
+          child.setAttribute("id", `item${i}-save-button-col`);
+          
+          child = child.querySelector(".save-edit-button");
+          if (child){
+            child.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
+          }
+        }
+
+        // Cancel Button
+        child = temporary_item.querySelector(".cancel-button-col");
+        if (child) {
+          child.setAttribute("id", `item${i}-cancel-button-col`);
+
+          child = child.querySelector(".cancel-edit-button");
+          if (child){
+            child.setAttribute("onclick", `cancelEdit(${i}); return false;`);
+          }
         }
       }
 
