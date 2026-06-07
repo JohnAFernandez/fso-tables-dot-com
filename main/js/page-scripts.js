@@ -730,10 +730,13 @@ async function apply_table(table) {
         if (child) {
           child.setAttribute("id", `item${i}-save-button-col`);
           
-          child = child.querySelector(".save-edit-button");
-          if (child){
-            child.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
+          
+          let child2 = child.querySelector(".save-edit-button");
+          if (child2){
+            child2.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
           }
+          
+          child.setAttribute(style, "display:none;");
         }
 
         // Cancel Button
@@ -741,10 +744,12 @@ async function apply_table(table) {
         if (child) {
           child.setAttribute("id", `item${i}-cancel-button-col`);
 
-          child = child.querySelector(".cancel-edit-button");
-          if (child){
-            child.setAttribute("onclick", `cancelEdit(${i}); return false;`);
+          let child3 = child.querySelector(".cancel-edit-button");
+          if (child3){
+            child3.setAttribute("onclick", `cancelEdit(${i}); return false;`);
           }
+
+          child.setAttribute(style, "display:none;");
         }
       }
 
