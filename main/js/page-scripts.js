@@ -558,12 +558,6 @@ async function apply_table(table) {
         child.setAttribute("onsubmit", "return false;");
       }
 
-      child = temporary_item.querySelector(".save-edit-button");
-      if (child) {
-        child.setAttribute("id", `item${i}-form`);
-        child.setAttribute("onclick", `submitItemChanges(${i}); return false;`);
-      }
-      
       // Edit Button
       child = temporary_item.querySelector(".edit-button");
       if (child) {
