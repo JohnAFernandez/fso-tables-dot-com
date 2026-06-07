@@ -736,7 +736,7 @@ async function apply_table(table) {
             child2.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
           }
 
-          child.setAttribute(style, "display:none;");
+          child.setAttribute("style", "display:none;");
         }
 
         // Cancel Button
@@ -749,7 +749,7 @@ async function apply_table(table) {
             child3.setAttribute("onclick", `cancelEdit(${i}); return false;`);
           }
 
-          child.setAttribute(style, "display:none;");
+          child.setAttribute("style", "display:none;");
         }
       }
 
