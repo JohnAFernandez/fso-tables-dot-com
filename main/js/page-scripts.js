@@ -462,6 +462,14 @@ function replace_inner_html(element_id, contents){
 
 }
 
+function cancelEdit(id){
+  window.alert("Not able to cancel edits yet, sorry!");
+}
+
+function saveEditedItem(id){
+  window.alert("Not able to save edits yet, sorry!");  
+}
+
 // Put the current table into the UI
 async function apply_table(table) {
   console.log("Running Apply Table");
@@ -561,6 +569,20 @@ async function apply_table(table) {
       if (child) {
         child.setAttribute("id", `item${i}-edit-button`);
         child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
+      }
+
+      // Save Button
+      child = template_item.querySelector(".save-edit-button");
+      if (child) {
+        child.setAttribute("id", `item${i}-save-edit-button`);
+        child.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
+      }
+
+      // Cancel Button
+      child = temporary_item.querySelector(".cancel-button-col");
+      if (child) {
+        child.setAttribute("id", `item${i}-cancel-button`);
+        child.setAttribute("onclick", `cancelEdit(${i}); return false;`);
       }
 
       // Item Name

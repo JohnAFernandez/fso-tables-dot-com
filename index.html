@@ -917,15 +917,7 @@
     <template id="dataRowTemplate">
       <div class="data-item item-body">
         <form class="edit-item-form">
-          <div class="row">
-            <div class="col-1 edit-button-col">
-              <button class="button btn-sm btn-outline-dark edit-button table-edit-ui-button">                    
-                <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-23.svg">
-              </button>
-              <button class="button btn-sm btn-outline-dark save-edit-button table-edit-ui-button">                    
-                <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-23.svg">
-              </button>
-            </div>
+          <div class="row">            
             <div class="col-8">
               <h3 class="template-item-area"><b class="template-item-name">[Warning! Not populated]</b></h3><br>
               <div class="form-group item-edit-name-group" style="display:none;">
@@ -934,6 +926,20 @@
                 </label>
                 <input type="text" class="form-control item-edit-name" placeholder="" title="The text that enables this item is in use in a Freespace Open table file.">
               </div>
+            </div>
+            <div class="col-1 edit-button-col">
+              <button class="button btn-sm btn-outline-dark edit-button table-edit-ui-button">                    
+                <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-23.svg">
+              </button>
+              <button style="display:none;" class="button btn-sm btn-outline-dark save-edit-button table-edit-ui-button">                    
+                <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-23.svg">
+              </button>
+            </div>
+            <div class="col-1 button-spacing-col"></div>
+            <div class="col-1 cancel-button-col" style="display:none;">
+              <button class="button btn-sm btn-outline-dark cancel-button table-edit-ui-button">
+                <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-32.svg">
+              </button>
             </div>
           </div>
           <div class="row">

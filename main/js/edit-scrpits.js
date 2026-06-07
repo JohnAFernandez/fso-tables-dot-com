@@ -19,6 +19,11 @@ function initiateItemEdit(id) {
     item${id}-save-button
     */
 
+    // Change Active Buttons
+    toggleContents(false, `item${id}-edit-button`);
+    toggleContents(false, `item${id}-save-edit-button`);
+    toggleContents(true, `item${id}-cancel-button`);
+
     // name
     let current_element = document.getElementById(`item${id}-item-text`);
     let target_element = document.getElementById(`item${id}-edit-name`);
