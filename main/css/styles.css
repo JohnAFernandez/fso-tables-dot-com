@@ -353,10 +353,6 @@ li {
     padding-bottom: 30px;
 }
 
-.add-item-button{
-    padding-bottom: 10px;
-}
-
 .table-edit-ui-button {
     background-color: #ccc;
     border-color: #000000;
@@ -372,6 +368,11 @@ li {
 
 .table-edit-ui-button:focus {
     background-color: #333333;
+}
+
+.add-item-button{
+    padding-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .btn-outline-dark:hover {
