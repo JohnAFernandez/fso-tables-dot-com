@@ -542,7 +542,7 @@ async function apply_table(table) {
       child = temporary_item.querySelector(".edit-item-form");
       if (child) { 
         child.setAttribute("id", `item${i}-form`);
-        child.setAttribute("onsubmit, `return flase;`");
+        child.setAttribute("onsubmit", "`return flase;`");
       }
 
       child = temporary_item.querySelector(".save-edit-button");
