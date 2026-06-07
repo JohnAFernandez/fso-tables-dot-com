@@ -654,14 +654,14 @@ async function apply_table(table) {
           child.setAttribute("id", `item${i}-type-area`)
         }
 
-        child = temporary_item.querySelector(".item-edit-variable-type-group");
+        child = temporary_item.querySelector(".item-edit-type-group");
         if (child) {
-          child.setAttribute("id", `item${i}-edit-variable-type-group`);
+          child.setAttribute("id", `item${i}-edit-type-group`);
         }
 
-        child = temporary_item.querySelector(".item-edit-variable-type");
+        child = temporary_item.querySelector(".item-edit-type");
         if (child) {
-          child.setAttribute("id", `item${i}-edit-variable-type`);
+          child.setAttribute("id", `item${i}-edit-type`);
         }
       }
 
@@ -726,7 +726,7 @@ async function apply_table(table) {
         }
 
         // Save Button
-        child = template_item.querySelector(".save-button-col");
+        child = temporary_item.querySelector(".save-button-col");
         if (child) {
           child.setAttribute("id", `item${i}-save-button-col`);
           
@@ -735,7 +735,7 @@ async function apply_table(table) {
           if (child2){
             child2.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
           }
-          
+
           child.setAttribute(style, "display:none;");
         }
 
