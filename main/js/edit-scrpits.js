@@ -48,7 +48,7 @@ function initiateItemEdit(id) {
 
 //    changeContents("item-edit-description-area", )
 
-
+    return false;
 }
 
 function saveItemEditChanges(id){

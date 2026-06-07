@@ -353,12 +353,17 @@ li {
     padding-bottom: 30px;
 }
 
+.add-item-button{
+    padding-bottom: 10px;
+}
+
 .table-edit-ui-button {
-    background-color: #43433b;
+    background-color: #8e8e7f;
     border-color: #000000;
 /*    border-radius: 0px;
     border-width: 2px;*/
     color: #000000;
+    padding-bottom: 5px;
 }
 
 .table-edit-ui-button:hover {
