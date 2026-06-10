@@ -33,7 +33,7 @@ function initiateItemEdit(id) {
 
     // version 
     current_element = document.getElementById(`item${id}-major-version`);
-    changeContents(`item${id}-edit-major-version`, current_element.innerText); // TODO, this needs to use the actual version, lol
+    //changeContents(`item${id}-edit-major-version`, current_element.innerText); // TODO, this needs to use the actual version, lol
     toggleContents(false, `item${id}-major-version-area`); 
     toggleContents(true, `item${id}-edit-major-version-group`);
 
