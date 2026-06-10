@@ -444,7 +444,7 @@
                 </textarea>              
               </div>
               <div class="form-group">
-                <h5><label for="new-item-major">First Stable FSO Version</label><h5></h5>
+                <h5><label for="new-item-major">Stable FSO Version Implemented</label><h5></h5>
                 <div class="container" style="padding-left: 0px;">
                   <div class="row">
                     <div class="col-2">
@@ -467,9 +467,9 @@
                       <option value="3.7.4">3.7.4</option>
                       <option value="3.7.2">3.7.2</option>
                       <option value="3.7.0">3.7.0</option>
-                      <option value="3.16.0">3.16.0</option>
-                      <option value="3.14.0">3.14.0</option>
-                      <option value="3.12.0">3.12.0</option>
+                      <option value="3.6.16">3.6.16</option>
+                      <option value="3.6.14">3.6.14</option>
+                      <option value="3.6.12">3.6.12</option>
                     </select>
                     </div>
                   </div>
@@ -946,12 +946,34 @@
           </div>
           <div class="row">
             <div class="col-4">
-              <h5 class="major-version-area">Minimum Version: &#9;<b class="template-major-version">[Warning! Not populated]</b></h5>
+              <h5 class="major-version-area">Minimum Version: &#9;<b class="template-major-version"></b></h5>
               <div class="form-group item-edit-major-version-group" style="display:none;">
                 <label style="padding-left: 6px;" for="edit-item-form">
                   <h3>Minimum Version</h3>
                 </label>
-                <input type="text" class="form-control item-edit-major-version" placeholder="2.0.0" title="The first version that supports this item, using standard Semver formatting." pattern="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$">
+                <select id="new-item-major" style="height: calc(1.5em + .75rem + 4px);" required>
+                  <option value="2.0">2 (Retail)</option>
+                  <option value="26.0">26.0</option>
+                  <option value="25.0">25.0</option>
+                  <option value="24.2">24.2</option>
+                  <option value="24.0">24.0</option>
+                  <option value="23.2">23.2</option>
+                  <option value="23.0">23.0</option>
+                  <option value="22.2">22.2</option>
+                  <option value="22.0">22.0</option>
+                  <option value="21.4">21.4</option>
+                  <option value="21.2">21.2</option>
+                  <option value="21.0">21.0</option>
+                  <option value="20.0">20.0</option>
+                  <option value="19.0">19.0</option>
+                  <option value="3.8">3.8</option>
+                  <option value="3.7.4">3.7.4</option>
+                  <option value="3.7.2">3.7.2</option>
+                  <option value="3.7.0">3.7.0</option>
+                  <option value="3.6.16">3.6.16</option>
+                  <option value="3.6.14">3.6.14</option>
+                  <option value="3.6.12">3.6.12</option>
+                </select>
               </div>
             </div>
               <br>
