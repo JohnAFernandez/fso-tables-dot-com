@@ -47,7 +47,7 @@ function initiateItemEdit(id) {
     current_element = document.getElementById(`item${id}-variable-type`);
     changeContents(`item${id}-edit-variable-type`, current_element.innerText);
     toggleContents(false, `item${id}-type-area`); 
-    toggleContents(true, `item${id}-edit-variable-type-group`);
+    toggleContents(true, `item${id}-edit-type-group`);
 
     // Illegal Values
 
