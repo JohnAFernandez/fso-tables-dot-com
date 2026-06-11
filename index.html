@@ -435,14 +435,13 @@
                 </select>
               </div>
               <div class="form-group">
-                <h5><label for="new-item-documentation">Default Value (Optional)</label></h5>
-                <textarea cols="45" rows="7" id="new-item-default-value" placeholder="New item defaults to..." title='This should be set to the value the engine assumes if this option is not specified, if applicable.'>
-                </textarea>              
-              </div>
-              <div class="form-group">
                 <h5><label for="new-item-documentation">Documentation</label></h5>
                 <textarea cols="45" rows="7" id="new-item-documentation" placeholder="New item accomplishes..." title='This section should include 1&rpar; How to use and 2&rpar; Any Hard-Light wiki "Notes" sections that used to be separate'>
                 </textarea>              
+              </div>
+              <div class="form-group">
+                <h5><label for="new-item-documentation">Default Value (Optional)</label></h5>
+                <input type="text" id="new-item-default-value" placeholder="New item defaults to..." title='This should be set to the value the engine assumes if this option is not specified, if applicable.'>              
               </div>
               <div class="form-group">
                 <h5><label for="new-item-major">Stable FSO Version Implemented</label><h5></h5>
@@ -977,7 +976,9 @@
                 </select>
               </div>
             </div>
+          </div>
               <br>
+          <div class="row">
             <div class="col-4 template-deprecation-area">
               <h5>Deprecation Version: &#9;<b class="template-deprecation-version">[Warning! Not populated]</b></h5>
               <div class="form-group item-edit-deprecation-group" style="display:none;">
@@ -994,9 +995,22 @@
               <h5 class="template-type-area">Type: &#9;<b class="template-variable-type">[Warning! Not populated]</b></h5>
               <div class="form-group item-edit-type-group" style="display:none;">
                 <label style="padding-left: 6px;" for="edit-item-type">
-                  <h3>Type</h3>
+                  <h3>Data Type</h3>
                 </label>
-                <input type="text" list="item-type-list" class="form-control item-edit-type" placeholder="Text" title="The data type that this item uses.">
+                <select class="edit-item-type" style="height: calc(1.5em + .75rem + 4px);" title="The data type that this item uses." required>
+                  <option value="marker">Syntax Section Marker</option>
+                  <option value="marker_end">Syntax Section Ending Marker</option>
+                  <option value="integer">Integer</option>
+                  <option value="text">Text</option>
+                  <option value="float">Float</option>
+                  <option value="bool_simple">Yes/No</option>
+                  <option value="bool_flex">Flexible Bool</option>
+                  <option value="intlist">List of Integers</option>
+                  <option value="floatlist">List of Floats</option>
+                  <option value="flagset">Flagset</option>
+                  <option value="file">File</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
             </div>
             <br>
