@@ -45,7 +45,7 @@ function initiateItemEdit(id) {
 
     // type
     current_element = document.getElementById(`item${id}-variable-type`);
-    changeContents(`item${id}-edit-type`, current_element.innerText);
+    //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value
     toggleContents(false, `item${id}-type-area`); 
     toggleContents(true, `item${id}-edit-type-group`);
 
