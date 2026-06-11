@@ -713,11 +713,17 @@ async function apply_table(table) {
         child.textContent = data_item.documentation;
         child.setAttribute("id", `item${i}-documentation`);      
         if (deprecation === false && alias === false){
-          child.textContent += "&NewLine;No aliases and not deprecated.";
+          child.textContent += ` 
+
+          No aliases and not deprecated.`;
         } else if (deprecation === false){
-          child.textContent += "&NewLine;Not deprecated.";
+          child.textContent += `
+          
+          Not deprecated.`;
         } else if (alias === false) {
-          child.textContent += "&NewLine;No Aliases";
+          child.textContent += `
+          
+          No Aliases`;
         }
       }
 
