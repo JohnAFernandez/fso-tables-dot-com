@@ -38,10 +38,10 @@ function initiateItemEdit(id) {
     toggleContents(true, `item${id}-edit-major-version-group`);
 
     // Deprecations
-    current_element = document.getElementById(`item${id}-major-version`);
-    changeContents(`item${id}-edit-major-version`, current_element.innerText);
-    toggleContents(false, `item${id}-major-version-area`); 
-    toggleContents(true, `item${id}-edit-major-version-group`);
+    //current_element = document.getElementById(`item${id}-deprecations`);
+    //changeContents(`item${id}-edit-major-version`, current_element.innerText);
+    //toggleContents(false, `item${id}-major-version-area`); 
+    //toggleContents(true, `item${id}-edit-major-version-group`);
 
     // type
     current_element = document.getElementById(`item${id}-variable-type`);
