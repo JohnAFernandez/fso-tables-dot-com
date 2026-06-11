@@ -47,7 +47,7 @@ function initiateItemEdit(id) {
     current_element = document.getElementById(`item${id}-variable-type`);
     //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value
     toggleContents(false, `item${id}-documentation`); 
-    toggleContents(true, `item${id}-edit-description-group`);
+    toggleContents(true, `item${id}-edit-description-area`);
 
     // Illegal Values
 
