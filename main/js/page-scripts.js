@@ -514,6 +514,7 @@ async function apply_table(table) {
   
   replace_text_contents("table-description-content", database_tables[Current_Table].description);
 
+  // This is the *table* alias, whose aliases are not yet implemented at all.
   replace_text_contents("table-aliases-content1", "");
   replace_text_contents("table-aliases-label", "");
   
@@ -613,13 +614,19 @@ async function apply_table(table) {
         }
       }
 
+      let deprecation = false;
 
       // TODO! Make sure that the info has deprecations in the future
       // Deprecations
       child = temporary_item.querySelector(".template-deprecation-area");
-      if (child) { 
-        child.style.display = "none";
-        child.setAttribute("id", `item${i}-deprecation-area`);        
+      if (child) {
+        if ((data_item.deprecation_id) > -1){
+          deprecation = true;
+          child.setAttribute("id", `item${i}-deprecation-area`);        
+          child.textContent = data_item.deprecation_id;
+        } else {
+          child.style.display = "none";
+        }
       }        
   
       // TODO! Need to make sure that we are not editing any entries when tables are switched
@@ -684,20 +691,34 @@ async function apply_table(table) {
         }
       }
 
+      let alias = false;
+
       // Alias
       child = temporary_item.querySelector(".template-alias-area");
       if (child) { 
-        child.style.display = "none";
-        child.setAttribute("id", `item${i}-alias-area`);
+        if ((data_item.alias_id) > -1){
+          alias = true;
+          child.setAttribute("id", `item${i}-alias-area`);        
+          child.textContent = data_item.alias_id;
+        } else {
+          child.style.display = "none";
+        }
       }        
       
-      // TODO! Alias does not have an edit section, and we probably need to do more for it anyway.
-
+      // TODO! Alias does not have an edit section.  We can make all aliases go under one item in the database
+      
       // Description
       child = temporary_item.querySelector(".template-description");
       if (child) { 
         child.textContent = data_item.documentation;
         child.setAttribute("id", `item${i}-documentation`);      
+        if (deprecation === false && alias === false){
+          child.textContent += "<br>No aliases and not deprecated.";
+        } else if (deprecation === false){
+          child.textContent += "<br>Not deprecated.";
+        } else if (alias === false) {
+          child.textContent += "<br>No Aliases";
+        }
       }
 
       if (new_copy){
