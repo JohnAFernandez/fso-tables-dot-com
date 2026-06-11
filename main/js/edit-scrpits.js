@@ -37,27 +37,30 @@ function initiateItemEdit(id) {
     toggleContents(false, `item${id}-major-version-area`); 
     toggleContents(true, `item${id}-edit-major-version-group`);
 
+    // Description
+    current_element = document.getElementById(`item${id}-documentation`);
+    target_element = document.getElementById(`item${id}-edit-description`);
+    changeContents(`item${id}-edit-description`, current_element.innerText);
+    toggleContents(false, `item${id}-documentation`)
+
+    // type
+    current_element = document.getElementById(`item${id}-variable-type`);
+    //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value
+    toggleContents(false, `item${id}-documentation`); 
+    toggleContents(true, `item${id}-edit-description-group`);
+
+    // Illegal Values
+
+    // Alias
+
     // Deprecations
     //current_element = document.getElementById(`item${id}-deprecations`);
     //changeContents(`item${id}-edit-major-version`, current_element.innerText);
     //toggleContents(false, `item${id}-major-version-area`); 
     //toggleContents(true, `item${id}-edit-major-version-group`);
 
-    // type
-    current_element = document.getElementById(`item${id}-variable-type`);
-    //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value
-    toggleContents(false, `item${id}-type-area`); 
-    toggleContents(true, `item${id}-edit-type-group`);
-    window.alert("TACO BELL!");
-    // Illegal Values
 
 
-    // Alias
-
-
-    // Description
-
-//    changeContents("item-edit-description-area", )
 }
 
 function saveItemEditChanges(id){

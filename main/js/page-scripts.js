@@ -731,7 +731,7 @@ async function apply_table(table) {
       }
 
       if (new_copy){
-        child = temporary_item.querySelector(".item-edit-description-area");
+        child = temporary_item.querySelector(".item-edit-description-group");
         if (child) {
           child.setAttribute("id", `item${i}-edit-description-area`);
         }
