@@ -462,10 +462,6 @@ function replace_inner_html(element_id, contents){
 
 }
 
-function cancelEdit(id){
-  window.alert("Not able to cancel edits yet, sorry!");
-}
-
 function saveEditedItem(id){
   window.alert("Not able to save edits yet, sorry!");  
 }
@@ -776,7 +772,7 @@ async function apply_table(table) {
 
           let child3 = child.querySelector(".cancel-edit-button");
           if (child3){
-            child3.setAttribute("onclick", `cancelEdit(${i}); return false;`);
+            child3.setAttribute("onclick", `cancelItemEdit(${i}); return false;`);
           }
 
           child.setAttribute("style", "display:none;");

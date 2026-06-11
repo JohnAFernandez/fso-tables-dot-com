@@ -41,15 +41,16 @@ function initiateItemEdit(id) {
     current_element = document.getElementById(`item${id}-documentation`);
     target_element = document.getElementById(`item${id}-edit-description`);
     changeContents(`item${id}-edit-description`, current_element.innerText);
-    toggleContents(false, `item${id}-documentation`)
+    toggleContents(false, `item${id}-documentation`);
+    toggleContents(true, `item${id}-edit-description-area`);
 
     // type
     current_element = document.getElementById(`item${id}-variable-type`);
-    //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value
-    toggleContents(false, `item${id}-documentation`); 
-    toggleContents(true, `item${id}-edit-description-area`);
+    //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value    
+    toggleContents(false, `item${id}-type-area`);
+    toggleContents(true, `item${id}-edit-type-group`);
 
-    // Illegal Values
+   // Illegal Values
 
     // Alias
 
@@ -60,6 +61,21 @@ function initiateItemEdit(id) {
     //toggleContents(true, `item${id}-edit-major-version-group`);
 
 
+
+}
+
+function cancelItemEdit(id) {
+  toggleContents(true, `item${id}-edit-button-col`);
+  toggleContents(false, `item${id}-save-button-col`);
+  toggleContents(false, `item${id}-cancel-button-col`);
+  toggleContents(true, `item${id}-item-text-area`); 
+  toggleContents(false, `item${id}-edit-name-group`);
+  toggleContents(true, `item${id}-major-version-area`); 
+  toggleContents(false, `item${id}-edit-major-version-group`);
+  toggleContents(true, `item${id}-documentation`);
+  toggleContents(false, `item${id}-edit-description-area`);
+  toggleContents(true, `item${id}-type-area`);
+  toggleContents(false, `item${id}-edit-type-group`);
 
 }
 
