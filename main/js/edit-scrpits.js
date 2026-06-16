@@ -77,6 +77,8 @@ function cancelItemEdit(id) {
   toggleContents(true, `item${id}-type-area`);
   toggleContents(false, `item${id}-edit-type-group`);
 
+  Edit_In_Progress = false;
+
 }
 
 function saveItemEditChanges(id){
