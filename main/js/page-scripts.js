@@ -772,7 +772,7 @@ async function apply_table(table) {
 
           let child3 = child.querySelector(".cancel-edit-button");
           if (child3){
-            child3.setAttribute("onclick", `cancelItemEdit(${i}); return false;`);
+            child3.setAttribute("onclick", `turnOffItemEdit(${i}); return false;`);
           }
 
           child.setAttribute("style", "display:none;");

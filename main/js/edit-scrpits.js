@@ -55,8 +55,8 @@ function initiateItemEdit(id) {
     // Alias
 
     // Deprecations
-    //current_element = document.getElementById(`item${id}-deprecations`);
-    //changeContents(`item${id}-edit-major-version`, current_element.innerText);
+    current_element = document.getElementById(`item${id}-deprecations`);
+    changeContents(`item${id}-edit-deprecation`, current_element.innerText);
     //toggleContents(false, `item${id}-major-version-area`); 
     //toggleContents(true, `item${id}-edit-major-version-group`);
 
@@ -64,7 +64,7 @@ function initiateItemEdit(id) {
 
 }
 
-function cancelItemEdit(id) {
+function turnOffItemEdit(id) {
   toggleContents(true, `item${id}-edit-button-col`);
   toggleContents(false, `item${id}-save-button-col`);
   toggleContents(false, `item${id}-cancel-button-col`);
