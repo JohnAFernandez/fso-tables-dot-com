@@ -341,11 +341,11 @@ function integrate_local_data() {
       continue;
     }
 
-    if (database_tables[j].items === undefined){
-      continue;
-    }
-
     for (let j = 0; j < database_tables.length; j++){
+      if (database_tables[j].items === undefined){
+        continue;
+      }
+      
       for (let k = 0; k < database_tables[i].items.length; k++) {
         if (database_deprecations[i].item_id == database_tables[j].items[k].item_id){
           if (database_tables[j].items[k].deprecations === undefined) {
@@ -369,11 +369,11 @@ function integrate_local_data() {
       continue;
     }
     
-    if (database_tables[j].items === undefined){
-      continue;
-    }
-
     for (let j = 0; j < database_tables.length; j++){
+      if (database_tables[j].items === undefined){
+        continue;
+      }
+
       for (let k = 0; k < database_tables[i].items.length; k++) {
         if (database_restrictions[i].item_id == database_tables[j].items[k].item_id){
           if (database_tables[j].items[k].restrictions === undefined) {
