@@ -336,7 +336,7 @@ function integrate_local_data() {
     }    
   }
 
-  for (let i = 0; i < database_deprecations.length; k++){
+  for (let i = 0; i < database_deprecations.length; i++){
     if (database_deprecations[i].item_id < 0) {
       continue;
     }
@@ -345,7 +345,7 @@ function integrate_local_data() {
       if (database_tables[j].items === undefined){
         continue;
       }
-      
+
       for (let k = 0; k < database_tables[i].items.length; k++) {
         if (database_deprecations[i].item_id == database_tables[j].items[k].item_id){
           if (database_tables[j].items[k].deprecations === undefined) {
