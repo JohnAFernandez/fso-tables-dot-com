@@ -287,16 +287,98 @@ let database_restrictions = [];
 let database_deprecations = [];
 
 // make the function this way so that we can update everything at once, but also update with individual functions later 
-function update_local_data() {
+function update_all_local_data() {
   Ui_Update_Needed = true;
   
   get_table_data().then(() => {
-      get_item_data();
-      get_table_aliases();
-      get_parse_behaviors();
-      get_restrictions();
-      get_deprecations();
-    });
+    get_item_data();
+    get_table_aliases();
+    get_parse_behaviors();
+    get_restrictions();
+    get_deprecations();
+    integrate_local_data();
+  });
+
+}
+
+function integrate_local_data() {
+  let found = false
+  
+  // lol, yes this is inefficient, but we actually will not have
+  // many aliases, restrictions or deprecations
+  for (let i = 0; i < database_aliases.length; i++){
+    if (database_aliases[i].table_id > -1 || database_aliases[i].item_id < 0) {
+      continue;
+    }
+    
+    for (let j = 0; j < database_tables.length; j++){
+      for (let k = 0; k < database_tables[i].items.length; k++) {
+        if (database_aliases[i].item_id == database_tables[j].items[k].item_id){
+          if (database_tables[j].items[k].aliases === undefined) {
+            database_tables[j].items[k].aliases = [];
+          }
+
+          database_tables[j].items[k].aliases[database_tables[j].items[k].aliases.length] = database_aliases[i];
+          found = true;
+          break;
+        }
+      
+        if (found = true) {
+          found = false;
+          break;
+        }
+      }
+    }    
+  }
+
+  for (let i = 0; i < database_deprecations.length; k++){
+    if (database_deprecations[i].item_id < 0) {
+      continue;
+    }
+    
+    for (let j = 0; j < database_tables.length; j++){
+      for (let k = 0; k < database_tables[i].items.length; k++) {
+        if (database_deprecations[i].item_id == database_tables[j].items[k].item_id){
+          if (database_tables[j].items[k].deprecations === undefined) {
+            database_tables[j].items[k].deprecations = [];
+          }
+          database_tables[j].items[k].deprecations[database_tables[j].items[k].deprecations.length] = database_deprecations[i];
+          found = true;
+          break;
+        }
+
+        if (found = true) {
+          found = false;
+          break;
+        }
+      }
+    }    
+  }
+
+  for (let i = 0; i< database_restrictions; i++){
+    if (database_restrictions[i].item_id < 0) {
+      continue;
+    }
+    
+    for (let j = 0; j < database_tables.length; j++){
+      for (let k = 0; k < database_tables[i].items.length; k++) {
+        if (database_restrictions[i].item_id == database_tables[j].items[k].item_id){
+          if (database_tables[j].items[k].restrictions === undefined) {
+            database_tables[j].items[k].restrictions = [];
+          }
+
+          database_tables[j].items[k].restrictions[database_tables[j].items[k].restrictions.length] = database_restrictions[i];
+          found = true;
+          break;
+        }
+        
+        if (found = true) {
+          found = false;
+          break;
+        }
+      }
+    }    
+  }
 }
 
 // this function and its fetch need to be awaited so that the other functions do not run until we get this information.
@@ -340,23 +422,26 @@ function get_item_data() {
       if (database_tables[responseJSON[item].table_id - 1] == undefined) {
         console.log(`Orphaned table item: ${item}`);
         continue;
-      }
+      } 
 
-      if (database_tables[responseJSON[item].table_id - 1].items == undefined) {
-        database_tables[responseJSON[item].table_id - 1].items = [];
+      let table_id = responseJSON[item].table_id - 1;
+
+      if (database_tables[table_id].items == undefined) {
+        database_tables[table_id].items = [];
       }
 
       let found = false;
-      for (stored_item in database_tables[responseJSON[item].table_id  - 1].items){
-        if (database_tables[responseJSON[item].table_id  - 1].items[stored_item].item_id == responseJSON[item].item_id){
-          database_tables[responseJSON[item].table_id - 1].items[stored_item] = responseJSON[item];
+
+      for (stored_item in database_tables[table_id].items){
+        if (database_tables[table_id].items[stored_item].item_id == responseJSON[item].item_id){
+          database_tables[table_id].items[stored_item] = responseJSON[item];
           found = true;
           break;
         } 
       }
 
       if (!found){
-        database_tables[responseJSON[item].table_id  - 1].items.push(responseJSON[item]);
+        database_tables[table_id].items.push(responseJSON[item]);
       }
     }
 

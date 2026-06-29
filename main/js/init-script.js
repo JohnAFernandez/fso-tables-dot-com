@@ -53,7 +53,7 @@ function initPage(){
     }
   
     console.log("Getting Table Data");
-    update_local_data();
+    update_all_local_data();
     
     console.log("End of initialization function");
   }
