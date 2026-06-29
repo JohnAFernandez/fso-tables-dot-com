@@ -12,6 +12,7 @@ let Updating_parse_behavior_array = false;
 let Updating_restrictions_array = false;
 let Updating_deprecations_array = false;
 let Updating_table_aliases_array = false;
+let Integrating_data = false;
 let Fetching_info_error = "";
 let Edit_In_Progress = false;
 
@@ -21,6 +22,7 @@ async function check_for_update() {
   if (Ui_Update_Needed && !Updating_table_array && !Updating_table_item_array && !Updating_parse_behavior_array && !Updating_restrictions_array && !Updating_deprecations_array && !Updating_table_aliases_array ){
     Ui_Update_Needed = false;
     console.log("Updating UI");
+    integrate_local_data();
     apply_table(Current_Table).catch(error => { console.log("Apply Table has failed.");});
   } 
 }
@@ -296,13 +298,12 @@ function update_all_local_data() {
     get_parse_behaviors();
     get_restrictions();
     get_deprecations();
-    integrate_local_data();
   });
 
 }
 
 function integrate_local_data() {
-  let found = false
+  let found = false;
   
   // lol, yes this is inefficient, but we actually will not have
   // many aliases, restrictions or deprecations
