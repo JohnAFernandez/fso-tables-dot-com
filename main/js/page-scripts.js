@@ -217,15 +217,21 @@ function get_user_details() {
           break;
         }
         case 2: {
+          Role = "Trusted Maintainer";
+          break;
+        }
+        case 3: {
           Role = "Maintainer";
           break;
         }
-        case 3: 
+        case 4: { 
           Role = "Viewer";
           break;
-        default:
+        }
+        default:{
           Role = "[Bad Data]";
           break;
+        }
       }
       
       if (responseJSON.active === 1) {
