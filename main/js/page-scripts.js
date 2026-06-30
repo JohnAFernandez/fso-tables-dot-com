@@ -364,7 +364,7 @@ function integrate_local_data() {
     }    
   }
 
-  for (let i = 0; i< database_restrictions; i++){
+  for (let i = 0; i< database_restrictions.length; i++){
     if (database_restrictions[i].item_id < 0) {
       continue;
     }
