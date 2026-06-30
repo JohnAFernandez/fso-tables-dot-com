@@ -720,7 +720,7 @@ async function apply_table(table) {
       // Deprecations
       child = temporary_item.querySelector(".template-deprecation-area");
       if (child) {
-        if ((data_item.deprecation_id) > -1){
+        if (data_item.deprecations !== undefined && data_item.deprecations.length > 0){
           deprecation = true;
           child.setAttribute("id", `item${i}-deprecation-area`);        
           child.textContent = data_item.deprecation_id;
@@ -796,7 +796,7 @@ async function apply_table(table) {
       // Alias
       child = temporary_item.querySelector(".template-alias-area");
       if (child) { 
-        if ((data_item.alias_id) > -1){
+        if (data_item.aliases !== undefined && data_item.aliases.length > 0){
           alias = true;
           child.setAttribute("id", `item${i}-alias-area`);        
           child.textContent = data_item.alias_id;
