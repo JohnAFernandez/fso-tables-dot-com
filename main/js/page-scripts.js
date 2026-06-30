@@ -317,7 +317,7 @@ function integrate_local_data() {
         continue;
       }
 
-      for (let k = 0; k < database_tables[i].items.length; k++) {
+      for (let k = 0; k < database_tables[j].items.length; k++) {
         if (database_aliases[i].item_id == database_tables[j].items[k].item_id){
           if (database_tables[j].items[k].aliases === undefined) {
             database_tables[j].items[k].aliases = [];
@@ -327,11 +327,11 @@ function integrate_local_data() {
           found = true;
           break;
         }
-      
-        if (found = true) {
-          found = false;
-          break;
-        }
+      }
+
+      if (found = true) {
+        found = false;
+        break;        
       }
     }    
   }
@@ -346,7 +346,7 @@ function integrate_local_data() {
         continue;
       }
 
-      for (let k = 0; k < database_tables[i].items.length; k++) {
+      for (let k = 0; k < database_tables[j].items.length; k++) {
         if (database_deprecations[i].item_id == database_tables[j].items[k].item_id){
           if (database_tables[j].items[k].deprecations === undefined) {
             database_tables[j].items[k].deprecations = [];
@@ -355,11 +355,11 @@ function integrate_local_data() {
           found = true;
           break;
         }
+      }
 
-        if (found = true) {
-          found = false;
-          break;
-        }
+      if (found = true) {
+        found = false;
+        break;
       }
     }    
   }
@@ -374,7 +374,7 @@ function integrate_local_data() {
         continue;
       }
 
-      for (let k = 0; k < database_tables[i].items.length; k++) {
+      for (let k = 0; k < database_tables[j].items.length; k++) {
         if (database_restrictions[i].item_id == database_tables[j].items[k].item_id){
           if (database_tables[j].items[k].restrictions === undefined) {
             database_tables[j].items[k].restrictions = [];
