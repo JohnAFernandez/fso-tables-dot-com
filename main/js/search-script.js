@@ -17,7 +17,7 @@ let canceledSearch = false;
 
 async function newSearch (){
   let search_bar = document.getElementById(`search_bar`);
-  let text = search_bar.textContent;
+  let text = search_bar.value;
 
   // tell everything else to cancel
   cancelSearchSignal = true;
