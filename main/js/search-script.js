@@ -58,7 +58,7 @@ async function searchForText (text){
       continue;
     }
   
-    for (let j = 0; j < database_tables[i].items[j].length; j++){
+    for (let j = 0; j < database_tables[i].items.length; j++){
       if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
         continue;
       }
@@ -78,7 +78,7 @@ async function searchForText (text){
       continue;
     }
     
-    for (let j = 0; j < database_tables[i].items[j].length; j++){
+    for (let j = 0; j < database_tables[i].items.length; j++){
       if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
         continue;
       }
@@ -98,7 +98,7 @@ async function searchForText (text){
       continue;
     }
     
-    for (let j = 0; j < database_tables[i].items[j].length; j++){
+    for (let j = 0; j < database_tables[i].items.length; j++){
       if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
         continue;
       }
@@ -118,7 +118,7 @@ async function searchForText (text){
       continue;
     }
     
-    for (let j = 0; j < database_tables[i].items[j].length; j++){
+    for (let j = 0; j < database_tables[i].items.length; j++){
       if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
         continue;
       }
