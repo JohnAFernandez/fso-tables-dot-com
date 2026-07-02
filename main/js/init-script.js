@@ -57,7 +57,7 @@ function initPage(){
 
     console.log("Initializing Search");
     let search_bar = document.getElementById(`search_bar`);
-    search_bar.addEventListener('new_search_event', newSearch);
+    search_bar.addEventListener('Inputs', newSearch(search_bar.textContent));
     
     console.log("End of initialization function");
   }
