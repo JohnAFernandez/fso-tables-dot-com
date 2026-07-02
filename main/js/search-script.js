@@ -37,11 +37,12 @@ async function newSearch (text){
 async function addFoundItem(table_index, item_index, id, text){
   foundItemsSet[foundItemsSet.length] = id;
 
-  let new_target = result_template;
-  new_target.table_index = table_index;
-  new_target.item_index = item_index;
-  new_target.matchText = text;
-  
+  let new_target = {
+    table_index : table_index,
+    item_index : item_index,
+    matchText : text
+  };
+    
   search_targets[search_targets.length] = new_target;
 
   update_search_results();
