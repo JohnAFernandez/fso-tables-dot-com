@@ -56,9 +56,8 @@ function initPage(){
     update_all_local_data();
 
     console.log("Initializing Search");
-      HTMLInputElementObject.addEventListener('search_bar', function (newSearch) {
-      something(this.value);
-    });
+    let search_bar = document.getElementById(`search_bar`);
+    search_bar.addEventListener('new_search_event', newSearch);
     
     console.log("End of initialization function");
   }
