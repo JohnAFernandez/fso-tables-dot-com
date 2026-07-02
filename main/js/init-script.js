@@ -56,9 +56,4 @@ function initPage(){
     update_all_local_data();
     
     console.log("End of initialization function");
-
-    (async () => await newSearch("ship"));
-    (async () => await newSearch("$"));
-    (async () => await newSearch("taco"));
-    (async () => await newSearch(""));
   }

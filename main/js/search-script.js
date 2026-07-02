@@ -64,7 +64,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -84,7 +84,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -104,7 +104,7 @@ async function searchForText (text){
       }
       
       if (database_tables[i].items[j].documentation.startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item_text}\\Documention`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item[j].item_text}\\Documention`);
       }
 
       if (cancelSearchSignal === true){
@@ -124,7 +124,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].documentation.includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item_text}\\Documention`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].item[j].item_text}\\Documention`);
       }
 
       if (cancelSearchSignal === true){
