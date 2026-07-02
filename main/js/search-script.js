@@ -21,7 +21,9 @@ async function newSearch (){
 
   // tell everything else to cancel
   cancelSearchSignal = true;
-  
+
+  end_search();
+
   // wait for them to receive the signal
   await new Promise((resolve) => setTimeout(resolve, 5));
   
@@ -31,10 +33,8 @@ async function newSearch (){
   
   cancelSearchSignal = false;
   canceledSearch = false;
-  await update_search_results();
 
   searchForText(text);
-
 }
 
 // not indexes plug into local copies, ids would be inefficient
@@ -109,7 +109,7 @@ async function searchForText (text){
       }
       
       if (database_tables[i].items[j].documentation.startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].items[j].item_text}\\Documention`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}\\${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -129,7 +129,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].documentation.includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].items[j].item_text}\\Documention`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}\\${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -139,7 +139,6 @@ async function searchForText (text){
   }
 
   console.log("Search completed successfully.");
-  console.log(search_targets);
 }
 
 // this is UI side, only
@@ -171,7 +170,8 @@ function update_search_results(){
 
   if (search_targets.length < 1){
     end_search();
-    const element = document.getElementById(`search-item-1`);
+    toggleContents(true, `search-item-0`);
+    const element = document.getElementById(`search-item-0`);
     element.textContent = "No Results...";
     return;
   }
