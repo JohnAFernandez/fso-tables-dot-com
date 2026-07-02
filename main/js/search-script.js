@@ -161,13 +161,15 @@ function end_search(){
 }
 
 function update_search_results(){
-
-
   if (search_targets === undefined) {
     return;
   }
 
-  for (let i = 0; i < Math.max(10, search_targets.length); i++){
+  if (search_targets.length < 1){
+    end_search();
+  }
+
+  for (let i = 0; i < Math.min(10, search_targets.length); i++){
     toggleContents(true, `search-item-${i}`);
     const element = document.getElementById(`search-item-${i}`);
 
