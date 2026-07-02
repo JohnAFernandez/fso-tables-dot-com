@@ -57,8 +57,8 @@ function initPage(){
     
     console.log("End of initialization function");
 
-    (async () => await searchForText("ship"));
-    (async () => await searchForText("$"));
-    (async () => await searchForText("taco"));
-    (async () => await searchForText(""));
+    (async () => await newSearch("ship"));
+    (async () => await newSearch("$"));
+    (async () => await newSearch("taco"));
+    (async () => await newSearch(""));
   }

@@ -48,7 +48,7 @@ async function addFoundItem(table_index, item_index, id, text){
 }
 
 async function searchForText (text){
-  if (text === undefined || typeof(text) != String || database_tables === undefined){
+  if (text === undefined || typeof text != "string" || database_tables === undefined){
     canceledSearch = true;
     return;
   }
