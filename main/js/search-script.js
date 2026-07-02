@@ -138,6 +138,7 @@ async function searchForText (text){
   console.log(search_targets);
 }
 
+// this is UI side, only
 function end_search(){
   toggleContents(false, `search-item-0`);
   toggleContents(false, `search-item-1`);  
@@ -157,32 +158,21 @@ function end_search(){
   element3.textContent = "...";
   element4.textContent = "...";
   element5.textContent = "...";
-
-  for (thing in search_targets) {
-    thing[0] = "";
-    thing[1] = "";
-  }
 }
 
-function display_search_results(){
-  toggleContents(true, `search-item-0`);
-  toggleContents(true, `search-item-1`);  
-  toggleContents(true, `search-item-2`);  
-  toggleContents(true, `search-item-3`);  
-  toggleContents(true, `search-item-4`);
+function update_search_results(){
 
 
-  const element1 = document.getElementById(`search-item-0`);
-  const element2 = document.getElementById(`search-item-1`);
-  const element3 = document.getElementById(`search-item-2`);
-  const element4 = document.getElementById(`search-item-3`);
-  const element5 = document.getElementById(`search-item-4`);
+  if (search_targets === undefined) {
+    return;
+  }
 
-  element1.textContent = "RESULT1...";
-  element2.textContent = "RESULT2...";
-  element3.textContent = "RESULT3...";
-  element4.textContent = "RESULT4...";
-  element5.textContent = "RESULT5...";
+  for (let i = 0; i < Math.max(10, search_targets.length); i++){
+    toggleContents(true, `search-item-${i}`);
+    const element = document.getElementById(`search-item-${i}`);
+
+    element.textContent = search_targets[i].matchText;
+  }
 
 //  element.style.zIndex = 1021; // Any smaller will not work.
 //  element.style.x = document.getElementById("floating-link-container").style.x - 100;

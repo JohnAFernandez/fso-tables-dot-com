@@ -54,6 +54,11 @@ function initPage(){
   
     console.log("Getting Table Data");
     update_all_local_data();
+
+    console.log("Initializing Search");
+      HTMLInputElementObject.addEventListener('search_bar', function (newSearch) {
+      something(this.value);
+    });
     
     console.log("End of initialization function");
   }
