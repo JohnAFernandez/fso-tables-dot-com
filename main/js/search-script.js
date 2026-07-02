@@ -83,7 +83,7 @@ async function searchForText (text){
         continue;
       }
 
-      if (database_tables[i].items[j].item_text.contains(text)){
+      if (database_tables[i].items[j].item_text.includes(text)){
         addFoundItem(i, j, database_tables[i].items[j].item_id, database_tables[i].item_text);
       }
 
@@ -123,7 +123,7 @@ async function searchForText (text){
         continue;
       }
 
-      if (database_tables[i].items[j].documentation.contains(text)){
+      if (database_tables[i].items[j].documentation.includes(text)){
         addFoundItem(i, j, database_tables[i].items[j].item_id, database_tables[i].text);
       }
 
