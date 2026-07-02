@@ -20,7 +20,7 @@ async function newSearch (text){
   cancelSearchSignal = true;
   
   // wait for them to receive the signal
-  await sleep(5);
+  await new promise((resolve) => setTimeout(resolve, 5));
   
   // clear out global
   search_targets = [];
