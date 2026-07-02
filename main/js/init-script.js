@@ -56,4 +56,9 @@ function initPage(){
     update_all_local_data();
     
     console.log("End of initialization function");
+
+    (async () => await searchForText("ship"));
+    (async () => await searchForText("$"));
+    (async () => await searchForText("taco"));
+    (async () => await searchForText(""));
   }
