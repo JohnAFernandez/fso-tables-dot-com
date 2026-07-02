@@ -616,9 +616,7 @@
     <div class="floating-link-container" id="floating-link-container">
       <div class="container" >
         <div class="row" style="margin-bottom: 10px;">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          </form>
+          <h3>Tables and other documentation:</h3>
         </div>
       </div>
       <div class="container">
@@ -1073,36 +1071,45 @@
       </div>
     </template>
 
-    <template>
-      <select class="item-edit-specific-deprecation-version" style="width: 160px;" title="The first version that this behavior change applied to." required>
-        <option value="2.0">2 (Retail)</option>
-        <option value="26.0">26.0</option>
-        <option value="25.0">25.0</option>
-        <option value="24.2">24.2</option>
-        <option value="24.0">24.0</option>
-        <option value="23.2">23.2</option>
-        <option value="23.0">23.0</option>
-        <option value="22.2">22.2</option>
-        <option value="22.0">22.0</option>
-        <option value="21.4">21.4</option>
-        <option value="21.2">21.2</option>
-        <option value="21.0">21.0</option>
-        <option value="20.0">20.0</option>
-        <option value="19.0">19.0</option>
-        <option value="3.8">3.8</option>
-        <option value="3.7.4">3.7.4</option>
-        <option value="3.7.2">3.7.2</option>
-        <option value="3.7.0">3.7.0</option>
-        <option value="3.6.16">3.6.16</option>
-        <option value="3.6.14">3.6.14</option>
-        <option value="3.6.12">3.6.12</option>
-      </select>
+    <template id="deprecation-info-template">
+      <div class="row">
+        <h3>Add Behavior Change:</h3>
+        <br>
+        <label for="item-edit-specific_deprecation_version">Version</label>
+        <select class="item-edit-specific-deprecation-version" style="width: 160px;" title="The first version that this behavior change applied to." required>
+          <option value="2.0">2 (Retail)</option>
+          <option value="26.0">26.0</option>
+          <option value="25.0">25.0</option>
+          <option value="24.2">24.2</option>
+          <option value="24.0">24.0</option>
+          <option value="23.2">23.2</option>
+          <option value="23.0">23.0</option>
+          <option value="22.2">22.2</option>
+          <option value="22.0">22.0</option>
+          <option value="21.4">21.4</option>
+          <option value="21.2">21.2</option>
+          <option value="21.0">21.0</option>
+          <option value="20.0">20.0</option>
+          <option value="19.0">19.0</option>
+          <option value="3.8">3.8</option>
+          <option value="3.7.4">3.7.4</option>
+          <option value="3.7.2">3.7.2</option>
+          <option value="3.7.0">3.7.0</option>
+          <option value="3.6.16">3.6.16</option>
+          <option value="3.6.14">3.6.14</option>
+          <option value="3.6.12">3.6.12</option>
+        </select>
+      </div>
       <div class="form-group item-edit-specific-deprecation-description-group">
         <label style="padding-left: 6px;" for="edit-item-type">
           <h3>Description</h3>
         </label>
         <input type="text" class="form-control item-edit-illegal-values" placeholder="Text" title="What are the valid and invalid values for this item?">
       </div>
+    </template>
+
+    <template id="alias-info-template">
+
     </template>
 
     <datalist id="item-type-list">

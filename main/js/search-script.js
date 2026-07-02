@@ -1,8 +1,139 @@
-let targets = [["", ""], ["", ""], ["", ""], ["", ""], ["", ""]];
+let targets = [];
+let foundItemsSet = []; // for "quick" culling of known objects
 
+let result_template = {
+  table_index : -1,
+  item_index : -1,
+  matchText : ""
+}
 
-function search_for_text (text){
-  for ()
+async function update_search_results() {
+  console.log("Update Search results called");
+}
+
+// Async signals
+let cancelSearchSignal = false;
+let canceledSearch = false;
+
+async function newSearch (text){
+  // tell everything else to cancel
+  cancelSearchSignal = true;
+  foundItemsSet = true;
+  
+  // wait for them to receive the signal
+  await sleep(5);
+  
+  // clear out global
+  targets = [];
+  foundItemsSet = [];
+  
+  await update_search_results();
+
+  searchForText(text);
+}
+
+// not indexes plug into local copies, ids would be inefficient
+async function addFoundItem(table_index, item_index, id, text){
+  foundItemsSet[foundItemsSet.length] = id;
+
+  let new_target = result_template;
+  new_target.table_index = table_index;
+  new_target.item_index = item_index;
+  new_target.matchText = text;
+  
+  targets[targets.length] = new_target;
+
+  update_search_results();
+}
+
+async function searchForText (text){
+  if (text === undefined || typeof(text) != String || database_tables === undefined){
+    canceledSearch = true;
+    return;
+  }
+  
+  for (let i = 0; i < database_tables.length; i++) {
+    if (database_tables[i].items === undefined){
+      continue;
+    }
+  
+    for (let j = 0; j < database_tables[i].items[j].length; j++){
+      if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
+        continue;
+      }
+
+      if (database_tables[i].items[j].item_text.startsWith(text)){
+        addFoundItem(i, j, database_tables[i].items[j].item_id, database_tables[i].item_text);
+      }
+
+      if (cancelSearchSignal === true){
+        return;
+      }
+    }
+  }
+
+  for (let i = 0; i < database_tables.length; i++) {
+    if (database_tables[i].items === undefined){
+      continue;
+    }
+    
+    for (let j = 0; j < database_tables[i].items[j].length; j++){
+      if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
+        continue;
+      }
+
+      if (database_tables[i].items[j].item_text.contains(text)){
+        addFoundItem(i, j, database_tables[i].items[j].item_id, database_tables[i].item_text);
+      }
+
+      if (cancelSearchSignal === true){
+        return;
+      }
+    }
+  }
+
+  for (let i = 0; i < database_tables.length; i++) {
+    if (database_tables[i].items === undefined){
+      continue;
+    }
+    
+    for (let j = 0; j < database_tables[i].items[j].length; j++){
+      if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
+        continue;
+      }
+      
+      if (database_tables[i].items[j].documentation.startsWith(text)){
+        addFoundItem(i, j, database_tables[i].items[j].item_id, database_tables[i].item_text);
+      }
+
+      if (cancelSearchSignal === true){
+        return;
+      }
+    }
+  }
+
+  for (let i = 0; i < database_tables.length; i++) {
+    if (database_tables[i].items === undefined){
+      continue;
+    }
+    
+    for (let j = 0; j < database_tables[i].items[j].length; j++){
+      if (foundItemsSet.includes(database_tables[i].items[j].item_id)){
+        continue;
+      }
+
+      if (database_tables[i].items[j].documentation.contains(text)){
+        addFoundItem(i, j, database_tables[i].items[j].item_id, database_tables[i].text);
+      }
+
+      if (cancelSearchSignal === true){
+        return;
+      }
+    }
+  }
+
+  console.log("Search completed successfully.");
+  console.log(targets);
 }
 
 function end_search(){
