@@ -1,4 +1,4 @@
-let targets = [];
+let search_targets = [];
 let foundItemsSet = []; // for "quick" culling of known objects
 
 let result_template = {
@@ -18,7 +18,6 @@ let canceledSearch = false;
 async function newSearch (text){
   // tell everything else to cancel
   cancelSearchSignal = true;
-  foundItemsSet = true;
   
   // wait for them to receive the signal
   await sleep(5);
@@ -27,6 +26,8 @@ async function newSearch (text){
   targets = [];
   foundItemsSet = [];
   
+  cancelSearchSignal = false;
+  canceledSearch = false;
   await update_search_results();
 
   searchForText(text);
