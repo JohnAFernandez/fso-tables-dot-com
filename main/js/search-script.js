@@ -34,6 +34,7 @@ async function newSearch (){
   await update_search_results();
 
   searchForText(text);
+
 }
 
 // not indexes plug into local copies, ids would be inefficient
@@ -170,6 +171,9 @@ function update_search_results(){
 
   if (search_targets.length < 1){
     end_search();
+    const element = document.getElementById(`search-item-1`);
+    element.textContent = "No Results...";
+    return;
   }
 
   for (let i = 0; i < Math.min(10, search_targets.length); i++){
