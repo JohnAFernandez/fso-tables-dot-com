@@ -23,7 +23,7 @@ async function newSearch (text){
   await sleep(5);
   
   // clear out global
-  targets = [];
+  search_targets = [];
   foundItemsSet = [];
   
   cancelSearchSignal = false;
@@ -42,7 +42,7 @@ async function addFoundItem(table_index, item_index, id, text){
   new_target.item_index = item_index;
   new_target.matchText = text;
   
-  targets[targets.length] = new_target;
+  search_targets[search_targets.length] = new_target;
 
   update_search_results();
 }
@@ -134,7 +134,7 @@ async function searchForText (text){
   }
 
   console.log("Search completed successfully.");
-  console.log(targets);
+  console.log(search_targets);
 }
 
 function end_search(){
@@ -157,7 +157,7 @@ function end_search(){
   element4.textContent = "...";
   element5.textContent = "...";
 
-  for (thing in targets) {
+  for (thing in search_targets) {
     thing[0] = "";
     thing[1] = "";
   }
