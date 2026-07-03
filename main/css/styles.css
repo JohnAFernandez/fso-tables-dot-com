@@ -368,7 +368,11 @@ li {
 }
 
 .search-target-link {
-    padding-bottom: 5px;
+    padding-bottom: 15px;
+}
+
+.search-link-container{
+    margin-top: 5px;
 }
 
 .last-floater-row {
