@@ -184,11 +184,11 @@ function end_search(){
   let i = 0;
   const element1 = document.getElementById(`search-item-0`);
   
-  if (element1 === undefined){
+  if (element1 === null){
     return;
   }
 
-  while (element1 !== undefined){
+  while (element1 !== null){
     toggleContents(false, `search-item-${i}`);
     element1.textConent = "...";
     i++;
@@ -214,7 +214,7 @@ function append_search_row(){
   
   let child = temporary_item.querySelector(".data-item");
 
-  if (child !== undefined){
+  if (child !== null){
     temporary_item.style.display = "";
     child.setAttribute("id", `search-result${searchResultRowCount}`);
     child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
