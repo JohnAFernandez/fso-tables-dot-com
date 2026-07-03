@@ -352,6 +352,7 @@ li {
 
 /*This needs top and left set dynamically*/
 .search-link-container {
+    position: fixed;
     z-index:101;
     left:72%;
     background-color: #1d1d1d;
