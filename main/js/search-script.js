@@ -207,8 +207,6 @@ function init_search(){
   search_bar.setAttribute("oninput", "newSearch();")
   toggleContents(false, `search-link-area`)
 }
-// search-dropdown
-// search-item-0 
 
 function append_search_row(){
   let parent_item = document.getElementById(`search-link-container`);
@@ -224,7 +222,7 @@ function append_search_row(){
   child = temporary_item.querySelector(".search-target-link");
 
   if (child !== null){
-    child.setAttribute("id", `search-item${searchResultRowCount}`)
+    child.setAttribute("id", `search-item-${searchResultRowCount}`)
   }
 
   parent_item.appendChild(temporary_item);
