@@ -106,6 +106,8 @@ function clearLoginErrorText(){
 }
 
 function attemptLogin() {
+  clearLoginErrorText();
+  
   // Yes, I'm lazy, redirect to new function if sending a password reset
   if (Password_Reset && !Password_Reset_Confirm){
     sendResetPasswordRequest();

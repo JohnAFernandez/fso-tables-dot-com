@@ -100,7 +100,7 @@ function clearSumbitNewItemErrorText(errorText){
 }
 
 function dismissLoginModal() {
-  $('#addItemModal').modal("hide");
+  $('#loginModal').modal("hide");
 }
 
 function send_submit_new_item(){
