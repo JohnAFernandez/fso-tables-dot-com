@@ -66,7 +66,7 @@
           <li></li>
           <li class="nav-item active" id="search bar">
             <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" id="search_bar" type="search" placeholder="Search" aria-label="Search" oninput="newSearch();"  onsubmit="return false;">
+              <input class="form-control mr-sm-2" id="search_bar" type="search" placeholder="Search" aria-label="Search" oninput="newSearch();" href="javascript:void(0)" onsubmit="return false;">
             </form>
           </li>
         </ul>
@@ -620,23 +620,14 @@
       </div>
     </div>
 
-      <template>
-        <div class="row" stylesheet="display: none;">
-          <div class="col-6">
-            <a href="javascript:void(0)" ></a>
-          </div>
+    <template id="searchResultRowTemplate">
+      <div class="row" stylesheet="display: none;">
+        <div class="col-6">
+          <a class="target-link" href="javascript:void(0)" ></a>
         </div>
-      </template>
-    <!--need to set  onclick="goToSearchResult(1)"-->
-
-    
-            <!-- Separator Bar ... didn't end up using-->
-<!--        <div class="row" stylesheet="display: none;">
-          <div class="col-6">
-            <hr>
-          </div>
-        </div>-->
-
+      </div>
+    </template>
+    <!--Need to set on click-->
 
     <!-- floaters -->
     <div class="floating-link-container" id="floating-link-container">
@@ -901,6 +892,11 @@
             <a id="floater-link-51" href="javascript:void(0)" onclick="setTableViaFloater(51)"></a>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="search-link-container" style="display:none">
+      <div class="container" id="search-link-container">
       </div>
     </div>
 

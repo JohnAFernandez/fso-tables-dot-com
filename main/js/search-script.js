@@ -1,5 +1,6 @@
 let search_targets = [];
 let foundItemsSet = []; // for "quick" culling of known objects
+let searchResultRowCount = 0;
 
 let result_template = {
   table_index : -1,
@@ -142,22 +143,33 @@ async function searchForText (text){
 }
 
 
-function update_search_results_ui(){
+async function update_search_results_ui(){
   if (search_targets === undefined) {
     return;
   }
 
   if (search_targets.length < 1){
     end_search();
-    toggleContents(true, `search-item-0`);
     const element = document.getElementById(`search-item-0`);
+    if (element === undefined){
+      append_search_row();
+    }
+    
+    toggleContents(true, `search-item-0`);
     element.textContent = "No Results...";
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+    toggleContents(false, `search-item-0`);
     return;
   }
 
-  for (let i = 0; i < Math.min(10, search_targets.length); i++){
+  //search-link-container
+  for (let i = 0; i < search_targets.length; i++){
     toggleContents(true, `search-item-${i}`);
     const element = document.getElementById(`search-item-${i}`);
+    if (element === undefined){
+      append_search_row();
+      element = document.getElementById(`search-item-${i}`);
+    }
 
     element.textContent = search_targets[i].matchText;
   }
@@ -167,14 +179,14 @@ function update_search_results_ui(){
   // 951 - 793  = 158
 }
 
-function goToSearchResult(index){
-
-}
-
 // this is UI side, only
 function end_search(){
   let i = 0;
   const element1 = document.getElementById(`search-item-0`);
+  
+  if (element1 === undefined){
+    return;
+  }
 
   while (element1 !== undefined){
     toggleContents(false, `search-item-${i}`);
@@ -182,6 +194,8 @@ function end_search(){
     i++;
     element1 = document.getElementById(`search-item-${i}`);
   }
+
+  toggleContents(false, `search-link-container`)
 }
 
 function init_search(){
@@ -191,3 +205,27 @@ function init_search(){
 }
 // search-dropdown
 // search-item-0 
+  toggleContents(false, `search-link-container`)
+
+function append_search_row(){
+  let temporary_item = document.getElementById(`searchResultRowTemplate`).template_item.content.cloneNode(true);
+  let parent_item = document.getElementById(`search-link-container`);
+  parent_item.appendChild(temporary_item);
+  
+  let child = temporary_item.querySelector(".data-item");
+
+  if (child !== undefined){
+    temporary_item.style.display = "";
+    child.setAttribute("id", `search-result${searchResultRowCount}`);
+    child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
+    searchResultRowCount += 1;
+  }
+}
+
+
+
+function goToSearchResult(index){
+  apply_table(search_targets[index].table_index);
+}
+
+
