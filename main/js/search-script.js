@@ -167,12 +167,12 @@ async function update_search_results_ui(){
   //search-link-container
   for (let i = 0; i < search_targets.length; i++){
     let element = document.getElementById(`search-item-${i}`);
-    if (element === null){
+    do {
       append_search_row();
       element = document.getElementById(`search-item-${i}`);
-    }
+    } while (element === null)
 
-    element.textContent = search_targets[i].matchText;
+    changeContents(`search-item-${i}`, search_targets[i].matchText);
     toggleContents(true, `search-item-${i}`);
   }
 
