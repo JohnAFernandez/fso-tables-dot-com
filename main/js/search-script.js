@@ -7,7 +7,7 @@ let result_template = {
   matchText : ""
 }
 
-async function update_search_results() {
+async function update_search_results_ui() {
   console.log("Update Search results called");
 }
 
@@ -49,7 +49,7 @@ async function addFoundItem(table_index, item_index, id, text){
     
   search_targets[search_targets.length] = new_target;
 
-  update_search_results();
+  update_search_results_ui();
 }
 
 async function searchForText (text){
@@ -141,29 +141,8 @@ async function searchForText (text){
   console.log("Search completed successfully.");
 }
 
-// this is UI side, only
-function end_search(){
-  toggleContents(false, `search-item-0`);
-  toggleContents(false, `search-item-1`);  
-  toggleContents(false, `search-item-2`);  
-  toggleContents(false, `search-item-3`);  
-  toggleContents(false, `search-item-4`);
 
-
-  const element1 = document.getElementById(`search-item-0`);
-  const element2 = document.getElementById(`search-item-1`);
-  const element3 = document.getElementById(`search-item-2`);
-  const element4 = document.getElementById(`search-item-3`);
-  const element5 = document.getElementById(`search-item-4`);
-
-  element1.textContent = "...";
-  element2.textContent = "...";
-  element3.textContent = "...";
-  element4.textContent = "...";
-  element5.textContent = "...";
-}
-
-function update_search_results(){
+function update_search_results_ui(){
   if (search_targets === undefined) {
     return;
   }
@@ -192,5 +171,23 @@ function goToSearchResult(index){
 
 }
 
+// this is UI side, only
+function end_search(){
+  let i = 0;
+  const element1 = document.getElementById(`search-item-0`);
+
+  while (element1 !== undefined){
+    toggleContents(false, `search-item-${i}`);
+    element1.textConent = "...";
+    i++;
+    element1 = document.getElementById(`search-item-${i}`);
+  }
+}
+
+function init_search(){
+  end_search();
+  let search_bar = document.getElementById(`search_bar`);
+  search_bar.value = "";
+}
 // search-dropdown
 // search-item-0 
