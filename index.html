@@ -66,7 +66,7 @@
           <li></li>
           <li class="nav-item active" id="search bar">
             <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" id="search_bar" type="search" placeholder="Search" aria-label="Search" onchange="newSearch()">
+              <input class="form-control mr-sm-2" id="search_bar" type="search" placeholder="Search" aria-label="Search" oninput="newSearch();"  onsubmit="return false;">
             </form>
           </li>
         </ul>
@@ -223,6 +223,7 @@
                     </div>
                     <div id="changePasswordSuccessMessage" class="successArea" style="display:none">
                       <div id="changePasswordSuccessText" class="errorResponse">
+                        &nbsp;
                       </div>
                     </div>
                     <br>

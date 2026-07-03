@@ -1128,9 +1128,7 @@ async function sendNewEmailRegistration(){
     body: JSON.stringify(newEmailRegistrationRequest)
   })
   .then((response) => { 
-    if (response.status === 200) {      
-      return true;
-    } else {
+    if (response.status !== 200) {
       response.json().then(responseJSON => { 
         // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
         throw responseJSON.Error;}
@@ -1150,6 +1148,10 @@ async function sendNewEmailRegistration(){
     }
   );    
 
+  changeContents("changePasswordSuccessText", "Success!");
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  $('#registerModal').modal("hide");
+  changeContents("changePasswordSuccessText", "");
   return result;
 }
 
