@@ -49,7 +49,7 @@ async function addFoundItem(table_index, item_index, id, text){
     item_index : item_index,
     matchText : text
   };
-    
+  
   search_targets[search_targets.length] = new_target;
 
   update_search_results_ui();
@@ -72,7 +72,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -92,7 +92,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -112,7 +112,7 @@ async function searchForText (text){
       }
       
       if (database_tables[i].items[j].documentation.startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -132,7 +132,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].documentation.includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
