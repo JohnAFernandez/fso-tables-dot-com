@@ -153,7 +153,7 @@ async function update_search_results_ui(){
   if (search_targets.length < 1){
     end_search();
     let element = document.getElementById(`search-item-0`);
-    if (element === undefined){
+    if (!element){
       append_search_row();
     }
     
@@ -192,7 +192,7 @@ function end_search(){
 
   while (element1 !== null){
     toggleContents(false, `search-item-${i}`);
-    element1.textConent = "...";
+    element1.textContent = "...";
     i++;
     element1 = document.getElementById(`search-item-${i}`);
   }
@@ -213,18 +213,25 @@ function init_search(){
 function append_search_row(){
   let parent_item = document.getElementById(`search-link-container`);
   let temporary_item = document.getElementById(`searchResultRowTemplate`).content.cloneNode(true);
-  parent_item.appendChild(temporary_item);
 
-  let new_item = parent_item.lastChild;
-  new_item.setAttribute("id", `search-result${searchResultRowCount}`);
-
-  let child = new_item.querySelector(".search-target-link");
+  let child = temporary_item.querySelector(".row");
 
   if (child !== null){
     child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
+    child.setAttribute("id", `search-result${searchResultRowCount}`)
   }
 
+  child = temporary_item.querySelector(".search-target-link");
+
+  if (child !== null){
+    child.setAttribute("id", `search-item${searchResultRowCount}`)
+  }
+
+  parent_item.appendChild(temporary_item);
   searchResultRowCount += 1;
+
+  //  new_item.setAttribute();
+
 }
 
 
