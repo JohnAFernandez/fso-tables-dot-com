@@ -202,6 +202,7 @@ function init_search(){
   end_search();
   let search_bar = document.getElementById(`search_bar`);
   search_bar.value = "";
+  search_bar.setAttribute("oninput", "newSearch();")
 }
 // search-dropdown
 // search-item-0 
