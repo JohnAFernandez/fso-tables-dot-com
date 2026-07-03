@@ -145,6 +145,12 @@ function adjustFloater(){
         element.style.maxHeight = `${window.innerHeight - top - 30}px`;
     }
 
+    let search_area = document.getElementById("search-link-area");
+    let search_bar = document.getElementById(`search bar`);
+    search_area.style.top = `${search_bar.style.bottom + 2}px`;
+    search_area.style.left = `${search_bar.style.left - 30}px`;
+
+
     // also adjust the search bar
 /*    let element2 = document.getElementById("search-dropdown");
     if (window.scrollY > 300){
