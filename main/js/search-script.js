@@ -209,7 +209,7 @@ function init_search(){
   toggleContents(false, `search-link-container`)
 
 function append_search_row(){
-  let temporary_item = document.getElementById(`searchResultRowTemplate`).template_item.content.cloneNode(true);
+  let temporary_item = document.getElementById(`searchResultRowTemplate`).content.cloneNode(true);
   let parent_item = document.getElementById(`search-link-container`);
   parent_item.appendChild(temporary_item);
   
