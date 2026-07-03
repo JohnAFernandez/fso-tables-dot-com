@@ -213,7 +213,7 @@ function append_search_row(){
   let parent_item = document.getElementById(`search-link-container`);
   parent_item.appendChild(temporary_item);
   
-  let child = temporary_item.querySelector(".data-item");
+  let child = temporary_item.querySelector(".search-target-link");
 
   if (child !== null){
     temporary_item.style.display = "";
