@@ -232,9 +232,6 @@ function append_search_row(){
 
   parent_item.appendChild(temporary_item);
   searchResultRowCount += 1;
-
-  //  new_item.setAttribute();
-
 }
 
 
