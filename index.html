@@ -41,6 +41,17 @@
     
       <div class="collapse navbar-collapse" id="theNavbarInner">
         <ul class="navbar-nav mr-auto" id="navbarUl">
+          <li class="nav-item active" id="search bar">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" id="search_bar" type="search" placeholder="Search" aria-label="Search" href="javascript:void(0)" onsubmit="return false;">
+            </form>
+          </li>
+          <li>
+            <button class="btn btn-block text-left shadow-none" type="button" onclick="expand_search_results()">
+              <img id="searchChangeArrow1" style="width: 18px; height: 18px; margin-top: 3px; margin-left:10px; fill: #ffffff;" src="main/res/iconmonstr-angel-down-thin.svg"> 
+              <img id="searchChangeArrow2" style="width: 18px; height: 18px; display: none; margin-top: 3px; margin-left:10px; fill: #ffffff;" src="main/res/iconmonstr-angel-up-thin.svg">
+            </button>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="javascript:void(0)" onclick="setPageMode(`welcome`)">Home</a>
           </li>
@@ -61,13 +72,6 @@
           </li>
           <li class="nav-item active" id="nav-logout">
              <a class="nav-link" href="javascript:void(0)" onclick="onLogout()">Log Out</a>
-          </li>
-          <li></li>
-          <li></li>
-          <li class="nav-item active" id="search bar">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" id="search_bar" type="search" placeholder="Search" aria-label="Search" href="javascript:void(0)" onsubmit="return false;">
-            </form>
           </li>
         </ul>
         </div>

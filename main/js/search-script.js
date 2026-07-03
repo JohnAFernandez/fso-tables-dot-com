@@ -240,4 +240,9 @@ function goToSearchResult(index){
   apply_table(search_targets[index].table_index);
 }
 
-
+let SearchUpArrow = true;
+function expand_search_results(){
+  SearchUpArrow = !SearchUpArrow;
+  toggleContents(SearchUpArrow, "searchChangeArrow1");
+  toggleContents(!SearchUpArrow, "passwordChangeArrow2");  
+}
