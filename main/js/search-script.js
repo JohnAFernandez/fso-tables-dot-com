@@ -164,8 +164,9 @@ async function update_search_results_ui(){
     return;
   }
 
+  let i = 0;
   //search-link-container
-  for (let i = 0; i < search_targets.length; i++){
+  for (; i < search_targets.length; i++){
     let element = document.getElementById(`search-item-${i}`);
     do {
       append_search_row();
@@ -173,7 +174,11 @@ async function update_search_results_ui(){
     } while (element === null)
 
     changeContents(`search-item-${i}`, search_targets[i].matchText);
-    toggleContents(true, `search-item-${i}`);
+    toggleContents(true, `search-result-${i}`);
+  }
+
+  for (; i < searchResultRowCount; i++){
+    toggleContents(false, `search-result-${i}`);
   }
 
 //  element.style.zIndex = 1021; // Any smaller will not work.
@@ -216,7 +221,7 @@ function append_search_row(){
 
   if (child !== null){
     child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
-    child.setAttribute("id", `search-result${searchResultRowCount}`)
+    child.setAttribute("id", `search-result-${searchResultRowCount}`)
   }
 
   child = temporary_item.querySelector(".search-target-link");
