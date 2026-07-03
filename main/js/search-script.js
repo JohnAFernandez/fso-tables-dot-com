@@ -150,7 +150,7 @@ async function update_search_results_ui(){
 
   if (search_targets.length < 1){
     end_search();
-    const element = document.getElementById(`search-item-0`);
+    let element = document.getElementById(`search-item-0`);
     if (element === undefined){
       append_search_row();
     }
@@ -164,7 +164,7 @@ async function update_search_results_ui(){
 
   //search-link-container
   for (let i = 0; i < search_targets.length; i++){
-    const element = document.getElementById(`search-item-${i}`);
+    let element = document.getElementById(`search-item-${i}`);
     if (element === null){
       append_search_row();
       element = document.getElementById(`search-item-${i}`);
