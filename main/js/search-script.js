@@ -211,18 +211,19 @@ function init_search(){
 // search-item-0 
 
 function append_search_row(){
-  let temporary_item = document.getElementById(`searchResultRowTemplate`).content.cloneNode(true);
-  temporary_item.setAttribute("id", `search-result${searchResultRowCount}`);
-
   let parent_item = document.getElementById(`search-link-container`);
+  let temporary_item = document.getElementById(`searchResultRowTemplate`).content.cloneNode(true);
   parent_item.appendChild(temporary_item);
 
-  let child = temporary_item.querySelector(".search-target-link");
+  let new_item = parent_item.lastChild;
+  new_item.setAttribute("id", `search-result${searchResultRowCount}`);
+
+  let child = new_item.querySelector(".search-target-link");
 
   if (child !== null){
     child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
   }
-  
+
   searchResultRowCount += 1;
 }
 
