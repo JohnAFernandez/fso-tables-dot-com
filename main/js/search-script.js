@@ -245,5 +245,5 @@ function expand_search_results(){
   SearchUpArrow = !SearchUpArrow;
   toggleContents(SearchUpArrow, "searchChangeArrow1");
   toggleContents(!SearchUpArrow, "searchChangeArrow2");  
-  toggleContents(!SearchUpArrow, "search-link-area")
+  toggleContents(SearchUpArrow, "search-link-area")
 }

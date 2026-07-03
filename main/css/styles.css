@@ -361,6 +361,7 @@ li {
     min-width: 350px;
     max-width: 450px;
     padding-top: 5px;
+    margin-top: 10px;
     border-color: rgb(48, 48, 48);
     border-radius: 5px;
     overflow-x: auto;
@@ -371,9 +372,6 @@ li {
     padding-bottom: 15px;
 }
 
-.search-link-container{
-    margin-top: 5px;
-}
 
 .last-floater-row {
     padding-bottom: 30px;
