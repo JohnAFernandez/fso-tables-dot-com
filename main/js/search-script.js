@@ -35,6 +35,8 @@ async function newSearch (){
   cancelSearchSignal = false;
   canceledSearch = false;
 
+  toggleContents(true, "search-link-area");
+
   searchForText(text);
 }
 
@@ -203,24 +205,25 @@ function init_search(){
   let search_bar = document.getElementById(`search_bar`);
   search_bar.value = "";
   search_bar.setAttribute("oninput", "newSearch();")
+  toggleContents(false, `search-link-area`)
 }
 // search-dropdown
 // search-item-0 
-  toggleContents(false, `search-link-container`)
 
 function append_search_row(){
   let temporary_item = document.getElementById(`searchResultRowTemplate`).content.cloneNode(true);
+  temporary_item.setAttribute("id", `search-result${searchResultRowCount}`);
+
   let parent_item = document.getElementById(`search-link-container`);
   parent_item.appendChild(temporary_item);
-  
+
   let child = temporary_item.querySelector(".search-target-link");
 
   if (child !== null){
-    temporary_item.style.display = "";
-    child.setAttribute("id", `search-result${searchResultRowCount}`);
     child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
-    searchResultRowCount += 1;
   }
+  
+  searchResultRowCount += 1;
 }
 
 
