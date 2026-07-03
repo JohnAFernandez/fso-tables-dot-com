@@ -189,7 +189,7 @@ async function update_search_results_ui(){
 // this is UI side, only
 function end_search(){
   let i = 0;
-  const element1 = document.getElementById(`search-item-0`);
+  let element1 = document.getElementById(`search-item-0`);
   
   if (element1 === null){
     return;
