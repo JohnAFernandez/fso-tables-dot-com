@@ -164,14 +164,14 @@ async function update_search_results_ui(){
 
   //search-link-container
   for (let i = 0; i < search_targets.length; i++){
-    toggleContents(true, `search-item-${i}`);
     const element = document.getElementById(`search-item-${i}`);
-    if (element === undefined){
+    if (element === null){
       append_search_row();
       element = document.getElementById(`search-item-${i}`);
     }
 
     element.textContent = search_targets[i].matchText;
+    toggleContents(true, `search-item-${i}`);
   }
 
 //  element.style.zIndex = 1021; // Any smaller will not work.
