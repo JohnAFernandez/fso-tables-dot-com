@@ -165,7 +165,6 @@ async function update_search_results_ui(){
   }
 
   let i = 0;
-  //search-link-container
   for (; i < search_targets.length; i++){
     let element = document.getElementById(`search-item-${i}`);
     do {
@@ -202,7 +201,7 @@ function end_search(){
     element1 = document.getElementById(`search-item-${i}`);
   }
 
-  toggleContents(false, `search-link-container`)
+  toggleContents(false, `search-link-area`)
 }
 
 function init_search(){
