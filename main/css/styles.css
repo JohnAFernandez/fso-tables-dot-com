@@ -367,6 +367,10 @@ li {
     overflow-y: auto;
 }
 
+.search-target-link {
+    padding-bottom: 5px;
+}
+
 .last-floater-row {
     padding-bottom: 30px;
 }

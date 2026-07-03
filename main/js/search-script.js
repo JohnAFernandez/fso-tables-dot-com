@@ -72,7 +72,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -92,7 +92,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}\\${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -112,7 +112,7 @@ async function searchForText (text){
       }
       
       if (database_tables[i].items[j].documentation.startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}\\${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -132,7 +132,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].documentation.includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}\\${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -244,5 +244,5 @@ let SearchUpArrow = true;
 function expand_search_results(){
   SearchUpArrow = !SearchUpArrow;
   toggleContents(SearchUpArrow, "searchChangeArrow1");
-  toggleContents(!SearchUpArrow, "passwordChangeArrow2");  
+  toggleContents(!SearchUpArrow, "searchChangeArrow2");  
 }
