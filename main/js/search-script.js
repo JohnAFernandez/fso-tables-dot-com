@@ -64,6 +64,8 @@ async function searchForText (text){
     return;
   }
   
+  text = text.toLowerCase();
+
   for (let i = 0; i < database_tables.length; i++) {
     if (database_tables[i].items === undefined){
       continue;
@@ -74,7 +76,7 @@ async function searchForText (text){
         continue;
       }
 
-      if (database_tables[i].items[j].item_text.startsWith(text)){
+      if (database_tables[i].items[j].item_text.toLowerCase().startsWith(text)){
         addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
@@ -94,7 +96,7 @@ async function searchForText (text){
         continue;
       }
 
-      if (database_tables[i].items[j].item_text.includes(text)){
+      if (database_tables[i].items[j].item_text.toLowerCase().includes(text)){
         addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
@@ -114,7 +116,7 @@ async function searchForText (text){
         continue;
       }
       
-      if (database_tables[i].items[j].documentation.startsWith(text)){
+      if (database_tables[i].items[j].documentation.toLowerCase().startsWith(text)){
         addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
@@ -134,7 +136,7 @@ async function searchForText (text){
         continue;
       }
 
-      if (database_tables[i].items[j].documentation.includes(text)){
+      if (database_tables[i].items[j].documentation.toLowerCase().includes(text)){
         addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
