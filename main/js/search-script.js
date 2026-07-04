@@ -305,8 +305,25 @@ document.addEventListener('click', (event) => {
 })
 
 
-location.href = "#";
-location.href = "#myDiv";
 function goToSearchResult(index){
+  showTables();
   apply_table(search_targets[index].table_index);
+
+  let i = 0;
+
+  do {
+    let element = document.getElementById(`item${i}`);
+
+    if (element === null){
+      break;
+    } 
+
+    if (search_targets[index].item_index === element.getAttribute('data-item-id')){
+      location.href = "#";
+      location.href = `item${i}`;
+      return;
+    }
+  } while (true)
 }
+
+// For the search item_id is what we loop through and data-item-id
