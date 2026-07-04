@@ -313,7 +313,8 @@ function goToSearchResult(index){
 
   do {
     let element = document.getElementById(`item${i}`);
-
+    i++;
+    
     if (!element){
       break;
     } 
