@@ -202,7 +202,7 @@ function end_search(restarting){
   }
 
   if (!restarting){
-    toggleContents(false, `search-link-area`)
+    toggleContents(false, `search-link-area`);
   }
 }
 
