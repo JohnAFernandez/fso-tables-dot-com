@@ -14,7 +14,6 @@ async function update_search_results_ui() {
 
 // Async signals
 let cancelSearchSignal = false;
-let canceledSearch = false;
 
 async function newSearch (){
   let search_bar = document.getElementById(`search_bar`);
@@ -23,7 +22,12 @@ async function newSearch (){
   // tell everything else to cancel
   cancelSearchSignal = true;
 
-  end_search(text.length > 0);
+  if (text.length > 0){
+    end_search(true);
+  } else {
+    end_search(false);
+    return;
+  }
 
   // wait for them to receive the signal
   await new Promise((resolve) => setTimeout(resolve, 5));
@@ -33,7 +37,6 @@ async function newSearch (){
   foundItemsSet = [];
   
   cancelSearchSignal = false;
-  canceledSearch = false;
 
   toggleContents(true, "search-link-area");
 
@@ -58,7 +61,6 @@ async function addFoundItem(table_index, item_index, id, text){
 
 async function searchForText (text){
   if (text === undefined || typeof text != "string" || database_tables === undefined){
-    canceledSearch = true;
     return;
   }
   
@@ -146,6 +148,7 @@ async function searchForText (text){
 
 async function update_search_results_ui(){
   if (search_targets === undefined) {
+    toggleContents(false, `search-link-area`);
     return;
   }
 
