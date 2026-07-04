@@ -72,7 +72,7 @@ function check_url(){
   } 
   
   let url2 = url.substring(index + 1);
-  let index2 = url2.indexOf("/");
+  let index2 = url2.indexOf(":");
 
   if (!(index2 > 1)){
     window.location.href = url.substring(0, index + 1) + "could-not-find-table";
@@ -101,27 +101,28 @@ function check_url(){
 
     for (let j = 0; j < database_tables[i].items.length; j++){
       if (database_tables[i].items[j].item_text.toLowerCase() === item){
+        let k = 0;
         do {
-          let element = document.getElementById(`item${i}`);
-          j++;
+          let element = document.getElementById(`item${k}`);
           
           if (!element || !database_tables[i].items[j]){
             break;
           } 
-
+          
+          k++;
           if (database_tables[i].items[j].item_id == element.getAttribute('data-item-id')){
             y = element.getBoundingClientRect().top + window.scrollY;
               window.scroll({
               top: y - 50,
               behavior: 'smooth'});      
               
-            return;
+            return true;
           }
         } while (true)
       }
     }
   } catch { 
-    window.location.href = url2 + "/"+ table + "item-not-found";
+    window.location.href = url + "/"+ table + ":item-not-found";
     return true;
   }
 }
