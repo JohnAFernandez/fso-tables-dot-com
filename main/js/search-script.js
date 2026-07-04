@@ -81,7 +81,8 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.toLowerCase().startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
+        // j + 1 because database is 1 indexed for some reason
+        addFoundItem(i, j + 1, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -101,7 +102,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].item_text.toLowerCase().includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j + 1, database_tables[i].items[j].item_id, `${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -121,7 +122,7 @@ async function searchForText (text){
       }
       
       if (database_tables[i].items[j].documentation.toLowerCase().startsWith(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j + 1, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
@@ -141,7 +142,7 @@ async function searchForText (text){
       }
 
       if (database_tables[i].items[j].documentation.toLowerCase().includes(text)){
-        addFoundItem(i, j, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
+        addFoundItem(i, j + 1, database_tables[i].items[j].item_id, `In documentation for ${database_tables[i].name.replace(" Table", "")}-> ${database_tables[i].items[j].item_text}`);
       }
 
       if (cancelSearchSignal === true){
