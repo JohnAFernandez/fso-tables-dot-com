@@ -18,6 +18,7 @@ let cancelSearchSignal = false;
 async function newSearch (){
   let search_bar = document.getElementById(`search_bar`);
   let text = search_bar.value;
+//  ShowNoResultsInProgress = false;
 
   // tell everything else to cancel
   cancelSearchSignal = true;
@@ -249,8 +250,10 @@ function goToSearchResult(index){
 }
 
 let SearchUpArrow = true;
+//let ShowNoResultsInProgress = false;
 
 async function expand_contract_search_results(){
+//  ShowNoResultsInProgress = false;
   SearchUpArrow = !SearchUpArrow;
   toggleContents(!SearchUpArrow, "searchChangeArrow1");
   toggleContents(SearchUpArrow, "searchChangeArrow2");  
@@ -266,6 +269,12 @@ async function show_no_results(){
   toggleContents(true, `search-result-0`);
   let element = document.getElementById(`search-item-0`);
   element.textContent = "No Results...";
-  await new Promise((resolve) => setTimeout(resolve, 4000));
-  toggleContents(false, `search-link-area`);
+
+
+// This ended up causing more trouble than it was worth.  Let the user decide what to do!
+  //  ShowNoResultsInProgress = true;
+//  await new Promise((resolve) => setTimeout(resolve, 4000));
+//  if (ShowNoResultsInProgress === true){
+//    expand_contract_search_results();
+//  }
 }
