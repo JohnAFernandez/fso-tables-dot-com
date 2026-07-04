@@ -127,8 +127,6 @@ function send_submit_new_item(){
     major_version: majorVersionField.value,
     parent_id: Number(parentIdField.value),
     table_id: Number(tableField.value),
-    deprecation_id: Number(-1),
-    restriction_id: Number(-1),
     info_type: infoTypeField.value,
     default_value: defaultValueField.value,
     table_index: Number(-1)
