@@ -192,7 +192,8 @@ async function update_search_results_ui(){
 
 // this is UI side, only
 function end_search(restarting){
-  let i = 0;
+// This causes flickering
+  /*  let i = 0;
   let element1 = document.getElementById(`search-item-0`);
   
   if (element1 === null){
@@ -205,7 +206,7 @@ function end_search(restarting){
     i++;
     element1 = document.getElementById(`search-item-${i}`);
   }
-
+*/
   if (!restarting){
     toggleContents(false, `search-link-area`);
   }
