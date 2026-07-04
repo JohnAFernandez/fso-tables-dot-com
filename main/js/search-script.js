@@ -322,8 +322,11 @@ function goToSearchResult(index){
     } 
 
     if (search_targets[index].item_index === element.getAttribute('data-item-id')){
-      location.href = "#";
-      location.href = `#item${i}`;
+      y = element.getBoundingClientRect().top + window.scrollY;
+        window.scroll({
+        top: y,
+        behavior: 'smooth'});      
+        
       return;
     }
   } while (true)
