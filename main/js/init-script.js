@@ -46,13 +46,14 @@ function initPage(){
   console.log("Removing the pre-load cover as the UI initialization is finished.")
   toggleContents(false, "cover");
 
-  console.log("Getting current Table");
-  const tableIndexCookie = getCookie("table");
-  console.log(`Found "${tableIndexCookie}"`);
-
-  if (tableIndexCookie == undefined || tableIndexCookie === ""){
-    setCookie("table", "0");
+  console.log("Applying previous table or table from url");
+  if (!check_url()){
+    const tableIndexCookie = getCookie("table");
+    if (tableIndexCookie == undefined || tableIndexCookie === ""){
+      setCookie("table", "0");
+    }
   }
+
 
   console.log("Getting Table Data");
   update_all_local_data();
@@ -61,4 +62,67 @@ function initPage(){
   init_search();  
   
   console.log("End of initialization function");
+}
+
+function check_url(){
+  let url = window.location.href;
+  let index = url.indexOf("#");
+  
+  if (!(index > 10)){
+    return false;
+  } 
+  
+  let url2 = url.substring(index + 1);
+  let index2 = url.indexOf("/");
+
+  if (!(index2 > 1)){
+    window.location.href = url.substring(0, index + 1) + "could-not-find-table";
+    return false;
+  }
+
+  let table = url.substring(0, index).replace("-", " ").replace("_", " ");
+  let i = 0;
+
+  for (i = 0; i < database_tables.length; i++){
+    if (database_tables[i].name.replace(" Table", "").toLowerCase() === table){
+      setCookie("table", "0");
+      break;
+    }
+  }
+
+  if (i === database_tables.length){
+    window.location.href = url.substring(0, index + 1) + "could-not-find-table";
+    return false;
+  }
+
+  apply_table(i);
+
+  try { 
+    let item = url.substring(index+1).replace("-"," ").replace("_", " ").toLowerCase(); 
+
+    for (let j = 0; j < database_tables[i].items.length; j++){
+      if (database_tables[i].items[j].item_text.toLowerCase() === item){
+        do {
+          let element = document.getElementById(`item${i}`);
+          i++;
+          
+          if (!element){
+            break;
+          } 
+
+          if (database_tables[i].items[j].item_id == element.getAttribute('data-item-id')){
+            y = element.getBoundingClientRect().top + window.scrollY;
+              window.scroll({
+              top: y - 50,
+              behavior: 'smooth'});      
+              
+            return;
+          }
+        } while (true)
+      }
+    }
+  } catch { 
+    window.location.href = url2 + "/"+ table + "item-not-found";
+    return true;
+  }
 }
