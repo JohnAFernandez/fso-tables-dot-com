@@ -97,7 +97,7 @@ function check_url(){
   apply_table(i);
 
   try { 
-    let item = url.substring(index+1).replace("-"," ").replace("_", " ").toLowerCase(); 
+    let item = url2.substring(index2).replace("-"," ").replace("_", " ").toLowerCase(); 
 
     for (let j = 0; j < database_tables[i].items.length; j++){
       if (database_tables[i].items[j].item_text.toLowerCase() === item){
