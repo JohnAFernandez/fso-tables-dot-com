@@ -314,7 +314,7 @@ function goToSearchResult(index){
   do {
     let element = document.getElementById(`item${i}`);
 
-    if (element === null){
+    if (!element){
       break;
     } 
 
