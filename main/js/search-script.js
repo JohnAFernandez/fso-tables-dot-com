@@ -243,11 +243,6 @@ function append_search_row(){
 }
 
 
-
-function goToSearchResult(index){
-  apply_table(search_targets[index].table_index);
-}
-
 let SearchUpArrow = true;
 //let ShowNoResultsInProgress = false;
 
@@ -309,9 +304,9 @@ document.addEventListener('click', (event) => {
   }
 })
 
-keydown: function (e) {
-  if (e.which === 27) {
-    $(this).removeClass('active');
-    e.preventDefault();
-  }
+
+location.href = "#";
+location.href = "#myDiv";
+function goToSearchResult(index){
+  apply_table(search_targets[index].table_index);
 }
