@@ -151,28 +151,27 @@ async function update_search_results_ui(){
 
   if (search_targets.length < 1){
     end_search();
-    let element = document.getElementById(`search-item-0`);
+    let element = document.getElementById(`search-result-0`);
     if (!element){
       append_search_row();
     }
     
-    toggleContents(true, `search-item-0`);
+    toggleContents(true, `search-result-0`);
     element.textContent = "No Results...";
     await new Promise((resolve) => setTimeout(resolve, 4000));
-    toggleContents(false, `search-item-0`);
+    toggleContents(false, `search-link-area`);
     return;
   }
 
   let i = 0;
   for (; i < search_targets.length; i++){
-    let element = document.getElementById(`search-item-${i}`);
+    let element = document.getElementById(`search-result-${i}`);
     if (element === null){
       do {
         append_search_row();
-        element = document.getElementById(`search-item-${i}`);
+        element = document.getElementById(`search-result-${i}`);
       } while (element === null)
     }
-
     toggleContents(true, `search-result-${i}`);
     changeContents(`search-item-${i}`, search_targets[i].matchText);
   }
