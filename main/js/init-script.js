@@ -113,7 +113,7 @@ function check_url(){
           if (database_tables[i].items[j].item_id == element.getAttribute('data-item-id')){
             y = element.getBoundingClientRect().top + window.scrollY;
               window.scroll({
-              top: y - 50,
+              top: y - 80,
               behavior: 'smooth'});      
               
             return true;

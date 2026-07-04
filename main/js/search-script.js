@@ -325,7 +325,7 @@ function goToSearchResult(index){
     if (search_targets[index].item_index == element.getAttribute('data-item-id')){
       y = element.getBoundingClientRect().top + window.scrollY;
         window.scroll({
-        top: y - 50,
+        top: y - 80,
         behavior: 'smooth'});      
         
       return;
