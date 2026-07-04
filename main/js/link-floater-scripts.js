@@ -146,10 +146,10 @@ function adjustFloater(){
     }
 
     let search_area = document.getElementById("search-link-area");
-    let search_bar = document.getElementById(`search bar`);
+    let search_bar = document.getElementById(`search-bar`);
     let rect = search_bar.getBoundingClientRect();
-    search_area.style.top = `${rect.bottom-1}px`;
-    search_area.style.left = `${rect.left}px`;
+    search_area.style.top = `${rect.bottom-22}px`;
+    search_area.style.left = `${rect.left-30}px`;
 
 
     // also adjust the search bar

@@ -41,13 +41,13 @@
     
       <div class="collapse navbar-collapse" id="theNavbarInner">
         <ul class="navbar-nav mr-auto" id="navbarUl">
-          <li class="nav-item active" id="search bar" style="padding-right: 0px;">
+          <li class="nav-item active" id="search-bar" style="padding-right: 0px;">
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" id="search_bar" type="search" placeholder="Search" aria-label="Search" href="javascript:void(0)" onsubmit="return false;" autocomplete="off">
             </form>
           </li>
           <li style="padding-left:0px">
-            <button class="btn btn-block text-left shadow-none" type="button" onclick="expand_contract_search_results()">
+            <button id="collapse-search-button" class="btn btn-block text-left shadow-none" type="button" onclick="expand_contract_search_results()">
               <img id="searchChangeArrow1" style="width: 18px; height: 18px; display: none; margin-top: 3px; margin-left:10px; fill: #ffffff;" src="main/res/iconmonstr-angel-down-thin.svg"> 
               <img id="searchChangeArrow2" style="width: 18px; height: 18px; margin-top: 3px; margin-left:10px; fill: #ffffff;" src="main/res/iconmonstr-angel-up-thin.svg">
             </button>
@@ -901,11 +901,12 @@
       </div>
     </div>
 
-    <div id="search-link-area" class="container search-link-container" style="display:none">
-      <div id="search-link-container">
+    <div id="search-link-area" class="outer-link-container" style="display:none">
+      <div class="container search-link-container" >
+        <div id="search-link-container">
+        </div>
       </div>
     </div>
-
     <template id="dataRowTemplate">
       <div class="data-item item-body">
         <form class="edit-item-form">

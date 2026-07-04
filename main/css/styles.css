@@ -350,21 +350,26 @@ li {
     overflow-y: auto;
 }
 
-/*This needs top and left set dynamically*/
 .search-link-container {
-    position: fixed;
-    z-index:101;
     background-color: #1d1d1d;
     max-height: 50%;
     min-width: 350px;
     max-width: 600px;
-    padding-top: 5px;
+    padding-top: 8px;
     padding-left: 20px;
-    margin-top: 10px;
     border-color: rgb(48, 48, 48);
     border-radius: 5px;
     overflow-x: hidden;
     overflow-y: auto;
+    margin: 30px;
+}
+
+.outer-link-container{
+    position: fixed;
+    z-index:101;
+    max-height: 52%;
+    min-width: 370px;
+    max-width: 620px;    
 }
 
 .search-target-row {

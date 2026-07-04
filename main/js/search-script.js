@@ -293,3 +293,25 @@ async function show_no_results(){
 //    expand_contract_search_results();
 //  }
 }
+
+const MaintainOpenTarget1 = document.querySelector('#search-link-area')
+const MaintainOpenTarget2 = document.querySelector('#search-bar')
+const MaintainOpenTarget3 = document.querySelector('#collapse-search-button')
+
+
+document.addEventListener('click', (event) => {
+  const withinBoundaries = (event.composedPath().includes(MaintainOpenTarget1) || event.composedPath().includes(MaintainOpenTarget2) || event.composedPath().includes(MaintainOpenTarget3));
+
+  if (!withinBoundaries && !SearchUpArrow) {
+    console.log(event.composedPath());
+    expand_contract_search_results();
+    console.log("contracting thingy.");
+  }
+})
+
+keydown: function (e) {
+  if (e.which === 27) {
+    $(this).removeClass('active');
+    e.preventDefault();
+  }
+}
