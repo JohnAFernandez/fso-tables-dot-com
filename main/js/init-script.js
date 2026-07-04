@@ -73,14 +73,14 @@ function check_url(){
   } 
   
   let url2 = url.substring(index + 1);
-  let index2 = url.indexOf("/");
+  let index2 = url2.indexOf("/");
 
   if (!(index2 > 1)){
     window.location.href = url.substring(0, index + 1) + "could-not-find-table";
     return false;
   }
 
-  let table = url.substring(0, index).replace("-", " ").replace("_", " ");
+  let table = url2.replace("-", " ").replace("_", " ").substring(0, index2);
   let i = 0;
 
   for (i = 0; i < database_tables.length; i++){
