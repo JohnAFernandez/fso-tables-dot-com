@@ -8,10 +8,6 @@ let result_template = {
   matchText : ""
 }
 
-async function update_search_results_ui() {
-  console.log("Update Search results called");
-}
-
 // Async signals
 let cancelSearchSignal = false;
 
@@ -26,6 +22,9 @@ async function newSearch (){
   if (text.length > 0){
     end_search(true);
   } else {
+    if (SearchUpArrow !== true){
+      expand_contract_search_results();
+    }
     end_search(false);
     return;
   }
@@ -164,9 +163,8 @@ async function update_search_results_ui(){
   }
 
   if (search_targets.length < 1){
-    await show_no_results();
     end_search(false);
-
+    await show_no_results();
     return;
   }
 
@@ -253,13 +251,16 @@ let SearchUpArrow = true;
 //let ShowNoResultsInProgress = false;
 
 async function expand_contract_search_results(){
-//  ShowNoResultsInProgress = false;
+  if (document.getElementById(`search_bar`).value.length < 1 && SearchUpArrow){
+    return;
+  }
+
   SearchUpArrow = !SearchUpArrow;
   toggleContents(!SearchUpArrow, "searchChangeArrow1");
   toggleContents(SearchUpArrow, "searchChangeArrow2");  
   toggleContents(!SearchUpArrow, "search-link-area");
 
-  if (!SearchUpArrow && search_targets.length < 1 && document.getElementById(`search_bar`).value.length > 0){
+  if (!SearchUpArrow && search_targets.length < 1){
     await show_no_results();
   }
 }
