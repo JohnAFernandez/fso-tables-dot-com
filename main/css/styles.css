@@ -346,7 +346,7 @@ li {
     padding-top: 30px;
     border-color: rgb(48, 48, 48);
     border-radius: 5px;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: auto;
 }
 
@@ -363,7 +363,7 @@ li {
     margin-top: 10px;
     border-color: rgb(48, 48, 48);
     border-radius: 5px;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: auto;
 }
 
