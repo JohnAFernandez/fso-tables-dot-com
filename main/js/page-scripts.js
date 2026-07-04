@@ -15,6 +15,7 @@ let Updating_table_aliases_array = false;
 let Integrating_data = false;
 let Fetching_info_error = "";
 let Edit_In_Progress = false;
+let Previous_URL = "";
 
 // Regularly check for updates.
 window.setInterval(check_for_update, 100);
@@ -24,7 +25,9 @@ async function check_for_update() {
     console.log("Updating UI");
     integrate_local_data();
     apply_table(Current_Table).catch(error => { console.log("Apply Table has failed.");});
-  } 
+  } else if (window.location.href != Previous_URL) {
+    check_url();
+  }
 }
 
 // Switch the download link contents on or off.
@@ -1232,4 +1235,69 @@ function switchArrow(){
 
 function addNewItemModal(){
  $('#addItemModal').modal("show"); 
+}
+
+
+function check_url(){
+  let url = window.location.href;
+  let index = url.indexOf("#");
+  
+  if (!(index > 1)){
+    return false;
+  } 
+  
+  let url2 = url.substring(index + 1);
+  let index2 = url2.indexOf(":");
+
+  if (!(index2 > 1)){
+    window.location.href = url.substring(0, index + 1) + "could-not-find-table";
+    return false;
+  }
+
+  let table = url2.replace("-", " ").replace("_", " ").substring(0, index2);
+  let i = 0;
+
+  for (i = 0; i < database_tables.length; i++){
+    if (database_tables[i].name.replace(" Table", "").toLowerCase() === table){
+      setCookie("table", "0");
+      break;
+    }
+  }
+
+  if (i === database_tables.length){
+    window.location.href = url.substring(0, index + 1) + "could-not-find-table";
+    return false;
+  }
+
+  apply_table(i);
+
+  try { 
+    let item = url2.substring(index2 + 1).replace("-"," ").replace("_", " ").toLowerCase(); 
+
+    for (let j = 0; j < database_tables[i].items.length; j++){
+      if (database_tables[i].items[j].item_text.toLowerCase() === item){
+        let k = 0;
+        do {
+          let element = document.getElementById(`item${k}`);
+          
+          if (!element || !database_tables[i].items[j]){
+            break;
+          } 
+          
+          k++;
+          if (database_tables[i].items[j].item_id == element.getAttribute('data-item-id')){
+            y = element.getBoundingClientRect().top + window.scrollY;
+              window.scroll({
+              top: y - 80,
+              behavior: 'smooth'});      
+              
+            return true;
+          }
+        } while (true)
+      }
+    }
+  } catch { 
+    window.location.href = url + "/"+ table + ":item-not-found";
+    return true;
+  }
 }
