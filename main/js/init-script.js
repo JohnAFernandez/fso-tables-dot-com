@@ -46,6 +46,9 @@ function initPage(){
   console.log("Removing the pre-load cover as the UI initialization is finished.")
   toggleContents(false, "cover");
 
+  console.log("Getting Table Data");
+  update_all_local_data();
+
   console.log("Applying previous table or table from url");
   if (!check_url()){
     const tableIndexCookie = getCookie("table");
@@ -53,10 +56,6 @@ function initPage(){
       setCookie("table", "0");
     }
   }
-
-
-  console.log("Getting Table Data");
-  update_all_local_data();
 
   console.log("Initializing Search");
   init_search();  
@@ -68,7 +67,7 @@ function check_url(){
   let url = window.location.href;
   let index = url.indexOf("#");
   
-  if (!(index > 10)){
+  if (!(index > 1)){
     return false;
   } 
   
