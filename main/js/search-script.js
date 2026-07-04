@@ -196,9 +196,9 @@ function end_search(){
 
   while (element1 !== null){
     element1.textContent = "...";
-    toggleContents(false, `search-item-${i}`);
+    toggleContents(false, `search-result-${i}`);
     i++;
-    element1 = document.getElementById(`search-item-${i}`);
+    element1 = document.getElementById(`search-result-${i}`);
   }
 
   toggleContents(false, `search-link-area`)
