@@ -233,7 +233,7 @@ function append_search_row(){
   child = temporary_item.querySelector(".search-target-link");
 
   if (child !== null){
-    child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
+    child.setAttribute("onclick", `goToSearchResult(${searchResultRowCount})`);
     child.setAttribute("id", `search-item-${searchResultRowCount}`)
   }
 
