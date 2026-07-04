@@ -310,7 +310,7 @@ function goToSearchResult(index){
   if (Current_Table !== search_targets[index].table_index){
     apply_table(search_targets[index].table_index);
   }
-  
+
   let i = 0;
 
   do {
@@ -324,7 +324,6 @@ function goToSearchResult(index){
     if (search_targets[index].item_index === element.getAttribute('data-item-id')){
       location.href = "#";
       location.href = `#item${i}`;
-      location.href = "";
       return;
     }
   } while (true)
