@@ -39,7 +39,6 @@ async function newSearch (){
 
   searchForText(text);
 
-  update_search_results_ui();
 }
 
 // not indexes plug into local copies, ids would be inefficient
@@ -167,10 +166,12 @@ async function update_search_results_ui(){
   let i = 0;
   for (; i < search_targets.length; i++){
     let element = document.getElementById(`search-item-${i}`);
-    do {
-      append_search_row();
-      element = document.getElementById(`search-item-${i}`);
-    } while (element === null)
+    if (element === null){
+      do {
+        append_search_row();
+        element = document.getElementById(`search-item-${i}`);
+      } while (element === null)
+    }
 
     changeContents(`search-item-${i}`, search_targets[i].matchText);
     toggleContents(true, `search-result-${i}`);
