@@ -29,6 +29,10 @@ async function newSearch (){
     return;
   }
 
+  if (SearchUpArrow === true){
+    expand_contract_search_results();
+  }
+
   // wait for them to receive the signal
   await new Promise((resolve) => setTimeout(resolve, 5));
   
@@ -246,10 +250,11 @@ function goToSearchResult(index){
   apply_table(search_targets[index].table_index);
 }
 
-let SearchUpArrow = true;
-function expand_search_results(){
+let SearchUpArrow = false;
+
+function expand_contract_search_results(){
   SearchUpArrow = !SearchUpArrow;
-  toggleContents(SearchUpArrow, "searchChangeArrow1");
-  toggleContents(!SearchUpArrow, "searchChangeArrow2");  
-  toggleContents(SearchUpArrow, "search-link-area")
+  toggleContents(!SearchUpArrow, "searchChangeArrow1");
+  toggleContents(SearchUpArrow, "searchChangeArrow2");  
+  toggleContents(!SearchUpArrow, "search-link-area")
 }
