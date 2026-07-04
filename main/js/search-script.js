@@ -23,7 +23,7 @@ async function newSearch (){
   // tell everything else to cancel
   cancelSearchSignal = true;
 
-  end_search();
+  end_search(text.length > 0);
 
   // wait for them to receive the signal
   await new Promise((resolve) => setTimeout(resolve, 5));
@@ -150,7 +150,7 @@ async function update_search_results_ui(){
   }
 
   if (search_targets.length < 1){
-    end_search();
+    end_search(false);
     let element = document.getElementById(`search-result-0`);
     if (!element){
       append_search_row();
@@ -186,7 +186,7 @@ async function update_search_results_ui(){
 }
 
 // this is UI side, only
-function end_search(){
+function end_search(restarting){
   let i = 0;
   let element1 = document.getElementById(`search-item-0`);
   
@@ -201,11 +201,13 @@ function end_search(){
     element1 = document.getElementById(`search-item-${i}`);
   }
 
-  toggleContents(false, `search-link-area`)
+  if (!restarting){
+    toggleContents(false, `search-link-area`)
+  }
 }
 
 function init_search(){
-  end_search();
+  end_search(false);
   let search_bar = document.getElementById(`search_bar`);
   search_bar.value = "";
   search_bar.setAttribute("oninput", "newSearch();")
