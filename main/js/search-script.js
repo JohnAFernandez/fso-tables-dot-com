@@ -38,6 +38,8 @@ async function newSearch (){
   toggleContents(true, "search-link-area");
 
   searchForText(text);
+
+  update_search_results_ui();
 }
 
 // not indexes plug into local copies, ids would be inefficient
@@ -140,8 +142,6 @@ async function searchForText (text){
       }
     }
   }
-
-  console.log("Search completed successfully.");
 }
 
 
@@ -195,8 +195,8 @@ function end_search(){
   }
 
   while (element1 !== null){
-    toggleContents(false, `search-item-${i}`);
     element1.textContent = "...";
+    toggleContents(false, `search-item-${i}`);
     i++;
     element1 = document.getElementById(`search-item-${i}`);
   }
