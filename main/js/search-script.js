@@ -307,8 +307,10 @@ document.addEventListener('click', (event) => {
 
 function goToSearchResult(index){
   showTables();
-  apply_table(search_targets[index].table_index);
-
+  if (Current_Table !== search_targets[index].table_index){
+    apply_table(search_targets[index].table_index);
+  }
+  
   let i = 0;
 
   do {
