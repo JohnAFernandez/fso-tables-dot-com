@@ -320,7 +320,8 @@ function goToSearchResult(index){
 
     if (search_targets[index].item_index === element.getAttribute('data-item-id')){
       location.href = "#";
-      location.href = `item${i}`;
+      location.href = `#item${i}`;
+      location.href = "";
       return;
     }
   } while (true)
