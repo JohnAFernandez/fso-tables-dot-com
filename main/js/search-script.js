@@ -226,16 +226,16 @@ function append_search_row(){
   let parent_item = document.getElementById(`search-link-container`);
   let temporary_item = document.getElementById(`searchResultRowTemplate`).content.cloneNode(true);
 
-  let child = temporary_item.querySelector(".row");
+  let child = temporary_item.querySelector(".search-target-row");
 
   if (child !== null){
-    child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
     child.setAttribute("id", `search-result-${searchResultRowCount}`)
   }
 
   child = temporary_item.querySelector(".search-target-link");
 
   if (child !== null){
+    child.setAttribute("on-click", `goToSearchResult(${searchResultRowCount})`);
     child.setAttribute("id", `search-item-${searchResultRowCount}`)
   }
 
