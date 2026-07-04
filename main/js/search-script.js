@@ -30,7 +30,7 @@ async function newSearch (){
   }
 
   if (SearchUpArrow === true){
-    expand_contract_search_results();
+    await expand_contract_search_results();
   }
 
   // wait for them to receive the signal
@@ -149,6 +149,10 @@ async function searchForText (text){
       }
     }
   }
+
+  if (search_targets.length < 1){
+    update_search_results_ui();
+  }
 }
 
 
@@ -159,16 +163,9 @@ async function update_search_results_ui(){
   }
 
   if (search_targets.length < 1){
+    await show_no_results();
     end_search(false);
-    let element = document.getElementById(`search-result-0`);
-    if (!element){
-      append_search_row();
-    }
-    
-    toggleContents(true, `search-result-0`);
-    element.textContent = "No Results...";
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-    toggleContents(false, `search-link-area`);
+
     return;
   }
 
@@ -220,7 +217,8 @@ function init_search(){
   let search_bar = document.getElementById(`search_bar`);
   search_bar.value = "";
   search_bar.setAttribute("oninput", "newSearch();")
-  toggleContents(false, `search-link-area`)
+  append_search_row();
+  toggleContents(false, `search-link-area`);
 }
 
 function append_search_row(){
@@ -250,11 +248,24 @@ function goToSearchResult(index){
   apply_table(search_targets[index].table_index);
 }
 
-let SearchUpArrow = false;
+let SearchUpArrow = true;
 
-function expand_contract_search_results(){
+async function expand_contract_search_results(){
   SearchUpArrow = !SearchUpArrow;
   toggleContents(!SearchUpArrow, "searchChangeArrow1");
   toggleContents(SearchUpArrow, "searchChangeArrow2");  
-  toggleContents(!SearchUpArrow, "search-link-area")
+  toggleContents(!SearchUpArrow, "search-link-area");
+
+  if (!SearchUpArrow && search_targets.length < 1 && document.getElementById(`search_bar`).value.length > 0){
+    await show_no_results();
+  }
+}
+
+async function show_no_results(){
+  toggleContents(true, `search-link-area`);
+  toggleContents(true, `search-result-0`);
+  let element = document.getElementById(`search-item-0`);
+  element.textContent = "No Results...";
+  await new Promise((resolve) => setTimeout(resolve, 4000));
+  toggleContents(false, `search-link-area`);
 }
