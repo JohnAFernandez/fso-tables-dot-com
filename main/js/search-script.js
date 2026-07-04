@@ -272,6 +272,19 @@ async function show_no_results(){
   let element = document.getElementById(`search-item-0`);
   element.textContent = "No Results...";
 
+  let i = 1;
+  let element1 = document.getElementById(`search-item-1`);
+  
+  if (element1 === null){
+    return;
+  }
+
+  while (element1 !== null){
+    element1.textContent = "...";
+    toggleContents(false, `search-result-${i}`);
+    i++;
+    element1 = document.getElementById(`search-item-${i}`);
+  }
 
 // This ended up causing more trouble than it was worth.  Let the user decide what to do!
   //  ShowNoResultsInProgress = true;
