@@ -173,8 +173,8 @@ async function update_search_results_ui(){
       } while (element === null)
     }
 
-    changeContents(`search-item-${i}`, search_targets[i].matchText);
     toggleContents(true, `search-result-${i}`);
+    changeContents(`search-item-${i}`, search_targets[i].matchText);
   }
 
   for (; i < searchResultRowCount; i++){
