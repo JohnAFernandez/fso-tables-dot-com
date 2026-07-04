@@ -322,10 +322,10 @@ function goToSearchResult(index){
       break;
     } 
 
-    if (search_targets[index].item_index === element.getAttribute('data-item-id')){
+    if (search_targets[index].item_index == element.getAttribute('data-item-id')){
       y = element.getBoundingClientRect().top + window.scrollY;
         window.scroll({
-        top: y,
+        top: y + 50,
         behavior: 'smooth'});      
         
       return;
