@@ -103,9 +103,9 @@ function check_url(){
       if (database_tables[i].items[j].item_text.toLowerCase() === item){
         do {
           let element = document.getElementById(`item${i}`);
-          i++;
+          j++;
           
-          if (!element){
+          if (!element || !database_tables[i].items[j]){
             break;
           } 
 
