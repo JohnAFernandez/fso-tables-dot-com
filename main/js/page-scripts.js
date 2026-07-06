@@ -414,6 +414,8 @@ function integrate_local_data() {
     }    
   }
 
+  database_tables.timestamp = get_current_time();
+
   // now that we've finished with that, cache the results
   set_local_storage(database_tables);
 }
