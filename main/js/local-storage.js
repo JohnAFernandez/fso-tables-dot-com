@@ -1,4 +1,5 @@
 const Database_Handle = "saved_database";
+const Timestamp_Handle = "update_timestamp";
 
 function get_current_time(){
     //This datatbase uses so this is the easiest to do direct comparisons with "%Y%m%d%H%M%S
@@ -60,6 +61,19 @@ function get_local_storage() {
     }
 }
 
+function get_last_timestamp() {
+    if (typeof(Storage) === "undefined") {
+        return false;
+    }
+
+    try {
+        let time = localStorage.getItem(Timestamp_Handle);
+        return time;
+    } catch {
+        return null;
+    }
+}
+
 function set_local_storage(database) {
     if (typeof(Storage) === "undefined" || typeof(database) !== "object") {
         return false;
@@ -67,6 +81,7 @@ function set_local_storage(database) {
 
     try{
         localStorage.setItem(Database_Handle, JSON.stringify(database));
+        localStorage.setItem(Timestamp_Handle, get_current_time())
     } catch (e) {
         console.log("Setting local storage failed");
         console.log(e);

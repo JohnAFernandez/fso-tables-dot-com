@@ -306,7 +306,7 @@ function update_all_local_data() {
   // cache path
   let local_data = get_local_storage();
 
-  if (local_data != null && !get_need_update_status(local_data[0].timestamp)){
+  if (local_data != null && !get_need_update_status(get_last_timestamp())){
     database_tables = local_data;
     console.log("Using local cached data");
   } else {
@@ -413,8 +413,6 @@ function integrate_local_data() {
       }
     }    
   }
-
-  database_tables[0].timestamp = get_current_time();
 
   // now that we've finished with that, cache the results
   set_local_storage(database_tables);
