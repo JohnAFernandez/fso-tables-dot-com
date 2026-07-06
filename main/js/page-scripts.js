@@ -305,8 +305,10 @@ let database_deprecations = [];
 function update_all_local_data() {
   // cache path
   let local_data = get_local_storage();
+  let need_update = get_need_update_status(get_last_timestamp());
 
-  if (local_data != null && !(await get_need_update_status(get_last_timestamp()))){
+
+  if (local_data != null && !need_update){
     database_tables = local_data;
     console.log("Using local cached data");
   } else {
