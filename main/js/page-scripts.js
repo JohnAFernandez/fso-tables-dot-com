@@ -596,7 +596,7 @@ function get_need_update_status(current_time){
     status = responseJSON;
     Updating_time_status = false;
 
-    return status.update_needed;
+    return (status.update_needed === "true");
 
   }).catch ( 
     error => {
