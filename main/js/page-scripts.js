@@ -592,8 +592,8 @@ function get_need_update_status(current_time){
   .then((response) => response.json())
   .then(responseJSON => {
     status = responseJSON;
+    console.log(status);
     Updating_time_status = false;
-
     return (status.update_needed === "true");
 
   }).catch ( 
