@@ -585,7 +585,7 @@ function get_need_update_status(current_time){
 
   Updating_time_status = true;
 
-  fetch(API_ROOT + "check_update", { 
+  return fetch(API_ROOT + "check_update", { 
     method: "POST",
     body: JSON.stringify(local_time_object)
   })
@@ -600,10 +600,9 @@ function get_need_update_status(current_time){
       Fetching_info_error.concat(error);
       Fetching_info_error.concat(" ");
       Updating_time_status = false;
+      return true;
     }
   );
-
-  return true;
 }
 
 function replace_text_contents(element_id, contents){
