@@ -66,7 +66,7 @@ function set_local_storage(database) {
     }
 
     try{
-        Storage.setItem(Database_Handle, JSON.stringify(database));
+        localStorage.setItem(Database_Handle, JSON.stringify(database));
     } catch (e) {
         console.log("Setting local storage failed");
         console.log(e);
