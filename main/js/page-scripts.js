@@ -6,12 +6,14 @@ let API_ROOT = "https://www.fsotables.com/api/";
 let Current_Table = 0;
 let Ui_Update_Needed = false;
 
+let Updating_time_status = false;
 let Updating_table_array = false;
 let Updating_table_item_array = false;
 let Updating_parse_behavior_array = false;
 let Updating_restrictions_array = false;
 let Updating_deprecations_array = false;
 let Updating_table_aliases_array = false;
+let Database_Integration_Needed = false;
 let Integrating_data = false;
 let Fetching_info_error = "";
 let Edit_In_Progress = false;
@@ -19,12 +21,20 @@ let Previous_URL = "";
 
 // Regularly check for updates.
 window.setInterval(check_for_update, 100);
+
 async function check_for_update() {
-  if (Ui_Update_Needed && !Updating_table_array && !Updating_table_item_array && !Updating_parse_behavior_array && !Updating_restrictions_array && !Updating_deprecations_array && !Updating_table_aliases_array ){
+
+  if (Ui_Update_Needed && !Updating_time_status &&  !Updating_table_array && !Updating_table_item_array && !Updating_parse_behavior_array && !Updating_restrictions_array && !Updating_deprecations_array && !Updating_table_aliases_array ){
     Ui_Update_Needed = false;
     console.log("Updating UI");
-    integrate_local_data();
+
+    if (Database_Integration_Needed){
+      integrate_local_data();
+      Database_Integration_Needed = false;
+    }
+
     apply_table(Current_Table).catch(error => { console.log("Apply Table has failed.");});
+
   } else if (window.location.href != Previous_URL) {
     check_url();
   }
@@ -293,16 +303,24 @@ let database_deprecations = [];
 
 // make the function this way so that we can update everything at once, but also update with individual functions later 
 function update_all_local_data() {
-  Ui_Update_Needed = true;
-  
-  get_table_data().then(() => {
-    get_item_data();
-    get_table_aliases();
-    get_parse_behaviors();
-    get_restrictions();
-    get_deprecations();
-  });
+  // cache path
+  let local_data = get_local_storage();
 
+  if (local_data != null & !get_need_update_status(local_data.timestamp)){
+    database_tables = local_data;
+    console.log("Using local cached data");
+  } else {
+    get_table_data().then(() => {
+      get_item_data();
+      get_table_aliases();
+      get_parse_behaviors();
+      get_restrictions();
+      get_deprecations();
+    });
+    
+    Database_Integration_Needed = true;
+  }
+  Ui_Update_Needed = true;
 }
 
 function integrate_local_data() {
@@ -395,12 +413,17 @@ function integrate_local_data() {
       }
     }    
   }
+
+  // now that we've finished with that, cache the results
+  set_local_storage(database_tables);
 }
 
 // this function and its fetch need to be awaited so that the other functions do not run until we get this information.
 // Otherwise the response from this function will overwrite other table info.
 async function get_table_data() {
-  // TODO, make sure this gets into long term storage and can be pulled to avoid unneccessary API calls.
+
+  let local_data = 
+
 
   Updating_table_array = true;
 
@@ -550,6 +573,41 @@ function get_deprecations() {
       Updating_deprecations_array = false;
     }
   );
+}
+
+function get_need_update_status(current_time){
+  let time = Number(current_time);
+  
+  if (time != null && time != undefined){
+    return true;
+  }
+
+  const local_time_object = {
+    remote_time: time,
+  } 
+
+  Updating_time_status = true;
+
+  fetch(API_ROOT + "check_update", { 
+    method: "GET",
+    body: JSON.stringify(local_time_object)
+  })
+  .then((response) => response.json())
+  .then(responseJSON => {
+    status = responseJSON;
+    Updating_time_status = false;
+
+    return status.update_needed;
+
+  }).catch ( 
+    error => {
+      Fetching_info_error.concat(error);
+      Fetching_info_error.concat(" ");
+      Updating_time_status = false;
+    }
+  );
+
+  return true;
 }
 
 function replace_text_contents(element_id, contents){

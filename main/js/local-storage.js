@@ -1,16 +1,18 @@
+const Database_Handle = "saved_database";
+
 function get_current_time(){
-    //"%Y%m%d%H%M%S
+    //This datatbase uses so this is the easiest to do direct comparisons with "%Y%m%d%H%M%S
     const date = new Date(); 
     let formatted_date = date.getUTCFullYear().toString();
-    let month = (date.getUTCMonth() + 1).to_string();
-    
+    let month = (date.getUTCMonth() + 1).toString();
+
     if (month.length < 2){
        formatted_date += "0" + month;
     } else {
         formatted_date += month;
     }
     
-    let day = (date.getUTCDay().to_string());
+    let day = (date.getUTCDate().toString());
 
     if (day.length < 2){
         formatted_date += "0" + day;
@@ -18,7 +20,7 @@ function get_current_time(){
         formatted_date += day;
     }
 
-    let hours = date.getUTCHours().to_string();
+    let hours = date.getUTCHours().toString();
 
     if (hours.length < 2){
         formatted_date += "0" + hours;
@@ -26,7 +28,7 @@ function get_current_time(){
         formatted_date += hours;
     }
 
-    let minutes = date.getUTCMinutes().to_string();
+    let minutes = date.getUTCMinutes().toString();
 
     if (minutes.length < 2){
         formatted_date += "0" + minutes;
@@ -34,32 +36,28 @@ function get_current_time(){
         formatted_date += minutes;
     }
 
-    let seconds = date.getUTCSeconds().to_string();
+    let seconds = date.getUTCSeconds().toString();
     if (seconds.length < 2){
         formatted_date += "0" + seconds;
     } else {
         formatted_date += seconds;
     }
 
+    return formatted_date;
 }
-/*
-getFullYear() 	Get year as a four digit number (yyyy)
-getMonth() 	Get month as a number (0-11)
-getDate() 	Get day as a number (1-31)
-getDay() 	Get weekday as a number (0-6)
-getHours() 	Get hour (0-23)
-getMinutes() 	Get minute (0-59)
-getSeconds() 	Get second (0-59)
-getMilliseconds() 	Get millisecond (0-999)
-getTime()
-*/
+
 
 function get_local_storage() {
     if (typeof(Storage) === "undefined") {
         return false;
     }
 
-    return database = localStorage.getItem("saved_database");
+    try {
+        let database = localStorage.getItem(Database_Handle);
+        return JSON.parse(database);
+    } catch {
+        return null;
+    }
 }
 
 function set_local_storage(database) {
@@ -67,7 +65,13 @@ function set_local_storage(database) {
         return false;
     }
 
-    database.timestamp = Date.now("2015-03-25T12:00:00Z");
+    try{
+        Storage.set(Database_Handle, JSON.stringify(database));
+    } catch {
+        console.log("Setting local storage failed");
+        return false
+    }
 
+    return true;    
 }
 
