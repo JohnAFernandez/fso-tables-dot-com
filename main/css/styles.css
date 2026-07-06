@@ -364,6 +364,10 @@ li {
     margin: 30px;
 }
 
+.link-floater-adjuster {
+    padding-bottom: 10px;
+}
+
 .outer-link-container{
     position: fixed;
     z-index:101;
