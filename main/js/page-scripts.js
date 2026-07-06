@@ -424,9 +424,6 @@ function integrate_local_data() {
 // Otherwise the response from this function will overwrite other table info.
 async function get_table_data() {
 
-  let local_data = 
-
-
   Updating_table_array = true;
 
   await fetch(API_ROOT + "tables", { 
