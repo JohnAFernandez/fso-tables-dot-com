@@ -575,7 +575,7 @@ function get_deprecations() {
 function get_need_update_status(current_time){
   let time = Number(current_time);
   
-  if (time != null && time != undefined){
+  if (!time){
     return true;
   }
 
