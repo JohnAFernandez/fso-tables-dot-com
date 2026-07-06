@@ -6,7 +6,7 @@ function initPage(){
   Previous_URL = window.location.href;
 
 
-  console.log("Getting the mode cookie...")
+  console.log("Getting the mode cookie...");
   const modeCookie = getCookie("mode");
   console.log(`Found "${modeCookie}", continuing...`);
 
