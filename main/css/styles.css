@@ -397,6 +397,14 @@ li {
     padding-bottom: 5px;
 }
 
+.table-edit-ui-accept {
+    background-color: #59a259;
+}
+
+.table-edit-ui-reject {
+    background-color: #a25959;
+}
+
 .table-edit-ui-button:hover {
     background-color: #333333;
 }
@@ -404,6 +412,15 @@ li {
 .table-edit-ui-button:focus {
     background-color: #333333;
 }
+
+.table-edit-ui-accept:hover {
+    background-color: #57a150;
+}
+
+.table-edit-ui-reject:hover {
+    background-color: #a05757;
+}
+
 
 .add-item-button{
     padding-bottom: 15px;

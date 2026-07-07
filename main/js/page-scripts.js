@@ -1288,7 +1288,9 @@ function switchArrow(){
 
 
 function addNewItemModal(){
- $('#addItemModal').modal("show"); 
+  $('#addItemModal').modal("show"); 
+  let element = document.getElementById(`new-item-table`);
+  element.value = Current_Table + 1;
 }
 
 

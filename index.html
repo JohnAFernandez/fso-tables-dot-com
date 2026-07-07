@@ -373,7 +373,7 @@
               <div class="form-group">
                 <h5><label for="new-item-table">Add to Which Table</label></h5>
                 <select id="new-item-table" style="height: calc(1.5em + .75rem + 4px);" required>
-                  <option value=1>AI </option>
+                  <option value=1>AI</option>
                   <option value=2>AI Profiles</option>
                   <option value=50>Animation</option>
                   <option value=3>Armor</option>
@@ -381,6 +381,7 @@
                   <option value=5>Autopilot</option>
                   <option value=6>Cheats</option>
                   <option value=7>Colors</option>
+                  <option value=51>Credits</option>
                   <option value=8>Curves</option>
                   <option value=9>Control Config Defaults</option>
                   <option value=10>Cutscenes</option>
@@ -402,9 +403,10 @@
                   <option value=26>Muzzle Flash</option>
                   <option value=27>Music</option>
                   <option value=28>Nebula</option>
-                  <option value=29>Object</option>
+                  <option value=29>Object Type</option>
                   <option value=30>Options</option>
                   <option value=31>Particle Effects</option>
+                  <option value=52>Post-Processing</option>
                   <option value=32>Ranks</option>
                   <option value=33>SCPUI</option>
                   <option value=34>Scripting</option>
@@ -461,7 +463,8 @@
                   <div class="row">
                     <div class="col-4">
                     <select id="new-item-major" style="height: calc(1.5em + .75rem + 4px);" required>
-                      <option value="2.0">2 (Retail)</option>
+                      <option value="2.0">2.0 (Retail)</option>
+                      <option value="3.6.12">3.6.12 or Earlier</option>
                       <option value="26.0">26.0</option>
                       <option value="25.0">25.0</option>
                       <option value="24.2">24.2</option>
@@ -481,7 +484,6 @@
                       <option value="3.7.0">3.7.0</option>
                       <option value="3.6.16">3.6.16</option>
                       <option value="3.6.14">3.6.14</option>
-                      <option value="3.6.12">3.6.12</option>
                     </select>
                     </div>
                   </div>
@@ -495,8 +497,7 @@
                       </select>
                     </div>
                   </div>
-                </div>  
-                  
+                </div>                    
               </div>
 
               <div id="addItemErrorMessage" class="errorArea" style="display:none">
@@ -928,13 +929,13 @@
               </button>
             </div>
             <div class="col-1 save-button-col">
-              <button class="button btn-sm btn-outline-dark save-edit-button table-edit-ui-button">                    
+              <button class="button btn-sm btn-outline-dark save-edit-button table-edit-ui-button table-edit-ui-accept">                    
                 <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-31.svg">
               </button>
             </div>
             <div class="col-1 button-spacing-col"></div>
             <div class="col-1 cancel-button-col">
-              <button class="button btn-sm btn-outline-dark cancel-edit-button table-edit-ui-button">
+              <button class="button btn-sm btn-outline-dark cancel-edit-button table-edit-ui-button table-edit-ui-reject">
                 <img style="width: 28px; height: 28px;" src="main/res/iconmonstr-note-32.svg">
               </button>
             </div>
