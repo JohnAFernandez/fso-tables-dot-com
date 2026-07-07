@@ -1,7 +1,7 @@
   const event = new Event("search_function");
 
 // Run at the start of the page (called from the html)
-function initPage(){
+async function initPage(){
   console.log("Initializing Page... v0.9");
   Previous_URL = window.location.href;
 

@@ -302,16 +302,16 @@ let database_restrictions = [];
 let database_deprecations = [];
 
 // make the function this way so that we can update everything at once, but also update with individual functions later 
-function update_all_local_data() {
+async function update_all_local_data() {
   // cache path
   let local_data = get_local_storage();
-  let need_update = get_need_update_status(get_last_timestamp());
+  let status = await get_need_update_status(get_last_timestamp());
 
-
-  if (local_data != null && !need_update){
+  if (local_data != null && !status){
     database_tables = local_data;
     console.log("Using local cached data");
   } else {
+    console.log("Pulling fresh data from server")
     get_table_data().then(() => {
       get_item_data();
       get_table_aliases();
@@ -586,14 +586,13 @@ function get_need_update_status(current_time){
   } 
 
   Updating_time_status = true;
-
-  return fetch(API_ROOT + "check_update", { 
+  
+  fetch(API_ROOT + "check_update", { 
     method: "POST",
     body: JSON.stringify(local_time_object)
   })
   .then((response) => response.json())
   .then(responseJSON => {
-    console.log(responseJSON);
     Updating_time_status = false;
     return (responseJSON.update_needed === "true");
 
