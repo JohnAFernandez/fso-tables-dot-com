@@ -91,6 +91,7 @@ function togglePasswordLogin() {
 }
 
 function awaitingLoginResponse(awaiting) {
+  clearLoginErrorText();
   toggleContents(!awaiting, "loginButton");
   toggleContents(awaiting, "loginLoaderAnim")
 }
