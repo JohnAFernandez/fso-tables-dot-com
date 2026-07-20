@@ -444,6 +444,12 @@ a:not([href]):not([class]):hover{
     color: var(--clr-500);
 }
 
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
 .link-container {
     padding: 0px;
     margin: 0px;
