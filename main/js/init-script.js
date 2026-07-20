@@ -2,6 +2,19 @@
 
 // Run at the start of the page (called from the html)
 async function initPage(){
+  // Pre-load check for correct domain to avoid login and security issues
+  if (!window.location.href.startsWith("https://www.fsotables.com")){
+    let replacement = "https://www.fsotables.com";
+
+    let post_strings = window.location.href.split("#");
+
+    for (let i = 1; i < post_strings.length; i++){
+      replacement += post_strings[i];
+    }
+
+    window.location.replace(replacement);
+  }
+
   console.log("Initializing Page... v0.9");
   Previous_URL = window.location.href;
 
