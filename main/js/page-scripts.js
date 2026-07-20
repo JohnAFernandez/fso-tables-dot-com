@@ -35,7 +35,7 @@ async function check_for_update() {
 
     apply_table(Current_Table).catch(error => { console.log("Apply Table has failed.");});
 
-  } else if (window.location.href != Previous_URL && window.location.href != ("https://" + Previous_URL) && (window.location.href.startsWith("https://www.fsotables.com") || window.location.href.startsWith("www.fsotables.com"))) {
+  } else if (window.location.href != Previous_URL && window.location.href.contains("fsotables.com") && window.location.href != ("https://" + Previous_URL) && (window.location.href.startsWith("https://www.fsotables.com") || window.location.href.startsWith("www.fsotables.com"))) {
     check_url();
   }
 }
