@@ -444,7 +444,7 @@ a:not([href]):not([class]):hover{
     color: var(--clr-500);
 }
 
-.btn-danger {
+.btn-danger-custom {
   color: #fff;
   background-color: #dc3545;
   border-color: #dc3545;
