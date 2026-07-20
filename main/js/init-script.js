@@ -9,6 +9,7 @@ async function initPage(){
     let post_strings = window.location.href.split("#");
 
     for (let i = 1; i < post_strings.length; i++){
+      replacement += "#"
       replacement += post_strings[i];
     }
 
