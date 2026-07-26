@@ -1,67 +1,67 @@
 let awaitingItemSubmissionResult = false;
 
 function initiateItemEdit(id) {
-    if (Edit_In_Progress) {
-        return;
-    }
+  if (Edit_In_Progress) {
+      return;
+  }
 
-    Edit_In_Progress = true;
-    
-    /*
-    item${id}
-    item${id}-text
-    item${id}-major-version
-    item${id}-deprecation-area
-    item${id}-variable-type
-    item${id}-illegal-values-area
-    item${id}-alias-area
-    item${id}-documentation
-    item${id}-save-button
-    */
+  Edit_In_Progress = true;
+  
+  /*
+  item${id}
+  item${id}-text
+  item${id}-major-version
+  item${id}-deprecation-area
+  item${id}-variable-type
+  item${id}-illegal-values-area
+  item${id}-alias-area
+  item${id}-documentation
+  item${id}-save-button
+  */
 
-    // Change Active Buttons
-    toggleContents(false, `item${id}-edit-button-col`);
-    toggleContents(true, `item${id}-save-button-col`);
-    toggleContents(true, `item${id}-cancel-button-col`);
+  // Change Active Buttons
+  toggleContents(false, `item${id}-edit-button-col`);
+  toggleContents(true, `item${id}-save-button-col`);
+  toggleContents(true, `item${id}-cancel-button-col`);
 
-    // name
-    let current_element = document.getElementById(`item${id}-item-text`);
-    let target_element = document.getElementById(`item${id}-edit-name`);
-    target_element.value = current_element.innerText;
-    toggleContents(false, `item${id}-item-text-area`); 
-    toggleContents(true, `item${id}-edit-name-group`);
+  // name
+  let current_element = document.getElementById(`item${id}-item-text`);
+  let target_element = document.getElementById(`item${id}-edit-name`);
+  target_element.value = current_element.innerText;
+  toggleContents(false, `item${id}-item-text-area`); 
+  toggleContents(true, `item${id}-edit-name-group`);
 
-    // version 
-    current_element = document.getElementById(`item${id}-major-version`);
-    //changeContents(`item${id}-edit-major-version`, current_element.innerText); // TODO, this needs to use the actual version, lol
-    toggleContents(false, `item${id}-major-version-area`); 
-    toggleContents(true, `item${id}-edit-major-version-group`);
+  // version 
+  current_element = document.getElementById(`item${id}-major-version`);
+  //changeContents(`item${id}-edit-major-version`, current_element.innerText); // TODO, this needs to use the actual version, lol
+  toggleContents(false, `item${id}-major-version-area`); 
+  toggleContents(true, `item${id}-edit-major-version-group`);
 
-    // Description
-    current_element = document.getElementById(`item${id}-documentation`);
-    target_element = document.getElementById(`item${id}-edit-description`);
-    changeContents(`item${id}-edit-description`, current_element.innerText);
-    toggleContents(false, `item${id}-documentation`);
-    toggleContents(true, `item${id}-edit-description-area`);
+  // Description
+  current_element = document.getElementById(`item${id}-documentation`);
+  target_element = document.getElementById(`item${id}-edit-description`);
+  changeContents(`item${id}-edit-description`, current_element.innerText);
+  toggleContents(false, `item${id}-documentation`);
+  toggleContents(true, `item${id}-edit-description-area`);
 
-    // type
-    current_element = document.getElementById(`item${id}-variable-type`);
-    //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value    
-    toggleContents(false, `item${id}-type-area`);
-    toggleContents(true, `item${id}-edit-type-group`);
+  // type
+  current_element = document.getElementById(`item${id}-variable-type`);
+  //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value    
+  toggleContents(false, `item${id}-type-area`);
+  toggleContents(true, `item${id}-edit-type-group`);
 
-   // Illegal Values
+  // Illegal Values
 
-    // Alias
+  // Alias
 
-    // Deprecations
-    current_element = document.getElementById(`item${id}-deprecations`);
-    changeContents(`item${id}-edit-deprecation`, current_element.innerText);
-    //toggleContents(false, `item${id}-major-version-area`); 
-    //toggleContents(true, `item${id}-edit-major-version-group`);
+  // Deprecations
+  current_element = document.getElementById(`item${id}-deprecations`);
+  changeContents(`item${id}-edit-deprecation`, current_element.innerText);
+  //toggleContents(false, `item${id}-major-version-area`); 
+  //toggleContents(true, `item${id}-edit-major-version-group`);
 
-
-
+  current_element = document.getElementById(`item${id}-description-row`);
+  current_element.classList.remove(`indented-row`);
 }
 
 function turnOffItemEdit(id) {
@@ -77,8 +77,11 @@ function turnOffItemEdit(id) {
   toggleContents(true, `item${id}-type-area`);
   toggleContents(false, `item${id}-edit-type-group`);
 
-  Edit_In_Progress = false;
 
+  let current_element = document.getElementById(`item${id}-description-row`);
+  current_element.classList.add(`indented-row`);
+
+  Edit_In_Progress = false;
 }
 
 function saveItemEditChanges(id){

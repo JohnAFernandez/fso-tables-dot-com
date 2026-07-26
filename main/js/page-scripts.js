@@ -899,6 +899,14 @@ async function apply_table(table) {
         }
       }
 
+      // item description row (which needs to be indented or unindented later)
+      if (new_copy){
+        child = temporary_item.querySelector(".description-row");
+        if (child) {
+          child.setAttribute("id", `item${i}-description-row`)
+        }
+      }
+
       // save button
       if (new_copy){
         // Edit Button
