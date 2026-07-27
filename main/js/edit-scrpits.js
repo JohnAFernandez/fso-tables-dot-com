@@ -50,13 +50,14 @@ function initiateItemEdit(id) {
   toggleContents(false, `item${id}-type-area`);
   toggleContents(true, `item${id}-edit-type-group`);
 
+  // TODO!
   // Illegal Values
 
   // Alias
 
   // Deprecations
-  current_element = document.getElementById(`item${id}-deprecations`);
-  changeContents(`item${id}-edit-deprecation`, current_element.innerText);
+  //current_element = document.getElementById(`item${id}-deprecations`);
+  //changeContents(`item${id}-edit-deprecation`, current_element.innerText);
   //toggleContents(false, `item${id}-major-version-area`); 
   //toggleContents(true, `item${id}-edit-major-version-group`);
 
