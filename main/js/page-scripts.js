@@ -907,6 +907,13 @@ async function apply_table(table) {
         }
       }
 
+      if (new_copy){
+        child = temporary_item.querySelector(".template-description-header");
+        if (child){
+          child.setAttribute("id", `item${i}-template-description-header`)
+        }
+      }
+
       // save button
       if (new_copy){
         // Edit Button

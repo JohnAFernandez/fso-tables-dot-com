@@ -63,6 +63,7 @@ function initiateItemEdit(id) {
 
   current_element = document.getElementById(`item${id}-description-row`);
   current_element.classList.remove(`indented-row`);
+  toggleContents(false, `item${id}-template-description-header`);
 }
 
 function turnOffItemEdit(id) {
@@ -77,7 +78,7 @@ function turnOffItemEdit(id) {
   toggleContents(false, `item${id}-edit-description-area`);
   toggleContents(true, `item${id}-type-area`);
   toggleContents(false, `item${id}-edit-type-group`);
-
+  toggleContents(true, `item${id}-template-description-header`);
 
   let current_element = document.getElementById(`item${id}-description-row`);
   current_element.classList.add(`indented-row`);
