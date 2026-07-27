@@ -41,7 +41,7 @@ function initiateItemEdit(id) {
   toggleContents(true, `item${id}-edit-description-area`);
   current_element = document.getElementById(`item${id}-documentation`);
   target_element = document.getElementById(`item${id}-edit-description`);
-  changeContents(`item${id}-edit-description`, current_element.innerText);
+  target_element.value = current_element.innerText;
   toggleContents(false, `item${id}-documentation`);
 
   // type
