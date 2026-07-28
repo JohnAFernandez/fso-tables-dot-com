@@ -1335,7 +1335,7 @@ function itemSetOrderingOptions(id = undefined){
   }
 
   for(let i = select_item.options.length - 1; i >= -1; i--) {
-    selectElement.remove(i);
+    select_item.options.remove(i);
   }
 
   let template_item = document.getElementById(`item-ordering-option-template`);
@@ -1343,18 +1343,18 @@ function itemSetOrderingOptions(id = undefined){
   let temporary_item = template_item.content.cloneNode(true);
   temporary_item.value = -1;
   temporary_item.textContent = "No table ordering/Item is not ordered"
-  selectElement.appendChild(temporary_item);
+  select_item.appendChild(temporary_item);
 
   temporary_item = template_item.content.cloneNode(true);
   temporary_item.value = 0;
   temporary_item.textContent = "First item"
-
+  select_item.appendChild(temporary_item);
 
   for (let i = 0; i < results.length; i++){
-  
     temporary_item = template_item.content.cloneNode(true);
     temporary_item.value = i + 1;
     temporary_item.textContent = `Follows ${results[i]}`;
+    select_item.appendChild(temporary_item);
   }
 }
 
