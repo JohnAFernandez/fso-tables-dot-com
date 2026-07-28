@@ -1308,6 +1308,54 @@ function addNewItemModal(){
   element.value = Current_Table + 1;
 }
 
+function itemSetOrderingOptions(id = undefined){
+  const table_index = Current_Table;
+  const results = new map(); 
+
+  for (let i = 0; i < database_tables[table_index].items.length; i++){
+    if (database_tables[table_index].items[i].table_index > -1){
+      results.set(database_tables[table_index].items[i].table_index, database_tables[table_index].items[i].item_text);
+    }
+  }
+
+
+  let select_item;
+
+  if (id !== undefined ) {
+    // TODO! This element does not exist yet.
+    try{
+      document.getElementById(`item${id}-ordering-select`);
+    } catch {
+      console.log("Don't forget to finish itemSetOrderingOptions");
+      return;
+    }
+  } else {
+    document.getElementById(`item-ordering-select`);
+  }
+
+  for(let i = select_item.options.length - 1; i >= -1; i--) {
+    selectElement.remove(i);
+  }
+
+  let template_item = document.getElementById(`item-ordering-option-template`);
+
+  let temporary_item = template_item.content.cloneNode(true);
+  temporary_item.value = -1;
+  temporary_item.textContent = "No table ordering/Item is not ordered"
+  selectElement.appendChild(temporary_item);
+
+  temporary_item = template_item.content.cloneNode(true);
+  temporary_item.value = 0;
+  temporary_item.textContent = "First item"
+
+
+  for (let i = 0; i < results.length; i++){
+  
+    temporary_item = template_item.content.cloneNode(true);
+    temporary_item.value = i + 1;
+    temporary_item.textContent = `Follows ${results[i]}`;
+  }
+}
 
 function check_url(){
   let url = window.location.href;

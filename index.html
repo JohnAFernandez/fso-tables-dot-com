@@ -458,7 +458,7 @@
                 <input type="text" id="new-item-default-value" placeholder="New item defaults to..." title='This should be set to the value the engine assumes if this option is not specified, if applicable.'>              
               </div>
               <div class="form-group">
-                <h5><label for="new-item-major">Stable FSO Version Implemented</label><h5></h5>
+                <h5><label for="new-item-major">First Stable FSO Version Implemented</label><h5></h5>
                 <div class="container" style="padding-left: 0px;">
                   <div class="row">
                     <div class="col-4">
@@ -490,10 +490,17 @@
                   <br>
                   <div class="row">
                     <div class="col-4">
+                      <h5><label for="item-ordering">Item It Follows</label></h5>
+                      <select id="item-ordering-select" required>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
                       <h5><label for="parent-item">Parent Item</label></h5>
                       <select id="parent-item" required>
                         <option value=-2>Not specified</option>
-                        <option value=-1>No Parent</option>
+                        <option value=-1>No Parent/Top Level</option>
                       </select>
                     </div>
                   </div>
@@ -635,6 +642,12 @@
       </div>
     </template>
     <!--Need to set on click-->
+
+
+    <!--Need to set value and inner text; script needs to have two default items (no ordering and first)-->
+    <template id="item-ordering-option-template">
+      <option></option>
+    </template>
 
     <!-- floaters -->
     <div class="floating-link-container" id="floating-link-container">
