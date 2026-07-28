@@ -1349,15 +1349,16 @@ function itemSetOrderingOptions(id = undefined){
   // first item option
   temporary_item = template_item.content.cloneNode(true);
   temporary_child = temporary_item.querySelector(".item-ordering-option");
-  temporary_item.value = 0;
-  temporary_item.textContent = "First item"
+  temporary_child.value = 0;
+  temporary_child.textContent = "First item"
   select_item.appendChild(temporary_item);
 
   // The rest, one by one
   for (let i = 0; i < results.length; i++){
     temporary_item = template_item.content.cloneNode(true);
-    temporary_item.value = i + 1;
-    temporary_item.textContent = `Follows ${results[i]}`;
+    temporary_child = temporary_item.querySelector(".item-ordering-option");
+    temporary_child.value = i + 1;
+    temporary_child.textContent = `Follows ${results[i]}`;
     select_item.appendChild(temporary_item);
   }
 }
