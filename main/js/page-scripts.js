@@ -1325,13 +1325,13 @@ function itemSetOrderingOptions(id = undefined){
   if (id !== undefined ) {
     // TODO! This element does not exist yet.
     try{
-      document.getElementById(`item${id}-ordering-select`);
+      select_item = document.getElementById(`item${id}-ordering-select`);
     } catch {
       console.log("Don't forget to finish itemSetOrderingOptions");
       return;
     }
   } else {
-    document.getElementById(`item-ordering-select`);
+    select_item = document.getElementById(`item-ordering-select`);
   }
 
   for(let i = select_item.options.length - 1; i >= -1; i--) {
