@@ -1311,7 +1311,7 @@ function addNewItemModal(){
 
 function itemSetOrderingOptions(id = undefined){
   const table_index = Current_Table;
-  const results = new map(); 
+  const results = new Map(); 
 
   for (let i = 0; i < database_tables[table_index].items.length; i++){
     if (database_tables[table_index].items[i].table_index > -1){
