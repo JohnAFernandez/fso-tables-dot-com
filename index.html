@@ -975,6 +975,7 @@
               </div>
             </div>
           </div>
+          <!--Remember, this does not need to be displayed, because the table ordering affects the actual order on the page-->
           <div class="row item-edit-ordering-area" style="display:none;">
             <div class="col-4 template-ordering-select">
               <div class="form-group item-edit-ordering-group">
@@ -1000,6 +1001,17 @@
               </button>
             </div>
           </div>
+          <div class="row template-default-value-display-area">
+            <div class="col-6">
+              <h5>[Warning! Not Populated] <b class="template-default-value">[Warning! Not Populated]</b></h5>
+            </div>
+          </div>
+          <div class="row template-default-value-edit-area" style="display: none;">
+            <div class="col-6">
+              <input type="text" class="form-control item-edit-default-value" placeholder="" title="Whatever value the engine will assume if the item is not specified">
+            </div>
+          </div>
+
           <div class="row">
             <div class="col-11">
               <h5 class="template-type-area">Type: &#9;<b class="template-variable-type">[Warning! Not populated]</b></h5>

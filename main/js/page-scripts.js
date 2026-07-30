@@ -929,6 +929,25 @@ async function apply_table(table) {
         }
       }
 
+      // default value
+      if (new_copy){
+        
+        child = temporary_item.querySelector(".template=default-value-edit-area");
+        if (child){
+          child.setAttribute("id", `item${i}-default-value-edit-area`);
+        }
+
+        child = temporary_item.querySelector(".template-default-value-display-area");
+        if (child){
+          child.setAttribute("id", `item${i}-default-value-edit-area`);
+        }
+
+        child = template_item.querySelector(".item-edit-default-value");
+        if (child){
+          child.setAttribute("id", `item${i}-edit-default-value`)
+        }
+      }
+
       // save button
       if (new_copy){
         // Edit Button
