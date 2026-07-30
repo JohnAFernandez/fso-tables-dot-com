@@ -914,6 +914,21 @@ async function apply_table(table) {
         }
       }
 
+      // item ordering
+      if (new_copy){
+        // for populating select and exporting value to function
+        child = temporary_item.querySelector(".editing-item-ordering-select");
+        if (child){
+          child.setAttribute("id", `item${i}-ordering-select`);
+        }
+
+        // for activating/deactivating
+        child = temporary_item.querySelector(".item-edit-ordering-area");
+        if (child){
+          child.setAttribute("id", `item${i}-edit-ordering-area`);
+        }
+      }
+
       // save button
       if (new_copy){
         // Edit Button
@@ -1307,6 +1322,10 @@ function addNewItemModal(){
   let element = document.getElementById(`new-item-table`);
   element.value = Current_Table + 1;
   itemSetOrderingOptions();
+}
+
+function updateItemModal(){
+  console.log("Update Item Modal called, still need to implement");
 }
 
 function itemSetOrderingOptions(id = undefined){

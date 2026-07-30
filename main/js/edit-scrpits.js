@@ -61,6 +61,12 @@ function initiateItemEdit(id) {
   //toggleContents(false, `item${id}-major-version-area`); 
   //toggleContents(true, `item${id}-edit-major-version-group`);
 
+  //Item Ordering
+  toggleContents(true, `item${id}-edit-ordering-area`);
+  itemSetOrderingOptions(id);
+  //item${id}-ordering-select
+
+  // Small formatting changes
   current_element = document.getElementById(`item${id}-description-row`);
   current_element.classList.remove(`indented-row`);
   toggleContents(false, `item${id}-template-description-header`);
@@ -79,6 +85,7 @@ function turnOffItemEdit(id) {
   toggleContents(true, `item${id}-type-area`);
   toggleContents(false, `item${id}-edit-type-group`);
   toggleContents(true, `item${id}-template-description-header`);
+  toggleContents(false, `item${id}-edit-ordering-area`);
 
   let current_element = document.getElementById(`item${id}-description-row`);
   current_element.classList.add(`indented-row`);
@@ -87,10 +94,10 @@ function turnOffItemEdit(id) {
 }
 
 function saveItemEditChanges(id){
-    console.log(`Call to editing function done. id ${id}`)
+    console.log(`Save editing function called for id ${id}`)
 }
 
-function awaitingNewItemResult(waiting){
+function setAwaitingNewItemResult(waiting){
     awaitingItemSubmissionResult = waiting;
 }
 
@@ -114,7 +121,7 @@ function send_submit_new_item(){
   }
 
   clearSumbitNewItemErrorText();
-  awaitingNewItemResult(true);
+  setAwaitingNewItemResult(true);
 
   const tableField = document.getElementById("new-item-table");
   const textField = document.getElementById("new-item-name");
@@ -155,14 +162,14 @@ function send_submit_new_item(){
       ).catch(
         error => { 
           console.log(`Submitting item failed. The error encountered was: ${error}`);
-          awaitingNewItemResult(false);
+          setAwaitingNewItemResult(false);
           setSumbitNewItemErrorText(`${error}`);
       })
     }
   }).catch ( 
     error => { 
       console.log(`Submission failed due to some server or network error. The error encountered was: ${error}`);
-      awaitingNewItemResult(false);
+      setAwaitingNewItemResult(false);
       setSumbitNewItemErrorText("Submission Failed, Server or Network Error");
     }
   );
