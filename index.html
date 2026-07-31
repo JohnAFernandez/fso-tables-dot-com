@@ -456,10 +456,10 @@
               </div>
               <div class="form-group">
                 <h5><label for="new-item-documentation">Default Value (Optional)</label></h5>
-                <input type="text" id="new-item-default-value" placeholder="New item defaults to..." title='This should be set to the value the engine assumes if this option is not specified, if applicable.'>              
+                <input type="text" id="new-item-default-value" style="height: calc(1.5em + .75rem + 4px);" placeholder="New item defaults to..." title='This should be set to the value the engine assumes if this option is not specified, if applicable.'>              
               </div>
               <div class="form-group">
-                <h5><label for="new-item-major">First Stable FSO Version Implemented</label><h5></h5>
+                <h5><label for="new-item-major">First Stable FSO Version Implemented</label></h5>
                 <div class="container" style="padding-left: 0px;">
                   <div class="row">
                     <div class="col-4">
@@ -488,22 +488,23 @@
                     </select>
                     </div>
                   </div>
-                  <br>
-                  <div class="row form-group">
-                    <div class="col-4">
-                      <h5><label for="item-ordering">Item It Follows</label></h5>
-                      <select id="item-ordering-select" required>
-                      </select>
-                    </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row form-group">
+                  <div class="col-8">
+                    <h5><label for="item-ordering">Item It Follows</label></h5>
+                    <select id="item-ordering-select" style="height: calc(1.5em + .75rem + 4px);" required>
+                    </select>
                   </div>
-                  <div class="row form-group">
-                    <div class="col-4">
-                      <h5><label for="parent-item-select">Parent Item</label></h5>
-                      <select id="parent-item-select" required>
-                      </select>
-                    </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-8">
+                    <h5><label for="parent-item-select">Parent Item</label></h5>
+                    <select id="parent-item-select" style="height: calc(1.5em + .75rem + 4px);" required>
+                    </select>
                   </div>
-                </div>                    
+                </div>                        
               </div>
 
               <div id="addItemErrorMessage" class="errorArea" style="display:none">
@@ -998,7 +999,7 @@
             <div class="col-8">
                 <div class="form-group item-edit-ordering-group">
                 <label style="padding-left: 6px;" for="edit-item-form">
-                  <h3>Item Parent  </h3>
+                  <h3>Item Parent</h3>
                 </label>
                 <select class="editing-item-parent-select" title="Which item marks this item's section" required>
                 </select>
