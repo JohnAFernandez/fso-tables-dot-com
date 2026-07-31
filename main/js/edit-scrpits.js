@@ -61,6 +61,10 @@ function initiateItemEdit(id) {
   //toggleContents(false, `item${id}-major-version-area`); 
   //toggleContents(true, `item${id}-edit-major-version-group`);
 
+  // Default value
+  toggleContents(false, `item${id}-default-value-display-area`);
+  toggleContents(true, `item${id}-default-value-edit-area`);
+
   //Item Ordering
   toggleContents(true, `item${id}-edit-ordering-area`);
   itemSetOrderingOptions(id);
@@ -86,6 +90,8 @@ function turnOffItemEdit(id) {
   toggleContents(false, `item${id}-edit-type-group`);
   toggleContents(true, `item${id}-template-description-header`);
   toggleContents(false, `item${id}-edit-ordering-area`);
+  toggleContents(true, `item${id}-default-value-display-area`);
+  toggleContents(false, `item${id}-default-value-edit-area`);
 
   let current_element = document.getElementById(`item${id}-description-row`);
   current_element.classList.add(`indented-row`);
