@@ -824,7 +824,7 @@ function create_ui_item(i, temporary_item, parent_item){
     child.setAttribute("id", `item${i}-parent`);
   }
 
-  child = temporary_item.querySelector(".template-item-parent-area");
+  child = temporary_item.querySelector(".template-item-parenting-area");
   if (child){
     child.setAttribute("id", `item${i}-parent-area`);
   }
