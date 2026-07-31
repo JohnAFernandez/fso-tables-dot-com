@@ -68,7 +68,7 @@ function initiateItemEdit(id) {
   //Item Ordering
   toggleContents(true, `item${id}-edit-ordering-area`);
   itemSetOrderingOptions(id);
-  //item${id}-ordering-select
+  
 
   //Item Parent
   toggleConentes(false, `item${id}-parent-area`);

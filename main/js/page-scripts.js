@@ -1025,8 +1025,18 @@ async function apply_table(table) {
         field.textContent = data_item.documentation;
       }
 
+      // parent
+      field = document.getElementById(`item${i}-parent`);
+      if (field) {
+        if (data_item.parent_item > -1){
+          field.textContent = "Still not populated because we need a new function for looking up parents by index";
+        } else {
+          field.textContent = "No Parent";
+        }
+      }
+
       // deprecation status
-      field = ui_item.querySelector(`item${i}-deprecation-alias-status`);
+      field = document.getElementById(`item${i}-deprecation-alias-status`);
       if (field) { 
 
         if (deprecation === false && alias === false){
@@ -1081,29 +1091,7 @@ function populate_table_item(item, location){
 
 
 
-/* For Later.  We can use this to cache our result.  Also there are alternatives.
 
-
-const request = indexedDB.open("fso_local_copy");
-let db;
-
-request.onupgradeneeded = function() {
-  // The database did not previously exist, so create object stores and indexes.
-  const db = request.result;
-  const store = db.createObjectStore("tables", {keyPath: "tables"});
-
-  // Populate with initial data.
-  store.put({title: "Quarry Memories", author: "Fred", isbn: 123456});
-  store.put({title: "Water Buffaloes", author: "Fred", isbn: 234567});
-  store.put({title: "Bedrock Nights", author: "Barney", isbn: 345678});
-
-  full_update = true;
-};
-
-request.onsuccess = function() {
-  db = request.result;
-};
-*/
 
 const REGISTRATION_STATES = ["returningConfirmation", "chooseEmail", "choosePassword", "closing"];
 let CurrentState = 1;
@@ -1417,12 +1405,12 @@ function updateItemModal(){
   console.log("Update Item Modal called, still need to implement");
 }
 
-function addMappedOption(value, key, map, array) {
-  let temporary_item = array[0].content.cloneNode(true);
+function addMappedOption(value, key, map) {
+  let temporary_item = this.template_item.content.cloneNode(true);
   let temporary_child = temporary_item.querySelector(".item-ordering-option");
   temporary_child.value = key;
   temporary_child.textContent = `${value}`;
-  array[1].appendChild(temporary_child);
+  this.select_item.appendChild(temporary_item);
 }
 
 function itemSetParentItemOptions(id = undefined){
@@ -1461,8 +1449,12 @@ function itemSetParentItemOptions(id = undefined){
   temporary_child.textContent = "No Parent/Top Level"
   select_item.appendChild(temporary_item);
 
-  // The rest, one by one .... there's no way this will work
-  results.forEach(addMappedOption, [template_item, select_item]);
+  // The rest, one by one 
+  const thing = {
+    template_item = template_item,
+    select_item = select_item
+  }
+  results.forEach(addMappedOption, thing);
 }
 
 function itemSetOrderingOptions(id = undefined){
