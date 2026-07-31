@@ -1429,7 +1429,7 @@ function itemSetOrderingOptions(id = undefined){
   // No ordering option
   let temporary_item = template_item.content.cloneNode(true);
   let temporary_child = temporary_item.querySelector(".item-ordering-option");
-  temporary_child.value = -1;
+  temporary_child.value = 2147483647;
   temporary_child.textContent = "No table ordering/Item is not ordered"
   select_item.appendChild(temporary_item);
 
