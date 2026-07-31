@@ -129,7 +129,7 @@ function send_submit_new_item(){
   const majorVersionField = document.getElementById("new-item-major");
   const parentIdField = document.getElementById("parent-item");
   const infoTypeField = document.getElementById("new-item-type");
-  //const tableIndexField = document.getElementById(""); one day this will work, just not today.
+  const tableIndexField = document.getElementById("item-ordering-select"); 
   const defaultValueField = document.getElementById("new-item-default-value");
 
   const addItemRequest = {

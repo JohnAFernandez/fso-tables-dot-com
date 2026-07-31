@@ -908,6 +908,15 @@ async function apply_table(table) {
   let i = 0;
 
   if (database_tables[Current_Table].items){
+    database_tables[Current_Table].items.sort((a, b) =>  {
+      if (a.table_index < b.table_index)
+        return -1;
+      else if (a.table_index > b.table_index) 
+        return 1;
+      else 
+        return 0;
+    });
+
     for (i = 0; i < database_tables[Current_Table].items.length; i++){
       let ui_item = document.getElementById(`item${i}`);
       let data_item = database_tables[Current_Table].items[i];
