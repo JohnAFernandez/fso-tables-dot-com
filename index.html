@@ -498,10 +498,8 @@
                   </div>
                   <div class="row form-group">
                     <div class="col-4">
-                      <h5><label for="parent-item">Parent Item</label></h5>
-                      <select id="parent-item" required>
-                        <option value=-2>Not specified</option>
-                        <option value=-1>No Parent/Top Level</option>
+                      <h5><label for="parent-item-select">Parent Item</label></h5>
+                      <select id="parent-item-select" required>
                       </select>
                     </div>
                   </div>
@@ -976,7 +974,8 @@
               </div>
             </div>
           </div>
-          <!--Remember, this does not need to be displayed, because the table ordering affects the actual order on the page-->
+          <!--Item Ordering-->
+          <!--Remember, this does not need to be displayed when not editing, because the table ordering affects the actual order on the page-->
           <div class="row item-edit-ordering-area" style="display:none;">
             <div class="col-4 template-ordering-select">
               <div class="form-group item-edit-ordering-group">
@@ -984,6 +983,24 @@
                   <h3>Item belongs at/after </h3>
                 </label>
                 <select class="editing-item-ordering-select" required>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item Parent-->
+          <div class="row template-item-parenting-area">            
+            <div class="col-8">
+              <h3 class="">Item Parented By: <b class="template-item-parent">[Warning! Not populated]</b></h3><br>
+              
+            </div>
+          <div class="row template-item-parent-editing-area">
+            <div class="col-8">
+                <div class="form-group item-edit-ordering-group">
+                <label style="padding-left: 6px;" for="edit-item-form">
+                  <h3>Item Parent  </h3>
+                </label>
+                <select class="editing-item-parent-select" title="Which item marks this item's section" required>
                 </select>
               </div>
             </div>
@@ -1052,7 +1069,7 @@
                 <label style="padding-left: 6px;" for="item-edit-default-value">
                   <h3>Default Value</h3>
                 </label>              
-                <input type="text" class="form-control item-edit-default-value" placeholder="No Default Value" title="Whatever value the engine will assume if the item is not specified. Empty this text for no default value.">
+                <input type="text" class="form-control item-edit-default-value" placeholder="No Default Value" title="Whatever value the engine will assume if the item is not specified. Empty this text to specify no default value.">
               </div>
             </div>
           </div>

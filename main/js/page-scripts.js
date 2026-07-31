@@ -813,6 +813,27 @@ function create_ui_item(i, temporary_item, parent_item){
     child.setAttribute("id", `item${i}-edit-default-value`)
   }
 
+  // Parent Item
+  child = temporary_item.querySelector(".editing-item-parent-select");
+  if (child){
+    child.setAttribute("id", `item${i}-edit-parent-select`);
+  }
+
+  child = temporary_item.querySelector(".template-item-parent");
+  if (child){
+    child.setAttribute("id", `item${i}-parent`);
+  }
+
+  child = temporary_item.querySelector(".template-item-parent-area");
+  if (child){
+    child.setAttribute("id", `item${i}-parent-area`);
+  }
+
+  child = temporary_item.querySelector(".template-item-parent-editing-area");
+  if (child){
+    child.setAttribute("id", `item${i}-parent-editing-area`);
+  }
+
   // buttons
     
   // Edit Button
@@ -1040,7 +1061,6 @@ async function apply_table(table) {
           }
         }
       }      
-
     }
   }
 
@@ -1390,10 +1410,59 @@ function addNewItemModal(){
   let element = document.getElementById(`new-item-table`);
   element.value = Current_Table + 1;
   itemSetOrderingOptions();
+  itemSetParentItemOptions();
 }
 
 function updateItemModal(){
   console.log("Update Item Modal called, still need to implement");
+}
+
+function addMappedOption(value, key, map, array) {
+  let temporary_item = array[0].content.cloneNode(true);
+  let temporary_child = temporary_item.querySelector(".item-ordering-option");
+  temporary_child.value = key;
+  temporary_child.textContent = `${value}`;
+  array[1].appendChild(temporary_child);
+}
+
+function itemSetParentItemOptions(id = undefined){
+  const table_index = Current_Table;
+  const results = new Map(); 
+
+  for (let i = 0; i < database_tables[table_index].items.length; i++){
+    results.set(database_tables[table_index].items[i].item_id, database_tables[table_index].items[i].item_text);
+  }
+
+  let select_item;
+
+  if (id !== undefined ) {
+    select_item = document.getElementById(`item${id}-edit-parent-select`);
+  } else {
+    select_item = document.getElementById(`parent-item-select`);
+  }
+
+  for(let i = select_item.options.length - 1; i >= -1; i--) {
+    select_item.options.remove(i);
+  }
+
+  let template_item = document.getElementById(`item-ordering-option-template`);
+
+  // No parent option
+  let temporary_item = template_item.content.cloneNode(true);
+  let temporary_child = temporary_item.querySelector(".item-ordering-option");
+  temporary_child.value = -2;
+  temporary_child.textContent = "Not specified"
+  select_item.appendChild(temporary_item);
+
+  // first item option
+  temporary_item = template_item.content.cloneNode(true);
+  temporary_child = temporary_item.querySelector(".item-ordering-option");
+  temporary_child.value = -1;
+  temporary_child.textContent = "No Parent/Top Level"
+  select_item.appendChild(temporary_item);
+
+  // The rest, one by one .... there's no way this will work
+  results.forEach(addMappedOption, [template_item, select_item]);
 }
 
 function itemSetOrderingOptions(id = undefined){
@@ -1409,13 +1478,7 @@ function itemSetOrderingOptions(id = undefined){
   let select_item;
 
   if (id !== undefined ) {
-    // TODO! This element does not exist yet.
-    try{
-      select_item = document.getElementById(`item${id}-ordering-select`);
-    } catch {
-      console.log("Don't forget to finish itemSetOrderingOptions");
-      return;
-    }
+    select_item = document.getElementById(`item${id}-ordering-select`);
   } else {
     select_item = document.getElementById(`item-ordering-select`);
   }
@@ -1437,7 +1500,7 @@ function itemSetOrderingOptions(id = undefined){
   temporary_item = template_item.content.cloneNode(true);
   temporary_child = temporary_item.querySelector(".item-ordering-option");
   temporary_child.value = 0;
-  temporary_child.textContent = "First item"
+  temporary_child.textContent = "Is the first item"
   select_item.appendChild(temporary_item);
 
   // The rest, one by one

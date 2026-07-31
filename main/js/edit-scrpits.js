@@ -70,6 +70,9 @@ function initiateItemEdit(id) {
   itemSetOrderingOptions(id);
   //item${id}-ordering-select
 
+  //Item Parent
+  itemSetParentItemOptions(id);
+
   // Small formatting changes
   current_element = document.getElementById(`item${id}-description-row`);
   current_element.classList.remove(`indented-row`);
@@ -133,7 +136,7 @@ function send_submit_new_item(){
   const textField = document.getElementById("new-item-name");
   const docField = document.getElementById("new-item-documentation");
   const majorVersionField = document.getElementById("new-item-major");
-  const parentIdField = document.getElementById("parent-item");
+  const parentIdField = document.getElementById("parent-item-select");
   const infoTypeField = document.getElementById("new-item-type");
   const tableIndexField = document.getElementById("item-ordering-select"); 
   const defaultValueField = document.getElementById("new-item-default-value");
