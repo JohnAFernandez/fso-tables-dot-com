@@ -798,7 +798,7 @@ function create_ui_item(i, temporary_item){
     child.setAttribute("id", `item${i}-default-value-edit-area`);
   }
 
-  child = template_item.querySelector(".item-edit-default-value");
+  child = temporary_item.querySelector(".item-edit-default-value");
   if (child){
     child.setAttribute("id", `item${i}-edit-default-value`)
   }
