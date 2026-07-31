@@ -627,6 +627,222 @@ function saveEditedItem(id){
   window.alert("Not able to save edits yet, sorry!");  
 }
 
+function create_ui_item(i, temporary_item){
+  let child = temporary_item.querySelector(".data-item");
+  if (child) { 
+    child.setAttribute("id", `item${i}`);
+  }
+
+  // Form controls
+  child = temporary_item.querySelector(".edit-item-form");
+  if (child) { 
+    child.setAttribute("id", `item${i}-form`);
+    child.setAttribute("onsubmit", "return false;");
+  }
+
+  // Item Name
+  child = temporary_item.querySelector(".template-item-area")
+  if (child) {
+    child.setAttribute("id", `item${i}-item-text-area`);
+  }
+
+  child = temporary_item.querySelector(".template-item-name");
+  if (child) { 
+    child.setAttribute("id", `item${i}-item-text`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-name-group");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-name-group`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-name");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-name`);
+  }
+
+  // Initial Version
+  child = temporary_item.querySelector(".major-version-area");
+  if (child){
+    child.setAttribute("id", `item${i}-major-version-area`)
+  }
+
+  child = temporary_item.querySelector(".template-major-version");
+  if (child) { 
+    child.setAttribute("id", `item${i}-major-version`);
+  }        
+
+  child = temporary_item.querySelector(".item-edit-major-version-group");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-major-version-group`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-major-version");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-major-version`);
+  }
+
+  // deprecation
+  child = temporary_item.querySelector(".template-deprecation-area");
+  if (child) {
+      child.setAttribute("id", `item${i}-deprecation-area`);        
+  }        
+
+  child = temporary_item.querySelector(".item-edit-deprecation-group");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-deprecation-group`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-deprecation");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-deprecation`);
+  }
+
+  // Type
+  child = temporary_item.querySelector(".template-variable-type");
+  if (child) { 
+    child.setAttribute("id", `item${i}-variable-type`);             
+  }        
+
+  child = temporary_item.querySelector(".template-type-area");
+  if (child) {
+    child.setAttribute("id", `item${i}-type-area`)
+  }
+
+  child = temporary_item.querySelector(".item-edit-type-group");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-type-group`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-type");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-type`);
+  }
+
+  // Illegal Values
+  child = temporary_item.querySelector(".template-illegal-values-area");
+  if (child) { 
+    child.setAttribute("id", `item${i}-illegal-values-area`);
+  }
+  
+  child = temporary_item.querySelector(".item-edit-illegal-values-group");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-illegal-values-group`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-illegal-values");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-illegal-values`);
+  }
+  
+  // Alias
+  child = temporary_item.querySelector(".template-alias-area");
+  if (child) { 
+    child.setAttribute("id", `item${i}-alias-area`);        
+  }        
+
+  // Description
+  child = temporary_item.querySelector(".template-description");
+  if (child) { 
+    child.setAttribute("id", `item${i}-documentation`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-description-group");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-description-area`);
+  }
+
+  child = temporary_item.querySelector(".item-edit-description");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-description`);
+  }
+
+  child = temporary_item.querySelector(".description-row");
+  if (child) {
+    child.setAttribute("id", `item${i}-description-row`)
+  }
+
+  child = temporary_item.querySelector(".template-description-header");
+  if (child){
+    child.setAttribute("id", `item${i}-template-description-header`)
+  }
+
+  // deprecation
+  child = temporary_item.querySelector(".template-deprecation-alias-status");
+  if (child) { 
+    child.setAttribute("id", `item${i}-deprecation-alias-status`);
+  }
+
+  // item ordering
+  
+  // for populating select and exporting value to function
+  child = temporary_item.querySelector(".editing-item-ordering-select");
+  if (child){
+    child.setAttribute("id", `item${i}-ordering-select`);
+  }
+
+  // for activating/deactivating
+  child = temporary_item.querySelector(".item-edit-ordering-area");
+  if (child){
+    child.setAttribute("id", `item${i}-edit-ordering-area`);
+  }
+
+  // default value        
+  child = temporary_item.querySelector(".template-default-value-edit-area");
+  if (child){
+    child.setAttribute("id", `item${i}-default-value-edit-area`);
+  }
+
+  child = temporary_item.querySelector(".template-default-value-display-area");
+  if (child){
+    child.setAttribute("id", `item${i}-default-value-edit-area`);
+  }
+
+  child = template_item.querySelector(".item-edit-default-value");
+  if (child){
+    child.setAttribute("id", `item${i}-edit-default-value`)
+  }
+
+  // buttons
+    
+  // Edit Button
+  child = temporary_item.querySelector(".edit-button-col");
+  if (child){
+    child.setAttribute("id", `item${i}-edit-button-col`);
+    child = temporary_item.querySelector(".edit-button");
+
+    if (child) {
+      child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
+    }
+  }
+
+  // Save Button
+  child = temporary_item.querySelector(".save-button-col");
+  if (child) {
+    child.setAttribute("id", `item${i}-save-button-col`);
+    
+    let child2 = child.querySelector(".save-edit-button");
+    if (child2){
+      child2.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
+    }
+
+    child.setAttribute("style", "display:none;");
+  }
+
+  // Cancel Button
+  child = temporary_item.querySelector(".cancel-button-col");
+  if (child) {
+    child.setAttribute("id", `item${i}-cancel-button-col`);
+
+    let child2 = child.querySelector(".cancel-edit-button");
+    if (child2){
+      child2.setAttribute("onclick", `turnOffItemEdit(${i}); return false;`);
+    }
+
+    child.setAttribute("style", "display:none;");
+  }
+}
+
 // Put the current table into the UI
 async function apply_table(table) {
   console.log("Running Apply Table");
@@ -687,7 +903,8 @@ async function apply_table(table) {
   
       if (!temporary_item){
         temporary_item = template_item.content.cloneNode(true);
-        new_copy = true;
+        create_ui_item(i, temporary_item);
+        parent_item.appendChild(temporary_item);
       } else {
         temporary_item.style.display = "";
       }
@@ -701,76 +918,21 @@ async function apply_table(table) {
           // template-alias-version
           // template-description
   
-           // Clone the new row and insert it into the table
-  
-      let child = temporary_item.querySelector(".data-item");
-      if (child) { 
-        child.setAttribute("id", `item${i}`);
-        child.setAttribute("data-item-id", `${data_item.item_id}`);
-      }
+      // Mark the item with the data id
+      temporary_item.setAttribute("data-item-id", `${data_item.item_id}`);
 
-      // Form
-      child = temporary_item.querySelector(".edit-item-form");
-      if (child) { 
-        child.setAttribute("id", `item${i}-form`);
-        child.setAttribute("onsubmit", "return false;");
-      }
-
-      // Item Name
-      child = temporary_item.querySelector(".template-item-area")
-      if (child) {
-        child.setAttribute("id", `item${i}-item-text-area`);
-      }
-
+      // set item name
       child = temporary_item.querySelector(".template-item-name");
       if (child) { 
         child.textContent = data_item.item_text;
-        child.setAttribute("id", `item${i}-item-text`);
       }
   
-      if (new_copy){
-
-        child = temporary_item.querySelector(".item-edit-name-group");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-name-group`);
-        }
-
-        child = temporary_item.querySelector(".item-edit-name");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-name`);
-        }
-      }
-
-      // Initial Version
-      if (new_copy){
-        child = temporary_item.querySelector(".major-version-area");
-        if (child){
-          child.setAttribute("id", `item${i}-major-version-area`)
-        }
-      }
-
+      // set initial version
       child = temporary_item.querySelector(".template-major-version");
       if (child) { 
         child.textContent = data_item.major_version;
-
-        if (new_copy){
-          child.setAttribute("id", `item${i}-major-version`);
-        }
       }        
   
-      if (new_copy){
-
-        child = temporary_item.querySelector(".item-edit-major-version-group");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-major-version-group`);
-        }
-
-        child = temporary_item.querySelector(".item-edit-major-version");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-major-version`);
-        }
-      }
-
       let deprecation = false;
 
       // TODO! Make sure that the info has deprecations in the future
@@ -779,75 +941,27 @@ async function apply_table(table) {
       if (child) {
         if (data_item.deprecations !== undefined && data_item.deprecations.length > 0){
           deprecation = true;
-          child.setAttribute("id", `item${i}-deprecation-area`);        
           child.textContent = data_item.deprecation_id;
         } else {
           child.style.display = "none";
         }
       }        
   
-      // TODO! Need to make sure that we are not editing any entries when tables are switched
-      if (new_copy){
-
-        child = temporary_item.querySelector(".item-edit-deprecation-group");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-deprecation-group`);
-        }
-
-        child = temporary_item.querySelector(".item-edit-deprecation");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-deprecation`);
-        }
-      }
-
-
       // TODO! Clean user facing version of this, probably during processing
       // Type
 
       child = temporary_item.querySelector(".template-variable-type");
       if (child) { 
         child.textContent = data_item.info_type;
-        if (new_copy){
-          child.setAttribute("id", `item${i}-variable-type`);             
-        }
       }        
 
-      if (new_copy){
-        child = temporary_item.querySelector(".template-type-area");
-        if (child) {
-          child.setAttribute("id", `item${i}-type-area`)
-        }
-
-        child = temporary_item.querySelector(".item-edit-type-group");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-type-group`);
-        }
-
-        child = temporary_item.querySelector(".item-edit-type");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-type`);
-        }
-      }
 
       // Illegal Values
-      child = temporary_item.querySelector(".template-illegal-values-area");
-      if (child) { 
-        child.style.display = "none";
-        child.setAttribute("id", `item${i}-illegal-values-area`);
+      let item = document.getElementById(`item${i}-illegal-values-area`);
+      if (item) { 
+        item.style.display = "none";
       }
       
-      if (new_copy){
-        child = temporary_item.querySelector(".item-edit-illegal-values-group");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-illegal-values-group`);
-        }
-
-        child = temporary_item.querySelector(".item-edit-illegal-values");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-illegal-values`);
-        }
-      }
-
       let alias = false;
 
       // Alias
@@ -855,7 +969,6 @@ async function apply_table(table) {
       if (child) { 
         if (data_item.aliases !== undefined && data_item.aliases.length > 0){
           alias = true;
-          child.setAttribute("id", `item${i}-alias-area`);        
           child.textContent = data_item.alias_id;
         } else {
           child.style.display = "none";
@@ -871,9 +984,9 @@ async function apply_table(table) {
         child.setAttribute("id", `item${i}-documentation`);
       }
 
+      // deprecation status
       child = temporary_item.querySelector(".template-deprecation-alias-status");
       if (child) { 
-        child.setAttribute("id", `item${i}-documentation`);
 
         if (deprecation === false && alias === false){
           child.textContent = `No aliases and not deprecated.`;
@@ -885,33 +998,6 @@ async function apply_table(table) {
           child.style.display = "none";
         }
 
-      }
-
-      if (new_copy){
-        child = temporary_item.querySelector(".item-edit-description-group");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-description-area`);
-        }
-
-        child = temporary_item.querySelector(".item-edit-description");
-        if (child) {
-          child.setAttribute("id", `item${i}-edit-description`);
-        }
-      }
-
-      // item description row (which needs to be indented or unindented later)
-      if (new_copy){
-        child = temporary_item.querySelector(".description-row");
-        if (child) {
-          child.setAttribute("id", `item${i}-description-row`)
-        }
-      }
-
-      if (new_copy){
-        child = temporary_item.querySelector(".template-description-header");
-        if (child){
-          child.setAttribute("id", `item${i}-template-description-header`)
-        }
       }
 
       // item ordering
@@ -929,69 +1015,7 @@ async function apply_table(table) {
         }
       }
 
-      // default value
-      if (new_copy){
-        
-        child = temporary_item.querySelector(".template-default-value-edit-area");
-        if (child){
-          child.setAttribute("id", `item${i}-default-value-edit-area`);
-        }
-
-        child = temporary_item.querySelector(".template-default-value-display-area");
-        if (child){
-          child.setAttribute("id", `item${i}-default-value-edit-area`);
-        }
-
-        child = template_item.querySelector(".item-edit-default-value");
-        if (child){
-          child.setAttribute("id", `item${i}-edit-default-value`)
-        }
-      }
-
-      // save button
-      if (new_copy){
-        // Edit Button
-        child = temporary_item.querySelector(".edit-button-col");
-        if (child){
-          child.setAttribute("id", `item${i}-edit-button-col`);
-          child = temporary_item.querySelector(".edit-button");
-
-          if (child) {
-            child.setAttribute("onclick", `initiateItemEdit(${i}); return false;`);
-          }
-        }
-
-        // Save Button
-        child = temporary_item.querySelector(".save-button-col");
-        if (child) {
-          child.setAttribute("id", `item${i}-save-button-col`);
-          
-          
-          let child2 = child.querySelector(".save-edit-button");
-          if (child2){
-            child2.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
-          }
-
-          child.setAttribute("style", "display:none;");
-        }
-
-        // Cancel Button
-        child = temporary_item.querySelector(".cancel-button-col");
-        if (child) {
-          child.setAttribute("id", `item${i}-cancel-button-col`);
-
-          let child3 = child.querySelector(".cancel-edit-button");
-          if (child3){
-            child3.setAttribute("onclick", `turnOffItemEdit(${i}); return false;`);
-          }
-
-          child.setAttribute("style", "display:none;");
-        }
-      }
-
-      if (new_copy){
-        parent_item.appendChild(temporary_item);
-      }
+      // default value // TODO! Need to populate 
     }
   }
 
