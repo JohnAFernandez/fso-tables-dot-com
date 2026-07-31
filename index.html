@@ -1048,7 +1048,12 @@
           </div>
           <div class="row template-default-value-edit-area" style="display: none;">
             <div class="col-6">
-              <input type="text" class="form-control item-edit-default-value" placeholder="" title="Whatever value the engine will assume if the item is not specified">
+              <div class="form-group item-edit-illegal-values-group" style="display:none;">
+                <label style="padding-left: 6px;" for="item-edit-default-value">
+                  <h3>Default Value</h3>
+                </label>              
+                <input type="text" class="form-control item-edit-default-value" placeholder="" title="Whatever value the engine will assume if the item is not specified">
+              </div>
             </div>
           </div>
 
