@@ -71,6 +71,8 @@ function initiateItemEdit(id) {
   //item${id}-ordering-select
 
   //Item Parent
+  toggleConentes(false, `item${id}-parent-area`);
+  toggleContents(true, `item${id}-parent-editing-area`);
   itemSetParentItemOptions(id);
 
   // Small formatting changes
@@ -95,6 +97,8 @@ function turnOffItemEdit(id) {
   toggleContents(false, `item${id}-edit-ordering-area`);
   toggleContents(true, `item${id}-default-value-display-area`);
   toggleContents(false, `item${id}-default-value-edit-area`);
+  toggleContents(true, `item${id}-parent-area`);
+  toggleContents(false, `item${id}-parent-editing-area`);
 
   let current_element = document.getElementById(`item${id}-description-row`);
   current_element.classList.add(`indented-row`);
