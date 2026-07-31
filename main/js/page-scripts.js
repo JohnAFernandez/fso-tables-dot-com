@@ -788,6 +788,16 @@ function create_ui_item(i, temporary_item, parent_item){
   }
 
   // default value        
+  child = temporary_item.querySelector(".template-default-value-header");
+  if (child){
+    child.setAttribute("id", `item${i}-default-value-header`);
+  }
+
+  child = temporary_item.querySelector(".template-default-value");
+  if (child){
+    child.setAttribute("id", `item${i}-default-value`);
+  }
+  
   child = temporary_item.querySelector(".template-default-value-edit-area");
   if (child){
     child.setAttribute("id", `item${i}-default-value-edit-area`);
@@ -795,7 +805,7 @@ function create_ui_item(i, temporary_item, parent_item){
 
   child = temporary_item.querySelector(".template-default-value-display-area");
   if (child){
-    child.setAttribute("id", `item${i}-default-value-edit-area`);
+    child.setAttribute("id", `item${i}-default-value-display-area`);
   }
 
   child = temporary_item.querySelector(".item-edit-default-value");
@@ -899,108 +909,129 @@ async function apply_table(table) {
 
   if (database_tables[Current_Table].items){
     for (i = 0; i < database_tables[Current_Table].items.length; i++){
-      let temporary_item = document.getElementById(`item${i}`);
+      let ui_item = document.getElementById(`item${i}`);
       let data_item = database_tables[Current_Table].items[i];
   
-      if (!temporary_item){
+      if (!ui_item){
         create_ui_item(i, template_item.content.cloneNode(true), parent_item);
-        temporary_item = document.getElementById(`item${i}`);
-      } else {
-        temporary_item.style.display = "";
+        ui_item = document.getElementById(`item${i}`);
       }
+
+      ui_item.style.display = "";
           // We need to cover these        
-          // template-item-name       
-          // template-major-version         
+          // item${i}-item-text       
+          // item${i}-major-version         
           // template-deprecation-version    deprecation-area
-          // template-variable-type
+          // item${i}-variable-type
           // template-illegal-values        template-illegal-values-area
           // template-alias-name            template-alias-area
           // template-alias-version
-          // template-description
+          // item${i}-documentation
+          // item${i}-default-value-header
+          // item${i}-default-value
   
       // Mark the item with the data id
-      temporary_item.setAttribute("data-item-id", `${data_item.item_id}`);
+      ui_item.setAttribute("data-item-id", `${data_item.item_id}`);
 
       // set item name
-      child = temporary_item.querySelector(".template-item-name");
-      if (child) { 
-        child.textContent = data_item.item_text;
+      let field = document.getElementById(`item${i}-item-text`);
+      if (field) { 
+        field.textContent = data_item.item_text;
       }
   
       // set initial version
-      child = temporary_item.querySelector(".template-major-version");
-      if (child) { 
-        child.textContent = data_item.major_version;
+      field = document.getElementById(`item${i}-major-version`);
+      if (field) { 
+        field.textContent = data_item.major_version;
       }        
   
       let deprecation = false;
 
       // TODO! Make sure that the info has deprecations in the future
       // Deprecations
-      child = temporary_item.querySelector(".template-deprecation-area");
-      if (child) {
+      field = document.getElementById(`item${i}-deprecation-area`);
+      if (field) {
         if (data_item.deprecations !== undefined && data_item.deprecations.length > 0){
           deprecation = true;
-          child.textContent = data_item.deprecation_id;
+          field.textContent = data_item.deprecation_id;
         } else {
-          child.style.display = "none";
+          field.style.display = "none";
         }
       }        
   
       // TODO! Clean user facing version of this, probably during processing
       // Type
 
-      child = temporary_item.querySelector(".template-variable-type");
-      if (child) { 
-        child.textContent = data_item.info_type;
+      field = document.getElementById(`item${i}-variable-type`);
+      if (field) { 
+        field.textContent = data_item.info_type;
       }        
 
 
       // Illegal Values
-      let item = document.getElementById(`item${i}-illegal-values-area`);
-      if (item) { 
-        item.style.display = "none";
+      field = document.getElementById(`item${i}-illegal-values-area`);
+      if (field) { 
+        field.style.display = "none";
       }
       
       let alias = false;
 
       // Alias
-      child = temporary_item.querySelector(".template-alias-area");
-      if (child) { 
+      field = document.getElementById(`item${i}-alias-area`);
+      if (field) { 
         if (data_item.aliases !== undefined && data_item.aliases.length > 0){
           alias = true;
-          child.textContent = data_item.alias_id;
+          field.textContent = data_item.alias_id;
         } else {
-          child.style.display = "none";
+          field.style.display = "none";
         }
       }        
       
       // TODO! Alias does not have an edit section.  We can make all aliases go under one item in the database
       
       // Description
-      child = temporary_item.querySelector(".template-description");
-      if (child) { 
-        child.textContent = data_item.documentation;
-        child.setAttribute("id", `item${i}-documentation`);
+      field = document.getElementById(`item${i}-documentation`);
+      if (field) { 
+        field.textContent = data_item.documentation;
       }
 
       // deprecation status
-      child = temporary_item.querySelector(".template-deprecation-alias-status");
-      if (child) { 
+      field = ui_item.querySelector(`item${i}-deprecation-alias-status`);
+      if (field) { 
 
         if (deprecation === false && alias === false){
-          child.textContent = `No aliases and not deprecated.`;
+          field.textContent = `No aliases and not deprecated.`;
         } else if (deprecation === false){
-          child.textContent = `Not deprecated.`;
+          field.textContent = `Not deprecated.`;
         } else if (alias === false) {
-          child.textContent = `No Aliases`;
+          field.textContent = `No Aliases`;
         } else {
-          child.style.display = "none";
+          field.style.display = "none";
         }
 
       }
 
-      // default value // TODO! Need to populate 
+      // Set the default value
+      field = document.getElementById(`item${i}-default-value-header`);
+      if (field){
+        if (data_item.default_value && data_item.default_value.length > 0 && data_item.default_value !== " "){
+          field.textContent = "Default Value: ";
+
+          field = document.getElementById(`item${i}-default-value`);
+          if (field){
+            field.textContent = data_item.default_value;
+          }
+
+        } else {
+          field.textContent = "No Default Value";
+
+          field = document.getElementById(`item${i}-default-value`);
+          if (field){
+            field.textContent = "";
+          }
+        }
+      }      
+
     }
   }
 
