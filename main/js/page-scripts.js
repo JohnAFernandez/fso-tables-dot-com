@@ -627,7 +627,7 @@ function saveEditedItem(id){
   window.alert("Not able to save edits yet, sorry!");  
 }
 
-function create_ui_item(i, temporary_item){
+function create_ui_item(i, temporary_item, parent_item){
   let child = temporary_item.querySelector(".data-item");
   if (child) { 
     child.setAttribute("id", `item${i}`);
@@ -841,6 +841,8 @@ function create_ui_item(i, temporary_item){
 
     child.setAttribute("style", "display:none;");
   }
+
+  parent_item.appendChild(temporary_item);
 }
 
 // Put the current table into the UI
@@ -903,8 +905,7 @@ async function apply_table(table) {
   
       if (!temporary_item){
         temporary_item = template_item.content.cloneNode(true);
-        create_ui_item(i, temporary_item);
-        parent_item.appendChild(temporary_item);
+        create_ui_item(i, temporary_item, parent_item);
       } else {
         temporary_item.style.display = "";
       }
