@@ -901,11 +901,10 @@ async function apply_table(table) {
     for (i = 0; i < database_tables[Current_Table].items.length; i++){
       let temporary_item = document.getElementById(`item${i}`);
       let data_item = database_tables[Current_Table].items[i];
-      let new_copy = false;
   
       if (!temporary_item){
-        temporary_item = template_item.content.cloneNode(true);
-        create_ui_item(i, temporary_item, parent_item);
+        create_ui_item(i, template_item.content.cloneNode(true), parent_item);
+        temporary_item = document.getElementById(`item${i}`);
       } else {
         temporary_item.style.display = "";
       }
@@ -999,21 +998,6 @@ async function apply_table(table) {
           child.style.display = "none";
         }
 
-      }
-
-      // item ordering
-      if (new_copy){
-        // for populating select and exporting value to function
-        child = temporary_item.querySelector(".editing-item-ordering-select");
-        if (child){
-          child.setAttribute("id", `item${i}-ordering-select`);
-        }
-
-        // for activating/deactivating
-        child = temporary_item.querySelector(".item-edit-ordering-area");
-        if (child){
-          child.setAttribute("id", `item${i}-edit-ordering-area`);
-        }
       }
 
       // default value // TODO! Need to populate 
