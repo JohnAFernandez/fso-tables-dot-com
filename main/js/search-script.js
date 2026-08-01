@@ -299,9 +299,7 @@ document.addEventListener('click', (event) => {
   const withinBoundaries = (event.composedPath().includes(MaintainOpenTarget1) || event.composedPath().includes(MaintainOpenTarget2) || event.composedPath().includes(MaintainOpenTarget3));
 
   if (!withinBoundaries && !SearchUpArrow) {
-    console.log(event.composedPath());
     expand_contract_search_results();
-    console.log("contracting thingy.");
   }
 })
 
