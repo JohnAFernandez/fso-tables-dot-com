@@ -517,3 +517,7 @@ hr {
 .search_bar {
     opacity: 1;
 }
+
+.small_text {
+    font-size: 0.9rem;
+}
