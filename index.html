@@ -450,13 +450,13 @@
                 </select>
               </div>
               <div class="form-group">
+                <h5><label for="new-item-documentation">Default Value (Optional)</label></h5>
+                <input type="text" id="new-item-default-value" style="height: calc(1.5em + .75rem + 4px);" placeholder="New item defaults to..." title='This should be set to the value the engine assumes if this option is not specified, if applicable.'>              
+              </div>
+              <div class="form-group">
                 <h5><label for="new-item-documentation">Documentation</label></h5>
                 <textarea cols="45" rows="7" id="new-item-documentation" placeholder="New item accomplishes..." title='This section should include 1&rpar; How to use and 2&rpar; Any Hard-Light wiki "Notes" sections that used to be separate'>
                 </textarea>              
-              </div>
-              <div class="form-group">
-                <h5><label for="new-item-documentation">Default Value (Optional)</label></h5>
-                <input type="text" id="new-item-default-value" style="height: calc(1.5em + .75rem + 4px);" placeholder="New item defaults to..." title='This should be set to the value the engine assumes if this option is not specified, if applicable.'>              
               </div>
               <div class="form-group">
                 <h5><label for="new-item-major">First Stable FSO Version Implemented</label></h5>
@@ -988,6 +988,8 @@
                 </select>
               </div>
             </div>
+
+            
             <br>
             <!--Todo, value limitations seems to be here improperly-->
             <div class="col-6 template-illegal-values-area">
@@ -997,6 +999,23 @@
                   <h3>Value Limitations</h3>
                 </label>
                 <input type="text" class="form-control item-edit-illegal-values" placeholder="Text" title="What are the valid and invalid values for this item?">
+              </div>
+            </div>
+          </div>
+
+          <!--default Value-->
+          <div class="row template-default-value-display-area">
+            <div class="col-6">
+              <h5 class="template-default-value-header">[Warning! Not Populated] <b class="template-default-value">[Warning! Not Populated]</b></h5>
+            </div>
+          </div>
+          <div class="row template-default-value-edit-area" style="display: none;">
+            <div class="col-6">
+              <div class="form-group item-edit-illegal-values-group">
+                <label style="padding-left: 6px;" for="item-edit-default-value">
+                  <h3>Default Value</h3>
+                </label>              
+                <input type="text" class="form-control item-edit-default-value" placeholder="No Default Value" style="height: calc(1.5em + .75rem + 4px);" title="Whatever value the engine will assume if the item is not specified. Empty this text to specify no default value.">
               </div>
             </div>
           </div>
@@ -1081,22 +1100,6 @@
           </div>
 
 
-
-          <div class="row template-default-value-display-area">
-            <div class="col-6">
-              <h5 class="template-default-value-header">[Warning! Not Populated] <b class="template-default-value">[Warning! Not Populated]</b></h5>
-            </div>
-          </div>
-          <div class="row template-default-value-edit-area" style="display: none;">
-            <div class="col-6">
-              <div class="form-group item-edit-illegal-values-group">
-                <label style="padding-left: 6px;" for="item-edit-default-value">
-                  <h3>Default Value</h3>
-                </label>              
-                <input type="text" class="form-control item-edit-default-value" placeholder="No Default Value" style="height: calc(1.5em + .75rem + 4px);" title="Whatever value the engine will assume if the item is not specified. Empty this text to specify no default value.">
-              </div>
-            </div>
-          </div>
 
           <!--TODO! Figure out how to handle Aliases and Deprecations since we can have more than one.-->
           <!--TODO! We need deprecation types, because there's partial and then full deprecation.-->
