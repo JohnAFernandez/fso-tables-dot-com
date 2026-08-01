@@ -428,7 +428,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <h5><label for="new-item-name">Item Text</label></h5>
+                <h5><label for="new-item-name">Item Name</label></h5>
                 <input type="text" class="form-control" id="new-item-name" placeholder="$New Item:" required>              
               </div>
               <div class="form-group">
@@ -493,7 +493,7 @@
               <div class="form-group container">
                 <div class="row">
                   <div class="col-8">
-                    <h5><label for="item-ordering">Item It Follows</label></h5>
+                    <h5><label for="item-ordering">Item Location/Follows</label></h5>
                     <select id="item-ordering-select" style="height: calc(1.5em + .75rem + 4px);" required>
                     </select>
                   </div>
@@ -501,8 +501,8 @@
               </div>
               <div class="form-group container">
                 <div class="row">
-                  <div class="col-8">
-                    <h5><label for="parent-item-select">Parent Item</label></h5>
+                  <div class="col-4">
+                    <h5><label for="parent-item-select">Item Parent</label></h5>
                     <select id="parent-item-select" style="height: calc(1.5em + .75rem + 4px);" required>
                     </select>
                   </div>
@@ -935,7 +935,7 @@
                 <label style="padding-left: 6px;" for="edit-item-form">
                   <h3>Item Name</h3>
                 </label>
-                <input type="text" class="form-control item-edit-name" placeholder="" title="The text that enables this item is in use in a Freespace Open table file.">
+                <input type="text" class="form-control item-edit-name" placeholder="" style="height: calc(1.5em + .75rem + 4px);" title="The text that enables this item is in use in a Freespace Open table file.">
               </div>
             </div>
             <div class="col-1 edit-button-col">
@@ -994,7 +994,7 @@
           <!-- Item Parent-->
           <div class="row template-item-parenting-area">            
             <div class="col-8">
-              <h5 class="">Item Parented By: <b class="template-item-parent">[Warning! Not populated]</b></h5>              
+              <h5 class="">Item Parent: <b class="template-item-parent">[Warning! Not populated]</b></h5>              
             </div>
           </div>
           <div class="row template-item-parent-editing-area" style="display:none">
@@ -1003,7 +1003,7 @@
                 <label style="padding-left: 6px;" for="edit-item-form">
                   <h3>Item Parent</h3>
                 </label>
-                <select class="editing-item-parent-select" title="Which item marks this item's section" required>
+                <select class="editing-item-parent-select" title="Which item marks this item's section" style="height: calc(1.5em + .75rem + 4px);" required>
                 </select>
               </div>
             </div>
@@ -1072,7 +1072,7 @@
                 <label style="padding-left: 6px;" for="item-edit-default-value">
                   <h3>Default Value</h3>
                 </label>              
-                <input type="text" class="form-control item-edit-default-value" placeholder="No Default Value" title="Whatever value the engine will assume if the item is not specified. Empty this text to specify no default value.">
+                <input type="text" class="form-control item-edit-default-value" placeholder="No Default Value" style="height: calc(1.5em + .75rem + 4px);" title="Whatever value the engine will assume if the item is not specified. Empty this text to specify no default value.">
               </div>
             </div>
           </div>
