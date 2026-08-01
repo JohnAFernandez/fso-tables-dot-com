@@ -1,10 +1,12 @@
 let awaitingItemSubmissionResult = false;
+let EditId = -1;
 
 function initiateItemEdit(id) {
   if (Edit_In_Progress) {
       return;
   }
 
+  EditId = id;
   Edit_In_Progress = true;
   
   /*

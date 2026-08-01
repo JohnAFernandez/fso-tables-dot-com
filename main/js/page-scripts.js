@@ -878,7 +878,7 @@ function create_ui_item(i, temporary_item, parent_item){
 async function apply_table(table) {
   // any time we switch tables, our editing must get canceled.
   if (Edit_In_Progress){
-    turnOffItemEdit();
+    turnOffItemEdit(EditId);
     Edit_In_Progress = false;
   } 
 
