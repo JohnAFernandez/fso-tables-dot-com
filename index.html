@@ -962,6 +962,44 @@
               </div>  
             </div>
           </div>
+          <!--Data type-->
+          <div class="row">
+            <div class="col-11">
+              <h5 class="template-type-area">Type: &#9;<b class="template-variable-type">[Warning! Not populated]</b></h5>
+              <div class="form-group item-edit-type-group" style="display:none;">
+                <label style="padding-left: 6px;" for="edit-item-type">
+                  <h3>Data Type</h3>
+                </label>
+                <br>
+                <select class="item-edit-type" style="height: calc(1.5em + .75rem + 4px);" title="The data type that this item uses." required>
+                  <option value="Syntax Marker">Syntax Marker</option>
+                  <option value="Syntax Section Marker">Syntax Section Marker</option>
+                  <option value="Syntax Section Ending Marker">Syntax Section Ending Marker</option>
+                  <option value="Integer">Integer</option>
+                  <option value="Short Text">Short Text</option>
+                  <option value="Float">Float</option>
+                  <option value="Yes/No Boolean">Yes/No Boolean</option>
+                  <option value="Flexible Boolean">Flexible Boolean</option>
+                  <option value="intlist">List of Integers</option>
+                  <option value="floatlist">List of Floats</option>
+                  <option value="Flagset">Flagset</option>
+                  <option value="File">File</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <!--Todo, value limitations seems to be here improperly-->
+            <div class="col-6 template-illegal-values-area">
+              <h5>Value Limitations: &#9;<b class="template-illegal-group">&lt;[Warning! Not populated]</b> </h5>
+              <div class="form-group item-edit-illegal-values-group" style="display:none;">
+                <label style="padding-left: 6px;" for="item-edit-illegal-values">
+                  <h3>Value Limitations</h3>
+                </label>
+                <input type="text" class="form-control item-edit-illegal-values" placeholder="Text" title="What are the valid and invalid values for this item?">
+              </div>
+            </div>
+          </div>
 
           <div class="row">
             <div class="col-4">
@@ -1042,43 +1080,7 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-11">
-              <h5 class="template-type-area">Type: &#9;<b class="template-variable-type">[Warning! Not populated]</b></h5>
-              <div class="form-group item-edit-type-group" style="display:none;">
-                <label style="padding-left: 6px;" for="edit-item-type">
-                  <h3>Data Type</h3>
-                </label>
-                <br>
-                <select class="item-edit-type" style="height: calc(1.5em + .75rem + 4px);" title="The data type that this item uses." required>
-                  <option value="Syntax Marker">Syntax Marker</option>
-                  <option value="Syntax Section Marker">Syntax Section Marker</option>
-                  <option value="Syntax Section Ending Marker">Syntax Section Ending Marker</option>
-                  <option value="Integer">Integer</option>
-                  <option value="Short Text">Short Text</option>
-                  <option value="Float">Float</option>
-                  <option value="Yes/No Boolean">Yes/No Boolean</option>
-                  <option value="Flexible Boolean">Flexible Boolean</option>
-                  <option value="intlist">List of Integers</option>
-                  <option value="floatlist">List of Floats</option>
-                  <option value="Flagset">Flagset</option>
-                  <option value="File">File</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-            </div>
-            <br>
-            <div class="col-6 template-illegal-values-area">
-              <h5>Value Limitations: &#9;<b class="template-illegal-group">&lt;[Warning! Not populated]</b> </h5>
-              <div class="form-group item-edit-illegal-values-group" style="display:none;">
-                <label style="padding-left: 6px;" for="item-edit-illegal-values">
-                  <h3>Value Limitations</h3>
-                </label>
-                <input type="text" class="form-control item-edit-illegal-values" placeholder="Text" title="What are the valid and invalid values for this item?">
-              </div>
-            </div>
 
-          </div>
 
           <div class="row template-default-value-display-area">
             <div class="col-6">
