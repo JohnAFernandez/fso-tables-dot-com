@@ -56,7 +56,8 @@ function get_local_storage() {
     try {
         let database = localStorage.getItem(Database_Handle);
         return JSON.parse(database);
-    } catch {
+    } catch (error) {
+        console.log(`While retriving local storage this error was encountered: ${error}`);
         return null;
     }
 }
@@ -69,7 +70,8 @@ function get_last_timestamp() {
     try {
         let time = localStorage.getItem(Timestamp_Handle);
         return time;
-    } catch {
+    } catch (error) {
+        console.log(`While retriving local storage timestamp this error was encountered: ${error}`);
         return null;
     }
 }
@@ -82,9 +84,8 @@ function set_local_storage(database) {
     try{
         localStorage.setItem(Database_Handle, JSON.stringify(database));
         localStorage.setItem(Timestamp_Handle, get_current_time())
-    } catch (e) {
-        console.log("Setting local storage failed");
-        console.log(e);
+    } catch (error) {
+        console.log(`Setting local storage failed because of this error: ${error}`);
         return false;
     }
 

@@ -604,16 +604,18 @@ function replace_text_contents(element_id, contents){
     let element = document.getElementById(element_id);
     element.textContent = contents;
   }
-  catch{ console.log(`Trying to enter "${contents}" into "${element_id}" failed...` );}
+  catch(error) {  
+      console.log(`Trying to enter "${contents}" into "${element_id}" failed because of ${error}` );
+    } 
 }
 
 function replace_inner_html(element_id, contents){
   try {
     let element = document.getElementById(element_id);
     element.innerHTML = contents;
+  } catch(error) {
+    console.log(`Trying to enter "${contents}" into "${element_id}" failed because of ${error}` );
   }
-  catch{ console.log(`Trying to enter "${contents}" into "${element_id}" failed...` );}
-
 }
 
 function saveEditedItem(id){
@@ -1557,7 +1559,8 @@ function check_url(){
         } while (true)
       }
     }
-  } catch { 
+  } catch (error) { 
+    console.log(`URL checking failed because of ${error}` );
     window.location.href = url + "/"+ table + ":item-not-found";
     return true;
   }
