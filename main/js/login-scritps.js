@@ -37,7 +37,6 @@ function onLoginModalOpen() {
   clearLoginErrorText();
 }
 
-//TODO! We need to send a signal to the server to close out the session there.
 async function onLogout() {
   const username = getCookie("username");
 
@@ -50,7 +49,7 @@ async function onLogout() {
     })
     .then((response) => {
       if (response.status !== 200) {
-        // TODO, need logout popup here
+        // TODO, Logout needs success popup
         return;
       }
     }) 

@@ -133,7 +133,6 @@ function setPageMode(mode){
   } else if (mode_index == 2) {
     showAccount();
   } else {
-    //todo! show API options should be here, but that's not written yet
     showWelcome();
   }
 
@@ -449,10 +448,6 @@ function get_item_data() {
     method: "GET" 
   }).then((response) => response.json())
   .then(responseJSON => {    
-    // TODO!  Sort the SQL output to save on computation?
-    // Or again, implement outputting a specific table's items. 
-
-    // TODO! You know what, we definitely have to sort the SQL output for tables at least.
     for (item in responseJSON){
       // make sure there's a matching table.
       if (database_tables[responseJSON[item].table_id - 1] == undefined) {
@@ -987,9 +982,7 @@ async function apply_table(table) {
         }
       }        
   
-      // TODO! Clean user facing version of this, probably during processing
       // Type
-
       field = document.getElementById(`item${i}-variable-type`);
       if (field) { 
         field.textContent = data_item.info_type;
