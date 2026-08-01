@@ -26,7 +26,7 @@ async function check_for_update() {
 
   if (Ui_Update_Needed && !Updating_time_status &&  !Updating_table_array && !Updating_table_item_array && !Updating_parse_behavior_array && !Updating_restrictions_array && !Updating_deprecations_array && !Updating_table_aliases_array ){
     Ui_Update_Needed = false;
-    console.log("Updating UI");
+    // console.log("Updating UI");
 
     if (Database_Integration_Needed){
       integrate_local_data();
@@ -124,7 +124,6 @@ function setPageMode(mode){
   const mode_index = validModes.indexOf(mode);
 
   if ( mode_index < 0 ) { 
-    console.log("Invalid mode set, setting to welcome.");
     showWelcome();
     return;
   }
@@ -878,8 +877,6 @@ function create_ui_item(i, temporary_item, parent_item){
 
 // Put the current table into the UI
 async function apply_table(table) {
-  console.log("Running Apply Table");
-
   // any time we switch tables, our editing must get canceled.
   Edit_In_Progress = false;
   // TODO, apply editing cancelling function here once it's written
@@ -1135,13 +1132,11 @@ function onRegisterModalOpen() {
 }
 
 async function setRegistrationState(state){
-  console.log(`setting registration state: ${state}!`);
   awaitingRegistrationResponse(true);
   let next_state = -1;
   let request = false;
 
   if (state === `nextRequest`){
-    console.log("Path A");
     if (CurrentState === 0) {
       next_state = 2;
     } else if (CurrentState === 3) {
@@ -1152,21 +1147,18 @@ async function setRegistrationState(state){
     
     request = true;
   } else {
-    console.log("Path B");
     // no request sent here
     next_state = REGISTRATION_STATES.findIndex( (contents) => state === contents);
   }
 
   // something went wrong here, start over.
   if (next_state === -1){
-    console.log("Registration error state, returning");
     CurrentState = 4;
     dismissRegistrationModal();
     awaitingRegistrationResponse(false);
     return;
   }
 
-  console.log(`next state is ${next_state}`);
   // Now let's perform our request and state change
   if (next_state === 0){
     setModalUiChoosePassword();
@@ -1402,7 +1394,8 @@ function addNewItemModal(){
 }
 
 function updateItemModal(){
-  console.log("Update Item Modal called, still need to implement");
+  itemSetParentItemOptions();
+  itemSetOrderingOptions();
 }
 
 function addMappedOption(value, key, map) {

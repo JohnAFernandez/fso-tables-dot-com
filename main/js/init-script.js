@@ -1,5 +1,8 @@
   const event = new Event("search_function");
 
+    let Out_string = "Initializing Page... v0.9";
+
+
 // Run at the start of the page (called from the html)
 async function initPage(){
   // Pre-load check for correct domain to avoid login and security issues
@@ -16,22 +19,21 @@ async function initPage(){
     window.location.replace(replacement);
   }
 
-  console.log("Initializing Page... v0.9");
   Previous_URL = window.location.href;
 
 
-  console.log("Getting the mode cookie...");
+  Out_string += "Getting the mode cookie...";
   const modeCookie = getCookie("mode");
-  console.log(`Found "${modeCookie}", continuing...`);
+  Out_string += `Found "${modeCookie}", continuing...`;
 
   if (modeCookie === "welcome" || modeCookie ==="about") {
-    console.log("Setting welcome page...");
+    Out_string += "Setting welcome page...";
     setPageMode("welcome");
   } else if (modeCookie === "tables") {
-    console.log("Setting tables page...");
+    Out_string += "Setting tables page...";
     setPageMode("tables");
   } else if (modeCookie === "account") {
-    console.log("Setting account page...");
+    Out_string += "Setting account page...";
 
     const username = getCookie("username");
 
@@ -43,29 +45,29 @@ async function initPage(){
       setPageMode("account");
     }
   } else {
-    console.log("Setting welcome page...");
+    Out_string += "Setting welcome page...";
     setPageMode("welcome");
   }
 
-  console.log("Checking login status...");
+  Out_string += "Checking login status...";
   check_login_status_and_update();
 
-  console.log("Resetting table display");
+  Out_string += "Resetting table display";
   apply_table(-1);
 
-  console.log("Adjusting Floating Link Holder")
+  Out_string += "Adjusting Floating Link Holder";
   adjustFloater();
 
-  console.log("Adding Floater Links")
+  Out_string += "Adding Floater Links";
   populate_floater_links();
 
-  console.log("Removing the pre-load cover as the UI initialization is finished.")
+  Out_string += "Removing the pre-load cover as the UI initialization is finished.";
   toggleContents(false, "cover");
 
-  console.log("Getting Table Data");
+  Out_string += "Getting Table Data";
   update_all_local_data();
 
-  console.log("Applying previous table or table from url");
+  Out_string += "Applying previous table or table from url";
   if (!check_url()){
     const tableIndexCookie = getCookie("table");
     if (tableIndexCookie == undefined || tableIndexCookie === ""){
@@ -73,10 +75,10 @@ async function initPage(){
     }
   }
 
-  console.log("Initializing Search");
+  Out_string += "Initializing Search...";
   init_search();  
   
-  console.log("End of initialization function");
+  Out_string += "Initialization complete";
 }
 
 
