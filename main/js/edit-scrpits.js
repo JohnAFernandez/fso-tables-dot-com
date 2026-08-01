@@ -134,6 +134,8 @@ function clearNewItemUniqueInfo() {
   element.value = "";
   element = document.getElementById(`new-item-documentation`);
   element.value = "";
+  element = document.getElementById(`new-item-default-value`);
+  element.value = "";
 }
 
 function send_submit_new_item(){
