@@ -1393,7 +1393,7 @@ function addNewItemModal(){
   itemSetParentItemOptions();
 }
 
-function updateItemModal(){
+function updateNewItemModal(){
   itemSetParentItemOptions();
   itemSetOrderingOptions();
 }

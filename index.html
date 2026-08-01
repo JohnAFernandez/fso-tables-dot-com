@@ -372,7 +372,7 @@
 
               <div class="form-group">
                 <h5><label for="new-item-table">Add to Which Table</label></h5>
-                <select id="new-item-table" style="height: calc(1.5em + .75rem + 4px);" required>
+                <select id="new-item-table" style="height: calc(1.5em + .75rem + 4px);" oninput="updateNewItemModal(); return false;"  required>
                   <option value=1>AI</option>
                   <option value=2>AI Profiles</option>
                   <option value=50>Animation</option>
