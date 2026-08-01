@@ -52,22 +52,22 @@ async function initPage(){
   Out_string += "Checking login status...";
   check_login_status_and_update();
 
-  Out_string += "Resetting table display";
+  Out_string += "Resetting table display...";
   apply_table(-1);
 
-  Out_string += "Adjusting Floating Link Holder";
+  Out_string += "Adjusting Floating Link Holder...";
   adjustFloater();
 
-  Out_string += "Adding Floater Links";
+  Out_string += "Adding Floater Links...";
   populate_floater_links();
 
-  Out_string += "Removing the pre-load cover as the UI initialization is finished.";
+  Out_string += "Removing the pre-load cover as the UI initialization is finished...";
   toggleContents(false, "cover");
 
-  Out_string += "Getting Table Data";
+  Out_string += "Getting Table Data...";
   update_all_local_data();
 
-  Out_string += "Applying previous table or table from url";
+  Out_string += "Applying previous table or table from url...";
   if (!check_url()){
     const tableIndexCookie = getCookie("table");
     if (tableIndexCookie == undefined || tableIndexCookie === ""){

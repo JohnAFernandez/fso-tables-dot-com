@@ -26,7 +26,6 @@ async function check_for_update() {
 
   if (Ui_Update_Needed && !Updating_time_status &&  !Updating_table_array && !Updating_table_item_array && !Updating_parse_behavior_array && !Updating_restrictions_array && !Updating_deprecations_array && !Updating_table_aliases_array ){
     Ui_Update_Needed = false;
-    // console.log("Updating UI");
 
     if (Database_Integration_Needed){
       integrate_local_data();
