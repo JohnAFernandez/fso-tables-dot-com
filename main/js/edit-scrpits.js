@@ -71,7 +71,7 @@ function initiateItemEdit(id) {
   
 
   //Item Parent
-  toggleConentes(false, `item${id}-parent-area`);
+  toggleContents(false, `item${id}-parent-area`);
   toggleContents(true, `item${id}-parent-editing-area`);
   itemSetParentItemOptions(id);
 
@@ -111,6 +111,7 @@ function saveItemEditChanges(id){
 }
 
 function setAwaitingNewItemResult(waiting){
+
     awaitingItemSubmissionResult = waiting;
 }
 
@@ -119,13 +120,20 @@ function setSumbitNewItemErrorText(errorText){
   toggleContents(true, "itemSubmissionError");
 }
 
-function clearSumbitNewItemErrorText(errorText){
-  changeContents("itemSubmissionErrorText", errorText);
+function clearSumbitNewItemErrorText(){
+  changeContents("itemSubmissionErrorText", "");
   toggleContents(true, "itemSubmissionError");
 }
 
-function dismissLoginModal() {
-  $('#loginModal').modal("hide");
+function dismissNewItemModal() {
+  $('#addItemModal').modal("hide");
+}
+
+function clearNewItemUniqueInfo() {
+  let element = document.getElementById(`new-item-name`);
+  element.value = "";
+  element = document.getElementById(`new-item-documentation`);
+  element.value = "";
 }
 
 function send_submit_new_item(){
@@ -133,8 +141,8 @@ function send_submit_new_item(){
     return;
   }
 
-  clearSumbitNewItemErrorText();
   setAwaitingNewItemResult(true);
+  clearSumbitNewItemErrorText();
 
   const tableField = document.getElementById("new-item-table");
   const textField = document.getElementById("new-item-name");
@@ -167,7 +175,9 @@ function send_submit_new_item(){
   })
   .then((response) => { 
     if (response.status === 200) {
-      dismissLoginModal();
+      setAwaitingNewItemResult(false);
+      clearNewItemUniqueInfo();
+      dismissNewItemModal();
     } else {
       response.json().then(responseJSON => { 
         // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
