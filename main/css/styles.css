@@ -513,3 +513,7 @@ svg.icon {
 hr {
  background-color: #e0e0e0
 }
+
+.search_bar {
+    opacity: 1;
+}
