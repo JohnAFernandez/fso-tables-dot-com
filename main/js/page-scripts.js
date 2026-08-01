@@ -1451,9 +1451,10 @@ function itemSetParentItemOptions(id = undefined){
 
   // The rest, one by one 
   const thing = {
-    template_item = template_item,
-    select_item = select_item
+    template_item : template_item,
+    select_item : select_item
   }
+
   results.forEach(addMappedOption, thing);
 }
 
