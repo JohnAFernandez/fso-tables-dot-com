@@ -184,6 +184,24 @@ function setLoginStatus(status) {
   toggleContents(status, "nav-register");
   toggleContents(!status, "nav-account");
   toggleContents(!status, "nav-logout");
+  try {
+    toggleContents(!status, "table-add-item-button");
+  } catch (e) {
+    console.log(`Could not toggle table edit button  because of error: ${e}`);
+  }
+
+  try {
+    for(let i = 0; i < 2000 ; i++){
+      let theoretical_item = document.getElementById(`item${i}-edit-button-col`);
+      if (theoretical_item){
+        theoretical_item.style.display = "none";
+      } else {
+        break;
+      }
+    }
+  } catch (e) {
+    console.log (`Unable to set edit buttons because of error ${e}`);
+  }
 }
 
 function check_login_status_and_update() {
