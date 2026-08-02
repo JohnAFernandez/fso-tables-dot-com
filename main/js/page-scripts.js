@@ -700,7 +700,6 @@ function create_ui_item(i, temporary_item, parent_item){
   child = temporary_item.querySelector(".template-variable-type");
   if (child) { 
     child.setAttribute("id", `item${i}-variable-type`);
-    child.setAttribute("oninput", `maybeEnableListCount(${i});`);        
   }        
 
   child = temporary_item.querySelector(".template-type-area");
@@ -716,6 +715,7 @@ function create_ui_item(i, temporary_item, parent_item){
   child = temporary_item.querySelector(".item-edit-type");
   if (child) {
     child.setAttribute("id", `item${i}-edit-type`);
+    child.setAttribute("oninput", `maybeEnableListCount(${i});`);        
   }
 
   child = temporary_item.querySelector(".item-edit-data-list-count");
