@@ -72,6 +72,7 @@ function initiateItemEdit(id) {
 
   } else {
     target_element.value = current_element.innerText; 
+    toggleContents(false, `item${id}-edit-list-size-area`);
   }
 
 
