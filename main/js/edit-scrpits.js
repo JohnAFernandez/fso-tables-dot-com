@@ -42,7 +42,7 @@ function initiateItemEdit(id) {
   let string = current_element.innerText;
   
   // this one is special because we can have a list of multiple items of a specific count
-  if (string !== undefined && string.innerText.startsWith("List of ")) {
+  if (string !== undefined && string.startsWith("List of ")) {
     let add_count = false;
 
     if (string.endsWith(" Floats")){
@@ -50,7 +50,7 @@ function initiateItemEdit(id) {
       add_count = true;
       string.replace("List of ");
       string.replace(" Floats", "");
-    } else if (string.innerText.endsWith(" Integers")){
+    } else if (string.endsWith(" Integers")){
       target_element.value = "List of Inetgers";
       add_count = true;
       string.replace("List of ");
