@@ -305,7 +305,9 @@ async function update_all_local_data() {
   let status = await get_need_update_status(get_last_timestamp());
 
   while (status === undefined){
-
+    if (status !== undefined){
+      break;
+    }
   }
 
   if (local_data != null && !status){
@@ -571,7 +573,7 @@ function get_deprecations() {
   );
 }
 
-function get_need_update_status(current_time){
+async function get_need_update_status(current_time){
   let time = Number(current_time);
   
   if (!time){
