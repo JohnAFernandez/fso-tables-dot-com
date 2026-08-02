@@ -235,16 +235,16 @@ function saveItemEditChanges(id){
         majorVersionField = No_Change;
       }
       if (parentIdField === item.parent_id){
-        text = No_Change;
+        parentIdField = No_Change;
       }
       if (infoTypeField === item.info_type){
-        text = No_Change;
+        infoTypeField = No_Change;
       }
       if (tableIndexField === item.table_index){
-        text = No_Change;
+        tableIndexField = No_Change;
       }
       if (defaultValueField === item.default_value){
-        text = No_Change;
+        defaultValueField = No_Change;
       }
 
       break;
@@ -252,15 +252,14 @@ function saveItemEditChanges(id){
   }
 
   const patchItemRequest = {
-
-    item_text: textField.value,
-    documentation: docField.value,
-    major_version: majorVersionField.value,
-    parent_id: Number(parentIdField.value),
-    table_id: Number(tableField.value),
-    info_type: infoTypeField.value,
-    default_value: defaultValueField.value,
-    table_index: Number(-1)
+    item_id: Number(item_index),
+    item_text: text,
+    documentation: docField,
+    major_version: majorVersionField,
+    parent_id: parentIdField,
+    info_type: infoTypeField,
+    default_value: defaultValueField,
+    table_index: tableIndexField
   }
 
   fetch(API_ROOTB + "tables/items", {
