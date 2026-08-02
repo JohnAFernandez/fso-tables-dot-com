@@ -7,6 +7,7 @@ let Current_Table = 0;
 let Ui_Update_Needed = false;
 
 let Updating_time_status = false;
+let Updating_time_result = undefined;
 let Updating_table_array = false;
 let Updating_table_item_array = false;
 let Updating_parse_behavior_array = false;
@@ -302,15 +303,15 @@ let database_deprecations = [];
 async function update_all_local_data() {
   // cache path
   let local_data = get_local_storage();
-  let status = await get_need_update_status(get_last_timestamp());
+  await get_need_update_status(get_last_timestamp());
 
-  while (status === undefined){
-    if (status !== undefined){
+  while (Updating_time_result === undefined){
+    if (Updating_time_result !== undefined){
       break;
     }
   }
 
-  if (local_data != null && !status){
+  if (local_data != null && !Updating_time_result){
     database_tables = local_data;
     console.log("Using local cached data");
   } else {
@@ -577,7 +578,8 @@ async function get_need_update_status(current_time){
   let time = Number(current_time);
   
   if (!time){
-    return true;
+    Updating_time_result = true;
+    return;
   }
 
   const local_time_object = {
@@ -593,8 +595,7 @@ async function get_need_update_status(current_time){
   .then((response) => response.json())
   .then(responseJSON => {
     Updating_time_status = false;
-    return (responseJSON.update_needed === "true");
-
+    Updating_time_result = responseJSON.update_needed === "true";
   }).catch ( 
     error => {
       Fetching_info_error.concat(error);
