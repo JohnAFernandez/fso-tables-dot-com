@@ -142,7 +142,7 @@ function maybeEnableListCount(id){
   if (value === "List of Integers" || value === "List of Floats"){
     toggleListCount(true, id);
   } else {
-    toggleListCounts(false, id);
+    toggleListCount(false, id);
   }
 }
 
