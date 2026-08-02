@@ -1025,7 +1025,13 @@ async function apply_table(table) {
       field = document.getElementById(`item${i}-parent`);
       if (field) {
         if (data_item.parent_id > -1){
-          field.textContent = "Still not populated because we need a new function for looking up parents by index";
+          
+          for (let i = 0; i < database_tables[Current_Table].items[i].length; i++){
+            const source_item = database_tables[Current_Table].items[i];
+            if (source_item.item_id === data_item.parent_id){
+              field.textContent = source_item.item_text;
+            }
+          }
         } else {
           field.textContent = "No Parent";
         }
