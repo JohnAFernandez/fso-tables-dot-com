@@ -39,14 +39,14 @@ function initiateItemEdit(id) {
   // type
   current_element = document.getElementById(`item${id}-variable-type`);
   target_element = document.getElementById(`item${id}-edit-type`);
-  target_element.value = current_element.value;
+  target_element.value = current_element.innerText;
   toggleContents(false, `item${id}-type-area`);
   toggleContents(true, `item${id}-edit-type-group`);
 
   // Default value -- Copying the value should still work because no default value is empty in the item.
   current_element = document.getElementById(`item${id}-default-value`);
   target_element = document.getElementById(`item${id}-edit-default-value`);
-  target_element.value = current_element.value;
+  target_element.value = current_element.innerText;
   toggleContents(false, `item${id}-default-value-display-area`);
   toggleContents(true, `item${id}-default-value-edit-area`);
 
