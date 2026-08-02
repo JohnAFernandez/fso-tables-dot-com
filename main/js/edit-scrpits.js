@@ -50,13 +50,13 @@ function initiateItemEdit(id) {
     if (string.endsWith(" Floats")){
       target_element.value = "List of Floats";
       add_count = true;
-      string.replace("List of ", "");
-      string.replace(" Floats", "");
+      string = string.replace("List of ", "");
+      string = string.replace(" Floats", "");
     } else if (string.endsWith(" Integers")){
-      target_element.value = "List of Inetgers";
+      target_element.value = "List of Integers";
       add_count = true;
-      string.replace("List of ", "");
-      string.replace(" Integers", "");
+      string = string.replace("List of ", "");
+      string = string.replace(" Integers", "");
     } else {
       target_element.value = current_element.innerText;
     }
