@@ -356,7 +356,7 @@ function saveItemEditChanges(id){
   .then((response) => { 
     if (response.status === 200) {
       setAwaitingEditItemResult(false);
-      turnOffItemEdit(item_index);
+      turnOffItemEdit(id);
     } else {
       response.json().then(responseJSON => { 
         // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
