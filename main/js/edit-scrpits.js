@@ -101,7 +101,8 @@ function initiateItemEdit(id) {
   toggleContents(true, `item${id}-parent-editing-area`);
   itemSetParentItemOptions(id);
   current_element = document.getElementById(`item${id}-parent`);
-  target_element = document.getElementById(`item${i}-edit-parent-select`);
+  target_element = document.getElementById(`item${id}-edit-parent-select`);
+  target_element.value = current_element.innerText;
 
   // TODO!
   // Value Restrictions
