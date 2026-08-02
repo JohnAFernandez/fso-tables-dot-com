@@ -19,7 +19,7 @@ function initiateItemEdit(id) {
   let current_element = document.getElementById(`item${id}-item-text`);
   let target_element = document.getElementById(`item${id}-edit-name`);
   let item_name = current_element.innerText;
-  target_element.value = name;
+  target_element.value = item_name;
   toggleContents(false, `item${id}-item-text-area`); 
   toggleContents(true, `item${id}-edit-name-group`);
 
