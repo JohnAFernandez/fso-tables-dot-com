@@ -87,15 +87,24 @@ function initiateItemEdit(id) {
   //Item Ordering
   toggleContents(true, `item${id}-edit-ordering-area`);
   itemSetOrderingOptions(id);
+  current_element = document.getElementById(`item${id}`);
+  target_element = document.getElementById(`item${id}-ordering-select`)
+  
+  for (let i = 0; i < database_tables[Current_Table].items.length; i++){
+    if (current_element.getAttribute("data-item-id") === database_tables[Current_Table].items[i].item_id){
+      target_element.value = database_tables[Current_Table].items[i].table_index;
+    }
+  }
 
   //Item Parent
   toggleContents(false, `item${id}-parent-area`);
   toggleContents(true, `item${id}-parent-editing-area`);
   itemSetParentItemOptions(id);
-
+  current_element = document.getElementById(`item${id}-parent`);
+  target_element = document.getElementById(`item${i}-edit-parent-select`);
 
   // TODO!
-  // Illegal Values
+  // Value Restrictions
 
   // Alias
 
@@ -352,6 +361,7 @@ function saveItemEditChanges(id){
   .then((response) => { 
     if (response.status === 200) {
       setAwaitingEditItemResult(false);
+      turnOffItemEdit();
     } else {
       response.json().then(responseJSON => { 
         // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
