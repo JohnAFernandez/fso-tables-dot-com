@@ -59,6 +59,7 @@ function initiateItemEdit(id) {
       string = string.replace(" Integers", "");
     } else {
       target_element.value = current_element.innerText;
+      toggleContents(false, `item${id}-edit-list-size-area`);
     }
 
     let target_element2 = document.getElementById(`item${id}-edit-data-list-count`);
