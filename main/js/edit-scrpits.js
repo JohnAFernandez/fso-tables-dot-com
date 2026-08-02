@@ -224,26 +224,26 @@ function saveItemEditChanges(id){
     let item = database_tables[Current_Table].items[i];
 
     if(item_index == database_tables[Current_Table].items[i].item_index){
-      if (text === item.text){
+      if (text == item.text){
         text = No_Change;
       }
 
-      if (docField === item.documentation){
+      if (docField == item.documentation){
         docField = No_Change;
       }
-      if (majorVersionField === item.major_version){
+      if (majorVersionField == item.major_version){
         majorVersionField = No_Change;
       }
-      if (parentIdField === item.parent_id){
+      if (parentIdField == item.parent_id){
         parentIdField = No_Change;
       }
-      if (infoTypeField === item.info_type){
+      if (infoTypeField == item.info_type){
         infoTypeField = No_Change;
       }
-      if (tableIndexField === item.table_index){
+      if (tableIndexField == item.table_index){
         tableIndexField = No_Change;
       }
-      if (defaultValueField === item.default_value){
+      if (defaultValueField == item.default_value){
         defaultValueField = No_Change;
       }
 
@@ -259,7 +259,8 @@ function saveItemEditChanges(id){
     parent_id: parentIdField,
     info_type: infoTypeField,
     default_value: defaultValueField,
-    table_index: tableIndexField
+    table_index: tableIndexField,
+    table_id: No_Change
   }
 
   fetch(API_ROOTB + "tables/items", {
