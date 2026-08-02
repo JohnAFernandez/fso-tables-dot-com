@@ -1446,18 +1446,26 @@ function addMappedOption(value, key, map) {
   this.select_item.appendChild(temporary_item);
 }
 
-function itemSetParentItemOptions(id = undefined){
+function itemSetParentItemOptions(id = undefined, orignal = undefined){
   const table_index = Current_Table;
   const results = new Map(); 
+  let original_parent_index;
 
   for (let i = 0; i < database_tables[table_index].items.length; i++){
+    if (database_tables[table_index].items[i].item_text === original){
+      original_parent_index = database_tables[table_index].items[i].parent_id;
+      continue;
+    }
+
     results.set(database_tables[table_index].items[i].item_id, database_tables[table_index].items[i].item_text);
   }
 
   let select_item;
+  let original_item;
 
   if (id !== undefined ) {
     select_item = document.getElementById(`item${id}-edit-parent-select`);
+    original_parent = document.getElementById(`item${id}-parent`).innerText;  
   } else {
     select_item = document.getElementById(`parent-item-select`);
   }
@@ -1489,14 +1497,29 @@ function itemSetParentItemOptions(id = undefined){
   }
 
   results.forEach(addMappedOption, thing);
+
+  // bail if on the new item dialog
+  if (original_item === undefined){
+    return;
+  }
+  
+  // otherwise, pick original item
+  select_item.value = original_parent_index;
 }
 
-function itemSetOrderingOptions(id = undefined){
+function itemSetOrderingOptions(id = undefined, original = undefined){
   const table_index = Current_Table;
   const results = new Map(); 
+  let original_index = 2147483647;
 
   for (let i = 0; i < database_tables[table_index].items.length; i++){
-    if (database_tables[table_index].items[i].table_index > -1 && database_tables[table_index].items[i].table_index < 2147483647){
+    // catch the original because we do not want to be after the same item.  Exclude it from results and skips its index.
+    if (original !== undefined && original_index === 2147483647 && database_tables[table_index].items[i].item_text === original) {
+      original_index = database_tables[table_index].items[i].table_index;
+      continue;
+    } 
+
+    if (database_tables[table_index].items[i].table_index > -1 && database_tables[table_index].items[i].table_index < 2147483647) {
       results.set(database_tables[table_index].items[i].table_index, database_tables[table_index].items[i].item_text);
     }
   }
@@ -1526,17 +1549,53 @@ function itemSetOrderingOptions(id = undefined){
   temporary_item = template_item.content.cloneNode(true);
   temporary_child = temporary_item.querySelector(".item-ordering-option");
   temporary_child.value = 0;
-  temporary_child.textContent = "First item"
+  temporary_child.textContent = "First item";
   select_item.appendChild(temporary_item);
 
+  let i;
   // The rest, one by one
-  for (let i = 0; i < results.size; i++){
+  for (i = 0; i < results.size; i++){
+    // again, skip the original
+    if (i === original_index){
+      continue;
+    }
+
     temporary_item = template_item.content.cloneNode(true);
     temporary_child = temporary_item.querySelector(".item-ordering-option");
-    temporary_child.value = i + 1;
+
+    // items less than the original need a plus 1 to place our element at the correct index.
+    if (i < original_index){
+      temporary_child.value = i + 1;
+    // if the original was moved to past where it needed to be, the original index would be fine, as the item that used to be there
+    // will get moved down on the server
+    } else {
+      temporary_child.value = i;
+    }
+
     temporary_child.textContent = `Follows ${results.get(i)}`;
     select_item.appendChild(temporary_item);
   }
+
+  // New items should always default to the end of the table.
+  if (original_index === undefined){
+    select_item.value = i + 1;
+    return;
+  }
+
+  // Invalid index, Try first item
+  if (original_index < 0){
+    select_item.value = 0;  
+  // unordered stays unordered
+  } else if (original_index === 2147483647){
+    select_item.value = 2147483647;
+  // Otherwise pick the original spot
+  } else if (original_index < i) {
+    select_item.value = original_index;
+  // mysteriously high?  Well, then pick the last value 
+  } else {
+    select_item.value = i;
+  }
+
 }
 
 function check_url(){
