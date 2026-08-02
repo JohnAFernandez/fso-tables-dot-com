@@ -92,7 +92,7 @@ function initiateItemEdit(id) {
   
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
     if (current_element.getAttribute("data-item-id") == database_tables[Current_Table].items[i].item_id){
-      target_element.value = database_tables[Current_Table].items[i].table_index;
+      target_element.value = database_tables[Current_Table].items[i].item_text;
     }
   }
 
