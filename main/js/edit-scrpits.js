@@ -244,10 +244,23 @@ function saveItemEditChanges(id){
   let docField = document.getElementById(`item${id}-edit-description`).value;
   let majorVersionField = document.getElementById(`item${id}-edit-major-version`).value;
   let parentIdField = document.getElementById(`item${id}-edit-parent-select`).value;
-  let infoTypeField = document.getElementById(`item${id}-edit-type`).value;
   let tableIndexField = document.getElementById(`item${id}-ordering-select`).value; 
   let defaultValueField = document.getElementById(`item${id}-edit-default-value`).value;
 
+  let infoType1 = document.getElementById(`item${id}-edit-type`).value;
+  let infoType2 = document.getElementById(`item${id}-edit-data-list-count`).value;
+  let infoTypeField;
+
+  if (infoType1.startsWith("List of ")){
+    if (infoType1.endsWith("Integers")){
+      infoTypeField = `List of ${infoType2} Integers`
+    } else {
+      infoTypeField = `List of ${infoType2} FLoats`
+    }
+  } else {
+    infoTypeField = infoType1;
+  }
+  
   let i;
   let changed = false;
 
@@ -275,11 +288,6 @@ function saveItemEditChanges(id){
       } else {
         changed = true;
       }
-      if (infoTypeField == item.info_type){
-        infoTypeField = No_Change;
-      } else {
-        changed = true;
-      }
       if (tableIndexField == item.table_index){
         tableIndexField = No_Change;
       } else {
@@ -287,6 +295,11 @@ function saveItemEditChanges(id){
       }
       if (defaultValueField == item.default_value){
         defaultValueField = No_Change;
+      } else {
+        changed = true;
+      }
+      if (infoTypeField == item.info_type){
+        infoTypeField = No_Change;
       } else {
         changed = true;
       }
