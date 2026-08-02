@@ -89,10 +89,12 @@ function initiateItemEdit(id) {
   itemSetOrderingOptions(id);
   current_element = document.getElementById(`item${id}`); // This is different on purpose
   target_element = document.getElementById(`item${id}-ordering-select`)
+  let item_id = current_element.getAttribute("data-item-id") 
   
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
-    if (current_element.getAttribute("data-item-id") == database_tables[Current_Table].items[i].item_id){
+    if (item_id == database_tables[Current_Table].items[i].item_id){
       target_element.value = database_tables[Current_Table].items[i].table_index;
+      break;
     }
   }
 
@@ -102,9 +104,20 @@ function initiateItemEdit(id) {
   itemSetParentItemOptions(id);
   current_element = document.getElementById(`item${id}-parent`);
   target_element = document.getElementById(`item${id}-edit-parent-select`);
+  let found = false;
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
     if (current_element.innerText == database_tables[Current_Table].items[i].item_text){
       target_element.value = database_tables[Current_Table].items[i].table_index + 1;
+      found = true;
+      break;
+    }
+  }
+
+  if(!found){
+    for (let i = 0; i < database_tables[Current_Table].items.length; i++) {
+      if (item_id === database_tables[Current_Table].items[i].item_id){
+        target_element.value = database_tables[Current_Table].items[i].table_index;
+      }        
     }
   }
 
