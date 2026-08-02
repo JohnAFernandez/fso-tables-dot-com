@@ -1024,7 +1024,7 @@ async function apply_table(table) {
       // parent
       field = document.getElementById(`item${i}-parent`);
       if (field) {
-        if (data_item.parent_item > -1){
+        if (data_item.parent_id > -1){
           field.textContent = "Still not populated because we need a new function for looking up parents by index";
         } else {
           field.textContent = "No Parent";
