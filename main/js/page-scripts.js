@@ -1058,7 +1058,7 @@ async function apply_table(table) {
         } else {
           // We do not have a default value
           if (data_item.type === "Syntax Marker" || data_item.type === "Syntax Section Marker" || data_item.type === "Syntax Section Ending Marker" ){
-            field.textContent = "&#9;";
+            field.textContent = " ";
           } else {
             field.textContent = "No Default Value";
           }
@@ -1066,7 +1066,7 @@ async function apply_table(table) {
           // No value
           field = document.getElementById(`item${i}-default-value`);
           if (field){
-            field.textContent = "&#9;";
+            field.textContent = " ";
           }
         }
       }      
