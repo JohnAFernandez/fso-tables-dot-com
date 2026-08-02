@@ -304,6 +304,10 @@ async function update_all_local_data() {
   let local_data = get_local_storage();
   let status = await get_need_update_status(get_last_timestamp());
 
+  while (status === undefined){
+
+  }
+
   if (local_data != null && !status){
     database_tables = local_data;
     console.log("Using local cached data");
