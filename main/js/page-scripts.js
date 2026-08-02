@@ -1461,7 +1461,7 @@ function itemSetParentItemOptions(id = undefined, original = undefined){
   }
 
   let select_item;
-  let original_item;
+  let original_parent;
 
   if (id !== undefined ) {
     select_item = document.getElementById(`item${id}-edit-parent-select`);
@@ -1499,7 +1499,7 @@ function itemSetParentItemOptions(id = undefined, original = undefined){
   results.forEach(addMappedOption, thing);
 
   // bail if on the new item dialog
-  if (original_item === undefined){
+  if (original_parent === undefined){
     return;
   }
   
