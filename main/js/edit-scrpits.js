@@ -39,7 +39,38 @@ function initiateItemEdit(id) {
   // type
   current_element = document.getElementById(`item${id}-variable-type`);
   target_element = document.getElementById(`item${id}-edit-type`);
-  target_element.value = current_element.innerText;
+  let string = current_element.innerText;
+  
+  // this one is special because we can have a list of multiple items of a specific count
+  if (string.innerText.startsWith("List of ")) {
+    let add_count = false;
+
+    if (string.endsWith(" Floats")){
+      target_element.value = "List of Floats";
+      add_count = true;
+      string.replace("List of ");
+      string.replace(" Floats", "");
+    } else if (string.innerText.endsWith(" Integers")){
+      target_element.value = "List of Inetgers";
+      add_count = true;
+      string.replace("List of ");
+      string.replace(" Integers", "");
+    } else {
+      target_element.value = current_element.innerText;
+    }
+
+    let target_element2 = document.getElementById(`item${id}-edit-data-list-count`);
+    
+    if (add_count) {
+      toggleContents(true, `item${id}-edit-data-list-count`);
+      target_element2.value = string;
+    } else {
+      toggleContents(false, `item${id}-edit-data-list-count`);
+    }
+
+  } else {
+    target_element.value = current_element.innerText; 
+  } 
   toggleContents(false, `item${id}-type-area`);
   toggleContents(true, `item${id}-edit-type-group`);
 

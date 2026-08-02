@@ -717,6 +717,11 @@ function create_ui_item(i, temporary_item, parent_item){
     child.setAttribute("id", `item${i}-edit-type`);
   }
 
+  child = temporary_item.querySelector(".item-edit-data-list-count");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-data-list-count`)
+  }
+
   // Illegal Values
   child = temporary_item.querySelector(".template-illegal-values-area");
   if (child) { 
