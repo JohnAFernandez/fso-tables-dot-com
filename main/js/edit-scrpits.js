@@ -42,7 +42,7 @@ function initiateItemEdit(id) {
   let string = current_element.innerText;
   
   // this one is special because we can have a list of multiple items of a specific count
-  if (string.innerText.startsWith("List of ")) {
+  if (string !== undefined && string.innerText.startsWith("List of ")) {
     let add_count = false;
 
     if (string.endsWith(" Floats")){
@@ -70,7 +70,8 @@ function initiateItemEdit(id) {
 
   } else {
     target_element.value = current_element.innerText; 
-  } 
+  }
+
   toggleContents(false, `item${id}-type-area`);
   toggleContents(true, `item${id}-edit-type-group`);
 
