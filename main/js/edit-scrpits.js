@@ -1,4 +1,5 @@
 let awaitingItemSubmissionResult = false;
+let awaitingEditItemResult = false;
 let EditId = -1;
 
 function initiateItemEdit(id) {
@@ -191,4 +192,104 @@ function send_submit_new_item(){
     }
   );
    
+}
+
+function setAwaitingEditItemResult(waiting){
+  awaitingEditItemResult = waiting;
+}
+
+const No_Change = "~!*$%";
+
+function saveItemEditChanges(id){
+  if (awaitingEditItemResult === true) {
+    return;
+  }
+
+  setAwaitingEditItemResult(true);
+  clearSumbitNewItemErrorText();
+
+  let item_index = document.getElementById(`item${id}`).getAttribute("data-item-id");
+  let text = document.getElementById(`item${id}-edit-name`).value;
+  let docField = document.getElementById(`item${id}-edit-description`).value;
+  let majorVersionField = document.getElementById(`item${id}-edit-major-version`).value;
+  let parentIdField = document.getElementById(`item${id}-edit-parent-select`).value;
+  let infoTypeField = document.getElementById(`item${id}-edit-type`).value;
+  let tableIndexField = document.getElementById(`item${id}-ordering-select`).value; 
+  let defaultValueField = document.getElementById(`item${id}-edit-default-value`).value;
+
+  let i;
+
+  // we need to check for changes to the values before automatically submitting them.  Saves database work and keeps changes cleaner
+  for (i = 0; i < database_tables[Current_Table].items.length; i++){
+    let item = database_tables[Current_Table].items[i];
+
+    if(item_index == database_tables[Current_Table].items[i].item_index){
+      if (text === item.text){
+        text = No_Change;
+      }
+
+      if (docField === item.documentation){
+        docField = No_Change;
+      }
+      if (majorVersionField === item.major_version){
+        majorVersionField = No_Change;
+      }
+      if (parentIdField === item.parent_id){
+        text = No_Change;
+      }
+      if (infoTypeField === item.info_type){
+        text = No_Change;
+      }
+      if (tableIndexField === item.table_index){
+        text = No_Change;
+      }
+      if (defaultValueField === item.default_value){
+        text = No_Change;
+      }
+
+      break;
+    }
+  }
+
+  const patchItemRequest = {
+
+    item_text: textField.value,
+    documentation: docField.value,
+    major_version: majorVersionField.value,
+    parent_id: Number(parentIdField.value),
+    table_id: Number(tableField.value),
+    info_type: infoTypeField.value,
+    default_value: defaultValueField.value,
+    table_index: Number(-1)
+  }
+
+  fetch(API_ROOTB + "tables/items", {
+    method: "PATCH",
+    body: JSON.stringify(patchItemRequest),
+    credentials: "include",
+    headers: {
+    "username": getCookie("username")
+      }
+  })
+  .then((response) => { 
+    if (response.status === 200) {
+      setAwaitingEditItemResult(false);
+    } else {
+      response.json().then(responseJSON => { 
+        // if we didn't have a success then, there was an error from the server, and we should be displaying what it sent. 
+        throw responseJSON.Error;}
+      ).catch(
+        error => { 
+          console.log(`Submitting item failed. The error encountered was: ${error}`);
+          setAwaitingEditItemResult(false);
+          //setSumbitNewItemErrorText(`${error}`);
+      })
+    }
+  }).catch ( 
+    error => { 
+      console.log(`Submission failed due to some server or network error. The error encountered was: ${error}`);
+      setAwaitingEditItemResult(false);
+      //setSumbitNewItemErrorText("Submission Failed, Server or Network Error");
+    }
+  );   
 }
