@@ -1516,7 +1516,7 @@ function itemSetOrderingOptions(id = undefined){
     temporary_item = template_item.content.cloneNode(true);
     temporary_child = temporary_item.querySelector(".item-ordering-option");
     temporary_child.value = i + 1;
-    temporary_child.textContent = `Follows ${results[i]}`;
+    temporary_child.textContent = `Follows ${results.get(i)}`;
     select_item.appendChild(temporary_item);
   }
 }
