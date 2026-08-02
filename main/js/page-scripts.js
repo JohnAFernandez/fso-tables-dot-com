@@ -1478,7 +1478,7 @@ function itemSetOrderingOptions(id = undefined){
   const results = new Map(); 
 
   for (let i = 0; i < database_tables[table_index].items.length; i++){
-    if (database_tables[table_index].items[i].table_index > -1){
+    if (database_tables[table_index].items[i].table_index > -1 && database_tables[table_index].items[i].table_index < 2147483647){
       results.set(database_tables[table_index].items[i].table_index, database_tables[table_index].items[i].item_text);
     }
   }
@@ -1512,7 +1512,7 @@ function itemSetOrderingOptions(id = undefined){
   select_item.appendChild(temporary_item);
 
   // The rest, one by one
-  for (let i = 0; i < results.length; i++){
+  for (let i = 0; i < results.size; i++){
     temporary_item = template_item.content.cloneNode(true);
     temporary_child = temporary_item.querySelector(".item-ordering-option");
     temporary_child.value = i + 1;
