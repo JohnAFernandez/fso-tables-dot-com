@@ -1446,7 +1446,7 @@ function addMappedOption(value, key, map) {
   this.select_item.appendChild(temporary_item);
 }
 
-function itemSetParentItemOptions(id = undefined, orignal = undefined){
+function itemSetParentItemOptions(id = undefined, original = undefined){
   const table_index = Current_Table;
   const results = new Map(); 
   let original_parent_index;
