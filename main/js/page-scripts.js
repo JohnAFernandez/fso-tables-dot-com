@@ -1026,7 +1026,7 @@ async function apply_table(table) {
       if (field) {
         if (data_item.parent_id > -1){
           
-          for (let i = 0; i < database_tables[Current_Table].items[i].length; i++){
+          for (let i = 0; i < database_tables[Current_Table].items.length; i++){
             const source_item = database_tables[Current_Table].items[i];
             if (source_item.item_id === data_item.parent_id){
               field.textContent = source_item.item_text;
