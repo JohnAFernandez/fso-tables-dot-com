@@ -699,7 +699,8 @@ function create_ui_item(i, temporary_item, parent_item){
   // Type
   child = temporary_item.querySelector(".template-variable-type");
   if (child) { 
-    child.setAttribute("id", `item${i}-variable-type`);             
+    child.setAttribute("id", `item${i}-variable-type`);
+    child.setAttribute("oninput", `maybeEnableListCount(${i});`);        
   }        
 
   child = temporary_item.querySelector(".template-type-area");

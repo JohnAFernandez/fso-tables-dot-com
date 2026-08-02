@@ -136,6 +136,19 @@ function turnOffItemEdit(id) {
   Edit_In_Progress = false;
 }
 
+function maybeEnableListCount(id){
+  const value = document.getElementById(`item${id}-edit-type`).value;
+  if (value === "List of Integers" || value === "List of Floats"){
+    toggleListCount(true, id);
+  } else {
+    toggleListCounts(false, id);
+  }
+}
+
+function toggleListCount(state, id){
+  toggleContents(state, `item${id}-edit-list-size-area`);
+}
+
 function setAwaitingNewItemResult(waiting){
 
     awaitingItemSubmissionResult = waiting;
