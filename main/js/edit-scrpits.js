@@ -223,7 +223,7 @@ function saveItemEditChanges(id){
   for (i = 0; i < database_tables[Current_Table].items.length; i++){
     let item = database_tables[Current_Table].items[i];
 
-    if(item_index == database_tables[Current_Table].items[i].item_index){
+    if(item_index == database_tables[Current_Table].items[i].item_id){
       if (text == item.text){
         text = No_Change;
       }
