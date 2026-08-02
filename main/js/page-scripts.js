@@ -722,6 +722,11 @@ function create_ui_item(i, temporary_item, parent_item){
     child.setAttribute("id", `item${i}-edit-data-list-count`)
   }
 
+  child = temporary_item.querySelector(".item-edit-list-count-area");
+  if (child) {
+    child.setAttribute("id", `item${i}-edit-list-size-area`)
+  }
+
   // Illegal Values
   child = temporary_item.querySelector(".template-illegal-values-area");
   if (child) { 

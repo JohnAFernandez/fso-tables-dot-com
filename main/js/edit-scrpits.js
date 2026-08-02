@@ -64,10 +64,10 @@ function initiateItemEdit(id) {
     let target_element2 = document.getElementById(`item${id}-edit-data-list-count`);
     
     if (add_count) {
-      toggleContents(true, `item${id}-edit-data-list-count`);
+      toggleContents(true, `item${id}-edit-list-size-area`);
       target_element2.value = string;
     } else {
-      toggleContents(false, `item${id}-edit-data-list-count`);
+      toggleContents(false, `item${id}-edit-list-size-area`);
     }
 
   } else {
