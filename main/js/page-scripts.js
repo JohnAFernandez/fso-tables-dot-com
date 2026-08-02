@@ -618,10 +618,6 @@ function replace_inner_html(element_id, contents){
   }
 }
 
-function saveEditedItem(id){
-  window.alert("Not able to save edits yet, sorry!");  
-}
-
 function create_ui_item(i, temporary_item, parent_item){
   let child = temporary_item.querySelector(".data-item");
   if (child) { 
@@ -849,7 +845,7 @@ function create_ui_item(i, temporary_item, parent_item){
     
     let child2 = child.querySelector(".save-edit-button");
     if (child2){
-      child2.setAttribute("onclick", `saveEditedItem(${i}); return false;`);
+      child2.setAttribute("onclick", `saveItemEditChanges(${i}); return false;`);
     }
 
     child.setAttribute("style", "display:none;");
