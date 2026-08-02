@@ -1526,7 +1526,7 @@ function itemSetOrderingOptions(id = undefined){
   temporary_item = template_item.content.cloneNode(true);
   temporary_child = temporary_item.querySelector(".item-ordering-option");
   temporary_child.value = 0;
-  temporary_child.textContent = "Is the first item"
+  temporary_child.textContent = "First item"
   select_item.appendChild(temporary_item);
 
   // The rest, one by one
