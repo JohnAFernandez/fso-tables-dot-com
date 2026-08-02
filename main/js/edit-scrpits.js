@@ -39,6 +39,8 @@ function initiateItemEdit(id) {
   // type
   current_element = document.getElementById(`item${id}-variable-type`);
   target_element = document.getElementById(`item${id}-edit-type`);
+  toggleContents(false, `item${id}-type-area`);
+  toggleContents(true, `item${id}-edit-type-group`);
   let string = current_element.innerText;
   
   // this one is special because we can have a list of multiple items of a specific count
@@ -48,12 +50,12 @@ function initiateItemEdit(id) {
     if (string.endsWith(" Floats")){
       target_element.value = "List of Floats";
       add_count = true;
-      string.replace("List of ");
+      string.replace("List of ", "");
       string.replace(" Floats", "");
     } else if (string.endsWith(" Integers")){
       target_element.value = "List of Inetgers";
       add_count = true;
-      string.replace("List of ");
+      string.replace("List of ", "");
       string.replace(" Integers", "");
     } else {
       target_element.value = current_element.innerText;
@@ -72,8 +74,6 @@ function initiateItemEdit(id) {
     target_element.value = current_element.innerText; 
   }
 
-  toggleContents(false, `item${id}-type-area`);
-  toggleContents(true, `item${id}-edit-type-group`);
 
   // Default value -- Copying the value should still work because no default value is empty in the item.
   current_element = document.getElementById(`item${id}-default-value`);
