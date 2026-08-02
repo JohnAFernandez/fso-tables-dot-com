@@ -187,7 +187,7 @@ function setLoginStatus(status) {
   try {
     toggleContents(!status, "table-add-item-button");
   } catch (e) {
-    console.log(`Could not toggle table edit button  because of error: ${e}`);
+    console.log(`Could not toggle table edit button because of error: ${e}`);
   }
 
   try {
