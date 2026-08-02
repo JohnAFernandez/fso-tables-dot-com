@@ -91,7 +91,7 @@ function initiateItemEdit(id) {
   target_element = document.getElementById(`item${id}-ordering-select`)
   
   for (let i = 0; i < database_tables[Current_Table].items.length; i++){
-    if (current_element.getAttribute("data-item-id") === database_tables[Current_Table].items[i].item_id){
+    if (current_element.getAttribute("data-item-id") == database_tables[Current_Table].items[i].item_id){
       target_element.value = database_tables[Current_Table].items[i].table_index;
     }
   }
