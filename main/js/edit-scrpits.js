@@ -218,6 +218,7 @@ function saveItemEditChanges(id){
   let defaultValueField = document.getElementById(`item${id}-edit-default-value`).value;
 
   let i;
+  let changed = false;
 
   // we need to check for changes to the values before automatically submitting them.  Saves database work and keeps changes cleaner
   for (i = 0; i < database_tables[Current_Table].items.length; i++){
@@ -230,25 +231,42 @@ function saveItemEditChanges(id){
 
       if (docField == item.documentation){
         docField = No_Change;
+      } else {
+        changed = true;
       }
       if (majorVersionField == item.major_version){
         majorVersionField = No_Change;
+      } else {
+        changed = true;
       }
       if (parentIdField == item.parent_id){
         parentIdField = No_Change;
+      } else {
+        changed = true;
       }
       if (infoTypeField == item.info_type){
         infoTypeField = No_Change;
+      } else {
+        changed = true;
       }
       if (tableIndexField == item.table_index){
         tableIndexField = No_Change;
+      } else {
+        changed = true;
       }
       if (defaultValueField == item.default_value){
         defaultValueField = No_Change;
+      } else {
+        changed = true;
       }
 
       break;
     }
+  }
+
+  if (!changed){
+    setAwaitingEditItemResult(false);
+    return;
   }
 
   const patchItemRequest = {
