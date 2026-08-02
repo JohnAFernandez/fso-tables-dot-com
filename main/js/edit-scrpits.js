@@ -9,18 +9,6 @@ function initiateItemEdit(id) {
   EditId = id;
   Edit_In_Progress = true;
   
-  /*
-  item${id}
-  item${id}-text
-  item${id}-major-version
-  item${id}-deprecation-area
-  item${id}-variable-type
-  item${id}-illegal-values-area
-  item${id}-alias-area
-  item${id}-documentation
-  item${id}-save-button
-  */
-
   // Change Active Buttons
   toggleContents(false, `item${id}-edit-button-col`);
   toggleContents(true, `item${id}-save-button-col`);
@@ -49,9 +37,27 @@ function initiateItemEdit(id) {
 
   // type
   current_element = document.getElementById(`item${id}-variable-type`);
-  //changeContents(`item${id}-edit-type`, current_element.innerText); we need to figure out the new way of setting default/current value    
+  target_element = document.getElementById(`item${id}-edit-type`);
+  target_element.value = current_element.value;
   toggleContents(false, `item${id}-type-area`);
   toggleContents(true, `item${id}-edit-type-group`);
+
+  // Default value -- Copying the value should still work because no default value is empty in the item.
+  current_element = document.getElementById(`item${id}-default-value`);
+  target_element = document.getElementById(`item${id}-edit-default-value`);
+  target_element.value = current_element.value;
+  toggleContents(false, `item${id}-default-value-display-area`);
+  toggleContents(true, `item${id}-default-value-edit-area`);
+
+  //Item Ordering
+  toggleContents(true, `item${id}-edit-ordering-area`);
+  itemSetOrderingOptions(id);
+
+  //Item Parent
+  toggleContents(false, `item${id}-parent-area`);
+  toggleContents(true, `item${id}-parent-editing-area`);
+  itemSetParentItemOptions(id);
+
 
   // TODO!
   // Illegal Values
@@ -64,19 +70,6 @@ function initiateItemEdit(id) {
   //toggleContents(false, `item${id}-major-version-area`); 
   //toggleContents(true, `item${id}-edit-major-version-group`);
 
-  // Default value
-  toggleContents(false, `item${id}-default-value-display-area`);
-  toggleContents(true, `item${id}-default-value-edit-area`);
-
-  //Item Ordering
-  toggleContents(true, `item${id}-edit-ordering-area`);
-  itemSetOrderingOptions(id);
-  
-
-  //Item Parent
-  toggleContents(false, `item${id}-parent-area`);
-  toggleContents(true, `item${id}-parent-editing-area`);
-  itemSetParentItemOptions(id);
 
   // Small formatting changes
   current_element = document.getElementById(`item${id}-description-row`);
@@ -107,10 +100,6 @@ function turnOffItemEdit(id) {
   current_element.classList.add(`indented-row`);
 
   Edit_In_Progress = false;
-}
-
-function saveItemEditChanges(id){
-    console.log(`Save editing function called for id ${id}`)
 }
 
 function setAwaitingNewItemResult(waiting){
