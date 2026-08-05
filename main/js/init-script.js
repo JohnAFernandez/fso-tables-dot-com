@@ -1,7 +1,8 @@
   const event = new Event("search_function");
 
-    let Out_string = "Initializing Page... v0.9";
+  let Out_string = "Initializing Page... v0.9";
 
+  document.addEventListener("DOMContentLoaded", function(){ initPage() });
 
 // Run at the start of the page (called from the html)
 async function initPage(){
